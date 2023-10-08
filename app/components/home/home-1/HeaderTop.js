@@ -25,7 +25,7 @@ const HeaderTop = () => {
     },
     {
       icon: "flaticon-map",
-      text: "47 Bakery Street, London, UK",
+      text: "Cyberhub, Gurugram, India",
     },
     {
       icon: "flaticon-clock",

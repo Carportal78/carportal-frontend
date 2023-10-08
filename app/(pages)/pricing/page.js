@@ -7,7 +7,7 @@ import LoginSignupModal from "@/app/components/common/login-signup";
 import PricingTable from "@/app/components/pages/pricing/PricingTable";
 
 export const metadata = {
-  title: "Pricing || Voiture - Automotive & Car Dealer NextJS Template",
+  title: "Pricing || Carportal - Automotive & Car Dealer",
 };
 
 const Pricing = () => {

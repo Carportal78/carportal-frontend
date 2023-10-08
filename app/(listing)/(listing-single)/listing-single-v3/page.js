@@ -19,7 +19,7 @@ import Map from "@/app/components/common/Map";
 
 export const metadata = {
   title:
-    "Listing Single V3 || Voiture - Automotive & Car Dealer NextJS Template",
+    "Listing Single V3 || Carportal - Automotive & Car Dealer",
 };
 
 const ListingSingleV3 = () => {

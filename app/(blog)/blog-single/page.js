@@ -19,7 +19,7 @@ import CommentForm from "@/app/components/blog/blog-single/CommentForm";
 
 const metadata = {
   title:
-    "Blog Dynamic Single || Voiture - Automotive & Car Dealer NextJS Template",
+    "Blog Dynamic Single || Carportal - Automotive & Car Dealer",
 };
 
 const BlogDynamicSingle = () => {

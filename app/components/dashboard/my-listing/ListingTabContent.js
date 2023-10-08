@@ -5,44 +5,6 @@ const ListingTabContent = () => {
   return (
     <>
       <div className="row">
-        <div className="col-lg-12">
-          {/* <!-- Nav tabs --> */}
-          <div className="nav nav-tabs justify-content-start" role="tablist">
-            <button
-              className="nav-link active"
-              id="nav-home-tab"
-              data-bs-toggle="tab"
-              data-bs-target="#nav-home"
-              role="tab"
-              aria-controls="nav-home"
-              aria-selected="true"
-            >
-              All Status
-            </button>
-            <button
-              className="nav-link"
-              id="nav-shopping-tab"
-              data-bs-toggle="tab"
-              data-bs-target="#nav-shopping"
-              role="tab"
-              aria-controls="nav-shopping"
-              aria-selected="false"
-            >
-              New Cars
-            </button>
-            <button
-              className="nav-link"
-              id="nav-hotels-tab"
-              data-bs-toggle="tab"
-              data-bs-target="#nav-hotels"
-              role="tab"
-              aria-controls="nav-hotels"
-              aria-selected="false"
-            >
-              Used Cars
-            </button>
-          </div>
-        </div>
         {/* <!-- Tab panes --> */}
 
         <div className="col-lg-12 mt50">

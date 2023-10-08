@@ -9,7 +9,7 @@ import Sidebar from "@/app/components/blog/Sidebar";
 import BlogList from "@/app/components/blog/BlogList";
 
 export const metadata = {
-  title: "Blog List || Voiture - Automotive & Car Dealer NextJS Template",
+  title: "Blog List || Carportal - Automotive & Car Dealer",
 };
 
 const Blog = () => {

@@ -28,19 +28,34 @@ const AboutTextBlock = () => {
       {/* End .col */}
       <div className="col-lg-5 offset-lg-1">
         <div className="about_content">
-          <h2 className="title">Welcome To The Voiture</h2>
+          <h2 className="title">Welcome To The Carportal</h2>
           <p className="mb30">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-            commodo ligula eget dolor. Aenean massa. Cum sociis Theme natoque
-            penatibus et magnis dis parturient montes, nascetur.
+            Established in 2022, Carportal stands as the beacon of automotive
+            innovation in India. Born from the visionary minds at Unicorn Tech
+            Media, we're more than just an automotive website—we're a movement.
           </p>
-          <p className="mb50">
-            Vel illum dolore eu feugiat nulla facilisis at vero eros et accu qui
-            blandit praesent luptatum zzril delenit.
+          <p className="mb30">
+            Our platform is crafted by industry veterans, merging passion with
+            expertise. Dive deep into our comprehensive car reviews, immersive
+            3D showcases, and real-time updates, ensuring you're always ahead of
+            the curve.
           </p>
-          <a className="btn btn-thm about-btn" href="#">
-            Learn More
-          </a>
+          <p className="mb30">
+            We don't just inform; we collaborate. With strong ties to top
+            manufacturers and dealerships, we’re reshaping the car buying and
+            selling experience. And with our sister platforms delving into Tyres
+            and Services, Carportal is driving the future of automotive
+            digitalization.
+          </p>
+          <p className="mb30">
+            Collaboration lies at the heart of Carportal's ethos. We maintain a
+            synergistic relationship with automotive manufacturers and
+            dealerships, assisting them with cutting-edge IT solutions that
+            optimize business performance and elevate conversion rates.
+          </p>
+          <p className="mb30">
+          Come aboard Carportal—the future of automobiles is just a click away.
+          </p>
         </div>
       </div>
       {/* End .col */}

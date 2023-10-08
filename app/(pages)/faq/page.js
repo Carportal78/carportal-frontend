@@ -8,7 +8,7 @@ import FaqQuestion from "@/app/components/pages/faq/FaqQuestion";
 import BannerWidget from "@/app/components/common/BannerWidget";
 
 export const metadata = {
-  title: "Faq Question || Voiture - Automotive & Car Dealer NextJS Template",
+  title: "Faq Question || Carportal - Automotive & Car Dealer",
 };
 
 const Faq = () => {

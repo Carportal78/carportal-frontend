@@ -17,7 +17,7 @@ import ShoppingProductTabs from "@/app/components/user-profile/ShoppingProductTa
 import Image from "next/image";
 
 export const metadata = {
-  title: "User Profile || Voiture - Automotive & Car Dealer NextJS Template",
+  title: "User Profile || Carportal - Automotive & Car Dealer",
 };
 
 const UserProfile = () => {

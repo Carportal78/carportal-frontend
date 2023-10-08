@@ -7,7 +7,7 @@ import LoginSignupModal from "@/app/components/common/login-signup";
 import CompareTable from "@/app/components/pages/compare/CompareTable";
 
 export const metadata = {
-  title: "Compare || Voiture - Automotive & Car Dealer NextJS Template",
+  title: "Compare || Carportal - Automotive & Car Dealer",
 };
 
 const AboutUs = () => {

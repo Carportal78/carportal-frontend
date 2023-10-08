@@ -10,7 +10,7 @@ import MessageBodyContent from "@/app/components/dashboard/messages/MessageBodyC
 import SearchBox from "@/app/components/dashboard/messages/SearchBox";
 
 export const metadata = {
-  title: "Messages || Voiture - Automotive & Car Dealer NextJS Template",
+  title: "Messages || Carportal - Automotive & Car Dealer",
 };
 
 const Messages = () => {

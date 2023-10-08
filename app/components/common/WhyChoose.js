@@ -4,7 +4,7 @@ const WhyChoose = () => {
       iconClass: "flaticon-price-tag",
       title: "Best Price",
       description:
-        "Our stress-free finance department that can find financial solutions to save you money.",
+        "With our dedicated team, we ensure you receive the best value, prioritizing affordability without compromising quality.",
       delay: 100,
       style: "style1",
     },
@@ -12,7 +12,7 @@ const WhyChoose = () => {
       iconClass: "flaticon-car",
       title: "Trusted By Thousands",
       description:
-        "Our stress-free finance department that can find financial solutions to save you money.",
+        "Our esteemed finance department has successfully assisted countless clients, making us a preferred choice for many.",
       delay: 200,
       style: "style2",
     },
@@ -20,7 +20,7 @@ const WhyChoose = () => {
       iconClass: "flaticon-trust",
       title: "Wide Range of Brands",
       description:
-        "Our stress-free finance department that can find financial solutions to save you money.",
+        "Choose from an extensive selection of brands, all backed by our unparalleled financial solutions for optimal convenience.",
       delay: 300,
       style: "style3",
     },

@@ -11,7 +11,7 @@ import Partner from "@/app/components/common/Partner";
 import LoginSignupModal from "@/app/components/common/login-signup";
 
 export const metadata = {
-  title: "About Us || Voiture - Automotive & Car Dealer NextJS Template",
+  title: "About Us || Carportal - Automotive & Car Dealer",
 };
 
 const AboutUs = () => {
@@ -89,35 +89,6 @@ const AboutUs = () => {
       </section>
       {/* End Why Chose Us */}
 
-      {/* Our Team */}
-      <section className="our-team pb90 pt0">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-6 offset-lg-3">
-              <div className="main-title text-center">
-                <h2>Our Team</h2>
-              </div>
-            </div>
-          </div>
-          {/* End .row */}
-
-          <div className="row">
-            <div className="col-lg-12">
-              <div
-                className="home1_popular_listing home2_style"
-                data-aos="fade-up"
-                data-aos-delay="100"
-              >
-                <div className="listing_item_4grid_slider dots_none">
-                  <Team />
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* End .row */}
-        </div>
-        {/* End .container */}
-      </section>
       {/* End Our Team */}
 
       {/* Testimonials  */}
@@ -130,13 +101,13 @@ const AboutUs = () => {
               </div>
             </div>
           </div>
-          <div className="row">
+          {/* <div className="row">
             <div className="col-lg-12">
               <div className="testimonial_slider_home1">
                 <Testimonial />
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
       {/* End Testimonials  */}
@@ -155,7 +126,7 @@ const AboutUs = () => {
 
           <div className="partner_divider">
             <div className="row">
-              <Partner />
+              {/* <Partner /> */}
             </div>
             {/* End .row */}
           </div>

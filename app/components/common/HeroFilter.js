@@ -43,35 +43,6 @@ const HeroFilter = () => {
 
   return (
     <div className="col-lg-12">
-      <ul className="nav nav-pills justify-content-center">
-        <li className="nav-item" role="presentation">
-          <button
-            className={`nav-link ${
-              selectedStatus === "All Status" && "active"
-            }`}
-            onClick={() => handleStatusClick("All Status")}
-          >
-            All Status
-          </button>
-        </li>
-        <li className="nav-item" role="presentation">
-          <button
-            className={`nav-link ${selectedStatus === "Used Cars" && "active"}`}
-            onClick={() => handleStatusClick("Used Cars")}
-          >
-            Used Cars
-          </button>
-        </li>
-        <li className="nav-item" role="presentation">
-          <button
-            className={`nav-link ${selectedStatus === "New Cars" && "active"}`}
-            onClick={() => handleStatusClick("New Cars")}
-          >
-            New Cars
-          </button>
-        </li>
-      </ul>
-
       {/* filter tabs */}
       <div className="adss_bg_stylehome1">
         <div className="home1_advance_search_wrapper">

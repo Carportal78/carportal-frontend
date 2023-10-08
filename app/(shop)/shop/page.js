@@ -10,7 +10,7 @@ import Pagination from "@/app/components/common/Pagination";
 import Products from "@/app/components/shop/shop-page/Products";
 
 export const metadata = {
-  title: "Shop || Voiture - Automotive & Car Dealer NextJS Template",
+  title: "Shop || Carportal - Automotive & Car Dealer",
 };
 
 const Shop = () => {

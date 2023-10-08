@@ -8,7 +8,7 @@ import Terms from "@/app/components/pages/tersm-conditions/Terms";
 
 export const metadata = {
   title:
-    "Terms & Conditions || Voiture - Automotive & Car Dealer NextJS Template",
+    "Terms & Conditions || Carportal - Automotive & Car Dealer",
 };
 
 const TermsConditions = () => {

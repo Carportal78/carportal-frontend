@@ -17,10 +17,10 @@ const MainMenu = () => {
                                 ? "active"
                                 : ""
                         }
-                        href="#"
+                        href={menuItem?.path ?? '#'}
                     >
                         <span className="title">{menuItem.label}</span>
-                        <span className="arrow"></span>
+                        {!menuItem.subMenu.length ? '' : <span className="arrow" ></span>}
                     </a>
                     <ul className="sub-menu">
                         {menuItem.subMenu.map((subItem, subIndex) => (

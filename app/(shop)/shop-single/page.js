@@ -9,7 +9,7 @@ import ProductContentTabs from "@/app/components/shop/shop-single/pro-tab-conten
 import RelatedProducts from "@/app/components/shop/shop-single/RelatedProducts";
 
 export const metadata = {
-  title: "Shop Single || Voiture - Automotive & Car Dealer NextJS Template",
+  title: "Shop Single || Carportal - Automotive & Car Dealer",
 };
 
 const ShopSingle = () => {

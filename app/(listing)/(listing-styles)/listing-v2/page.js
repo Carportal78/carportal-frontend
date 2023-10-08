@@ -10,7 +10,7 @@ import ListGridFilter from "@/app/components/listing/ListGridFilter";
 import CarItems from "@/app/components/listing/listing-styles/listing-v2/CarItems";
 
 export const metadata = {
-  title: "Listing V2 || Voiture - Automotive & Car Dealer NextJS Template",
+  title: "Listing V2 || Carportal - Automotive & Car Dealer",
 };
 
 const ListingV2 = () => {

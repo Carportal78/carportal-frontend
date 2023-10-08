@@ -24,18 +24,18 @@ const HeaderSidebar = () => {
 
                 <div className="footer_contact_widget">
                     <h5 className="title">CONTACT</h5>
-                    <div className="footer_phone">+1 670 936 46 70</div>
-                    <p>hello@voiture.com</p>
+                    <div className="footer_phone">1-800-458-56987</div>
+                    <p>info@carportal.com</p>
                 </div>
                 {/* End widget */}
 
                 <div className="footer_about_widget">
                     <h5 className="title">OFFICE</h5>
                     <p>
-                        Germany —<br />
-                        329 Queensberry Street,
+                        Cyberhub,
                         <br />
-                        North Melbourne VIC 3051
+                        Gurugram,<br />
+                        India
                     </p>
                 </div>
                 {/* End widget */}

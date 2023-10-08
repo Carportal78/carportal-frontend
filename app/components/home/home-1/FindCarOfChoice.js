@@ -4,43 +4,21 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-const FeaturedFilterListing = () => {
+const FindCarOfChoice = () => {
   const [filter, setFilter] = useState("*");
 
   const filteredItems =
     filter === "*"
-      ? listingsData.slice(0, 6)
-      : listingsData.slice(0, 6).filter((item) => item.tags.includes(filter));
+      ? listingsData.slice(0, 8)
+      : listingsData.slice(0, 8).filter((item) => item.tags.includes(filter));
 
   return (
-    <div className="popular_listing_sliders">
-      {/* Nav tabs */}
-      <div className="nav nav-tabs  justify-content-center">
-        <button
-          className={filter === "*" ? "active nav-link" : "nav-link"}
-          onClick={() => setFilter("*")}
-        >
-          All Status
-        </button>
-
-        <button
-          className={filter === "new" ? "active nav-link" : "nav-link"}
-          onClick={() => setFilter("new")}
-        >
-          New Cars
-        </button>
-        <button
-          className={filter === "used" ? "active nav-link" : "nav-link"}
-          onClick={() => setFilter("used")}
-        >
-          Used Cars
-        </button>
-      </div>
+    <div className="popular_listing_sliders ">
       {/* Tab panes */}
       <div className="row">
         {filteredItems.map((listing) => (
-          <div className="col-sm-6 col-xl-6" key={listing.id}>
-            <div className="car-listing list_style">
+          <div className="col-sm-6 col-xl-3" key={listing.id}>
+            <div className="car-listing">
               <div className="thumb">
                 {listing.featured ? (
                   <>
@@ -145,4 +123,4 @@ const FeaturedFilterListing = () => {
   );
 };
 
-export default FeaturedFilterListing;
+export default FindCarOfChoice;

@@ -8,7 +8,7 @@ import BlogGrid from "@/app/components/blog/BlogGrid";
 import Pagination from "@/app/components/blog/Pagination";
 
 export const metadata = {
-  title: "Blog Grid || Voiture - Automotive & Car Dealer NextJS Template",
+  title: "Blog Grid || Carportal - Automotive & Car Dealer",
 };
 
 const Blog = () => {

@@ -7,8 +7,8 @@ const Address = () => {
         <br /> North Melbourne VIC 3051
       </>
     ),
-    subtitle: "+1 670 936 46 70",
-    email: "hello@voiture.com",
+    subtitle: "1-800-458-56987",
+    email: "info@carportal.com",
     socialIcons: [
       { iconClass: "fab fa-facebook-f", link: "#" },
       { iconClass: "fab fa-twitter", link: "#" },

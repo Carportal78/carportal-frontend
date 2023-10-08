@@ -8,7 +8,7 @@ import LoginSignupModal from "@/app/components/common/login-signup";
 import CarItems from "@/app/components/dashboard/favourites/CarItems";
 
 export const metadata = {
-  title: "Favourites || Voiture - Automotive & Car Dealer NextJS Template",
+  title: "Favourites || Carportal - Automotive & Car Dealer",
 };
 
 const Favourites = () => {

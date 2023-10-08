@@ -17,8 +17,8 @@ import Partner from "@/app/components/common/Partner";
 import Counter from "@/app/components/home/home-1/Counter";
 
 export const metadata = {
-  title: "Home-1 || Voiture - Automotive & Car Dealer NextJS Template",
-  description: `Voiture - Automotive & Car Dealer NextJS Template. `,
+  title: "Home-1 || Carportal - Automotive & Car Dealer",
+  description: `Carportal - Automotive & Car Dealer. `,
 };
 
 const Home_1 = () => {
@@ -158,7 +158,7 @@ const Home_1 = () => {
       {/* <!-- End Funfact --> */}
 
       {/* Testimonials  */}
-      <section className="our-testimonials-home1 pt120 pb120">
+      <section className="our-testimonials-home1 pt120 pb120 mb50">
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-8">
@@ -170,7 +170,7 @@ const Home_1 = () => {
           <div className="row">
             <div className="col-lg-12">
               <div className="testimonial_slider_home1">
-                <Testimonial />
+                {/* <Testimonial /> */}
               </div>
             </div>
           </div>
@@ -178,24 +178,6 @@ const Home_1 = () => {
       </section>
       {/* End Testimonials  */}
 
-      {/* Our Blog */}
-      <section className="our-blog pb90">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-6 offset-lg-3">
-              <div className="main-title text-center">
-                <h2>Recent Articles</h2>
-              </div>
-            </div>
-          </div>
-          {/* End .row */}
-
-          <div className="row">
-            <Blog />
-          </div>
-          {/* End .row */}
-        </div>
-      </section>
       {/* End Our Blog */}
 
       {/* Our Partners */}
@@ -212,7 +194,7 @@ const Home_1 = () => {
 
           <div className="partner_divider">
             <div className="row">
-              <Partner />
+              {/* <Partner /> */}
             </div>
             {/* End .row */}
           </div>

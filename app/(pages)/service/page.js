@@ -10,7 +10,7 @@ import ScheduleService from "@/app/components/pages/service/ScheduleService";
 import ServiceHours from "@/app/components/pages/service/ServiceHours";
 
 export const metadata = {
-  title: "Service || Voiture - Automotive & Car Dealer NextJS Template",
+  title: "Service || Carportal - Automotive & Car Dealer",
 };
 
 const Service = () => {

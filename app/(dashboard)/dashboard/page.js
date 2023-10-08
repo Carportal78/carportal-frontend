@@ -10,7 +10,7 @@ import ChartMain from "@/app/components/dashboard/dash-board/ChartMain";
 import RecenActivity from "@/app/components/dashboard/dash-board/RecenActivity";
 
 export const metadata = {
-  title: "Dashboard Home || Voiture - Automotive & Car Dealer NextJS Template",
+  title: "Dashboard Home || Carportal - Automotive & Car Dealer",
 };
 
 const Dashboard = () => {

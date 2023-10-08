@@ -11,7 +11,7 @@ import LocationInfo from "@/app/components/dashboard/add-listing/LocationInfo";
 import Gallery from "@/app/components/dashboard/add-listing/Gallery";
 
 export const metadata = {
-  title: "Add Listing || Voiture - Automotive & Car Dealer NextJS Template",
+  title: "Add Listing || Carportal - Automotive & Car Dealer",
 };
 
 const AddListings = () => {

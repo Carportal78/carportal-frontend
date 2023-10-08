@@ -11,7 +11,7 @@ import ListGridFilter from "@/app/components/listing/ListGridFilter";
 import Map from "@/app/components/common/Map";
 
 export const metadata = {
-  title: "Listing Map V1 || Voiture - Automotive & Car Dealer NextJS Template",
+  title: "Listing Map V1 || Carportal - Automotive & Car Dealer",
 };
 
 const ListingMapV1 = () => {

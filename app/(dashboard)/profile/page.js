@@ -12,7 +12,7 @@ import SocialNetwork from "@/app/components/dashboard/profile/SocialNetwork";
 
 export const metadata = {
   title:
-    "Dashboard Profile || Voiture - Automotive & Car Dealer NextJS Template",
+    "Dashboard Profile || Carportal - Automotive & Car Dealer",
 };
 
 const Profile = () => {

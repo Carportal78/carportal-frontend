@@ -8,7 +8,7 @@ import LoanCalculator from "@/app/components/pages/loan-calculator/LoanCalculato
 import BannerWidget from "@/app/components/common/BannerWidget";
 
 export const metadata = {
-  title: "Loan Calculator || Voiture - Automotive & Car Dealer NextJS Template",
+  title: "Loan Calculator || Carportal - Automotive & Car Dealer",
 };
 
 const AboutUs = () => {

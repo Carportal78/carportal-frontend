@@ -1,15 +1,23 @@
 module.exports = [
   {
     label: "Home",
-    subMenu: [
-      { label: "Home v1", path: "/" },
-      { label: "Home v2", path: "/home-2" },
-      { label: "Home v3", path: "/home-3" },
-      { label: "Home v4", path: "/home-4" },
-      { label: "Home v5", path: "/home-5" },
-      { label: "Home v6", path: "/home-6" },
-      { label: "Home v7", path: "/home-7" },
-    ],
+      path: "/",
+    subMenu: [],
+  },
+  {
+    label: "Cars",
+      path: "listing-v6",
+    subMenu: [],
+  },
+  {
+    label: "Compare",
+      path: "/compare",
+    subMenu: [],
+  },
+  {
+    label: "Blog",
+      path: "/blog-grid",
+    subMenu: [],
   },
   {
     label: "Explore",
@@ -32,107 +40,107 @@ module.exports = [
       },
     ],
   },
-  {
-    label: "Listings",
-    subMenu: [
-      {
-        label: "Listing Styles",
-        subMenu: [
-          {
-            label: "Listing v1",
-            path: "/listing-v1",
-          },
-          {
-            label: "Listing v2",
-            path: "/listing-v2",
-          },
-          {
-            label: "Listing v3",
-            path: "/listing-v3",
-          },
-          {
-            label: "Listing v4",
-            path: "/listing-v4",
-          },
-          {
-            label: "Listing v5",
-            path: "/listing-v5",
-          },
-          {
-            label: "Listing v6",
-            path: "/listing-v6",
-          },
-        ],
-      },
-      {
-        label: "Listing Map",
-        subMenu: [
-          {
-            label: "Listing Map v1",
-            path: "/listing-map-v1",
-          },
-          {
-            label: "Listing Map v2",
-            path: "/listing-map-v2",
-          },
-          {
-            label: "Listing Map v3",
-            path: "/listing-map-v3",
-          },
-        ],
-      },
-      {
-        label: "Listing Single",
-        subMenu: [
-          {
-            label: "Listing Single v1",
-            path: "/listing-single-v1",
-          },
-          {
-            label: "Listing Single v2",
-            path: "/listing-single-v2",
-          },
-          {
-            label: "Listing Single v3",
-            path: "/listing-single-v3",
-          },
-          {
-            label: "Listing Single v4",
-            path: "/listing-single-v4",
-          },
-          {
-            label: "Listing Single v5",
-            path: "/listing-single-v5",
-          },
-          {
-            label: "Listing Single v6",
-            path: "/listing-single-v6",
-          },
-        ],
-      },
-      {
-        label: "Add Listing",
-        path: "/add-listings",
-      },
-    ],
-  },
-  {
-    label: "Blog",
-    subMenu: [
-      {
-        label: "Blog Grid",
-        path: "/blog-grid",
-      },
-      {
-        label: "Blog List",
-        path: "/blog-list",
-      },
-      {
-        label: "Blog Single",
-        path: "/blog-single",
-      },
-    ],
-  },
+  // {
+  //   label: "Listings",
+  //   subMenu: [
+  //     {
+  //       label: "Listing Styles",
+  //       subMenu: [
+  //         {
+  //           label: "Listing v1",
+  //           path: "/listing-v1",
+  //         },
+  //         {
+  //           label: "Listing v2",
+  //           path: "/listing-v2",
+  //         },
+  //         {
+  //           label: "Listing v3",
+  //           path: "/listing-v3",
+  //         },
+  //         {
+  //           label: "Listing v4",
+  //           path: "/listing-v4",
+  //         },
+  //         {
+  //           label: "Listing v5",
+  //           path: "/listing-v5",
+  //         },
+  //         {
+  //           label: "Listing v6",
+  //           path: "/listing-v6",
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       label: "Listing Map",
+  //       subMenu: [
+  //         {
+  //           label: "Listing Map v1",
+  //           path: "/listing-map-v1",
+  //         },
+  //         {
+  //           label: "Listing Map v2",
+  //           path: "/listing-map-v2",
+  //         },
+  //         {
+  //           label: "Listing Map v3",
+  //           path: "/listing-map-v3",
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       label: "Listing Single",
+  //       subMenu: [
+  //         {
+  //           label: "Listing Single v1",
+  //           path: "/listing-single-v1",
+  //         },
+  //         {
+  //           label: "Listing Single v2",
+  //           path: "/listing-single-v2",
+  //         },
+  //         {
+  //           label: "Listing Single v3",
+  //           path: "/listing-single-v3",
+  //         },
+  //         {
+  //           label: "Listing Single v4",
+  //           path: "/listing-single-v4",
+  //         },
+  //         {
+  //           label: "Listing Single v5",
+  //           path: "/listing-single-v5",
+  //         },
+  //         {
+  //           label: "Listing Single v6",
+  //           path: "/listing-single-v6",
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       label: "Add Listing",
+  //       path: "/add-listings",
+  //     },
+  //   ],
+  // },
+  // {
+  //   label: "Blog",
+  //   subMenu: [
+  //     {
+  //       label: "Blog Grid",
+  //       path: "/blog-grid",
+  //     },
+  //     {
+  //       label: "Blog List",
+  //       path: "/blog-list",
+  //     },
+  //     {
+  //       label: "Blog Single",
+  //       path: "/blog-single",
+  //     },
+  //   ],
+  // },
   {
     label: "Shop",
     subMenu: [
