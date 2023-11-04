@@ -21,14 +21,14 @@ const DashboardHeader = () => {
               width={140}
               height={45}
               className="logo1 img-fluid"
-              src="/images/header-logo2.svg"
+              src="/images/header"
               alt="header-logo.svg"
             />
             <Image
               width={140}
               height={45}
               className="logo2 img-fluid"
-              src="/images/header-logo2.svg"
+              src="/images/header"
               alt="header-logo2.svg"
             />
           </Link>
@@ -39,9 +39,9 @@ const DashboardHeader = () => {
             data-menu-style="horizontal"
           >
             <MainMenu />
-            <li className="add_listing">
+            {/* <li className="add_listing">
               <Link href="/add-listings">+ Add Listing</Link>
-            </li>
+            </li> */}
             <li
               className="sidebar_panel"
               data-bs-toggle="offcanvas"

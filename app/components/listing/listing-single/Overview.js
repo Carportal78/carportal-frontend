@@ -5,14 +5,12 @@ const Overview = () => {
     { label: "Color", value: "white" },
     { label: "Drive Type", value: "4x4" },
     { label: "Transmission", value: "Automatic" },
-    { label: "Condition", value: "Used" },
     { label: "Year", value: "2021" },
     { label: "Mileage", value: "280,000" },
     { label: "Fuel Type", value: "Diesel" },
     { label: "Engine Size", value: "5.2L" },
     { label: "Doors", value: "5" },
-    { label: "Cylinders", value: "10" },
-    { label: "VIN", value: "2D456THA798700213GT21" },
+    { label: "Cylinders", value: "10" }
   ];
 
   return (

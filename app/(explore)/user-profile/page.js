@@ -68,7 +68,7 @@ const UserProfile = () => {
                       alt="seller.png"
                     />
                   </div>
-                  <div className="flex-grow-1 ms-3">
+                  {/* <div className="flex-grow-1 ms-3">
                     <h2 className="mt-0 title">Volvo Cars Istanbul</h2>
                     <ul className="prop_details mb0">
                       <li className="list-inline-item">
@@ -90,7 +90,7 @@ const UserProfile = () => {
                         </a>
                       </li>
                     </ul>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>

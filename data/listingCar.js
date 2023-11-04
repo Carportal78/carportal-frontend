@@ -5,7 +5,7 @@ module.exports = [
     image: "/images/listing/1.jpg",
     photosCount: 22,
     videosCount: 3,
-    title: "Volvo XC90 - 2023",
+    title: "Volvo XC90 - 2023", 
     price: 129,
     rating: 4.7,
     reviewsCount: 684,

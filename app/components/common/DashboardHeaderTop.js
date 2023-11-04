@@ -21,11 +21,11 @@ const DashboardHeaderTop = () => {
   const contactData = [
     {
       icon: "flaticon-phone-call",
-      text: "1-800-458-56987",
+      text: "0120-4375431",
     },
     {
       icon: "flaticon-map",
-      text: "47 Bakery Street, London, UK",
+      text: " Sector 63, Noida, U.P.(201301) India",
     },
     {
       icon: "flaticon-clock",

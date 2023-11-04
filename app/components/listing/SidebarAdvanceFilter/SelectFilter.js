@@ -1,9 +1,9 @@
 const SelectFilter = () => {
   const selectOptions = [
-    {
-      label: "Condition",
-      options: ["Most Recent", "Recent", "Best Selling", "Old Review"],
-    },
+    // {
+    //   label: "Condition",
+    //   options: ["Most Recent", "Recent", "Best Selling", "Old Review"],
+    // },
     {
       label: "Select Makes",
       options: ["Audi", "Bentley", "BMW", "Ford", "Honda", "Mercedes"],
@@ -16,10 +16,10 @@ const SelectFilter = () => {
       label: "Select Type",
       options: ["Convertible", "Coupe", "Hatchback", "Sedan", "SUV"],
     },
-    {
-      label: "Year",
-      options: ["1967", "1990", "2000", "2002", "2005", "2010", "2015", "2020"],
-    },
+    // {
+    //   label: "Year",
+    //   options: ["1967", "1990", "2000", "2002", "2005", "2010", "2015", "2020"],
+    // },
   ];
 
   return (

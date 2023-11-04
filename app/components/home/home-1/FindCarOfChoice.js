@@ -78,7 +78,7 @@ const FindCarOfChoice = () => {
                 <div className="wrapper">
                   <h5 className="price">${listing.price}</h5>
                   <h6 className="title">
-                    <Link href="/listing-single-v1">{listing.title}</Link>
+                    <Link href="/listing-single-v2">{listing.title}</Link>
                   </h6>
                   <div className="listign_review">
                     <ul className="mb0">

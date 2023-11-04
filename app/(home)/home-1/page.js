@@ -15,6 +15,8 @@ import Footer from "@/app/components/common/Footer";
 import Testimonial from "@/app/components/common/Testimonial";
 import Partner from "@/app/components/common/Partner";
 import Counter from "@/app/components/home/home-1/Counter";
+import FindCarChoice from "@/app/components/home/home-1/FindCarChoice";
+import AllBrandsList from "@/app/components/home/home-1/AllBrandsList";
 
 export const metadata = {
   title: "Home-1 || Carportal - Automotive & Car Dealer",
@@ -61,6 +63,50 @@ const Home_1 = () => {
         </div>
       </section>
       {/* End Car Cartegory */}
+
+       {/* All brands List */}
+       <section className="featured-product">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-lg-8">
+              <div className="main-title text-center">
+                <h2>All Brands</h2>
+              </div>
+            </div>
+          </div>
+          {/* End .row */}
+
+          <div className="row">
+            <div className="col-lg-12" data-aos-delay="100" data-aos="fade-up">
+              <AllBrandsList />
+            </div>
+          </div>
+          {/* End .row */}
+        </div>
+        {/* End .container */}
+      </section>
+
+       {/* Find the car pf choice */}
+      <section className="featured-product">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-lg-8">
+              <div className="main-title text-center">
+                <h2>Find the car of your choice</h2>
+              </div>
+            </div>
+          </div>
+          {/* End .row */}
+
+          <div className="row">
+            <div className="col-lg-12" data-aos-delay="100" data-aos="fade-up">
+              <FindCarChoice />
+            </div>
+          </div>
+          {/* End .row */}
+        </div>
+        {/* End .container */}
+      </section>
 
       {/* Featured Product  */}
       <section className="featured-product">
@@ -148,13 +194,13 @@ const Home_1 = () => {
       {/* End Our Popular Listing */}
 
       {/* <!-- Funfact --> */}
-      <section className="our-funfact pt50 pb30">
+      {/* <section className="our-funfact pt50 pb30">
         <div className="container">
           <div className="row">
             <Counter />
           </div>
         </div>
-      </section>
+      </section> */}
       {/* <!-- End Funfact --> */}
 
       {/* Testimonials  */}
@@ -180,26 +226,6 @@ const Home_1 = () => {
 
       {/* End Our Blog */}
 
-      {/* Our Partners */}
-      <section className="our-partner pt0 pb100">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-6 offset-lg-3">
-              <div className="main-title text-center">
-                <h2>Popular Makes</h2>
-              </div>
-            </div>
-          </div>
-          {/* End .row */}
-
-          <div className="partner_divider">
-            <div className="row">
-              {/* <Partner /> */}
-            </div>
-            {/* End .row */}
-          </div>
-        </div>
-      </section>
       {/* End  Our Partners */}
 
       {/* Our Footer */}

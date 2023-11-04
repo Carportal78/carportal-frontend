@@ -3,17 +3,17 @@ const Share = () => {
     {
       name: "Facebook",
       icon: "fab fa-facebook-f",
-      url: "#",
+      url: "https://www.facebook.com/carportal",
     },
     {
       name: "Twitter",
       icon: "fab fa-twitter",
-      url: "#",
+      url: "https://twitter.com/CarPortalindia",
     },
     {
-      name: "Google",
+      name: "Instagram",
       icon: "fab fa-instagram",
-      url: "#",
+      url: "https://www.instagram.com/carportal.co.in",
     },
   ];
 

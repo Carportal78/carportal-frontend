@@ -2,15 +2,15 @@ const Social = () => {
   const socialIcons = [
     {
       icon: "fab fa-facebook-f",
-      link: "#",
+      link: "https://www.facebook.com/carportal",
     },
     {
       icon: "fab fa-twitter",
-      link: "#",
+      link: "https://twitter.com/CarPortalindia",
     },
     {
       icon: "fab fa-instagram",
-      link: "#",
+      link: "https://www.instagram.com/carportal.co.in",
     },
     {
       icon: "fab fa-linkedin",

@@ -14,28 +14,22 @@ const HeaderSidebar = () => {
                 <div className="footer_contact_widget mt100">
                     <h3 className="title">Quick contact info</h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing
-                        elit. Aenean commodo ligula eget dolor. Aenean massa.
-                        Cum sociis Theme natoque penatibus et magnis dis
-                        parturient montes, nascetur.
+                    Thinking of buying a car? At Carportal.co.in
                     </p>
                 </div>
                 {/* End widget */}
 
                 <div className="footer_contact_widget">
                     <h5 className="title">CONTACT</h5>
-                    <div className="footer_phone">1-800-458-56987</div>
-                    <p>info@carportal.com</p>
+                    <div className="footer_phone">012-04375431</div>
+                    <p>sales@carportal.co.in</p>
                 </div>
                 {/* End widget */}
 
                 <div className="footer_about_widget">
                     <h5 className="title">OFFICE</h5>
                     <p>
-                        Cyberhub,
-                        <br />
-                        Gurugram,<br />
-                        India
+                    Sector 63,<br/> Noida, U.P.(201301),<br/> India
                     </p>
                 </div>
                 {/* End widget */}

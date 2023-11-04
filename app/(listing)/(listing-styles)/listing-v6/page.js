@@ -9,7 +9,7 @@ import SidebarAdvnaceFilter from "@/app/components/listing/SidebarAdvanceFilter"
 import ListGridFilter2 from "@/app/components/listing/ListGridFilter2";
 
 export const metadata = {
-  title: "Listing V6 || Carportal - Automotive & Car Dealer",
+  title: "Listing || Carportal - Automotive & Car Dealer",
 };
 
 const ListingV3 = () => {
@@ -43,14 +43,14 @@ const ListingV3 = () => {
           <div className="row">
             <div className="col-xl-12">
               <div className="breadcrumb_content">
-                <h2 className="breadcrumb_title">Used Vehicles For Sale</h2>
-                <p className="subtitle">Listings v6</p>
+                <h2 className="breadcrumb_title">Vehicles List</h2>
+                <p className="subtitle">Listings</p>
                 <ol className="breadcrumb fn-767 mt10-sm">
                   <li className="breadcrumb-item">
                     <a href="#">Home</a>
                   </li>
                   <li className="breadcrumb-item active" aria-current="page">
-                    <a href="#">Listing v6</a>
+                    <a href="#">Listing</a>
                   </li>
                 </ol>
               </div>

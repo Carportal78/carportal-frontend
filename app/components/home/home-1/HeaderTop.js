@@ -2,30 +2,30 @@ const HeaderTop = () => {
   const socialData = [
     {
       icon: "fab fa-facebook-f",
-      link: "#",
+      link: "https://www.facebook.com/carportal",
     },
     {
       icon: "fab fa-twitter",
-      link: "#",
+      link: "https://twitter.com/CarPortalindia",
     },
     {
       icon: "fab fa-instagram",
-      link: "#",
+      link: "https://www.instagram.com/carportal.co.in",
     },
-    {
-      icon: "fab fa-linkedin",
-      link: "#",
-    },
+    // {
+    //   icon: "fab fa-linkedin",
+    //   link: "#",
+    // },
   ];
 
   const contactData = [
     {
       icon: "flaticon-phone-call",
-      text: "1-800-458-56987",
+      text: "012-04375431",
     },
     {
       icon: "flaticon-map",
-      text: "Cyberhub, Gurugram, India",
+      text: " Sector 63, Noida, U.P.(201301) India",
     },
     {
       icon: "flaticon-clock",

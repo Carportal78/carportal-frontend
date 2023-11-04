@@ -1,0 +1,35 @@
+.nav-link {
+  color: black;
+}
+.nav-link.active {
+  color: yellow !important;  /* Use !important to ensure the style is applied */
+}
+
+.budgetCarButton {
+  border-radius: 16px;
+}
+
+.bodyTypeItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.bodyTypeItem:hover {
+  transform: translateY(-5px);
+}
+
+.bodyTypeImage {
+  width: 100px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.bodyTypeTitle {
+  font-weight: bold;
+}
+

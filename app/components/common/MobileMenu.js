@@ -19,17 +19,17 @@ const MobileMenu = () => {
         {
             name: "Facebook",
             icon: "fab fa-facebook-f",
-            link: "#",
+            link: "https://www.facebook.com/carportal",
         },
         {
             name: "Twitter",
             icon: "fab fa-twitter",
-            link: "#",
+            link: "https://twitter.com/CarPortalindia",
         },
         {
             name: "Instagram",
             icon: "fab fa-instagram",
-            link: "#",
+            link: "#https://www.instagram.com/carportal.co.in",
         },
         {
             name: "YouTube",
@@ -46,11 +46,11 @@ const MobileMenu = () => {
     const contactInfo = [
         {
             icon: "flaticon-map",
-            text: "47 Bakery Street, London, UK",
+            text: " Sector 63, Noida, U.P.(201301) India",
         },
         {
             icon: "flaticon-phone-call",
-            text: "1-800-458-56987",
+            text: "0120-4375431",
         },
         {
             icon: "flaticon-clock",
@@ -81,7 +81,7 @@ const MobileMenu = () => {
                                 width={140}
                                 height={45}
                                 priority
-                                src="/images/header-logo2.svg"
+                                src="/images/header"
                                 alt="brand"
                             />
                         </div>

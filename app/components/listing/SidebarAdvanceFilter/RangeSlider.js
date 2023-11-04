@@ -4,7 +4,7 @@ import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
 
 const PriceRange = () => {
-  const [price, setPrice] = useState({ value: { min: 5000, max: 15000 } });
+  const [price, setPrice] = useState({ value: { min: 100000, max: 100000000 } });
 
   // price range handler
   const handleOnChange = (value) => {
@@ -15,14 +15,14 @@ const PriceRange = () => {
     <div className="advance_search_style style_2 flex-wrap justify-content-between">
       <InputRange
         formatLabel={() => ``}
-        maxValue={20000}
-        minValue={1000}
+        maxValue={100000000}
+        minValue={100000}
         value={price.value}
         onChange={(value) => handleOnChange(value)}
         id="slider"
       />
-      <span id="slider-range-value1">${price.value.min}</span>
-      <span id="slider-range-value2">${price.value.max}</span>
+      <span id="slider-range-value1">Rs {price.value.min}</span>
+      <span id="slider-range-value2">Rs {price.value.max}</span>
     </div>
   );
 };

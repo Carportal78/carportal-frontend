@@ -17,7 +17,7 @@ const SidebarAdvnaceFilter = () => {
             <SelectFilter />
             {/* End li select filter */}
 
-            <li>
+            {/* <li>
               <h5 className="subtitle">Mileage</h5>
             </li>
             <li className="min_area list-inline-item">
@@ -29,7 +29,7 @@ const SidebarAdvnaceFilter = () => {
               <div className="form-group">
                 <input type="text" className="form-control" placeholder="Max" />
               </div>
-            </li>
+            </li> */}
             {/* End milage */}
 
             <li>

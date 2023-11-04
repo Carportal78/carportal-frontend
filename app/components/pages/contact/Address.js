@@ -3,16 +3,15 @@ const Address = () => {
     title: "Contact Details",
     address: (
       <>
-        Germany — <br /> 329 Queensberry Street,
-        <br /> North Melbourne VIC 3051
+         Sector 63, Noida, U.P.(201301) India
       </>
     ),
-    subtitle: "1-800-458-56987",
+    subtitle: "012-04375431",
     email: "info@carportal.com",
     socialIcons: [
-      { iconClass: "fab fa-facebook-f", link: "#" },
-      { iconClass: "fab fa-twitter", link: "#" },
-      { iconClass: "fab fa-instagram", link: "#" },
+      { iconClass: "fab fa-facebook-f", link: "https://www.facebook.com/carportal" },
+      { iconClass: "fab fa-twitter", link: "https://twitter.com/CarPortalindia" },
+      { iconClass: "fab fa-instagram", link: "https://www.instagram.com/carportal.co.in" },
       { iconClass: "fab fa-linkedin", link: "#" },
     ],
   };

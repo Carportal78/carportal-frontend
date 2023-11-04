@@ -1,20 +1,8 @@
 const ShareMeta = () => {
   const shareOptions = [
     {
-      iconClassName: "flaticon-email",
-      label: "EMAIL",
-    },
-    {
       iconClassName: "flaticon-printer",
       label: "PRINT",
-    },
-    {
-      iconClassName: "flaticon-heart",
-      label: "SAVE",
-    },
-    {
-      iconClassName: "flaticon-share",
-      label: "SHARE",
     },
   ];
 

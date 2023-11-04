@@ -19,27 +19,27 @@ module.exports = [
       path: "/blog-grid",
     subMenu: [],
   },
-  {
-    label: "Explore",
-    subMenu: [
-      {
-        label: "User Dashboard",
-        subMenu: [
-          { label: "Dashboard", path: "/dashboard" },
-          { label: "Profile", path: "/profile" },
-          { label: "My Listing", path: "/my-listing" },
-          { label: "Favourites", path: "/favourites" },
-          { label: "Add Listings", path: "/add-listings" },
-          { label: "Messages", path: "/messages" },
-          { label: "Login", path: "/login" },
-        ],
-      },
-      {
-        label: "User Profile",
-        path: "/user-profile",
-      },
-    ],
-  },
+  // {
+  //   label: "Explore",
+  //   subMenu: [
+  //     {
+  //       label: "User Dashboard",
+  //       subMenu: [
+  //         { label: "Dashboard", path: "/dashboard" },
+  //         { label: "Profile", path: "/profile" },
+  //         { label: "My Listing", path: "/my-listing" },
+  //         { label: "Favourites", path: "/favourites" },
+  //         { label: "Add Listings", path: "/add-listings" },
+  //         { label: "Messages", path: "/messages" },
+  //         { label: "Login", path: "/login" },
+  //       ],
+  //     },
+  //     {
+  //       label: "User Profile",
+  //       path: "/user-profile",
+  //     },
+  //   ],
+  // },
   // {
   //   label: "Listings",
   //   subMenu: [
@@ -141,79 +141,79 @@ module.exports = [
   //     },
   //   ],
   // },
-  {
-    label: "Shop",
-    subMenu: [
-      {
-        label: "Shop",
-        path: "/shop",
-      },
-      {
-        label: "Shop Single",
-        path: "/shop-single",
-      },
-      {
-        label: "Cart",
-        path: "/cart",
-      },
-      {
-        label: "Checkout",
-        path: "/checkout",
-      },
-      {
-        label: "Complete Order",
-        path: "/complete-order",
-      },
-    ],
-  },
-  {
-    label: "Pages",
-    subMenu: [
-      {
-        label: "About Us",
-        path: "/about-us",
-      },
-      {
-        label: "Loan Calculator",
-        path: "/loan-calculator",
-      },
-      {
-        label: "Compare",
-        path: "/compare",
-      },
-      {
-        label: "Contact",
-        path: "/contact",
-      },
-      {
-        label: "Error",
-        path: "/error",
-      },
-      {
-        label: "Faq",
-        path: "/faq",
-      },
-      {
-        label: "Login",
-        path: "/login",
-      },
-      {
-        label: "Signup",
-        path: "/signup",
-      },
-      {
-        label: "Pricing Table",
-        path: "/pricing",
-      },
+  // {
+  //   label: "Shop",
+  //   subMenu: [
+  //     {
+  //       label: "Shop",
+  //       path: "/shop",
+  //     },
+  //     {
+  //       label: "Shop Single",
+  //       path: "/shop-single",
+  //     },
+  //     {
+  //       label: "Cart",
+  //       path: "/cart",
+  //     },
+  //     {
+  //       label: "Checkout",
+  //       path: "/checkout",
+  //     },
+  //     {
+  //       label: "Complete Order",
+  //       path: "/complete-order",
+  //     },
+  //   ],
+  // },
+  // {
+  //   label: "Pages",
+  //   subMenu: [
+  //     {
+  //       label: "About Us",
+  //       path: "/about-us",
+  //     },
+  //     {
+  //       label: "Loan Calculator",
+  //       path: "/loan-calculator",
+  //     },
+  //     {
+  //       label: "Compare",
+  //       path: "/compare",
+  //     },
+  //     {
+  //       label: "Contact",
+  //       path: "/contact",
+  //     },
+  //     {
+  //       label: "Error",
+  //       path: "/error",
+  //     },
+  //     {
+  //       label: "Faq",
+  //       path: "/faq",
+  //     },
+  //     {
+  //       label: "Login",
+  //       path: "/login",
+  //     },
+  //     {
+  //       label: "Signup",
+  //       path: "/signup",
+  //     },
+  //     {
+  //       label: "Pricing Table",
+  //       path: "/pricing",
+  //     },
 
-      {
-        label: "Service",
-        path: "/service",
-      },
-      {
-        label: "Terms & Conditions",
-        path: "/terms-conditions",
-      },
-    ],
-  },
+  //     {
+  //       label: "Service",
+  //       path: "/service",
+  //     },
+  //     {
+  //       label: "Terms & Conditions",
+  //       path: "/terms-conditions",
+  //     },
+  //   ],
+  // },
 ];
