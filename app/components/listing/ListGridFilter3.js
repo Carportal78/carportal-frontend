@@ -36,7 +36,12 @@ const ListGridFilter3 = () => {
               data-bs-target="#advanceSearchMobile"
               aria-controls="advanceSearchMobileLabel"
             >
-              <img src="/images/icon/filter-icon.svg" alt="icon" />
+              <Image 
+                src="/images/icon/filter-icon.svg" 
+                alt="icon" 
+                width={24}
+                height={24}
+              />
               Show Filter
             </li>
           </ul>
