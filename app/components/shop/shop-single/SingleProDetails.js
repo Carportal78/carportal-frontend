@@ -57,10 +57,12 @@ const SingleProDetails = () => {
           <ul className="cart_btns wishlist_compare mb20">
             <li className="list-inline-item">
               <button type="button" className="btn btn-thm">
-                <img
-                  className="mr10"
-                  src="images/shop/cart-bag.svg"
+                <Image
+                  src="/images/shop/cart-bag.svg"
                   alt="cart-bag.svg"
+                  width={24}  // You'll need to specify a width
+                  height={24}  // and a height
+                  className="mr10"
                 />
                 Add to Cart
               </button>
