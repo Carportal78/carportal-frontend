@@ -24,6 +24,7 @@ export const metadata = {
 };
 
 const Home_1 = () => {
+
   return (
     <div className="wrapper ovh">
       {/* Sidebar Panel Start */}
@@ -202,27 +203,6 @@ const Home_1 = () => {
         </div>
       </section> */}
       {/* <!-- End Funfact --> */}
-
-      {/* Testimonials  */}
-      <section className="our-testimonials-home1 pt120 pb120 mb50">
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-lg-8">
-              <div className="main-title text-center">
-                <h2>Testimonials</h2>
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="testimonial_slider_home1">
-                {/* <Testimonial /> */}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* End Testimonials  */}
 
       {/* End Our Blog */}
 

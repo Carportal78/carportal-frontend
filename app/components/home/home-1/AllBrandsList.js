@@ -1,192 +1,55 @@
 "use client";
-import { useState } from "react";
-import Tab from "react-bootstrap/Tab";
-import Tabs from "react-bootstrap/Tabs";
-import styles from "../../css/findCarOfChoice.module.css";
-import { Button, Row } from "react-bootstrap";
-import Link from "next/link";
-import Image from "next/image";
 
-const allBrandsList = [
-  {
-    title: "Maruti Suzuki",
-    route: "/1",
-    imgSrc: "/images/category-item/1.png"
-  },
-  {
-    title: "Tata",
-    route: "/1",
-    imgSrc: "/images/category-item/1.png"
-  },
-  {
-    title: "Hyundai",
-    route: "/1",
-    imgSrc: "/images/category-item/1.png"
-  },
-  {
-    title: "Maruti",
-    route: "/1",
-    imgSrc: "/images/category-item/1.png"
-  },
-  {
-    title: "Toyota",
-    route: "/1",
-    imgSrc: "/images/category-item/1.png"
-  },
-  {
-    title: "BMW",
-    route: "/1",
-    imgSrc: "/images/category-item/1.png"
-  },
-  {
-    title: "Kia",
-    route: "/1",
-    imgSrc: "/images/category-item/1.png"
-  },
-  {
-    title: "Mercedes-Benz",
-    route: "/1",
-    imgSrc: "/images/category-item/1.png"
-  },
-  {
-    title: "Land Rover",
-    route: "/1",
-    imgSrc: "/images/category-item/1.png"
-  },
-  {
-    title: "Honda",
-    route: "/1",
-    imgSrc: "/images/category-item/1.png"
-  },
-  {
-    title: "Skoda",
-    route: "/1",
-    imgSrc: "/images/category-item/1.png"
-  },
-  {
-    title: "Audi",
-    route: "/1",
-    imgSrc: "/images/category-item/1.png"
-  },
-  {
-    title: "MG",
-    route: "/1",
-    imgSrc: "/images/category-item/1.png"
-  },
-  {
-    title: "Volvo",
-    route: "/1",
-    imgSrc: "/images/category-item/1.png"
-  },
-  {
-    title: "Citroen",
-    route: "/1",
-    imgSrc: "/images/category-item/1.png"
-  },
-  {
-    title: "Porche",
-    route: "/1",
-    imgSrc: "/images/category-item/1.png"
-  },
-  {
-    title: "Volkswegen",
-    route: "/1",
-    imgSrc: "/images/category-item/1.png"
-  },
-  {
-    title: "Jaguar",
-    route: "/1",
-    imgSrc: "/images/category-item/1.png"
-  },
-  {
-    title: "Jeep",
-    route: "/1",
-    imgSrc: "/images/category-item/1.png"
-  },
-  {
-    title: "Lemborghini",
-    route: "/1",
-    imgSrc: "/images/category-item/1.png"
-  },
-  {
-    title: "Nissan",
-    route: "/1",
-    imgSrc: "/images/category-item/1.png"
-  },
-  {
-    title: "Lexus",
-    route: "/1",
-    imgSrc: "/images/category-item/1.png"
-  },
-  {
-    title: "Ferrari",
-    route: "/1",
-    imgSrc: "/images/category-item/1.png"
-  },
-  {
-    title: "Renault",
-    route: "/1",
-    imgSrc: "/images/category-item/1.png"
-  },
-  {
-    title: "Rolls-Royce",
-    route: "/1",
-    imgSrc: "/images/category-item/1.png"
-  },
-  {
-    title: "MINI",
-    route: "/1",
-    imgSrc: "/images/category-item/1.png"
-  },
-  {
-    title: "Meserati",
-    route: "/1",
-    imgSrc: "/images/category-item/1.png"
-  },
-  {
-    title: "BYD",
-    route: "/1",
-    imgSrc: "/images/category-item/1.png"
-  },
-  {
-    title: "Aston Martin",
-    route: "/1",
-    imgSrc: "/images/category-item/1.png"
-  },
-  {
-    title: "Force Motors",
-    route: "/1",
-    imgSrc: "/images/category-item/1.png"
-  },
-  {
-    title: "Izusu",
-    route: "/1",
-    imgSrc: "/images/category-item/1.png"
-  }
-];
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import styles from '../../css/findCarOfChoice.module.css';
 
 function AllBrandsList() {
+  const [carBrands, setCarBrands] = useState([]);
+
+  useEffect(() => {
+    const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carbrands/for/65538448b78add9eaa02d417';
+    const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
+
+    fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'X-API-Key': apiKey,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data && data.data && data.data.carBrandsList) {
+        setCarBrands(data.data.carBrandsList);
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching data: ', error);
+    });
+  }, []);
 
   return (
     <div className="d-flex flex-wrap mb-2">
-    {allBrandsList.map((bodyType) => (
-      <Link href={bodyType.route} key={bodyType.title}>
-        <div className={`bodyTypeItem ${styles.bodyTypeItem} d-flex`}>
-          <div>
-           <Image
-              width={150}
-              height={58}
-              style={{ objectFit: "cover" }}
-              src={bodyType.imgSrc}
-              alt={bodyType.title}
-              className={styles.bodyTypeImage}
-          />
+      {carBrands.map((brand) => (
+        <Link href={brand.brandName || '/fallback-route'} key={brand._id}>
+          <div className={`bodyTypeItem ${styles.bodyTypeItem} d-flex`}>
+            <div>
+              <Image
+                width={150}
+                height={58}
+                style={{ objectFit: "cover" }}
+                src={brand.media.url}
+                alt={brand.brandName}
+                className={styles.bodyTypeImage}
+              />
+            </div>
+            <span className={styles.bodyTypeTitle}>{brand.brandName}</span>
           </div>
-          <span className={styles.bodyTypeTitle}>{bodyType.title}</span>
-        </div>
-      </Link>
-    ))}
-  </div>
+        </Link>
+      ))}
+    </div>
   );
 }
 
