@@ -3,27 +3,27 @@ import Link from "next/link";
 
 const categories = [
   {
-    imgSrc: "/images/category-item/1.png",
+    imgSrc: "/images/category-item/compact.webp",
     title: "Compact",
     delay: 100,
   },
   {
-    imgSrc: "/images/category-item/2.png",
+    imgSrc: "/images/category-item/sedan.webp",
     title: "Sedan",
     delay: 200,
   },
   {
-    imgSrc: "/images/category-item/3.png",
+    imgSrc: "/images/category-item/suv.webp",
     title: "SUV",
     delay: 300,
   },
   {
-    imgSrc: "/images/category-item/4.png",
+    imgSrc: "/images/category-item/convertible.webp",
     title: "Convertible",
     delay: 400,
   },
   {
-    imgSrc: "/images/category-item/5.png",
+    imgSrc: "/images/category-item/coupe.webp",
     title: "Coupe",
     delay: 500,
   },
