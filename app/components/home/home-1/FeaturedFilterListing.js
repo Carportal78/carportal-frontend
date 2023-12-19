@@ -76,12 +76,12 @@ const FeaturedFilterListing = () => {
               </div>
               <div className="details">
                 <div className="wrapper">
-                  <h5 className="price">${listing.price}</h5>
+                  <h5 className="price">Rs {listing.price}</h5>
                   <h6 className="title">
                     <Link href="/listing-single-v2">{listing.title}</Link>
                   </h6>
                   <div className="listign_review">
-                    <ul className="mb0">
+                    {/* <ul className="mb0">
                       {[...Array(5)].map((_, index) => (
                         <li key={index} className="list-inline-item">
                           <a href="#">
@@ -95,25 +95,9 @@ const FeaturedFilterListing = () => {
                       <li className="list-inline-item">
                         ({listing.reviewsCount} reviews)
                       </li>
-                    </ul>
+                    </ul> */}
                   </div>
                 </div>{" "}
-                <div className="listing_footer">
-                  <ul className="mb0">
-                    <li className="list-inline-item">
-                      <span className="flaticon-road-perspective me-2" />
-                      {listing.mileage}
-                    </li>
-                    <li className="list-inline-item">
-                      <span className="flaticon-gas-station me-2" />
-                      {listing.fuelType}
-                    </li>
-                    <li className="list-inline-item">
-                      <span className="flaticon-gear me-2" />
-                      {listing.transmission}
-                    </li>
-                  </ul>
-                </div>
               </div>
             </div>
           </div>
