@@ -9,9 +9,6 @@ const SidebarAdvnaceFilter = () => {
         <div className="sidebar_advanced_search_widget">
           <h4 className="title">Search Filters</h4>
           <ul className="sasw_list mb0">
-            <li className="search_area">
-              <SearchBox />
-            </li>
             {/* End .search_area */}
 
             <SelectFilter />

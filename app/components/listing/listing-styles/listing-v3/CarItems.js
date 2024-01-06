@@ -2,7 +2,7 @@ import listingCar from "@/data/listingCar";
 import Image from "next/image";
 import Link from "next/link";
 
-const CarItems = () => {
+const CarItems = ({ carVariants }) => {
   return (
     <>
       {listingCar.slice(0, 9).map((listing) => (

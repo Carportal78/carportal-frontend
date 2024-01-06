@@ -6,7 +6,7 @@ module.exports = [
   },
   {
     label: "Cars",
-      path: "listing-v6",
+      path: "listings",
     subMenu: [],
   },
   {
@@ -68,7 +68,7 @@ module.exports = [
   //         },
   //         {
   //           label: "Listing v6",
-  //           path: "/listing-v6",
+  //           path: "/listing",
   //         },
   //       ],
   //     },

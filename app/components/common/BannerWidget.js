@@ -34,7 +34,7 @@ const BannerWidget = () => {
           <p className="para">Find the right price, dealer and advice.</p>
           <p className="subtitle">CALL US NOW</p>
           <a className="phone_number" href="#">
-          0120-4375431
+          012-04375431
           </a>
         </div>
       </div>

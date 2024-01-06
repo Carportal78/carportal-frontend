@@ -1,3 +1,4 @@
+"use client"
 import Footer from "@/app/components/common/Footer";
 import DefaultHeader from "@/app/components/common/DefaultHeader";
 import HeaderSidebar from "@/app/components/common/HeaderSidebar";
@@ -11,12 +12,42 @@ import CarItems from "@/app/components/listing/listing-styles/listing-v3/CarItem
 import FeatureListingSlider from "@/app/components/listing/sidebar/FeatureListingSlider";
 import RecentlyViewed from "@/app/components/listing/sidebar/RecentlyViewed";
 import BannerWidget from "@/app/components/common/BannerWidget";
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 
-export const metadata = {
-  title: "Listing V3 || Carportal - Automotive & Car Dealer",
+const metadata = {
+  title: "Model Details || Carportal - Automotive & Car Dealer",
 };
 
 const ListingV3 = () => {
+  
+  const { modelid } = useParams();
+
+  const [carVariants, setCarVariants] = useState([]);
+  const [carBrandsList, setCarBrandsList] = useState([]);
+
+  useEffect(() => {
+    const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carCollections/for/65538448b78add9eaa02d417';
+    const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
+
+    fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'X-API-Key': apiKey,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data && data.data && data.data.carCollectionsList) {
+        setCollections(data.data.carCollectionsList);
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching data: ', error);
+    });
+  }, []);
+
   return (
     <div className="wrapper">
       <div
@@ -55,14 +86,14 @@ const ListingV3 = () => {
           <div className="row">
             <div className="col-xl-12">
               <div className="breadcrumb_content style2">
-                <h2 className="breadcrumb_title">Used Vehicles For Sale</h2>
-                <p className="subtitle">Listing-v3</p>
+                <h2 className="breadcrumb_title">Car Variants</h2>
+                <p className="subtitle">Models</p>
                 <ol className="breadcrumb fn-sm mt15-sm">
                   <li className="breadcrumb-item">
-                    <a href="#">Home</a>
+                    <a href="/">Home</a>
                   </li>
                   <li className="breadcrumb-item active" aria-current="page">
-                    Listing-v3
+                    Model Details
                   </li>
                 </ol>
               </div>
@@ -85,10 +116,10 @@ const ListingV3 = () => {
               </div>
               {/* End .FeatureListingSlider */}
 
-              <div className="sidebar_recent_viewed_widgets">
+              {/* <div className="sidebar_recent_viewed_widgets">
                 <h4 className="title">Recently Viewed</h4>
                 <RecentlyViewed />
-              </div>
+              </div> */}
               {/* End RecentlyViewed */}
 
               <BannerWidget />
@@ -99,7 +130,7 @@ const ListingV3 = () => {
               <ListGridFilter />
 
               <div className="row">
-                <CarItems />
+                <CarItems carVariants= {carVariants} />
               </div>
               {/* End .row */}
 

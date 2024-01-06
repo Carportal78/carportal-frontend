@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-const FeaturedFilterListing = () => {
+const FeaturedFilterListing = ({ collection }) => {
   const [filter, setFilter] = useState("*");
 
   const filteredItems =
@@ -16,89 +16,72 @@ const FeaturedFilterListing = () => {
     <div className="popular_listing_sliders ">
       {/* Tab panes */}
       <div className="row">
-        {filteredItems.map((listing) => (
-          <div className="col-sm-6 col-xl-3" key={listing.id}>
+        {collection?.carModels.map((listing) => (
+          <div className="col-sm-6 col-xl-3" key={listing._id}>
             <div className="car-listing">
               <div className="thumb">
-                {listing.featured ? (
-                  <>
-                    <div className="tag">FEATURED</div>
-                  </>
-                ) : undefined}
-                {!listing.featured ? (
-                  <>
-                    <div className="tag blue">SPECIAL</div>
-                  </>
-                ) : undefined}
-
                 <Image
                   width={284}
                   height={183}
                   style={{
-                    width: "100%",
-                    height: "100%",
                     objectFit: "cover",
                   }}
                   priority
-                  src={listing.image}
-                  alt={listing.title}
+                  src={listing?.media?.url}
+                  alt={listing?.modelName}
                 />
-                <div className="thmb_cntnt2">
+                {/* <div className="thmb_cntnt2">
                   <ul className="mb0">
                     <li className="list-inline-item">
                       <a className="text-white" href="#">
                         <span className="flaticon-photo-camera mr3" />{" "}
-                        {listing.photosCount}
-                      </a>
-                    </li>
-                    <li className="list-inline-item">
-                      <a className="text-white" href="#">
-                        <span className="flaticon-play-button mr3" />{" "}
-                        {listing.videosCount}
+                        {listing?.}
                       </a>
                     </li>
                   </ul>
-                </div>
-                <div className="thmb_cntnt3">
-                  <ul className="mb0">
-                    <li className="list-inline-item">
-                      <a href="#">
-                        <span className="flaticon-shuffle-arrows" />
-                      </a>
-                    </li>
-                    <li className="list-inline-item">
-                      <a href="#">
-                        <span className="flaticon-heart" />
-                      </a>
-                    </li>
-                  </ul>
-                </div>
+                </div> */}
               </div>
               <div className="details">
                 <div className="wrapper">
-                  <h5 className="price">Rs {listing.price}</h5>
+                  <h5 className="price">Rs {listing.price} x</h5>
                   <h6 className="title">
-                    <Link href="/listing-single-v2">{listing.title}</Link>
+                    <Link href="/listing-single-v2">{listing.modelName}</Link>
                   </h6>
-                  <div className="listign_review">
-                    {/* <ul className="mb0">
-                      {[...Array(5)].map((_, index) => (
-                        <li key={index} className="list-inline-item">
-                          <a href="#">
-                            <i className="fa fa-star" />
-                          </a>
-                        </li>
-                      ))}
-                      <li className="list-inline-item">
-                        <a href="#">{listing.rating}</a>
-                      </li>
-                      <li className="list-inline-item">
-                        ({listing.reviewsCount} reviews)
-                      </li>
-                    </ul> */}
-                  </div>
+                  <p>Launched Date: <b>{listing?.year}</b></p>
                 </div>{" "}
               </div>
+              <div className="listing_footer">
+                    <ul className="mb0">
+                      <li className="list-inline-item">
+                        <span className="flaticon-road-perspective me-2" />
+                        {listing?.mileage}
+                      </li>
+                      <li className="list-inline-item">
+                        <span className="flaticon-gas-station me-2" />
+                        {listing?.fuelType}
+                      </li>
+                      <li className="list-inline-item">
+                        <span className="flaticon-gear me-2" />
+                        {listing?.transmission}
+                      </li>
+                    </ul>
+                  </div>
+                {/* <div className="listing_footer">
+                      <ul className="mb0">
+                        <li className="list-inline-item">
+                          <span className="flaticon-road-perspective me-2" />
+                          {listing.mileage}
+                        </li>
+                        <li className="list-inline-item">
+                          <span className="flaticon-gas-station me-2" />
+                          {listing.fuelType}
+                        </li>
+                        <li className="list-inline-item">
+                          <span className="flaticon-gear me-2" />
+                          {listing.transmission}
+                        </li>
+                      </ul>
+                    </div> */}
             </div>
           </div>
         ))}

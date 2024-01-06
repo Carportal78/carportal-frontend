@@ -7,6 +7,7 @@ const HeroFilter = () => {
   const [carBrands, setCarBrands] = useState([]);
   const [isBrandsLoading, setIsBrandsLoading] = useState(true);
   const [selectedBrandId, setSelectedBrandId] = useState('');
+  const [selectedModelId, setSelectedModelId] = useState('');
   const [carModels, setCarModels] = useState([]);
   const [isModelsLoading, setIsModelsLoading] = useState(false);
 
@@ -26,6 +27,7 @@ const HeroFilter = () => {
     .then(data => {
       if (data && data.data && data.data.carBrandsList) {
         setCarBrands(data.data.carBrandsList);
+        localStorage.setItem('carBrandsList', JSON.stringify(data.data.carBrandsList));
       }
     })
     .catch(error => {
@@ -60,8 +62,14 @@ const HeroFilter = () => {
   }, [selectedBrandId]);
 
   const handleBrandChange = (event) => {
+    event.preventDefault();
     setSelectedBrandId(event.target.value);
     setCarModels([]); // Reset car models when brand changes
+  };
+  
+  const handleModelChange = (event) => {
+    event.preventDefault();
+    setSelectedModelId(event.target.value);
   };
 
   return (
@@ -89,7 +97,7 @@ const HeroFilter = () => {
               <div className="select-boxes">
                 <div className="car_brand">
                   <h6 className="title">Models</h6>
-                  <select className="form-select" disabled={!selectedBrandId || isModelsLoading}>
+                  <select className="form-select" onChange={handleModelChange} disabled={!selectedBrandId || isModelsLoading}>
                     <option value="">{isModelsLoading ? "Loading..." : "Select Models"}</option>
                     {carModels.map(model => (
                       <option key={model._id} value={model._id}>{model.modelName}</option>
@@ -104,7 +112,7 @@ const HeroFilter = () => {
             <li className="list-inline-item">
               <div className="d-block">
                 <button
-                  onClick={() => router.push("/listing-v4")}
+                  onClick={() => router.push(`/model-details/${selectedModelId}`)} 
                   className="btn btn-thm advnc_search_form_btn"
                 >
                   <span className="flaticon-magnifiying-glass" />

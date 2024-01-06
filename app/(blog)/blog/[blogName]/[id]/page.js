@@ -16,6 +16,7 @@ import Tag from "@/app/components/blog/blog-single/Tag";
 import Pagination from "@/app/components/blog/blog-single/Pagination";
 import Comments from "@/app/components/blog/blog-single/Comments";
 import CommentForm from "@/app/components/blog/blog-single/CommentForm";
+import { useEffect, useState } from "react";
 
 const metadata = {
   title:
@@ -23,6 +24,14 @@ const metadata = {
 };
 
 const BlogDynamicSingle = () => {
+
+  const [blog, setBlog] = useState({});
+  
+  useEffect(() => {
+    const blogData = JSON.parse(localStorage.getItem('selectedBlogPost'));
+    setBlog(blogData);
+  })
+
   return (
     <div className="wrapper">
       <div
@@ -56,9 +65,9 @@ const BlogDynamicSingle = () => {
                 <div className="details">
                   <div className="wrapper">
                     <h2 className="title">
-                      Win a Mini Electric from Auto Trader 
+                      {blog?.blogName}
                     </h2>
-                    <Meta />
+                    <Meta blog={blog} />
                   </div>
                 </div>
               </div>
@@ -79,8 +88,8 @@ const BlogDynamicSingle = () => {
                   priority
                   style={{ objectFit: "cover" }}
                   className="img-whp"
-                  src="/images/blog/bsp1.jpg"
-                  alt="bsp1.jpg"
+                  src={blog?.carModel?.media?.url}
+                  alt={blog?.carModel?.media?.altText}
                 />
               </div>
             </div>
@@ -100,33 +109,11 @@ const BlogDynamicSingle = () => {
                 <div className="mbp_thumb_post">
                   <h4>Description</h4>
                   <p className="para mb25 mt20">
-                    This July, Auto Trader are giving away a funky Mini Electric
-                    worth £26,000 – plus up to £1,200 towards your car
-                    insurance, covered by Compare the Market.
-                  </p>
-                  <p className="para mb20">
-                    There are no catches or hidden fees – you just have to be
-                    over 18 years old, and a UK resident holding a full UK
-                    driver’s licence. You can check out the full terms and
-                    conditions here.
-                  </p>
-                  <p className="para mb40">
-                    Simply fill in the prize draw form at any time between 1
-                    July 2021 and 31 July 2021 and this brand-new Mini Electric
-                    could be yours for free!
+                    {blog?.blogDescription}
                   </p>
                   <div className="mbp_blockquote">
                     <Blockquote />
                   </div>
-                  {/* End .mbp_blockquote */}
-
-                  <div className="row mb40">
-                    <div className="col-lg-12">
-                      <h4 className="mb20">What you&apos;ll learn</h4>
-                    </div>
-                    <Features />
-                  </div>
-                  {/* End .row */}
 
                   <div className="row">
                     <div className="col-lg-12">
@@ -135,56 +122,33 @@ const BlogDynamicSingle = () => {
                         height={465}
                         style={{
                           objectFit: "cover",
-                          width: "100%",
-                          height: "100%",
                         }}
-                        src="/images/blog/bsp2.jpg"
-                        alt="bsp2.jpg"
+                        src={blog?.carModel?.media?.url}
+                        alt={blog?.carModel?.media?.altText}
                       />
                     </div>
                   </div>
                   {/* End .row */}
 
-                  <div className="row">
-                    <div className="col-lg-12">
-                      <div className="custom_bsp_grid mt50">
-                        <h4 className="mb30">Requirements</h4>
-                        <Requirements />
-                      </div>
-                    </div>
-                  </div>
-                  {/* End .row */}
-
                   <hr className="mb40" />
-                  <div className="row">
-                    <div className="col-lg-9">
-                      <Share />
-                    </div>
-                    <div className="col-lg-3 p0">
-                      <div className="bsp_tags text-center text-md-start mt10 mt20-md mb30-767">
-                        <Tag />
-                      </div>
-                    </div>
-                  </div>
-                  {/* End .row */}
                 </div>
                 {/* End mbp_thumb_post */}
 
-                <hr className="mt50" />
+                {/* <hr className="mt50" />
                 <Pagination />
-                <hr />
-
+                <hr /> */}
+{/* 
                 <div className="product_single_content mt50 mb50">
                   <div className="mbp_pagination_comments">
                     <h4 className="title mb10">Comment</h4>
                     <Comments />
                   </div>
-                </div>
+                </div> */}
                 {/* End comments */}
 
-                <div className="bsp_reveiw_wrt">
+                {/* <div className="bsp_reveiw_wrt">
                   <CommentForm />
-                </div>
+                </div> */}
                 {/* End CommentForm */}
               </div>
               {/* End main_blog_post_content */}
@@ -195,30 +159,6 @@ const BlogDynamicSingle = () => {
         </div>
         {/* End .container */}
       </section>
-      {/* End Blog Single Post Description */}
-
-      {/* Our Blog Recent Articles */}
-      <section className="our-blog pb90 bgc-f9">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-6 offset-lg-3">
-              <div className="main-title text-center">
-                <h2>Recent Articles</h2>
-              </div>
-            </div>
-          </div>
-          {/* End .row */}
-
-          <div className="row">
-            <Blog />
-          </div>
-          {/* End .row */}
-        </div>
-        {/* End .container */}
-      </section>
-      {/* Our Blog Recent Articles */}
-
-      {/* Our Footer */}
       <Footer />
       {/* End Our Footer */}
 

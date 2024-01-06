@@ -7,29 +7,18 @@ const AdvanceFilter = () => {
   return (
     <>
       <div className="row">
+        
         <MainFilter />
-
+        <div className="col col-sm-4 col-lg-2 me-auto"></div>
         <div className="col col-sm-4 col-lg-2">
-          <div className="advance_search_style">
-            <a
-              className="advance_dd_btn d-inline-flex"
-              href="#collapseAdvanceSearch"
-              data-bs-toggle="collapse"
-              role="button"
-              aria-expanded={false}
-              aria-controls="collapseAdvanceSearch"
-            >
-              <span className="flaticon-cogwheel" /> Advanced
-            </a>
-          </div>
         </div>
         {/* End .col */}
 
         <div className="col col-sm-4 col-lg-2">
           <div className="advance_search_style">
-            <a className="btn search_btn btn-thm" href="">
+            <button className="btn search_btn btn-thm">
               <span className="flaticon-magnifiying-glass" /> Search
-            </a>
+            </button>
           </div>
         </div>
         {/* End .col */}

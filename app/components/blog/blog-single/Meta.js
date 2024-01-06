@@ -1,4 +1,4 @@
-const Meta = () => {
+const Meta = ({ blog }) => {
   const metaItems = [
     {
       icon: "flaticon-user",
@@ -20,14 +20,24 @@ const Meta = () => {
   return (
     <div className="bp_meta">
       <ul className="mb0">
-        {metaItems.map((item, index) => (
-          <li key={index} className="list-inline-item">
-            <a href={item.href}>
-              <span className={item.icon} />
-              {item.text}
+      <li className="list-inline-item">
+            <a href="#">
+              <span className="flaticon-user" />
+              {blog?.carBrand?.brandName}
             </a>
           </li>
-        ))}
+          <li className="list-inline-item">
+            <a href="#">
+              <span className="flaticon-chat" />
+              {blog?.carModel?.modelName} Model
+            </a>
+          </li>
+          <li className="list-inline-item">
+            <a href="#">
+              <span className="flaticon-calendar-1" />
+              {blog?.carModel?.year}
+            </a>
+          </li>
       </ul>
     </div>
   );

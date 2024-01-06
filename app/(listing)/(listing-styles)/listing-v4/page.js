@@ -55,14 +55,14 @@ const ListingV4 = () => {
           <div className="row">
             <div className="col-xl-12">
               <div className="breadcrumb_content style2">
-                <h2 className="breadcrumb_title">Used Vehicles For Sale</h2>
-                <p className="subtitle">Listing-v3</p>
+                <h2 className="breadcrumb_title">Vehicles</h2>
+                <p className="subtitle">Listings</p>
                 <ol className="breadcrumb fn-sm mt15-sm">
                   <li className="breadcrumb-item">
                     <a href="#">Home</a>
                   </li>
                   <li className="breadcrumb-item active" aria-current="page">
-                    Listing-v3
+                    Listings
                   </li>
                 </ol>
               </div>

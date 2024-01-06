@@ -2,26 +2,37 @@ import blogPosts from "@/data/blog";
 import Image from "next/image";
 import Link from "next/link";
 
-const BlogGrid = () => {
+const BlogGrid = ({ blogs }) => {
+  
+  const handleReadMoreClick = (post, e) => {
+    e.preventDefault();
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('selectedBlogPost', JSON.stringify(post));
+      window.location.href = `/blog/${post.carBrand.brandName}/${post._id}`;
+    }
+  };
+
   return (
     <>
-      {blogPosts.map((post) => (
+      {blogs?.map((post) => (
         <div
-          key={post.id}
+          key={post?._id}
           className="col-md-6 col-xl-4"
           data-aos="fade-up"
           data-aos-delay="100"
         >
           <div className="for_blog">
             <div className="thumb">
-              <div className="tag">{post.tag}</div>
+              <div className="tag">
+                <span className="p-2">{post?.carModel?.bodyType}</span>
+              </div>
               <Image
                 width={394}
                 height={254}
                 style={{ objectFit: "cover" }}
                 className="img-whp"
-                src={post.imgSrc}
-                alt={post.title}
+                src={post?.carModel?.media?.url}
+                alt={post?.carModel?.media?.altText}
               />
             </div>
             <div className="details">
@@ -29,29 +40,33 @@ const BlogGrid = () => {
                 <div className="bp_meta">
                   <ul>
                     <li className="list-inline-item">
-                      <a href="#">
+                      <Link href={`/blog/${post.carBrand.brandName}/${post._id}`}>
                         <span className="flaticon-user" />
-                        {post.author}
-                      </a>
+                        {post?.carBrand?.brandName}
+                      </Link>
                     </li>
                     <li className="list-inline-item">
-                      <a href="#">
+                      <Link href={`/blog/${post.carBrand.brandName}/${post._id}`}>
                         <span className="flaticon-chat" />
-                        {post.numComments} Comments
-                      </a>
+                        {post?.carModel?.modelName} Model
+                      </Link>
                     </li>
                     <li className="list-inline-item">
-                      <a href="#">
+                      <Link href={`/blog/${post.carBrand.brandName}/${post._id}`}>
                         <span className="flaticon-calendar-1" />
-                        {post.date}
-                      </a>
+                        {post?.carModel?.year}
+                      </Link>
                     </li>
                   </ul>
                 </div>
                 <h4 className="title">
-                  <Link href="/blog-single">{post.title}</Link>
+                  <Link href={`/blog/${post.carBrand.brandName}/${post._id}`}>{post?.blogName}</Link>
                 </h4>
-                <Link href="/blog-single" className="more_listing">
+                <Link
+                  href={`/blog/${post.carBrand.brandName}/${post._id}`}
+                  onClick={(e) => handleReadMoreClick(post, e)}
+                  className="more_listing"
+                >
                   Read More{" "}
                   <span className="icon">
                     <span className="fas fa-plus" />

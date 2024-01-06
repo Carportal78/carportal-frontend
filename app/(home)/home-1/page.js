@@ -1,3 +1,4 @@
+"use client";
 import Blog from "@/app/components/home/home-1/Blog";
 import CarIntro from "@/app/components/home/home-1/CarIntro";
 import Category from "@/app/components/home/home-1/Category";
@@ -17,14 +18,38 @@ import Partner from "@/app/components/common/Partner";
 import Counter from "@/app/components/home/home-1/Counter";
 import FindCarChoice from "@/app/components/home/home-1/FindCarChoice";
 import AllBrandsList from "@/app/components/home/home-1/AllBrandsList";
+import { useEffect, useState } from "react";
 
-export const metadata = {
-  title: "Home-1 || Carportal - Automotive & Car Dealer",
+const metadata = {
+  title: "Home || Carportal - Automotive & Car Dealer",
   description: `Carportal - Automotive & Car Dealer. `,
 };
 
 const Home_1 = () => {
 
+  const [collections, setCollections] = useState([]);
+
+  useEffect(() => {
+    const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carCollections/for/65538448b78add9eaa02d417';
+    const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
+
+    fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'X-API-Key': apiKey,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data && data.data && data.data.carCollectionsList) {
+        setCollections(data.data.carCollectionsList);
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching data: ', error);
+    });
+  }, []);
   return (
     <div className="wrapper ovh">
       {/* Sidebar Panel Start */}
@@ -115,7 +140,7 @@ const Home_1 = () => {
           <div className="row justify-content-center">
             <div className="col-lg-8">
               <div className="main-title text-center">
-                <h2>Featured Listings</h2>
+                <h2>{collections?.[0]?.name}</h2>
               </div>
             </div>
           </div>
@@ -123,7 +148,7 @@ const Home_1 = () => {
 
           <div className="row">
             <div className="col-lg-12" data-aos-delay="100" data-aos="fade-up">
-              <FeaturedFilterListing />
+              <FeaturedFilterListing collection={collections?.[0]} />
             </div>
           </div>
           {/* End .row */}
@@ -177,7 +202,7 @@ const Home_1 = () => {
           <div className="row">
             <div className="col-lg-6 offset-lg-3">
               <div className="main-title text-center">
-                <h2 className="text-white">Popular Listings</h2>
+                <h2 className="text-white">{collections?.[1]?.name}</h2>
               </div>
             </div>
           </div>
@@ -186,7 +211,7 @@ const Home_1 = () => {
           <div className="col-lg-12">
             <div className="home1_popular_listing">
               <div className="listing_item_4grid_slider dots_none">
-                <PopularListings />
+                <PopularListings collection={collections?.[1]} />
               </div>
             </div>
           </div>

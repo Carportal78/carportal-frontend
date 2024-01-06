@@ -1,3 +1,4 @@
+"use client";
 import Footer from "@/app/components/common/Footer";
 import DefaultHeader from "../../components/common/DefaultHeader";
 import HeaderSidebar from "../../components/common/HeaderSidebar";
@@ -6,12 +7,40 @@ import MobileMenu from "../../components/common/MobileMenu";
 import LoginSignupModal from "@/app/components/common/login-signup";
 import BlogGrid from "@/app/components/blog/BlogGrid";
 import Pagination from "@/app/components/blog/Pagination";
+import { useEffect, useState } from "react";
 
-export const metadata = {
-  title: "Blog Grid || Carportal - Automotive & Car Dealer",
+const metadata = {
+  title:
+    "Blog Dynamic Single || Carportal - Automotive & Car Dealer",
 };
 
 const Blog = () => {
+  const [blogs, setBlogs] = useState([]);
+  const [isBlogsLoading, setIsBlogsLoading] = useState(false);
+
+  useEffect(() => {
+    const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';
+      setIsBlogsLoading(true);
+      fetch(`https://api.univolenitsolutions.com/v1/automobile/get/carblog/submitted/all/for/65538448b78add9eaa02d417`,
+       {
+        method: 'GET',
+        headers: {
+          'X-API-Key': apiKey,
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data && data.data && data.data.carBlogsList) {
+          setBlogs(data.data.carBlogsList);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching car models: ', error);
+      })
+      .finally(() => setIsBlogsLoading(false));
+  },[]);
+
   return (
     <div className="wrapper">
       <div
@@ -62,7 +91,7 @@ const Blog = () => {
       <section className="blog_post_container inner_page_section_spacing">
         <div className="container">
           <div className="row">
-            <BlogGrid />
+            <BlogGrid blogs={blogs} />
           </div>
           {/* End .row */}
 

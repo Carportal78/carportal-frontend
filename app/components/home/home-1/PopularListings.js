@@ -7,7 +7,7 @@ import listingCar from "@/data/listingCar";
 import Image from "next/image";
 import Link from "next/link";
 
-const PopularListings = () => {
+const PopularListings = ({  collection }) => {
   return (
     <>
       <Swiper
@@ -35,46 +35,33 @@ const PopularListings = () => {
           },
         }}
       >
-        {listingCar.map((listing) => (
-          <SwiperSlide key={listing.id}>
+        {collection?.carModels?.map((listing) => (
+          <SwiperSlide key={listing._id}>
             <div className="item">
               <div className="car-listing">
                 <div className="thumb">
-                  {listing.featured ? (
-                    <>
-                      <div className="tag">FEATURED</div>
-                    </>
-                  ) : undefined}
-                  {!listing.featured ? (
-                    <>
-                      <div className="tag blue">SPECIAL</div>
-                    </>
-                  ) : undefined}
-
                   <Image
                     width={284}
                     height={183}
                     style={{
-                      width: "100%",
-                      height: "100%",
                       objectFit: "cover",
                     }}
                     priority
-                    src={listing.image}
-                    alt={listing.title}
+                    src={listing?.media?.url}
+                    alt={listing?.media.altText}
                   />
                   <div className="thmb_cntnt2">
                     <ul className="mb0">
                       <li className="list-inline-item">
                         <a className="text-white" href="#">
                           <span className="flaticon-photo-camera mr3" />{" "}
-                          {listing.photosCount}
+                          {listing.description}
                         </a>
                       </li>
                       <li className="list-inline-item">
                         <a className="text-white" href="#">
                           <span className="flaticon-play-button mr3" />{" "}
-                          {listing.videosCount}
+                          {listing.year}
                         </a>
                       </li>
                     </ul>
@@ -96,25 +83,13 @@ const PopularListings = () => {
                 </div>
                 <div className="details">
                   <div className="wrapper">
-                    <h5 className="price">${listing.price}</h5>
+                    <h5 className="price">₹ {listing?.price}</h5>
                     <h6 className="title">
-                      <Link href="/listing-single-v2">{listing.title}</Link>
+                      <Link href="/listing-single-v2">{listing.modelName}</Link>
                     </h6>
                     <div className="listign_review">
                       <ul className="mb0">
-                        {[...Array(5)].map((_, index) => (
-                          <li key={index} className="list-inline-item">
-                            <a href="#">
-                              <i className="fa fa-star" />
-                            </a>
-                          </li>
-                        ))}
-                        <li className="list-inline-item">
-                          <a href="#">{listing.rating}</a>
-                        </li>
-                        <li className="list-inline-item">
-                          ({listing.reviewsCount} reviews)
-                        </li>
+                      <p>Launched Date: {listing?.year}</p>
                       </ul>
                     </div>
                   </div>{" "}
