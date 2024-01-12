@@ -40,8 +40,8 @@ function AllBrandsList() {
                 width={150}
                 height={58}
                 style={{ objectFit: "cover" }}
-                src={brand.media.url}
-                alt={brand.brandName}
+                src={brand?.media?.url}
+                alt={brand?.brandName}
                 className={styles.bodyTypeImage}
               />
             </div>

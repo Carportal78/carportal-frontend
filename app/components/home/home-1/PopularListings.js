@@ -47,17 +47,17 @@ const PopularListings = ({  collection }) => {
                       objectFit: "cover",
                     }}
                     priority
-                    src={listing?.media?.url}
-                    alt={listing?.media.altText}
+                    src={listing?.media?.[0]?.url ?? listing?.media?.url}
+                    alt={listing?.modelName}
                   />
                   <div className="thmb_cntnt2">
                     <ul className="mb0">
-                      <li className="list-inline-item">
+                      {/* <li className="list-inline-item">
                         <a className="text-white" href="#">
                           <span className="flaticon-photo-camera mr3" />{" "}
                           {listing.description}
                         </a>
-                      </li>
+                      </li> */}
                       <li className="list-inline-item">
                         <a className="text-white" href="#">
                           <span className="flaticon-play-button mr3" />{" "}
@@ -66,7 +66,7 @@ const PopularListings = ({  collection }) => {
                       </li>
                     </ul>
                   </div>
-                  <div className="thmb_cntnt3">
+                  {/* <div className="thmb_cntnt3">
                     <ul className="mb0">
                       <li className="list-inline-item">
                         <a href="#">
@@ -79,11 +79,11 @@ const PopularListings = ({  collection }) => {
                         </a>
                       </li>
                     </ul>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="details">
                   <div className="wrapper">
-                    <h5 className="price">₹ {listing?.price}</h5>
+                    <h5 className="price">₹ {listing?.price} x</h5>
                     <h6 className="title">
                       <Link href="/listing-single-v2">{listing.modelName}</Link>
                     </h6>
@@ -97,15 +97,15 @@ const PopularListings = ({  collection }) => {
                     <ul className="mb0">
                       <li className="list-inline-item">
                         <span className="flaticon-road-perspective me-2" />
-                        {listing.mileage}
+                        {listing?.mileage.split('_').join('-')} kmpl
                       </li>
                       <li className="list-inline-item">
                         <span className="flaticon-gas-station me-2" />
-                        {listing.fuelType}
+                        {listing?.fuelType.join(', ')}
                       </li>
                       <li className="list-inline-item">
                         <span className="flaticon-gear me-2" />
-                        {listing.transmission}
+                        {listing?.transmissionType.join(', ')}
                       </li>
                     </ul>
                   </div>

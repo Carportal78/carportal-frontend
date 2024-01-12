@@ -26,7 +26,7 @@ const items = [
   },
 ];
 
-const FeatureListingSlider = () => {
+const FeatureListingSlider = (props) => {
   return (
     <Swiper
       modules={[Pagination]}
@@ -36,17 +36,16 @@ const FeatureListingSlider = () => {
         clickable: true,
       }}
     >
-      {items.map((item, index) => (
-        <SwiperSlide key={index}>
+      {props.carCollection?.carModels?.map((item, index) => (
+        <SwiperSlide key={item?._id}>
           <div className="item">
             <div className="car-listing sidebar_style">
               <div className="thumb">
                 <Image
                   width={242}
                   height={172}
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                  src={item.image}
-                  alt={item.title}
+                  src={item?.media?.[0]?.url ?? item?.media?.url}
+                  alt={item?.media?.[0]?.altText}
                 />
               </div>
               <div className="details">

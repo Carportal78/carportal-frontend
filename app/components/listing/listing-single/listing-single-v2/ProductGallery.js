@@ -32,7 +32,7 @@ const slides = [
   },
 ];
 
-export default function ProductGallery() {
+export default function ProductGallery({ carModelDetails }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [isOpen, setOpen] = useState(false);
   const [videoId, setVideoId] = useState("");
@@ -64,14 +64,14 @@ export default function ProductGallery() {
               },
             }}
           >
-            {slides.map((slide, index) => (
+            {carModelDetails?.carModel?.media?.map((slide, index) => (
               <SwiperSlide key={index}>
                 <Image
                   width={123}
                   height={85}
                   style={{ objectFit: "cover" }}
-                  src={slide.imageSrc}
-                  alt="thumb car"
+                  src={slide?.url}
+                  alt={slide?.altText}
                 />
               </SwiperSlide>
             ))}
@@ -94,7 +94,7 @@ export default function ProductGallery() {
             modules={[FreeMode, Navigation, Thumbs]}
             className="mySwiper2 sps_content single_product_grid user_profile"
           >
-            {slides.map((slide, index) => (
+            {carModelDetails?.carModel?.media?.map((slide, index) => (
               <SwiperSlide key={index}>
                 <div className="item">
                   <Image
@@ -102,18 +102,17 @@ export default function ProductGallery() {
                     height={467}
                     style={{ objectFit: "cover" }}
                     priority
-                    className="w-100 h-100"
-                    src={slide.imageSrc}
-                    alt="large car"
+                    src={slide?.url}
+                    alt={slide?.altText}
                   />
                   <div className="overlay_icon">
-                    <button
+                    {/* <button
                       className="video_popup_btn popup-img popup-youtube"
                       onClick={() => openModal(slide.videoId)}
                     >
                       <span className="flaticon-play-button" />
                       Video
-                    </button>
+                    </button> */}
                   </div>
                 </div>
               </SwiperSlide>

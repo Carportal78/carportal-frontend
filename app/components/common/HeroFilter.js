@@ -112,7 +112,7 @@ const HeroFilter = () => {
             <li className="list-inline-item">
               <div className="d-block">
                 <button
-                  onClick={() => router.push(`/model-details/${selectedModelId}`)} 
+                  onClick={() => router.push(`/model-detail/${selectedModelId}`)} 
                   className="btn btn-thm advnc_search_form_btn"
                 >
                   <span className="flaticon-magnifiying-glass" />

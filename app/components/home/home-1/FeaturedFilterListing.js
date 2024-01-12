@@ -27,7 +27,7 @@ const FeaturedFilterListing = ({ collection }) => {
                     objectFit: "cover",
                   }}
                   priority
-                  src={listing?.media?.url}
+                  src={listing?.media?.[0]?.url ?? listing?.media?.url}
                   alt={listing?.modelName}
                 />
                 {/* <div className="thmb_cntnt2">
@@ -54,15 +54,15 @@ const FeaturedFilterListing = ({ collection }) => {
                     <ul className="mb0">
                       <li className="list-inline-item">
                         <span className="flaticon-road-perspective me-2" />
-                        {listing?.mileage}
+                        {listing?.mileage.split('_').join('-')} kmpl
                       </li>
                       <li className="list-inline-item">
                         <span className="flaticon-gas-station me-2" />
-                        {listing?.fuelType}
+                        {listing?.fuelType.join(', ')}
                       </li>
                       <li className="list-inline-item">
                         <span className="flaticon-gear me-2" />
-                        {listing?.transmission}
+                        {listing?.transmissionType.join(', ')}
                       </li>
                     </ul>
                   </div>

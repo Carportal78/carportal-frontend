@@ -5,16 +5,16 @@ import Link from "next/link";
 const CarItems = ({ carVariants }) => {
   return (
     <>
-      {listingCar.slice(0, 9).map((listing) => (
-        <div className="col-sm-6 col-xl-4" key={listing.id}>
+      {carVariants.slice(0, 9).map((listing) => (
+        <div className="col-sm-6 col-xl-4" key={listing._id}>
           <div className="car-listing">
             <div className="thumb">
-              {listing.featured ? (
+              {listing?.featured ? (
                 <>
                   <div className="tag">FEATURED</div>
                 </>
               ) : undefined}
-              {!listing.featured ? (
+              {!listing?.featured ? (
                 <>
                   <div className="tag blue">SPECIAL</div>
                 </>
@@ -23,14 +23,9 @@ const CarItems = ({ carVariants }) => {
               <Image
                 width={284}
                 height={183}
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                }}
                 priority
-                src={listing.image}
-                alt={listing.title}
+                src={listing?.media?.[0]?.url}
+                alt={listing?.name}
               />
               <div className="thmb_cntnt2">
                 <ul className="mb0">
@@ -66,7 +61,7 @@ const CarItems = ({ carVariants }) => {
 
             <div className="details">
               <div className="wrapper">
-                <h5 className="price">${listing.price}</h5>
+                <h5 className="price">₹ {listing?.basicInformation?.onRoadPrice}</h5>
                 <h6 className="title">
                   <Link href="/listing-single-v1">{listing.title}</Link>
                 </h6>
