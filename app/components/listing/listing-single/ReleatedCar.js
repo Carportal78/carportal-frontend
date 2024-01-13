@@ -83,7 +83,7 @@ const ReleatedCar = ({ bodyType, carModelsList, relatedCars }) => {
               </div>
               <div className="details">
                 <div className="wrapper">
-                  <h5 className="price">₹ {listing?.price} x</h5>
+                  <h5 className="price">₹ {listing?.priceRange?.minPrice} {listing?.priceRange?.minPriceType} - {listing?.priceRange?.maxPrice} {listing?.priceRange?.maxPriceType} *</h5>
                   <h6 className="title">
                     <Link href="/listing-single-v2">{listing.modelName}</Link>
                   </h6>
@@ -99,10 +99,12 @@ const ReleatedCar = ({ bodyType, carModelsList, relatedCars }) => {
                       <span className="flaticon-road-perspective me-2" />
                       {listing?.mileage.split('_').join('-')} kmpl
                     </li>
+                    <br/>
                     <li className="list-inline-item">
                       <span className="flaticon-gas-station me-2" />
                       {listing?.fuelType.join(', ')}
                     </li>
+                    <br/>
                     <li className="list-inline-item">
                       <span className="flaticon-gear me-2" />
                       {listing?.transmissionType.join(', ')}

@@ -91,10 +91,12 @@ const CarItems = ({ carVariants }) => {
                     <span className="flaticon-road-perspective me-2" />
                     {listing.mileage}
                   </li>
+                  <br/>
                   <li className="list-inline-item">
                     <span className="flaticon-gas-station me-2" />
                     {listing.fuelType}
                   </li>
+                  <br/>
                   <li className="list-inline-item">
                     <span className="flaticon-gear me-2" />
                     {listing.transmission}

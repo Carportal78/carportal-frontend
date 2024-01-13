@@ -43,7 +43,7 @@ const FeaturedFilterListing = ({ collection }) => {
               </div>
               <div className="details">
                 <div className="wrapper">
-                  <h5 className="price">Rs {listing?.priceRange?.minPrice} {listing?.priceRange?.minPriceType} - Rs {listing?.priceRange?.maxPrice} {listing?.priceRange?.maxPriceType}</h5>
+                  <h5 className="price">₹ {listing?.priceRange?.minPrice} {listing?.priceRange?.minPriceType} - ₹ {listing?.priceRange?.maxPrice} {listing?.priceRange?.maxPriceType} *</h5>
                   <h6 className="title">
                     <Link href="/listing-single-v2">{listing.modelName}</Link>
                   </h6>

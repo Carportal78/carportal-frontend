@@ -63,7 +63,7 @@ const CarItems = ({ carModelsList }) => {
 
               <div className="details">
                 <div className="wrapper">
-                  <h5 className="price">₹ {listing?.priceRange?.minPrice} {listing?.priceRange?.minPriceType} - ₹ {listing?.priceRange?.maxPrice} {listing?.priceRange?.maxPriceType}</h5>
+                  <h5 className="price">₹ {listing?.priceRange?.minPrice} {listing?.priceRange?.minPriceType} - ₹ {listing?.priceRange?.maxPrice} {listing?.priceRange?.maxPriceType} *</h5>
                   <h6 className="title">
                     <Link href={`/model-detail/${listing?._id}`}>{listing?.modelName}</Link>
                   </h6>
