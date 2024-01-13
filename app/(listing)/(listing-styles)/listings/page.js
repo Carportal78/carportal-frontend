@@ -18,7 +18,38 @@ const metadata = {
 const ListingV3 = () => {
 
   const [isCarModelsLoading, setIsCarModelsLoading] = useState(true);
+  const [carBrandsList, setCarBrandsList] = useState([]);
   const [carModelsList, setCarModelsList] = useState([]);
+  const [brandFilter, setBrandFilter] = useState(null);
+  const [bodyTypeFilter, setBodyTypeFilter] = useState(null);
+  // const [priceRange, setPriceRangeFilter] = useState({min: 100000, max: 1000000});
+  const [fuelTypeFilter, setFuelTypeFilter] = useState([]);
+  const [transmissionTypeFilter, setTransmissionTypeFilter] = useState([]);
+
+  useEffect(() => {
+    // setIsBrandsLoading(true);
+    const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carbrands/for/65538448b78add9eaa02d417';
+    const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
+
+    fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'X-API-Key': apiKey,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data && data.data && data.data.carBrandsList) {
+        setCarBrandsList(data.data.carBrandsList);
+        localStorage.setItem('carBrandsList', JSON.stringify(data.data.carBrandsList));
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching data: ', error);
+    })
+    // .finally(() => setIsBrandsLoading(false));
+  }, []);
 
   useEffect(() => {
     const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carmodels/for/65538448b78add9eaa02d417';
@@ -44,6 +75,84 @@ const ListingV3 = () => {
       setIsCarModelsLoading(false);
     });
   }, []);
+
+  useEffect(() => {
+    const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carmodels/for/65538448b78add9eaa02d417';
+    const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
+    setIsCarModelsLoading(true);
+    fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'X-API-Key': apiKey,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data && data.data && data.data.carModelsList) {
+        setCarModelsList(data.data.carModelsList);
+      }
+      setIsCarModelsLoading(false);
+    })
+    .catch(error => {
+      console.error('Error fetching data: ', error);
+      setCarModelsList([]);
+      setIsCarModelsLoading(false);
+    });
+  }, []);
+  
+
+  const handleSearchHandler = (newFilterValue) => {
+    setBrandFilter(newFilterValue.brand);
+  setBodyTypeFilter(newFilterValue.bodyType);
+  setFuelTypeFilter(newFilterValue.fuelType);
+  setTransmissionTypeFilter(newFilterValue.transmissionType);
+  }
+
+  const getFilteredCarModels = () => {
+    if (!brandFilter && !bodyTypeFilter && !fuelTypeFilter?.length && !transmissionTypeFilter?.length) {
+      return carModelsList; // Return all models if no filters are applied
+    }
+  
+    let filteredResults = new Set();
+  
+    if (brandFilter) {
+      carModelsList.forEach(model => {
+        if (model?.brand === brandFilter) {
+          filteredResults.add(model);
+        }
+      });
+    }
+  
+    if (bodyTypeFilter) {
+      carModelsList.forEach(model => {
+        if (model?.bodyType === bodyTypeFilter) {
+          filteredResults.add(model);
+        }
+      });
+    }
+  
+    if (fuelTypeFilter.length) {
+      carModelsList.forEach(model => {
+        if (fuelTypeFilter.includes(model?.fuelType)) {
+          filteredResults.add(model);
+        }
+      });
+    }
+  
+    if (transmissionTypeFilter.length) {
+      carModelsList.forEach(model => {
+        if (transmissionTypeFilter.includes(model?.transmissionType)) {
+          filteredResults.add(model);
+        }
+      });
+    }
+  
+    return Array.from(filteredResults); // Convert Set to Array
+  };
+  
+  
+  const filteredCarModels = getFilteredCarModels();
 
   return (
     <div className="wrapper">
@@ -97,16 +206,16 @@ const ListingV3 = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-4 col-xl-3 dn-md">
-              <SidebarAdvnaceFilter />
+              <SidebarAdvnaceFilter carModelsList={carModelsList} carBrandsList={carBrandsList} onSearchClick={handleSearchHandler} />
             </div>
-            {/* End .col-lg-4 */}
+            {/* End .col-lg-4 */} 
 
             <div className="col-lg-8 col-xl-9"> 
               <ListGridFilter2 carModelsList={carModelsList}  />
               {isCarModelsLoading ? (<Spinner className="d-flex" style={{marginLeft: 'auto', marginRight: 'auto'}} animation="border" role="status">
                      <span className="visually-hidden">Loading...</span>
                      </Spinner>) : (<div className="row">
-                    <CarItems carModelsList={carModelsList} />
+                    <CarItems carModelsList={filteredCarModels} />
                   </div>)}
               
               {/* End .row */}
@@ -130,7 +239,7 @@ const ListingV3 = () => {
           >
             <i className="fa-light fa-circle-xmark"></i>
           </div>
-          <SidebarAdvnaceFilter carModelsList={carModelsList} />
+          <SidebarAdvnaceFilter carModelsList={carModelsList} carBrandsList={carBrandsList} onSearchClick={handleSearchHandler} />
         </div>
       </section>
       {/* Listing Grid View */}
