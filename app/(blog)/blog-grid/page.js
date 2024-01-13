@@ -4,7 +4,7 @@ import DefaultHeader from "../../components/common/DefaultHeader";
 import HeaderSidebar from "../../components/common/HeaderSidebar";
 import HeaderTop from "../../components/common/HeaderTop";
 import MobileMenu from "../../components/common/MobileMenu";
-import LoginSignupModal from "@/app/components/common/login-signup";
+import LoginSignupModal from "../../components/common/login-signup";
 import BlogGrid from "@/app/components/blog/BlogGrid";
 import Pagination from "@/app/components/blog/Pagination";
 import { useEffect, useState } from "react";

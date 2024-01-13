@@ -31,7 +31,7 @@ const tabs = [
   },
 ];
 
-const ContactDealerForm = () => {
+const LoginSignupModal = () => {
   return (
     <div className="modal-dialog modal-dialog-centered">
       <div className="modal-content">
@@ -96,4 +96,4 @@ const ContactDealerForm = () => {
   );
 };
 
-export default ContactDealerForm;
+export default LoginSignupModal;

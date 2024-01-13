@@ -125,6 +125,9 @@ const ContactDealer = () => {
 
   const handleBack = (e) => {
     e.preventDefault();
+    if(currentStep == 2.5) {
+      setCurrentStep(1);
+    }
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1);
     }
@@ -132,7 +135,6 @@ const ContactDealer = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add API call here
   };
 
   const handleChange = (e) => {
@@ -141,6 +143,14 @@ const ContactDealer = () => {
 
   // Function to send OTP
   const sendOTP = async (phoneNumber) => {
+    const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';
+    fetch('https://api.univolenitsolutions.com/v1/automobile/carvariants/from/carmodel/${modelId}/for/65538448b78add9eaa02d417', {
+      method: 'POST',
+      headers: {
+        'X-API-Key': apiKey,
+        'Content-Type': 'application/json'
+      }
+    })
     setOtpSent(true);
   };
 
