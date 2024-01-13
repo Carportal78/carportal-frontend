@@ -64,7 +64,7 @@ export default function ProductGallery({ carModelDetails }) {
               },
             }}
           >
-            {carModelDetails?.carModel?.media?.map((slide, index) => (
+            {carModelDetails?.media?.map((slide, index) => (
               <SwiperSlide key={index}>
                 <Image
                   width={123}
@@ -94,7 +94,7 @@ export default function ProductGallery({ carModelDetails }) {
             modules={[FreeMode, Navigation, Thumbs]}
             className="mySwiper2 sps_content single_product_grid user_profile"
           >
-            {carModelDetails?.carModel?.media?.map((slide, index) => (
+            {carModelDetails?.media?.map((slide, index) => (
               <SwiperSlide key={index}>
                 <div className="item">
                   <Image

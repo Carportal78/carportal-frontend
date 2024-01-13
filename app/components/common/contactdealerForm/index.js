@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const tabs = [
   {
-    title: "Login",
+    title: "Loginsa",
     id: "home",
     content: (
       <div className="login_form">

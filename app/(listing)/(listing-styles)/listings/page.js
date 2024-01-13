@@ -7,7 +7,7 @@ import MobileMenu from "@/app/components/common/MobileMenu";
 import LoginSignupModal from "@/app/components/common/login-signup";
 import CarItems from "@/app/components/listing/listing-styles/listing-v6/CarItems";
 import SidebarAdvnaceFilter from "@/app/components/listing/SidebarAdvanceFilter";
-import ListGridFilter2 from "@/app/components/listing/ListGridFilter2";
+import ListGridFilter2 from "@/app/components/listing/ListGridFilter2"; 
 import { useEffect, useState } from "react";
 import { Spinner } from "react-bootstrap";
 
@@ -101,7 +101,7 @@ const ListingV3 = () => {
             </div>
             {/* End .col-lg-4 */}
 
-            <div className="col-lg-8 col-xl-9">
+            <div className="col-lg-8 col-xl-9"> 
               <ListGridFilter2 carModelsList={carModelsList}  />
               {isCarModelsLoading ? (<Spinner className="d-flex" style={{marginLeft: 'auto', marginRight: 'auto'}} animation="border" role="status">
                      <span className="visually-hidden">Loading...</span>
@@ -130,7 +130,7 @@ const ListingV3 = () => {
           >
             <i className="fa-light fa-circle-xmark"></i>
           </div>
-          <SidebarAdvnaceFilter />
+          <SidebarAdvnaceFilter carModelsList={carModelsList} />
         </div>
       </section>
       {/* Listing Grid View */}

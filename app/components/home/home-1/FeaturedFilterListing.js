@@ -43,7 +43,7 @@ const FeaturedFilterListing = ({ collection }) => {
               </div>
               <div className="details">
                 <div className="wrapper">
-                  <h5 className="price">Rs {listing.price} x</h5>
+                  <h5 className="price">Rs {listing?.priceRange?.minPrice} {listing?.priceRange?.minPriceType} - Rs {listing?.priceRange?.maxPrice} {listing?.priceRange?.maxPriceType}</h5>
                   <h6 className="title">
                     <Link href="/listing-single-v2">{listing.modelName}</Link>
                   </h6>
@@ -52,10 +52,10 @@ const FeaturedFilterListing = ({ collection }) => {
               </div>
               <div className="listing_footer">
                     <ul className="mb0">
-                      <li className="list-inline-item">
+                      {/* <li className="list-inline-item">
                         <span className="flaticon-road-perspective me-2" />
                         {listing?.mileage.split('_').join('-')} kmpl
-                      </li>
+                      </li> */}
                       <li className="list-inline-item">
                         <span className="flaticon-gas-station me-2" />
                         {listing?.fuelType.join(', ')}

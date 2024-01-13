@@ -1,4 +1,4 @@
-const Descriptions = () => {
+const Descriptions = ({ carModelDetails }) => {
   const paragraphs = [
     {
       className: "first-para",
@@ -19,11 +19,12 @@ const Descriptions = () => {
 
   return (
     <>
-      {paragraphs.map((paragraph, index) => (
+    <p>{carModelDetails?.description}</p>
+      {/* {paragraphs.map((paragraph, index) => (
         <p className={paragraph.className} key={index}>
           {paragraph.content}
         </p>
-      ))}
+      ))} */}
     </>
   );
 };

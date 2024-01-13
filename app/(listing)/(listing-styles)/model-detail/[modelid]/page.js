@@ -4,6 +4,7 @@ import DefaultHeader from "@/app/components/common/DefaultHeader";
 import HeaderSidebar from "@/app/components/common/HeaderSidebar";
 import HeaderTop from "@/app/components/common/HeaderTop";
 import MobileMenu from "@/app/components/common/MobileMenu";
+import ContactDealerForm from "@/app/components/common/contactDealerForm";
 import LoginSignupModal from "@/app/components/common/login-signup";
 import BreadCrumb from "@/app/components/listing/listing-single/BreadCrumb";
 import ProductGallery from "@/app/components/listing/listing-single/listing-single-v2/ProductGallery";
@@ -20,6 +21,8 @@ import ReleatedCar from "@/app/components/listing/listing-single/ReleatedCar";
 import ShareMeta from "@/app/components/listing/listing-single/ShareMeta";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import VariantsList from "@/app/components/listing/listing-single/Variants";
+import Image from "next/image";
 
 const metadata = {
   title: "Listing Single V2 || Carportal - Automotive & Car Dealer",
@@ -30,6 +33,29 @@ const ModelDetails = () => {
   const { modelid } = useParams();
 
   const [carModelDetails, setCarModelDetails] = useState({});
+
+  const [relatedCars,setRelatedCars] = useState([]);
+
+  const [carModelsList, setCarModelsList] = useState([]);
+  const [carVariantsList, setCarVariantsList] = useState([]);
+  const [isModelsLoading,setIsModelsLoading] = useState(false);
+
+  useEffect(() => {
+    const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';  
+    const relatedCars = fetch(`https://api.univolenitsolutions.com/v1/automobile/get/carmodels/bodyType/${carModelDetails?.bodyType}/for/65538448b78add9eaa02d417`, {
+    headers: {
+        'x-api-key': apiKey
+      }
+    }).then(response => response.json());
+    relatedCars.then(cars => {
+      if(cars?.data?.carModelsList) {
+        // const carsList = cars?.data?.carModelsList?.filter(car => car._id !== carModelsList._id);
+        // console.log('carsList ', carsList);
+        // setRelatedCars(carsList);
+        setRelatedCars(cars?.data?.carModelsList);
+      }
+    });
+  }, [carModelDetails]);
 
   useEffect(() => {
     const apiUrl = `https://api.univolenitsolutions.com/v1/automobile/get/carmodel/${modelid}/for/65538448b78add9eaa02d417`;
@@ -45,13 +71,45 @@ const ModelDetails = () => {
     .then(response => response.json())
     .then(data => {
       if (data && data.data && data.data) {
-        setCarModelDetails(data.data);
+        setCarModelDetails(data.data.carModel);
+        setCarVariantsList(data.data.carVariantsList);
       }
     })
     .catch(error => {
       console.error('Error fetching data: ', error);
     });
   },[])
+
+    // Fetch car models based on selected brand
+    useEffect(() => {
+        const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';
+        setIsModelsLoading(true);
+        // Replace this URL with the appropriate one for fetching models
+        fetch(`https://api.univolenitsolutions.com/v1/automobile/get/carmodels/${carModelDetails?.carBrand?._id}/for/65538448b78add9eaa02d417`, {
+          method: 'GET',
+          headers: {
+            'X-API-Key': apiKey,
+            'Content-Type': 'application/json'
+            // Include any necessary headers
+          }
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data && data.data && data.data.carModelsList) {
+            setCarModelsList(data.data.carModelsList);
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching car models: ', error);
+        })
+        .finally(() => setIsModelsLoading(false));
+    
+    }, [carModelDetails]);
+
+    function capitalizeFirstLetter(string) {
+      if (!string) return string;
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
 
   return (
     <div className="wrapper">
@@ -77,8 +135,6 @@ const ModelDetails = () => {
       <MobileMenu />
       {/* End Main Header Nav For Mobile */}
 
-      {console.log('carModelDetails ', carModelDetails)}
-
       {/* Agent Single Grid View */}
       <section className="our-agent-single bgc-f9 pb90 mt70-992 pt30">
         <div className="container">
@@ -90,45 +146,8 @@ const ModelDetails = () => {
             </div>
           </div>
           {/* End .row bradcrumb */}
-
-          <div className="row mb30">
-            <div className="col-lg-7 col-xl-8">
-              <div className="single_page_heading_content">
-                <div className="car_single_content_wrapper">
-                  <ul className="car_info mb20-md">
-                    <li className="list-inline-item">
-                      <a href="#">BRAND NEW</a>
-                    </li>
-                  </ul>
-                  <h2 className="title">{carModelDetails?.carModel?.modelName}</h2>
-                  <p className="para">
-                    2.0h T8 11.6kWh Polestar Engineered Auto AWD (s/s) 5dr
-                  </p>
-                </div>
-              </div>
-            </div>
-            {/* End .col-lg-7 */}
-
-            <div className="col-lg-5 col-xl-4">
-              <div className="single_page_heading_content text-start text-lg-end">
-                <div className="share_content">
-                  <ShareMeta />
-                </div>
-                <div className="price_content">
-                  <div className="price mt60 mb10 mt10-md">
-                    <h3>
-                      <small className="mr15">
-                        <del>Rs 92,480</del>
-                      </small>
-                      Rs 89,480
-                    </h3>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* End col-lg-5 */}
-          </div>
           {/* End .row */}
+          
 
           <div className="row">
             <div className="col-lg-8 col-xl-8">
@@ -137,6 +156,8 @@ const ModelDetails = () => {
 
               <div className="listing_single_description mt30">
               <div className="row">
+                {/* Key Specs of Hyundia Creta  */}
+                
               <div className="popular_listing_sliders single_page6_tabs row pr15">
                 {/* Nav tabs */}
                 <div className="nav nav-tabs col-lg-12" role="tablist">
@@ -164,16 +185,16 @@ const ModelDetails = () => {
                   </button>
                   <button
                     className="nav-link"
-                    id="nav-features-tab"
+                    id="nav-variants-tab"
                     data-bs-toggle="tab"
-                    data-bs-target="#nav-features"
+                    data-bs-target="#nav-variants"
                     role="tab"
-                    aria-controls="nav-features"
+                    aria-controls="nav-variants"
                     aria-selected="false"
                   >
-                    Features
+                    Variants
                   </button>
-                  <button
+                  {/* <button
                     className="nav-link"
                     id="nav-review-tab"
                     data-bs-toggle="tab"
@@ -183,7 +204,7 @@ const ModelDetails = () => {
                     aria-selected="false"
                   >
                     Reviews
-                  </button>
+                  </button> */}
                 </div>
                 {/* Tab panes */}
                 <div className="tab-content col-lg-12" id="nav-tabContent">
@@ -197,10 +218,10 @@ const ModelDetails = () => {
                       <h4 className="mb30">
                         Description{" "}
                         <span className="float-end body-color fz13">
-                          ID #9535
+                          ID #{carModelDetails?._id}
                         </span>
                       </h4>
-                      <Descriptions />
+                      <Descriptions carModelDetails={carModelDetails} />
                     </div>
                     {/* End car descriptions */}
                   </div>
@@ -215,7 +236,7 @@ const ModelDetails = () => {
                     <div className="opening_hour_widgets p30 bdr_none pl0 pr0">
                       <div className="wrapper">
                         <h4 className="title">Overview</h4>
-                        <Overview />
+                        <Overview carModelDetails={carModelDetails} />
                       </div>
                     </div>
                     {/* End opening_hour_widgets */}
@@ -224,17 +245,18 @@ const ModelDetails = () => {
 
                   <div
                     className="tab-pane fade"
-                    id="nav-features"
+                    id="nav-variants"
                     role="tabpanel"
-                    aria-labelledby="nav-features-tab"
+                    aria-labelledby="nav-variants-tab"
                   >
                     <div className="user_profile_service  bdr_none pl0 pr0">
-                      <Features />
+                      <VariantsList carModelDetails={carModelDetails} variants={carVariantsList} />
+                      {/* <Features /> */}
                       <hr />
                       <div className="row">
                         <div className="col-lg-12">
                           <a className="fz12 tdu color-blue" href="#">
-                            View all features
+                            View all variants
                           </a>
                         </div>
                       </div>
@@ -242,24 +264,7 @@ const ModelDetails = () => {
                     {/* End user profile service */}
                   </div>
                   {/* End user profile service tabcontent */}
-                  <div
-                    className="tab-pane fade"
-                    id="nav-review"
-                    role="tabpanel"
-                    aria-labelledby="nav-review-tab"
-                  >
-                    <div className="user_profile_review bdr_none pt-0 pl0 pr0">
-                      <ConsumerReviews />
-                      {/* End ConsumerReviews */}
-                    </div>
-                    {/* End consumer review content */}
-
-                    <div className="user_review_form bdr_none pl0 pr0">
-                      <ReviewBox />
-                      {/* End ReviewBox */}
-                    </div>
-                    {/* End review box content */}
-                  </div>
+             
                 </div>
               </div>
               {/* End tabs content */}
@@ -273,9 +278,9 @@ const ModelDetails = () => {
             <div className="col-lg-4 col-xl-4">
               <div className="col">
                 <div className="d-flex align-items-center justify-content-between">
-                  <h3>Mercedez-Benz GLA</h3>
+                  <h3>{carModelDetails?.modelName}</h3>
                   <a className="fz12 tdu color-blue" href="#">
-                            Change Car
+                            Compare
                     </a>
                 </div>
                 <div className="d-flex align-items-center">
@@ -293,28 +298,34 @@ const ModelDetails = () => {
                   </Link>
                 </div>
                 <div className="d-flex mt-2">
-                  <h4>Rs.48.50 - 52.70 Lakh</h4>*
+                  <h4>₹ {carModelDetails?.priceRange?.minPrice} {carModelDetails?.priceRange?.minPriceType} - ₹ {carModelDetails?.priceRange?.maxPrice} {carModelDetails?.priceRange?.maxPriceType}</h4>*
                   <Link href="/onroadprice" className="tdu color-blue ml10">Get On Road Price</Link>
                 </div>
-                <p className="para">
+                <div className="mt-2 d-flex">
+                  <strong>Launched Year:</strong> <span className="ml5">{carModelDetails?.year}</span>
+                </div>
+                <div className="d-flex">
+                  <strong>Body Type:</strong> <span className="ml5">{carModelDetails?.bodyType?.replace('-',' ')}</span>
+                </div>
+                <div className="d-flex">
+                  <strong>Car Brand:</strong> <span className="ml5">{carModelDetails?.carBrand?.brandName}</span>
+                </div>
+                {/* <p className="para">
                     *Ex-showroom Price in<a href="#" className="tdu color-blue ml10">Jaipur</a>
-                  </p>
+                  </p> */}
                   <div className="offer_btns mt-5">
                 <div className="text-end">
-                  <button className="btn btn-thm ofr_btn1 btn-block mt0 mb20">
+                  <button className="btn btn-thm ofr_btn1 btn-block mt0 mb20" data-bs-toggle="modal" data-bs-target="#contactDealerForm">
                     <span className="flaticon-profit-report mr10 fz18 vam" />
                     Contact Dealer
                   </button>
+                  
                 </div>
               </div>
               </div>
               {/* End offer_btn
                */}
-              <div className="sidebar_seller_contact">
-                {/* <SellerDetail /> */}
-                {/* <h4 className="mb30">Contact Seller</h4> */}
-                {/* <ContactSeller /> */}
-              </div>
+         
 
               {/* End .col-xl-4 */}
             </div>
@@ -325,13 +336,52 @@ const ModelDetails = () => {
       </section>
       {/* End Agent Single Grid View */}
 
-      {/* Car For Rent */}
-      <section className="car-for-rent bb1">
+      {carModelsList?.length>0 ? <section className="car-for-rent bb1 pb-2" >
         <div className="container">
           <div className="row">
             <div className="col-sm-6">
               <div className="main-title text-center text-md-start mb10-520">
-                <h2 className="title">Releated Best Car</h2>
+                <h2 className="title">More from {capitalizeFirstLetter(carModelDetails?.carBrand?.brandName)}</h2>
+              </div>
+            </div>
+            {/* End .col-sm-6 */}
+
+            <div className="col-sm-6">
+              <div className="text-center text-md-end mb30-520">
+                <Link href="/page-list-v1" className="more_listing">
+                  Show All Crs
+                  <span className="icon">
+                    <span className="fas fa-plus" />
+                  </span>
+                </Link>
+              </div>
+            </div>
+            {/* End .col-sm-6 */}
+          </div>
+          {/* End .row */}
+
+          <div className="col-lg-12">
+            <div
+              className="home1_popular_listing home3_style"
+              data-aos-delay="100"
+            >
+              <div className="listing_item_4grid_slider nav_none">
+                <ReleatedCar bodyType={carModelDetails?.bodyType} carModelDetails={carModelDetails} relatedCars={carModelsList} />
+              </div>
+            </div>
+          </div>
+          {/* End .col-lg-12 */}
+        </div>
+        {/* End .container */}
+      </section> : ' '};
+
+      {/* Car For Rent */}
+      {relatedCars?.length>0 ? <section className="car-for-rent bb1 pt-2" >
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-6">
+              <div className="main-title text-center text-md-start mb10-520">
+                <h2 className="title">Cars You May Like</h2>
               </div>
             </div>
             {/* End .col-sm-6 */}
@@ -356,14 +406,14 @@ const ModelDetails = () => {
               data-aos-delay="100"
             >
               <div className="listing_item_4grid_slider nav_none">
-                <ReleatedCar />
+                <ReleatedCar bodyType={carModelDetails?.bodyType} carModelDetails={carModelDetails} relatedCars={relatedCars} />
               </div>
             </div>
           </div>
           {/* End .col-lg-12 */}
         </div>
         {/* End .container */}
-      </section>
+      </section> : ' '};
       {/* End Car For Rent */}
 
       {/* Our Footer */}
@@ -380,6 +430,20 @@ const ModelDetails = () => {
         aria-hidden="true"
       >
         <LoginSignupModal />
+      </div>
+      {/* End Modal */}
+
+
+      {/* Modal */}
+      <div
+        className="sign_up_modal modal fade"
+        id="contactDealerForm"
+        data-backdrop="static"
+        data-keyboard=""
+        tabIndex={-1}
+        aria-hidden="true"
+      >
+        <ContactDealerForm />
       </div>
       {/* End Modal */}
     </div>

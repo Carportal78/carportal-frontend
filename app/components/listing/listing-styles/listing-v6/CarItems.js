@@ -8,7 +8,7 @@ const CarItems = ({ carModelsList }) => {
       {carModelsList.slice(0, 9).map((listing) => (
         
         <div className="col-sm-6 col-xl-4" key={listing._id}>
-          <Link href={`/listing-single-v2/${listing._id}`}>
+          <Link href={`/model-detail/${listing?._id}`}>
           <div className="car-listing">
             <div className="thumb">
               {listing.featured ? (
@@ -29,15 +29,15 @@ const CarItems = ({ carModelsList }) => {
                   objectFit: "cover",
                 }}
                 priority
-                src={listing?.media?.url}
-                alt={listing?.media.altText}
+                src={listing?.media?.[0]?.url}
+                alt={listing?.media?.[0]?.altText}
               />
               <div className="thmb_cntnt2">
                 <ul className="mb0">
                   <li className="list-inline-item">
                     <a className="text-white" href="#">
                       <span className="flaticon-photo-camera mr3" />{" "}
-                      {listing?.description}
+                      {listing?.media?.length}
                     </a>
                   </li>
                   <li className="list-inline-item">
@@ -48,27 +48,13 @@ const CarItems = ({ carModelsList }) => {
                   </li>
                 </ul>
               </div>
-              <div className="thmb_cntnt3">
-                <ul className="mb0">
-                  <li className="list-inline-item">
-                    <a href="#">
-                      <span className="flaticon-shuffle-arrows" />
-                    </a>
-                  </li>
-                  <li className="list-inline-item">
-                    <a href="#">
-                      <span className="flaticon-heart" />
-                    </a>
-                  </li>
-                </ul>
-              </div>
             </div>
 
             <div className="details">
               <div className="wrapper">
-                <h5 className="price">₹ {listing?.price ?? 100}</h5>
+                <h5 className="price">₹ {listing?.priceRange?.minPrice} {listing?.priceRange?.minPriceType} - ₹ {listing?.priceRange?.maxPrice} {listing?.priceRange?.maxPriceType}</h5>
                 <h6 className="title">
-                  <Link href="/listing-single-v2">{listing?.modelName}</Link>
+                  <Link href={`/model-detail/${listing?._id}`}>{listing?.modelName}</Link>
                 </h6>
                 <div className="listign_review">
                       <ul className="mb0">
@@ -99,15 +85,17 @@ const CarItems = ({ carModelsList }) => {
                 <ul className="mb0">
                   <li className="list-inline-item">
                     <span className="flaticon-road-perspective me-2" />
-                    {listing.mileage}
+                    {listing.mileage?.replace('_', '-')} Kmpl
                   </li>
+                  <br/>
                   <li className="list-inline-item">
                     <span className="flaticon-gas-station me-2" />
-                    {listing.fuelType}
+                    {listing.fuelType?.join(', ')}
                   </li>
+                  <br/>
                   <li className="list-inline-item">
                     <span className="flaticon-gear me-2" />
-                    {listing.transmission}
+                    {listing.transmissionType?.join(', ')}
                   </li>
                 </ul>
               </div>

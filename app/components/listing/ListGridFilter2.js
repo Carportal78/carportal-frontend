@@ -23,7 +23,7 @@ const ListGridFilter2 = ({ carModelsList }) => {
           </p>
         </div>
       </div>
-      <div className="col-md-8">
+      {/* <div className="col-md-8">
         <div className="page_control_shorting right_area text-end tac-xsd">
           <ul className="d-flex align-items-center justify-content-md-end justify-content-center">
             <li className="list-inline-item short_by_text listone">Sort by:</li>
@@ -41,7 +41,7 @@ const ListGridFilter2 = ({ carModelsList }) => {
             </li>
           </ul>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

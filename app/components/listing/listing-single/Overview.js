@@ -1,16 +1,22 @@
-const Overview = () => {
+const Overview = ({ carModelDetails }) => {
+  const carModel  = carModelDetails;
+
   const carData = [
-    { label: "Make", value: "Volvo" },
-    { label: "Model", value: "XC 90" },
-    { label: "Color", value: "white" },
-    { label: "Drive Type", value: "4x4" },
-    { label: "Transmission", value: "Automatic" },
-    { label: "Year", value: "2021" },
-    { label: "Mileage", value: "280,000" },
-    { label: "Fuel Type", value: "Diesel" },
-    { label: "Engine Size", value: "5.2L" },
-    { label: "Doors", value: "5" },
-    { label: "Cylinders", value: "10" }
+    { label: "Model Name", value: carModel?.modelName },
+    { label: "Car Brand", value: carModel?.carBrand?.brandName },
+    { label: "Body Type", value: carModel?.bodyType?.replace('-', ' ') },
+    { label: "Description", value: carModel?.description },
+    { label: "Year", value: carModel?.year },
+    { label: "Min Price", value: `${carModel?.priceRange?.minPrice} ${carModel?.priceRange?.minPriceType}` },
+    { label: "Max Price", value: `${carModel?.priceRange?.maxPrice} ${carModel?.priceRange?.maxPriceType}` },
+    // { label: "Status", value: carModel?.status ? "Active" : "Inactive" },
+    // { label: "Budget", value: carModel?.budget },
+    { label: "Fuel Type", value: carModel?.fuelType?.join(", ") },
+    { label: "Mileage", value: `${carModel?.mileage?.replace('_', '-')} Kmpl`  },
+    { label: "Seating Capacity", value: carModel?.seatingCapacity?.replace('_', ' ') },
+    { label: "Transmission Type", value: carModel?.transmissionType?.join(", ") },
+    { label: "Engine Displacement", value: `${carModel?.displacement?.replace('_', '-')} cc`  }
+    // Add more fields as necessary
   ];
 
   return (

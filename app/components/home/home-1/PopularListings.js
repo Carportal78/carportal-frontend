@@ -52,12 +52,12 @@ const PopularListings = ({  collection }) => {
                   />
                   <div className="thmb_cntnt2">
                     <ul className="mb0">
-                      {/* <li className="list-inline-item">
+                      <li className="list-inline-item">
                         <a className="text-white" href="#">
                           <span className="flaticon-photo-camera mr3" />{" "}
-                          {listing.description}
+                          {listing?.media?.length}
                         </a>
-                      </li> */}
+                      </li>
                       <li className="list-inline-item">
                         <a className="text-white" href="#">
                           <span className="flaticon-play-button mr3" />{" "}

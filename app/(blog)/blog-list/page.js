@@ -93,7 +93,7 @@ const Blog = () => {
       {/* Modal */}
       <div
         className="sign_up_modal modal fade"
-        id="logInModal"
+        id="logInModal" 
         data-backdrop="static"
         data-keyboard="false"
         tabIndex={-1}
