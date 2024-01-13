@@ -8,10 +8,11 @@ import LoginSignupModal from "@/app/components/common/login-signup";
 import BlogGrid from "@/app/components/blog/BlogGrid";
 import Pagination from "@/app/components/blog/Pagination";
 import { useEffect, useState } from "react";
+import { Spinner } from "react-bootstrap";
 
 const metadata = {
   title:
-    "Blog Dynamic Single || Carportal - Automotive & Car Dealer",
+    "Car Blog || Carportal - Automotive & Car Dealer",
 };
 
 const Blog = () => {
@@ -34,6 +35,7 @@ const Blog = () => {
         if (data && data.data && data.data.carBlogsList) {
           setBlogs(data.data.carBlogsList);
         }
+        setIsBlogsLoading(false);
       })
       .catch(error => {
         console.error('Error fetching car models: ', error);
@@ -91,7 +93,9 @@ const Blog = () => {
       <section className="blog_post_container inner_page_section_spacing">
         <div className="container">
           <div className="row">
-            <BlogGrid blogs={blogs} />
+            {isBlogsLoading? (<Spinner className="d-flex" style={{marginLeft: 'auto', marginRight: 'auto'}} animation="border" role="status">
+                     <span className="visually-hidden">Loading...</span>
+                     </Spinner>) : <BlogGrid blogs={blogs} /> }
           </div>
           {/* End .row */}
 

@@ -1,37 +1,27 @@
 import React from "react";
-import LoginForm from "./LoginForm";
+import ContactDealer from "./ContactDealer";
 import SignupForm from "./SignupForm";
 import Link from "next/link";
 
 const tabs = [
   {
-    title: "Loginsa",
+    title: "Contact Dealer",
     id: "home",
     content: (
       <div className="login_form">
         <p>
-          New to Cars.com? <Link href="/signup">Sign up.</Link> Are you a
-          dealer?
+          For Query? Please fill following details to contact a dealer.
         </p>
-        <LoginForm />
+        <ContactDealer />
       </div>
     ),
-  },
-  {
-    title: "Register",
-    id: "profile",
-    content: (
-      <div className="sign_up_form">
-        <p>
-          Already have a profile? <Link href="/login">Sign in.</Link>
-        </p>
-        <SignupForm />
-      </div>
-    ),
-  },
+  }
 ];
 
-const ContactDealerForm = () => {
+const ContactDealerForm = ({ carModelDetails }) => {
+
+  
+
   return (
     <div className="modal-dialog modal-dialog-centered">
       <div className="modal-content">

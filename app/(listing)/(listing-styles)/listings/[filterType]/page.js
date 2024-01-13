@@ -15,8 +15,7 @@ const metadata = {
   title: "Listings || Carportal - Automotive & Car Dealer",
 };
 
-const ListingV3 = () => {
-
+const ListingType = () => {
   const [isCarModelsLoading, setIsCarModelsLoading] = useState(true);
   const [carBrandsList, setCarBrandsList] = useState([]);
   const [carModelsList, setCarModelsList] = useState([]);
@@ -25,14 +24,6 @@ const ListingV3 = () => {
   // const [priceRange, setPriceRangeFilter] = useState({min: 100000, max: 1000000});
   const [fuelTypeFilter, setFuelTypeFilter] = useState([]);
   const [transmissionTypeFilter, setTransmissionTypeFilter] = useState([]);
-
-  useEffect(() => {
-    const queryParams = new URLSearchParams(window.location.search);
-    const bodyType = queryParams.get("bodyType");
-    if (bodyType) {
-      setBodyTypeFilter(bodyType);
-    }
-  }, []);
 
   useEffect(() => {
     // setIsBrandsLoading(true);
@@ -112,9 +103,9 @@ const ListingV3 = () => {
 
   const handleSearchHandler = (newFilterValue) => {
     setBrandFilter(newFilterValue.brand);
-    setBodyTypeFilter(newFilterValue.bodyType);
-    setFuelTypeFilter(newFilterValue.fuelType);
-    setTransmissionTypeFilter(newFilterValue.transmissionType);
+  setBodyTypeFilter(newFilterValue.bodyType);
+  setFuelTypeFilter(newFilterValue.fuelType);
+  setTransmissionTypeFilter(newFilterValue.transmissionType);
   }
 
   const getFilteredCarModels = () => {
@@ -273,4 +264,4 @@ const ListingV3 = () => {
   );
 };
 
-export default ListingV3;
+export default ListingType;

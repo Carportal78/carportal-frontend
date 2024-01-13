@@ -443,7 +443,7 @@ const ModelDetails = () => {
         tabIndex={-1}
         aria-hidden="true"
       >
-        <ContactDealerForm />
+        <ContactDealerForm carModelDetails={carModelDetails} />
       </div>
       {/* End Modal */}
     </div>

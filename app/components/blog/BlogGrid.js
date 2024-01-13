@@ -1,6 +1,7 @@
 import blogPosts from "@/data/blog";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
 
 const BlogGrid = ({ blogs }) => {
   
@@ -24,15 +25,15 @@ const BlogGrid = ({ blogs }) => {
           <div className="for_blog">
             <div className="thumb">
               <div className="tag">
-                <span className="p-2">{post?.carModel?.bodyType}</span>
+                <span className="p-2">{post?.carBrand?.brandName}</span>
               </div>
               <Image
                 width={394}
                 height={254}
                 style={{ objectFit: "cover" }}
                 className="img-whp"
-                src={post?.carModel?.media?.url}
-                alt={post?.carModel?.media?.altText}
+                src={post?.media?.url}
+                alt={post?.media?.altText}
               />
             </div>
             <div className="details">
