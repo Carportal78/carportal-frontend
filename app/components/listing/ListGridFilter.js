@@ -7,7 +7,7 @@ const ListGridFilter = () => {
     "Old Review",
   ];
 
-  const selectOptions = options.map((option, index) => (
+  const selectOptions = options?.map((option, index) => (
     <option key={index}>{option}</option>
   ));
 

@@ -12,7 +12,7 @@ const partners = [
 const Partner = () => {
   return (
     <>
-      {partners.map((partner, index) => (
+      {partners?.map((partner, index) => (
         <div
           key={index}
           className="col-6 col-xs-6 col-sm-4 col-xl-2"

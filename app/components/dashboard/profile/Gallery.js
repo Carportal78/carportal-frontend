@@ -11,7 +11,7 @@ const Gallery = () => {
     const selectedValidImages = files.filter((file) =>
       validImageTypes.includes(file.type)
     );
-    const images = selectedValidImages.map((file) => URL.createObjectURL(file));
+    const images = selectedValidImages?.map((file) => URL.createObjectURL(file));
     setSelectedImages((prevImages) => [...prevImages, ...images]);
   };
 
@@ -22,7 +22,7 @@ const Gallery = () => {
   return (
     <>
       <ul className="mb0 mt10">
-        {selectedImages.map((image, index) => (
+        {selectedImages?.map((image, index) => (
           <li className="list-inline-item" key={index}>
             <div className="portfolio_item">
               <Image

@@ -24,7 +24,7 @@ const FaqQuestion = () => {
 
   return (
     <div className="accordion" id="accordionExample">
-      {faqItems.map((item, index) => (
+      {faqItems?.map((item, index) => (
         <div className="card" key={index}>
           <div className="card-header" id={`heading${index}`}>
             <h4 className="mb-0">

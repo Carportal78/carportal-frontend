@@ -26,7 +26,7 @@ const RecentPost = () => {
 
   return (
     <>
-      {recentPosts.map((post, index) => (
+      {recentPosts?.map((post, index) => (
         <div className="d-flex mb20" key={index}>
           <div className="flex-shrink-0">
             <Image

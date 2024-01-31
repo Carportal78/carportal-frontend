@@ -174,7 +174,7 @@ const VariantDescripition = (props) => {
   const renderAccordion = (filterFunc) => {
     return (
       <Accordion defaultActiveKey="0">
-        {onRoadPriceData.variants.filter(filterFunc).map((variant, index) => (
+        {onRoadPriceData.variants.filter(filterFunc)?.map((variant, index) => (
           <Accordion.Item key={index} eventKey={index.toString()}>
             <Accordion.Header>{variant.carname} {variant.model}</Accordion.Header>
             <Accordion.Body className='d-flex'>

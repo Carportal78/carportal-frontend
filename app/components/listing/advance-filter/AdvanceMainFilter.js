@@ -62,13 +62,13 @@ const filterOptions = [
 const AdvanceMainFilter = () => {
   return (
     <>
-      {filterOptions.map((option, index) => (
+      {filterOptions?.map((option, index) => (
         <div className="col-12 col-sm-4 col-lg-2" key={index}>
           <div className="advance_search_style">
             {option.type === "select" ? (
               <select className="form-select show-tick">
                 <option>{option.label}</option>
-                {option.options.map((opt, i) => (
+                {option?.options?.map((opt, i) => (
                   <option key={i}>{opt}</option>
                 ))}
               </select>

@@ -29,8 +29,8 @@ const ListWithImage = () => {
                             <div className="si_list">
                                 <ul className="mb0 order_list list-style-check-circle check_theme_color">
                                     {serviceItems
-                                        .slice(0, 5)
-                                        .map((item, index) => (
+                                        ?.slice(0, 5)
+                                        ?.map((item, index) => (
                                             <li key={index}>
                                                 <a href={item.link}>
                                                     {item.text}
@@ -46,8 +46,8 @@ const ListWithImage = () => {
                             <div className="si_list">
                                 <ul className="mb0 order_list list-style-check-circle check_theme_color">
                                     {serviceItems
-                                        .slice(5, 10)
-                                        .map((item, index) => (
+                                        ?.slice(5, 10)
+                                        ?.map((item, index) => (
                                             <li key={index}>
                                                 <a href={item.link}>
                                                     {item.text}

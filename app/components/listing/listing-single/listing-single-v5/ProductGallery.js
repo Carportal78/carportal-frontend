@@ -68,7 +68,7 @@ const ProductGallery = () => {
         <div className="col-lg-5 col-xl-4">
           <Gallery>
             <div className="row">
-              {images.map((image, index) => (
+              {images?.map((image, index) => (
                 <div
                   className="col-xxs-6 col-xs-3 col-sm-3 col-md-6"
                   key={index}

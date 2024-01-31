@@ -22,7 +22,7 @@ const Card = () => {
 
   return (
     <>
-      {cards.map((card, index) => (
+      {cards?.map((card, index) => (
         <div className="col-sm-6 col-lg-4" key={index}>
           <div className={card.className}>
             <div className="icon">

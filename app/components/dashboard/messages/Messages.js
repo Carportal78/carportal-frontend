@@ -31,7 +31,7 @@ const Messages = () => {
 
   return (
     <>
-      {messages.map((message) => (
+      {messages?.map((message) => (
         <li
           key={message.id}
           className={message.sender === "You" ? "sent" : "reply"}

@@ -45,7 +45,7 @@ const FilterHeader = () => {
             <li className="list-inline-item listone">Sort by:</li>
             <li className="list-inline-item listwo">
               <select className="form-select show-tick">
-                {options.map((option, index) => (
+                {options?.map((option, index) => (
                   <option key={index}>{option.label}</option>
                 ))}
               </select>

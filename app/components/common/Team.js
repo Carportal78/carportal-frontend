@@ -66,7 +66,7 @@ const Team = () => {
           },
         }}
       >
-        {teamMembers.map((member, index) => (
+        {teamMembers?.map((member, index) => (
           <SwiperSlide key={index}>
             <div className="item">
               <div className="team_member">

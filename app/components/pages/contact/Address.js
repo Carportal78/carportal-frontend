@@ -29,7 +29,7 @@ const Address = () => {
         </p>
         <div className="footer_social_widget">
           <ul className="mb0">
-            {addressData.socialIcons.map((icon, index) => (
+            {addressData?.socialIcons?.map((icon, index) => (
               <li key={index} className="list-inline-item">
                 <a href={icon.link}>
                   <i className={icon.iconClass} />

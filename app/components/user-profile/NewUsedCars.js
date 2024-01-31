@@ -34,7 +34,7 @@ const NewUsedCars = () => {
           },
         }}
       >
-        {listingCar.slice(0, 6).map((listing) => (
+        {listingCar?.slice(0, 6)?.map((listing) => (
           <SwiperSlide key={listing.id}>
             <div className="item">
               <div className="car-listing">

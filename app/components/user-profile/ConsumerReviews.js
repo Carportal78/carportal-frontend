@@ -31,7 +31,7 @@ const ConsumerReviews = () => {
         <div className="user_profile_review mt30">
             <div className="energy_class">
                 <h4 className="mb30 mt10">Consumer reviews</h4>
-                {reviewData.map((review, index) => (
+                {reviewData?.map((review, index) => (
                     <div
                         className={`single_line ${review.extraClass}`}
                         key={`review-${index}`}
@@ -51,7 +51,7 @@ const ConsumerReviews = () => {
 
             <div className="product_single_content">
                 <div className="mbp_pagination_comments">
-                    {reviews.map((review, index) => (
+                    {reviews?.map((review, index) => (
                         <div className="mbp_first d-flex db-414" key={index}>
                             <div className="flex-shrink-0">
                                 <Image

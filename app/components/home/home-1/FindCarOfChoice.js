@@ -16,7 +16,7 @@ const FindCarOfChoice = () => {
     <div className="popular_listing_sliders ">
       {/* Tab panes */}
       <div className="row">
-        {filteredItems.map((listing) => (
+        {filteredItems?.map((listing) => (
           <div className="col-sm-6 col-xl-3" key={listing.id}>
             <div className="car-listing">
               <div className="thumb">

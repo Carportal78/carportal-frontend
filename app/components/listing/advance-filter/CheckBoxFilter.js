@@ -25,7 +25,7 @@ const CheckBoxFilter = () => {
     return (
         <div className="advance_search_style">
             <div className="ui_kit_checkbox text-start me-3">
-                {checkboxes.slice(0, 3).map((checkbox) => (
+                {checkboxes?.slice(0, 3)?.map((checkbox) => (
                     <div className="df mb20" key={checkbox.id}>
                         <input
                             type="checkbox"
@@ -44,7 +44,7 @@ const CheckBoxFilter = () => {
             {/* End .ui_kit_checkbox */}
 
             <div className="ui_kit_checkbox text-start">
-                {checkboxes.slice(3).map((checkbox) => (
+                {checkboxes?.slice(3)?.map((checkbox) => (
                     <div className="df mb20" key={checkbox.id}>
                         <input
                             type="checkbox"

@@ -51,11 +51,11 @@ const OurServices = () => {
                 <div className="col-lg-4 col-xl-5">
                     <h5 className="subtitle">Business</h5>
                 </div>
-                {services.map((service, index) => (
+                {services?.map((service, index) => (
                     <div key={index} className={`col-lg-4 ${service.col}`}>
                         <h5 className="subtitle">{service.category}</h5>
                         <ul className="service_list">
-                            {service.items.map((item, index) => (
+                            {service?.items?.map((item, index) => (
                                 <li key={index}>{item}</li>
                             ))}
                         </ul>
@@ -69,10 +69,10 @@ const OurServices = () => {
                 <div className="col-lg-4 col-xl-5">
                     <h5 className="subtitle">Onsite facilities</h5>
                 </div>
-                {services2.map((service, index) => (
+                {services2?.map((service, index) => (
                     <div key={index} className={`col-lg-4 ${service.col}`}>
                         <ul className="service_list">
-                            {service.items.map((item, index) => (
+                            {service?.items?.map((item, index) => (
                                 <li key={index}>{item}</li>
                             ))}
                         </ul>

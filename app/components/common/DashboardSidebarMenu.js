@@ -46,7 +46,7 @@ const DashboardSidebarMenu = () => {
 
     return (
         <>
-            {menuItems.map((item, index) => (
+            {menuItems?.map((item, index) => (
                 <li key={index}>
                     <Link
                         className={item.path === path ? "active" : ""}

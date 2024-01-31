@@ -13,7 +13,7 @@ const Counter = () => {
 
   return (
     <>
-      {counters.map((counter, index) => (
+      {counters?.map((counter, index) => (
         <div
           key={index}
           className="col-sm-6 col-lg-3"

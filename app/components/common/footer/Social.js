@@ -20,7 +20,7 @@ const Social = () => {
 
   return (
     <>
-      {socialIcons.map((icon, index) => (
+      {socialIcons?.map((icon, index) => (
         <li className="list-inline-item" key={index}>
           <a href={icon.link}>
             <i className={icon.icon} />

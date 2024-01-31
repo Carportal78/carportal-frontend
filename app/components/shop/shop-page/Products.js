@@ -72,7 +72,7 @@ const Products = () => {
   return (
     <>
       {/* Iterate over the products array */}
-      {products.map((product) => (
+      {products?.map((product) => (
         <div className="col-sm-6 col-lg-4" key={product.id}>
           <div className="shop_item">
             <Link href="/shop-single" className="thumb">

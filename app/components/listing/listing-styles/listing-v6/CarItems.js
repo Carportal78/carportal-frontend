@@ -15,7 +15,7 @@ const CarItems = ({ carModelsList }) => {
 
   return (
     <>
-      {carModelsList.slice(0, visibleItems).map((listing) => (
+      {carModelsList?.slice(0, visibleItems)?.map((listing) => (
 
         <div className="col-sm-6 col-xl-4" key={listing._id}>
           <Link href={`/model-detail/${listing?._id}`}>

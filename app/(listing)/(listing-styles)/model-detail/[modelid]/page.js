@@ -285,7 +285,7 @@ const ModelDetails = () => {
                 </div>
                 <div className="d-flex align-items-center">
                   <span>
-                    {[...Array(5)].map((_, i) => (
+                    {[...Array(5)]?.map((_, i) => (
                       <i
                         key={i}
                         className={i < 5 ? "fa fa-star" : "fa fa-star-o"}

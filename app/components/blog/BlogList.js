@@ -5,7 +5,7 @@ import Link from "next/link";
 const BlogList = () => {
   return (
     <>
-      {blogPosts.slice(0, 4).map((post) => (
+      {blogPosts.slice(0, 4)?.map((post) => (
         <div key={post.id} className="main_blog_post_content">
           <div className="for_blog list-type">
             <div className="thumb">

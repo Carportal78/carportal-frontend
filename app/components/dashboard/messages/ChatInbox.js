@@ -87,7 +87,7 @@ const ChatInbox = () => {
 
   return (
     <ul>
-      {contacts.map((contact) => (
+      {contacts?.map((contact) => (
         <li className="contact" key={contact.id}>
           <a href="#">
             <div className="wrap">

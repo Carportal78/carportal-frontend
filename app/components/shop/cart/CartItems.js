@@ -42,7 +42,7 @@ const CartItems = () => {
 
   return (
     <>
-      {cartItems.map((item) => (
+      {cartItems?.map((item) => (
         <tr key={item.id}>
           <th className="pl30" scope="row">
             <ul className="cart_list mt20">

@@ -173,7 +173,7 @@ function FindCarChoice() {
         className={`${styles.tabItem} ${key === "budget" ? styles.active : ""}`}
       >
         <div className="d-flex flex-wrap mb-2">
-          {budgetButtons.map((buttonType) => (
+          {budgetButtons?.map((buttonType) => (
             <Link href={buttonType.route} key={buttonType.title}>
               <Button
                 variant="outline-secondary"
@@ -195,7 +195,7 @@ function FindCarChoice() {
         }`}
       >
         <div className="d-flex flex-wrap mb-2">
-          {fuelTypeData.map((bodyType) => (
+          {fuelTypeData?.map((bodyType) => (
             <Link href={bodyType.route} key={bodyType.title}>
               <div className={`bodyTypeItem ${styles.bodyTypeItem} d-flex`}>
                 <div>
@@ -222,7 +222,7 @@ function FindCarChoice() {
         }`}
       >
            <div className="d-flex flex-wrap mb-2">
-          {transmissionTypeData.map((bodyType) => (
+          {transmissionTypeData?.map((bodyType) => (
             <Link href={bodyType.route} key={bodyType.title}>
               <div className={`bodyTypeItem ${styles.bodyTypeItem} d-flex`}>
                 <div>
@@ -249,7 +249,7 @@ function FindCarChoice() {
         }`}
       >
         <div className="d-flex flex-wrap mb-2">
-          {bodyTypeData.map((bodyType) => (
+          {bodyTypeData?.map((bodyType) => (
             <Link href={bodyType.route} key={bodyType.title}>
               <div className={`bodyTypeItem ${styles.bodyTypeItem} d-flex`}>
                 <div>
@@ -277,7 +277,7 @@ function FindCarChoice() {
         }`}
       >
         <div className="d-flex flex-wrap mb-2">
-          {seatingCapacityButtons.map((buttonType) => (
+          {seatingCapacityButtons?.map((buttonType) => (
             <Link href={buttonType.route} key={buttonType.title}>
               <Button
                 variant="outline-secondary"

@@ -60,7 +60,7 @@ const Testimonial = () => {
           },
         }}
       >
-        {testimonials.map((testimonial) => (
+        {testimonials?.map((testimonial) => (
           <SwiperSlide key={testimonial.id}>
             <div className="testimonial_box">
               <div className="thumb">

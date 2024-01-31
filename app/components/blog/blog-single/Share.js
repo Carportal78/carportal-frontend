@@ -20,7 +20,7 @@ const Share = () => {
   return (
     <ul className="blog_post_share mb0">
       <li className="list-inline-item db-sm mr0-sm">Share this post</li>
-      {socialMedia.map((item, index) => (
+      {socialMedia?.map((item, index) => (
         <li className="list-inline-item db-sm mr0-sm" key={index}>
           <a href={item.url}>
             <span className={item.icon} />

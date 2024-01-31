@@ -60,7 +60,7 @@ const Features = () => {
       <div className="col-lg-6">
         <div className="ui_page_heading">
           <ul className="order_list list-style-check-circle">
-            {firstHalf.map((feature) => (
+            {firstHalf?.map((feature) => (
               <li key={feature.id}>
                 <a href={feature.link}>{feature.text}</a>
               </li>
@@ -71,7 +71,7 @@ const Features = () => {
       <div className="col-lg-6">
         <div className="ui_page_heading">
           <ul className="order_list list-style-check-circle">
-            {secondHalf.map((feature) => (
+            {secondHalf?.map((feature) => (
               <li key={feature.id}>
                 <a href={feature.link}>{feature.text}</a>
               </li>

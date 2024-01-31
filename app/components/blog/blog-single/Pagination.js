@@ -17,7 +17,7 @@ const Pagination = () => {
   return (
     <div className="mbp_pagination_tab">
       <div className="row">
-        {pages.map((page, index) => (
+        {pages?.map((page, index) => (
           <div className="col-sm-6 col-lg-6" key={index}>
             <div className={page.className}>
               <div className="detls">

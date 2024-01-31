@@ -16,7 +16,7 @@ const FeaturedFilterListing = ({ collection }) => {
     <div className="popular_listing_sliders ">
       {/* Tab panes */}
       <div className="row">
-        {collection?.carModels.map((listing) => (
+        {collection?.carModels?.map((listing) => (
           <div className="col-sm-6 col-xl-3" key={listing._id}>
             <div className="car-listing">
               <div className="thumb">

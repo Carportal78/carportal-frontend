@@ -9,7 +9,7 @@ const MainMenu = () => {
 
     return (
         <>
-            {menuItems.map((menuItem, index) => (
+            {menuItems?.map((menuItem, index) => (
                 <li className="dropitem" key={index}>
                     <a
                         className={
@@ -23,7 +23,7 @@ const MainMenu = () => {
                         {!menuItem.subMenu.length ? '' : <span className="arrow" ></span>}
                     </a>
                     <ul className="sub-menu">
-                        {menuItem.subMenu.map((subItem, subIndex) => (
+                        {menuItem?.subMenu?.map((subItem, subIndex) => (
                             <li key={subIndex} className="dropitem">
                                 {subItem.subMenu ? (
                                     <>
@@ -42,7 +42,7 @@ const MainMenu = () => {
                                         </a>
                                         <span className="arrow"></span>
                                         <ul className="sub-menu">
-                                            {subItem.subMenu.map(
+                                            {subItem?.subMenu?.map(
                                                 (
                                                     nestedSubItem,
                                                     nestedSubIndex

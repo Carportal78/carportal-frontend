@@ -15,7 +15,7 @@ const Categories = () => {
 
   return (
     <ul className="list_details">
-      {categories.map((category, index) => (
+      {categories?.map((category, index) => (
         <li key={index}>
           <Link href="/shop-single">{category}</Link>
         </li>

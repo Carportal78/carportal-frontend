@@ -66,7 +66,7 @@ const PricingTable = () => {
       {/* End .row */}
 
       <div className="row">
-        {packages.map((pkg) => (
+        {packages?.map((pkg) => (
           <div className="col-md-6 col-xl-4" key={pkg.title}>
             <div className="pricing_packages">
               <div className="heading">
@@ -91,7 +91,7 @@ const PricingTable = () => {
 
               <div className="details">
                 <ul className="list">
-                  {pkg.features.map((feature, i) => (
+                  {pkg?.features?.map((feature, i) => (
                     <li key={i}>
                       <i className="fas fa-check" />
                       {feature}

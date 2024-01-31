@@ -12,7 +12,7 @@ const Navigation = () => {
 
   return (
     <>
-      {links.map((link, index) => (
+      {links?.map((link, index) => (
         <li className="list-inline-item" key={index}>
           <Link href={link.path}>{link.label}</Link>
         </li>

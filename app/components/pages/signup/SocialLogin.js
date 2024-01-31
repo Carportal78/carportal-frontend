@@ -16,7 +16,7 @@ const SocialLogin = () => {
 
   return (
     <div className="social_btn">
-      {socialBtns.map((btn, index) => (
+      {socialBtns?.map((btn, index) => (
         <React.Fragment key={index}>
           <button className={btn.className}>
             <span className={btn.iconClass} />

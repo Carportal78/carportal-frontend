@@ -66,7 +66,7 @@ const RecenActivity = () => {
 
   return (
     <>
-      {activities.map((activity, index) => (
+      {activities?.map((activity, index) => (
         <div className={`grid d-block d-sm-flex`} key={index}>
           <div className={`icon ${activity.className}`}>
             <span>

@@ -56,11 +56,11 @@ const CarFeatures = () => {
 
   return (
     <>
-      {features.map((feature, index) => (
+      {features?.map((feature, index) => (
         <div className="col-sm-4 col-md-4 col-xl-3 col-xxl" key={index}>
           <div className="ui_kit_checkbox mb30-lg">
             <label className="form-label mb25">{feature.category}</label>
-            {feature.items.map((item, i) => (
+            {feature?.items?.map((item, i) => (
               <div className="df mb20" key={i}>
                 <input
                   type="checkbox"

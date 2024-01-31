@@ -63,7 +63,7 @@ const ListingContent = () => {
           {/* End thead */}
 
           <tbody>
-            {carListings.map((car) => (
+            {carListings?.map((car) => (
               <tr key={car.id}>
                 <th className="align-middle pl20" scope="row">
                   <div className="car-listing bdr_none d-flex mb0">

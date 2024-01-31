@@ -79,7 +79,7 @@ const MainFilter = () => {
             disabled={isBrandsLoading}
           >
             <option>{isBrandsLoading ? "Loading brands..." : "Select Makes"}</option>
-            {carBrands.map((brand, index) => (
+            {carBrands?.map((brand, index) => (
               <option key={index} value={brand._id}>{brand.brandName}</option>
             ))}
           </select>
@@ -95,7 +95,7 @@ const MainFilter = () => {
             disabled={!selectedBrandId || isModelsLoading}
           >
             <option>{isModelsLoading ? "Loading models..." : "Select Models"}</option>
-            {carModels.map((model, index) => (
+            {carModels?.map((model, index) => (
               <option key={index} value={model._id}>{model.modelName}</option>
             ))}
           </select>

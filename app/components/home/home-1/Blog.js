@@ -5,7 +5,7 @@ import Link from "next/link";
 const Blog = () => {
   return (
     <>
-      {blogPosts.slice(0, 3).map((post) => (
+      {blogPosts?.slice(0, 3)?.map((post) => (
         <div
           key={post.id}
           className="col-md-6 col-xl-4"

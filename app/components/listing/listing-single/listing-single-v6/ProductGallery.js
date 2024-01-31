@@ -40,7 +40,7 @@ const ProductGallery = () => {
           },
         }}
       >
-        {images.map((image, index) => (
+        {images?.map((image, index) => (
           <SwiperSlide key={index}>
             <div className="item">
               <div className="sp6_single_slider">

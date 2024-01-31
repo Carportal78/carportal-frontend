@@ -20,7 +20,7 @@ const Categories = () => {
 
   return (
     <ul className="list_details">
-      {categoryList.map((category, index) => (
+      {categoryList?.map((category, index) => (
         <li key={index}>
           <a href={category.link}>{category.name}</a>
         </li>

@@ -85,7 +85,7 @@ const HeroFilter = () => {
                   <h6 className="title">Make</h6>
                   <select className="form-select" onChange={handleBrandChange} value={selectedBrandId}>
                     <option value="">{isBrandsLoading ? "Loading..." : "Select Makes"}</option>
-                    {carBrands.map(brand => (
+                    {carBrands?.map(brand => (
                       <option key={brand._id} value={brand._id}>{brand.brandName}</option>
                     ))}
                   </select>
@@ -99,7 +99,7 @@ const HeroFilter = () => {
                   <h6 className="title">Models</h6>
                   <select className="form-select" onChange={handleModelChange} disabled={!selectedBrandId || isModelsLoading}>
                     <option value="">{isModelsLoading ? "Loading..." : "Select Models"}</option>
-                    {carModels.map(model => (
+                    {carModels?.map(model => (
                       <option key={model._id} value={model._id}>{model.modelName}</option>
                     ))}
                   </select>

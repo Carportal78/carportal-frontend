@@ -34,7 +34,7 @@ const Comments = () => {
 
   return (
     <>
-      {commentsData.map((comment) => (
+      {commentsData?.map((comment) => (
         <div className="single-comment" key={comment.id}>
           <div className="mbp_first d-flex align-items-center">
             <div className="flex-shrink-0">

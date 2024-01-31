@@ -5,7 +5,7 @@ import Link from "next/link";
 const CarItems = () => {
   return (
     <>
-      {listingCar.slice(0, 10).map((listing) => (
+      {listingCar?.slice(0, 10)?.map((listing) => (
         <div className="col-sm-6 col-md-6 col-xl-6" key={listing.id}>
           <div className="car-listing list_style">
             <div className="thumb">

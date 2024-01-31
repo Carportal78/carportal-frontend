@@ -179,7 +179,7 @@ const Terms = () => {
       <div className="row">
         <div className="col-md-8 col-xl-9">
           <div className="terms_condition_grid">
-            {TABS.map((tab, index) => (
+            {TABS?.map((tab, index) => (
               <TabPanel key={index}>{tab.content}</TabPanel>
             ))}
           </div>
@@ -192,7 +192,7 @@ const Terms = () => {
               <h5 className="title">Navigation</h5>
 
               <TabList className="list_details">
-                {tabList.map((item, i) => (
+                {tabList?.map((item, i) => (
                   <Tab className="single-list" key={i}>
                     {item}
                   </Tab>

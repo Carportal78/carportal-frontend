@@ -73,7 +73,7 @@ const CompareTable = () => {
       <thead>
         <tr>
           <th scope="col" />
-          {data.map((item, index) => (
+          {data?.map((item, index) => (
             <th key={index} scope="col">
               <div className="membership_header">
                 <div className="thumb">
@@ -110,12 +110,12 @@ const CompareTable = () => {
       {/* End thead */}
 
       <tbody>
-        {tableData.map((row, index) => (
+        {tableData?.map((row, index) => (
           <tr key={index}>
             <th className="pl30" scope="row">
               {row.label}
             </th>
-            {row.values.map((value, valueIndex) => (
+            {row?.values?.map((value, valueIndex) => (
               <td key={valueIndex}>{value}</td>
             ))}
           </tr>
@@ -126,10 +126,10 @@ const CompareTable = () => {
           <th className="pl30" scope="row">
             {lastRowData.label}
           </th>
-          {lastRowData.values.map((value, valueIndex) => (
+          {lastRowData?.values?.map((value, valueIndex) => (
             <td key={valueIndex}>
               <ul className="mb0 order_list list-style-check-circle check_theme_color">
-                {value.items.map((item, itemIndex) => (
+                {value?.items?.map((item, itemIndex) => (
                   <li key={itemIndex}>
                     <a href="#">{item}</a>
                   </li>

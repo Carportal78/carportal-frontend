@@ -25,7 +25,7 @@ const cars = [
 const RecentlyViewed = () => {
   return (
     <>
-      {cars.map((car, index) => (
+      {cars?.map((car, index) => (
         <Link href="/listing-single-v1" className="d-flex mb20" key={index}>
           <div className="flex-shrink-0">
             <Image

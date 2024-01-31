@@ -24,7 +24,7 @@ const Tags = () => {
 
   return (
     <ul className="tag_list">
-      {tagList.map((tag, index) => (
+      {tagList?.map((tag, index) => (
         <li className="list-inline-item" key={index}>
           <a href={tag.link}>{tag.name}</a>
         </li>

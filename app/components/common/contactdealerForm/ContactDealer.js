@@ -168,7 +168,7 @@ const ContactDealer = () => {
             <label className="form-label">Car Brand</label>
             <select name="carBrand" className="form-control" onChange={handleChange} value={formData.carBrand}>
               <option value="">Select Brand</option>
-              {carBrands.map(brand => <option key={brand._id} value={brand._id}>{brand.brandName}</option>)}
+              {carBrands?.map(brand => <option key={brand._id} value={brand._id}>{brand.brandName}</option>)}
             </select>
           </div>
 
@@ -177,7 +177,7 @@ const ContactDealer = () => {
             <label className="form-label">Car Model</label>
             <select name="carModel" className="form-control" onChange={handleChange} value={formData.carModel} disabled={!formData.carBrand}>
               <option value="">Select Model</option>
-              {carModels.map(model => <option key={model._id} value={model._id}>{model.modelName}</option>)}
+              {carModels?.map(model => <option key={model._id} value={model._id}>{model.modelName}</option>)}
             </select>
           </div>
 
@@ -186,7 +186,7 @@ const ContactDealer = () => {
             <label className="form-label">Car Variant</label>
             <select name="carVariant" className="form-control" onChange={handleChange} value={formData.carVariant} disabled={!formData.carModel}>
               <option value="">Select Variant</option>
-              {carVariants.map(variant => <option key={variant._id} value={variant._id}>{variant.variantName}</option>)}
+              {carVariants?.map(variant => <option key={variant._id} value={variant._id}>{variant.variantName}</option>)}
             </select>
           </div>
 

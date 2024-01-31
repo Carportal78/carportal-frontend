@@ -21,7 +21,7 @@ const Overview = ({ carModelDetails }) => {
 
   return (
     <ul className="list-group">
-      {carData.map((item, index) => (
+      {carData?.map((item, index) => (
         <li
           className="list-group-item d-flex justify-content-between align-items-start"
           key={index}

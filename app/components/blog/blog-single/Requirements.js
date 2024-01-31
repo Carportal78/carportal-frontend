@@ -16,7 +16,7 @@ const Requirements = () => {
 
   return (
     <ul className="list-style-type-bullet">
-      {requirements.map((requirement, index) => (
+      {requirements?.map((requirement, index) => (
         <li key={index}>
           <a href={requirement.link}>{requirement.text}</a>
         </li>

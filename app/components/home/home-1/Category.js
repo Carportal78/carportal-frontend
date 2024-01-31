@@ -32,7 +32,7 @@ const categories = [
 const Category = () => {
   return (
     <>
-      {categories.map((category, index) => (
+      {categories?.map((category, index) => (
         <div
           key={index}
           className={`col-6 col-sm-6 col-md-4 col-lg col-xl`}

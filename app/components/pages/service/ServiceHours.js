@@ -11,7 +11,7 @@ const ServiceHours = () => {
 
   return (
     <ul className="list-group">
-      {days.map((item, index) => (
+      {days?.map((item, index) => (
         <li
           key={index}
           className="list-group-item d-flex justify-content-between align-items-start"

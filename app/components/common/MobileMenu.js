@@ -129,7 +129,7 @@ const MobileMenu = () => {
                             className="my-custom-class"
                         >
                             <Menu>
-                                {menuItems.map((item, index) => (
+                                {menuItems?.map((item, index) => (
                                     <SubMenu
                                         key={index}
                                         className={
@@ -139,7 +139,7 @@ const MobileMenu = () => {
                                         }
                                         label={item.label}
                                     >
-                                        {item.subMenu.map((subItem, subIndex) =>
+                                        {item?.subMenu?.map((subItem, subIndex) =>
                                             subItem.subMenu ? (
                                                 <SubMenu
                                                     key={subIndex}
@@ -153,7 +153,7 @@ const MobileMenu = () => {
                                                             : ""
                                                     }
                                                 >
-                                                    {subItem.subMenu.map(
+                                                    {subItem?.subMenu?.map(
                                                         (
                                                             nestedItem,
                                                             nestedIndex
@@ -212,7 +212,7 @@ const MobileMenu = () => {
                     <div className="pro-footer mm-add-listing">
                         <div className="border-none">
                             <div className="mmenu-contact-info">
-                                {contactInfo.map((info, index) => (
+                                {contactInfo?.map((info, index) => (
                                     <span className="phone-num" key={index}>
                                         <i className={info.icon} />{" "}
                                         <a href="#">{info.text}</a>
@@ -221,7 +221,7 @@ const MobileMenu = () => {
                             </div>
 
                             <div className="social-links">
-                                {socialLinks.map((link, index) => (
+                                {socialLinks?.map((link, index) => (
                                     <a href={link.link} key={index}>
                                         <span className={link.icon} />
                                     </a>

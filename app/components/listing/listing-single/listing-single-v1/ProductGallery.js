@@ -60,7 +60,7 @@ export default function ProductGallery() {
             modules={[FreeMode, Navigation, Thumbs]}
             className="mySwiper2 sps_content single_product_grid user_profile "
           >
-            {slides.map((slide, index) => (
+            {slides?.map((slide, index) => (
               <SwiperSlide key={index}>
                 <div className="item">
                   <Image
@@ -96,7 +96,7 @@ export default function ProductGallery() {
             modules={[FreeMode, Navigation, Thumbs]}
             className="mySwiper mt-2 thumb-gallery-opacity"
           >
-            {slides.map((slide, index) => (
+            {slides?.map((slide, index) => (
               <SwiperSlide key={index}>
                 <Image
                   width={163}

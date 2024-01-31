@@ -40,7 +40,7 @@ const HeaderTop = () => {
           <div className="col-lg-8 col-xl-7">
             <div className="header_top_contact_opening_widget text-center text-md-start">
               <ul className="mb0">
-                {contactData.map((contact, index) => (
+                {contactData?.map((contact, index) => (
                   <li className="list-inline-item" key={index}>
                     <a href="#">
                       <span className={contact.icon} />
@@ -56,7 +56,7 @@ const HeaderTop = () => {
           <div className="col-lg-4 col-xl-5">
             <div className="header_top_social_widgets text-center text-md-end">
               <ul className="m0">
-                {socialData.map((social, index) => (
+                {socialData?.map((social, index) => (
                   <li className="list-inline-item" key={index}>
                     <a href={social.link}>
                       <span className={social.icon} />

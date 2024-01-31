@@ -45,7 +45,7 @@ commentsData.forEach((comment) => {
 const Comments = () => {
   return (
     <>
-      {commentsData.map((comment) => (
+      {commentsData?.map((comment) => (
         <div key={comment.id} className="mbp_first d-flex">
           <div className="flex-shrink-0">
             <Image
@@ -62,7 +62,7 @@ const Comments = () => {
               {comment.date}
               <div className="sspd_review float-none float-sm-end">
                 <ul className="mb0 pl15 pl0-sm">
-                  {comment.rating.map((star) => (
+                  {comment?.rating?.map((star) => (
                     <li key={star.id} className="list-inline-item">
                       <a href="#">
                         <i className={star.icon}></i>

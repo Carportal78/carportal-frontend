@@ -28,7 +28,7 @@ const WhyChoose = () => {
 
   return (
     <>
-      {reasons.map((reason, index) => (
+      {reasons?.map((reason, index) => (
         <div
           className="col-sm-6 col-lg-4"
           data-aos="fade-up"

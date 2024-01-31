@@ -2,7 +2,7 @@ const SelectFilter = ({ carBrandsList, onFilterChange, selectedFilters }) => {
   const selectOptions = [
     {
       label: carBrandsList?.length > 0 ? "Select Makes" : "Loading...",
-      options: carBrandsList.map(brand => brand?.brandName),
+      options: carBrandsList?.map(brand => brand?.brandName),
     },
     {
       label: "Body Type",
@@ -21,7 +21,7 @@ const SelectFilter = ({ carBrandsList, onFilterChange, selectedFilters }) => {
 
   return (
     <>
-      {selectOptions.map((option, index) => (
+      {selectOptions?.map((option, index) => (
         <li key={index}>
           <div className="search_option_two">
             <div className="candidate_revew_select">
@@ -31,7 +31,7 @@ const SelectFilter = ({ carBrandsList, onFilterChange, selectedFilters }) => {
                   value={index === 0 ? selectedFilters.brand : selectedFilters.bodyType}
                 >
                   <option>{option.label}</option>
-                  {option.options.map((value, idx) => (
+                  {option?.options?.map((value, idx) => (
                     <option key={idx} value={value}>{value}</option>
                   ))}
                 </select>

@@ -107,7 +107,7 @@ const Additional = () => {
             <label className="form-label">{field.label}</label>
             <select className="form-select">
               <option>Select</option>
-              {field.options.map((option) => (
+              {field?.options?.map((option) => (
                 <option key={option} data-tokens={option}>
                   {option}
                 </option>
@@ -153,7 +153,7 @@ const Additional = () => {
   return (
     <form className="contact_form">
       <div className="row">
-        {formFields.map((field) => renderFormField(field))}
+        {formFields?.map((field) => renderFormField(field))}
       </div>
     </form>
   );

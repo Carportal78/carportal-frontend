@@ -4,7 +4,7 @@ import Link from "next/link";
 const CarItems = ({ carVariants }) => {
   return (
     <>
-      {carVariants.slice(0, 9).map((listing) => (
+      {carVariants?.slice(0, 9)?.map((listing) => (
         <div className="col-sm-6 col-xl-4" key={listing._id}>
           <div className="car-listing">
             <div className="thumb">

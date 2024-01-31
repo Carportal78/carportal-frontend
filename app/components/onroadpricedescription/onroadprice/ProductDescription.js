@@ -158,7 +158,7 @@ export default function OnRoadPriceDescription(props) {
         </tr>
       </thead>
       <tbody>
-      {onRoadPriceData.variants.map((variant, index) => (
+      {onRoadPriceData?.variants?.map((variant, index) => (
           <tr key={index}>
             <td>{index + 1}</td>
             <td>
