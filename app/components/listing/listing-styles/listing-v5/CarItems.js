@@ -5,7 +5,7 @@ import Link from "next/link";
 const CarItems = () => {
   return (
     <>
-      {listingCar.slice(0, 9).map((listing) => (
+      {listingCar?.slice(0, 9)?.map((listing) => (
         <div className="col-sm-6 col-xl-4" key={listing.id}>
           <div className="car-listing">
             <div className="thumb">
@@ -72,7 +72,7 @@ const CarItems = () => {
                 </h6>
                 <div className="listign_review">
                   <ul className="mb0">
-                    {[...Array(5)].map((_, index) => (
+                    {[...Array(5)]?.map((_, index) => (
                       <li key={index} className="list-inline-item">
                         <a href="#">
                           <i className="fa fa-star" />
