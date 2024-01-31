@@ -1,11 +1,11 @@
-import Footer from "@/app/components/common/Footer";
+import Footer from "../../components/common/Footer";
 import DefaultHeader from "../../components/common/DefaultHeader";
 import HeaderSidebar from "../../components/common/HeaderSidebar";
 import HeaderTop from "../../components/common/HeaderTop";
 import MobileMenu from "../../components/common/MobileMenu";
-import LoginSignupModal from "@/app/components/common/login-signup";
-import LoanCalculator from "@/app/components/pages/loan-calculator/LoanCalculator";
-import BannerWidget from "@/app/components/common/BannerWidget";
+import LoginSignupModal from "../../components/common/login-signup";
+import LoanCalculator from "../../components/pages/loan-calculator/LoanCalculator";
+import BannerWidget from "../../components/common/BannerWidget";
 
 export const metadata = {
   title: "Loan Calculator || Carportal - Automotive & Car Dealer",

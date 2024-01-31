@@ -1,14 +1,14 @@
-import DashboardHeader from "@/app/components/common/DashboardHeader";
-import DashboardHeaderTop from "@/app/components/common/DashboardHeaderTop";
-import DashboardSidebarMenu from "@/app/components/common/DashboardSidebarMenu";
-import DashboardSidebarMobileMenu from "@/app/components/common/DashboardSidebarMobileMenu";
-import HeaderSidebar from "@/app/components/common/HeaderSidebar";
-import MobileMenu from "@/app/components/common/MobileMenu";
-import LoginSignupModal from "@/app/components/common/login-signup";
-import Additional from "@/app/components/dashboard/add-listing/Additional";
-import CarFeatures from "@/app/components/dashboard/add-listing/CarFeatures";
-import LocationInfo from "@/app/components/dashboard/add-listing/LocationInfo";
-import Gallery from "@/app/components/dashboard/add-listing/Gallery";
+import DashboardHeader from "../../components/common/DashboardHeader";
+import DashboardHeaderTop from "../../components/common/DashboardHeaderTop";
+import DashboardSidebarMenu from "../../components/common/DashboardSidebarMenu";
+import DashboardSidebarMobileMenu from "../../components/common/DashboardSidebarMobileMenu";
+import HeaderSidebar from "../../components/common/HeaderSidebar";
+import MobileMenu from "../../components/common/MobileMenu";
+import LoginSignupModal from "../../components/common/login-signup";
+import Additional from "../../components/dashboard/add-listing/Additional";
+import CarFeatures from "../../components/dashboard/add-listing/CarFeatures";
+import LocationInfo from "../../components/dashboard/add-listing/LocationInfo";
+import Gallery from "../../components/dashboard/add-listing/Gallery";
 
 export const metadata = {
   title: "Add Listing || Carportal - Automotive & Car Dealer",

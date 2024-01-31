@@ -1,11 +1,11 @@
-import Footer from "@/app/components/common/Footer";
+import Footer from "../../components/common/Footer";
 import DefaultHeader from "../../components/common/DefaultHeader";
 import HeaderSidebar from "../../components/common/HeaderSidebar";
 import HeaderTop from "../../components/common/HeaderTop";
 import MobileMenu from "../../components/common/MobileMenu";
-import LoginSignupModal from "@/app/components/common/login-signup";
-import Form from "@/app/components/pages/signup/Form";
-import SocialLogin from "@/app/components/pages/signup/SocialLogin";
+import LoginSignupModal from "../../components/common/login-signup";
+import Form from "../../components/pages/signup/Form";
+import SocialLogin from "../../components/pages/signup/SocialLogin";
 import Link from "next/link";
 
 export const metadata = {

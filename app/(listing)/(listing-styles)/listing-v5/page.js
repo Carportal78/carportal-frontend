@@ -1,12 +1,12 @@
-import Footer from "@/app/components/common/Footer";
-import DefaultHeader from "@/app/components/common/DefaultHeader";
-import HeaderSidebar from "@/app/components/common/HeaderSidebar";
-import HeaderTop from "@/app/components/common/HeaderTop";
-import MobileMenu from "@/app/components/common/MobileMenu";
-import LoginSignupModal from "@/app/components/common/login-signup";
-import CarItems from "@/app/components/listing/listing-styles/listing-v5/CarItems";
-import SidebarAdvnaceFilter from "@/app/components/listing/SidebarAdvanceFilter";
-import ListGridFilter2 from "@/app/components/listing/ListGridFilter2";
+import Footer from "../../../components/common/Footer";
+import DefaultHeader from "../../../components/common/DefaultHeader";
+import HeaderSidebar from "../../../components/common/HeaderSidebar";
+import HeaderTop from "../../../components/common/HeaderTop";
+import MobileMenu from "../../../components/common/MobileMenu";
+import LoginSignupModal from "../../../components/common/login-signup";
+import CarItems from "../../../components/listing/listing-styles/listing-v5/CarItems";
+import SidebarAdvnaceFilter from "../../../components/listing/SidebarAdvanceFilter";
+import ListGridFilter2 from "../../../components/listing/ListGridFilter2";
 
 export const metadata = {
   title: "Listing V5 || Carportal - Automotive & Car Dealer",

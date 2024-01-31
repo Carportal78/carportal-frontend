@@ -1,17 +1,17 @@
 "use client"
-import Footer from "@/app/components/common/Footer";
-import DefaultHeader from "@/app/components/common/DefaultHeader";
-import HeaderSidebar from "@/app/components/common/HeaderSidebar";
-import HeaderTop from "@/app/components/common/HeaderTop";
-import MobileMenu from "@/app/components/common/MobileMenu";
-import LoginSignupModal from "@/app/components/common/login-signup";
-import AdvanceFilter from "@/app/components/listing/advance-filter";
-import Pagination from "@/app/components/common/Pagination";
-import ListGridFilter from "@/app/components/listing/ListGridFilter";
-import CarItems from "@/app/components/listing/listing-styles/listing-v3/CarItems";
-import FeatureListingSlider from "@/app/components/listing/sidebar/FeatureListingSlider";
-import RecentlyViewed from "@/app/components/listing/sidebar/RecentlyViewed";
-import BannerWidget from "@/app/components/common/BannerWidget";
+import Footer from "../../../../components/common/Footer";
+import DefaultHeader from "../../../../components/common/DefaultHeader";
+import HeaderSidebar from "../../../../components/common/HeaderSidebar";
+import HeaderTop from "../../../../components/common/HeaderTop";
+import MobileMenu from "../../../../components/common/MobileMenu";
+import LoginSignupModal from "../../../../components/common/login-signup";
+import AdvanceFilter from "../../../../components/listing/advance-filter";
+import Pagination from "../../../../components/common/Pagination";
+import ListGridFilter from "../../../../components/listing/ListGridFilter";
+import CarItems from "../../../../components/listing/listing-styles/listing-v3/CarItems";
+import FeatureListingSlider from "../../../../components/listing/sidebar/FeatureListingSlider";
+import RecentlyViewed from "../../../../components/listing/sidebar/RecentlyViewed";
+import BannerWidget from "../../../../components/common/BannerWidget";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 

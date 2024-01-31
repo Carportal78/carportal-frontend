@@ -1,14 +1,14 @@
-import DashboardHeader from "@/app/components/common/DashboardHeader";
-import DashboardHeaderTop from "@/app/components/common/DashboardHeaderTop";
-import DashboardSidebarMenu from "@/app/components/common/DashboardSidebarMenu";
-import DashboardSidebarMobileMenu from "@/app/components/common/DashboardSidebarMobileMenu";
-import HeaderSidebar from "@/app/components/common/HeaderSidebar";
-import MobileMenu from "@/app/components/common/MobileMenu";
-import LoginSignupModal from "@/app/components/common/login-signup";
-import AccountDetails from "@/app/components/dashboard/profile/AccountDetails";
-import ChangePassword from "@/app/components/dashboard/profile/ChangePassword";
-import Gallery from "@/app/components/dashboard/profile/Gallery";
-import SocialNetwork from "@/app/components/dashboard/profile/SocialNetwork";
+import DashboardHeader from "../../components/common/DashboardHeader";
+import DashboardHeaderTop from "../../components/common/DashboardHeaderTop";
+import DashboardSidebarMenu from "../../components/common/DashboardSidebarMenu";
+import DashboardSidebarMobileMenu from "../../components/common/DashboardSidebarMobileMenu";
+import HeaderSidebar from "../../components/common/HeaderSidebar";
+import MobileMenu from "../../components/common/MobileMenu";
+import LoginSignupModal from "../../components/common/login-signup";
+import AccountDetails from "../../components/dashboard/profile/AccountDetails";
+import ChangePassword from "../../components/dashboard/profile/ChangePassword";
+import Gallery from "../../components/dashboard/profile/Gallery";
+import SocialNetwork from "../../components/dashboard/profile/SocialNetwork";
 
 export const metadata = {
   title:

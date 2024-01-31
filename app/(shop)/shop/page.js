@@ -1,13 +1,13 @@
-import Footer from "@/app/components/common/Footer";
+import Footer from "../../components/common/Footer";
 import DefaultHeader from "../../components/common/DefaultHeader";
 import HeaderSidebar from "../../components/common/HeaderSidebar";
 import HeaderTop from "../../components/common/HeaderTop";
 import MobileMenu from "../../components/common/MobileMenu";
-import LoginSignupModal from "@/app/components/common/login-signup";
-import FilterHeader from "@/app/components/shop/shop-page/FilterHeader";
-import Sidebar from "@/app/components/shop/shop-page/sidebar";
-import Pagination from "@/app/components/common/Pagination";
-import Products from "@/app/components/shop/shop-page/Products";
+import LoginSignupModal from "../../components/common/login-signup";
+import FilterHeader from "../../components/shop/shop-page/FilterHeader";
+import Sidebar from "../../components/shop/shop-page/sidebar";
+import Pagination from "../../components/common/Pagination";
+import Products from "../../components/shop/shop-page/Products";
 
 export const metadata = {
   title: "Shop || Carportal - Automotive & Car Dealer",

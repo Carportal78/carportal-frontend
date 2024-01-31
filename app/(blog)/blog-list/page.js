@@ -1,12 +1,12 @@
-import Footer from "@/app/components/common/Footer";
+import Footer from "../../components/common/Footer";
 import DefaultHeader from "../../components/common/DefaultHeader";
 import HeaderSidebar from "../../components/common/HeaderSidebar";
 import HeaderTop from "../../components/common/HeaderTop";
 import MobileMenu from "../../components/common/MobileMenu";
-import LoginSignupModal from "@/app/components/common/login-signup";
-import Pagination from "@/app/components/blog/Pagination";
-import Sidebar from "@/app/components/blog/Sidebar";
-import BlogList from "@/app/components/blog/BlogList";
+import LoginSignupModal from "../../components/common/login-signup";
+import Pagination from "../../components/blog/Pagination";
+import Sidebar from "../../components/blog/Sidebar";
+import BlogList from "../../components/blog/BlogList";
 
 export const metadata = {
   title: "Blog List || Carportal - Automotive & Car Dealer",

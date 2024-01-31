@@ -4,7 +4,7 @@ import { useState } from "react";
 import ModalVideo from "react-modal-video";
 
 const CarIntro = () => {
-  const [isOpen, setOpen] = useState(false);
+  const [isOpen, setOpen] = useState(false); 
 
   return (
     <>

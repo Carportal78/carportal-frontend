@@ -1,4 +1,4 @@
-import blogPosts from "@/data/blog";
+import blogPosts from "../../../data/blog";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";

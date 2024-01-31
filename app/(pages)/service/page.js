@@ -1,13 +1,13 @@
-import Footer from "@/app/components/common/Footer";
+import Footer from "../../components/common/Footer";
 import DefaultHeader from "../../components/common/DefaultHeader";
 import HeaderSidebar from "../../components/common/HeaderSidebar";
 import HeaderTop from "../../components/common/HeaderTop";
 import MobileMenu from "../../components/common/MobileMenu";
-import LoginSignupModal from "@/app/components/common/login-signup";
-import ListWithImage from "@/app/components/pages/service/ListWithImage";
-import ServiceBlock from "@/app/components/pages/service/ServiceBlock";
-import ScheduleService from "@/app/components/pages/service/ScheduleService";
-import ServiceHours from "@/app/components/pages/service/ServiceHours";
+import LoginSignupModal from "../../components/common/login-signup";
+import ListWithImage from "../../components/pages/service/ListWithImage";
+import ServiceBlock from "../../components/pages/service/ServiceBlock";
+import ScheduleService from "../../components/pages/service/ScheduleService";
+import ServiceHours from "../../components/pages/service/ServiceHours";
 
 export const metadata = {
   title: "Service || Carportal - Automotive & Car Dealer",

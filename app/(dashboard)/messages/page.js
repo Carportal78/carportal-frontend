@@ -1,13 +1,13 @@
-import DashboardHeader from "@/app/components/common/DashboardHeader";
-import DashboardHeaderTop from "@/app/components/common/DashboardHeaderTop";
-import DashboardSidebarMenu from "@/app/components/common/DashboardSidebarMenu";
-import DashboardSidebarMobileMenu from "@/app/components/common/DashboardSidebarMobileMenu";
-import HeaderSidebar from "@/app/components/common/HeaderSidebar";
-import MobileMenu from "@/app/components/common/MobileMenu";
-import LoginSignupModal from "@/app/components/common/login-signup";
-import ChatInbox from "@/app/components/dashboard/messages/ChatInbox";
-import MessageBodyContent from "@/app/components/dashboard/messages/MessageBodyContent";
-import SearchBox from "@/app/components/dashboard/messages/SearchBox";
+import DashboardHeader from "../../components/common/DashboardHeader";
+import DashboardHeaderTop from "../../components/common/DashboardHeaderTop";
+import DashboardSidebarMenu from "../../components/common/DashboardSidebarMenu";
+import DashboardSidebarMobileMenu from "../../components/common/DashboardSidebarMobileMenu";
+import HeaderSidebar from "../../components/common/HeaderSidebar";
+import MobileMenu from "../../components/common/MobileMenu";
+import LoginSignupModal from "../../components/common/login-signup";
+import ChatInbox from "../../components/dashboard/messages/ChatInbox";
+import MessageBodyContent from "../../components/dashboard/messages/MessageBodyContent";
+import SearchBox from "../../components/dashboard/messages/SearchBox";
 
 export const metadata = {
   title: "Messages || Carportal - Automotive & Car Dealer",

@@ -2,7 +2,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
 import "swiper/swiper-bundle.css";
-import listingCar from "@/data/listingCar";
+import listingCar from "../../../data/listingCar";
 import Link from "next/link";
 import Image from "next/image";
 

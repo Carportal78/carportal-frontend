@@ -1,21 +1,21 @@
-import Footer from "@/app/components/common/Footer";
-import DefaultHeader from "@/app/components/common/DefaultHeader";
-import HeaderSidebar from "@/app/components/common/HeaderSidebar";
-import HeaderTop from "@/app/components/common/HeaderTop";
-import MobileMenu from "@/app/components/common/MobileMenu";
-import LoginSignupModal from "@/app/components/common/login-signup";
-import BreadCrumb from "@/app/components/listing/listing-single/BreadCrumb";
+import Footer from "../../../components/common/Footer";
+import DefaultHeader from "../../../components/common/DefaultHeader";
+import HeaderSidebar from "../../../components/common/HeaderSidebar";
+import HeaderTop from "../../../components/common/HeaderTop";
+import MobileMenu from "../../../components/common/MobileMenu";
+import LoginSignupModal from "../../../components/common/login-signup";
+import BreadCrumb from "../../../components/listing/listing-single/BreadCrumb";
 import ShareMeta from "../../../components/listing/listing-single/ShareMeta";
-import ProductGallery from "@/app/components/listing/listing-single/listing-single-v3/ProductGallery";
-import Overview from "@/app/components/listing/listing-single/Overview";
-import Descriptions from "@/app/components/listing/listing-single/Descriptions";
-import Features from "@/app/components/listing/listing-single/Features";
-import ConsumerReviews from "@/app/components/listing/listing-single/ConsumerReviews";
-import ReviewBox from "@/app/components/listing/listing-single/ReviewBox";
+import ProductGallery from "../../../components/listing/listing-single/listing-single-v3/ProductGallery";
+import Overview from "../../../components/listing/listing-single/Overview";
+import Descriptions from "../../../components/listing/listing-single/Descriptions";
+import Features from "../../../components/listing/listing-single/Features";
+import ConsumerReviews from "../../../components/listing/listing-single/ConsumerReviews";
+import ReviewBox from "../../../components/listing/listing-single/ReviewBox";
 import Link from "next/link";
-import ReleatedCar from "@/app/components/listing/listing-single/ReleatedCar";
-import SellerDetail2 from "@/app/components/listing/listing-single/sidebar/SellerDetail2";
-import Map from "@/app/components/common/Map";
+import ReleatedCar from "../../../components/listing/listing-single/ReleatedCar";
+import SellerDetail2 from "../../../components/listing/listing-single/sidebar/SellerDetail2";
+import Map from "../../../components/common/Map";
 
 export const metadata = {
   title:

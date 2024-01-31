@@ -1,10 +1,10 @@
-import Footer from "@/app/components/common/Footer";
+import Footer from "../../components/common/Footer";
 import DefaultHeader from "../../components/common/DefaultHeader";
 import HeaderSidebar from "../../components/common/HeaderSidebar";
 import HeaderTop from "../../components/common/HeaderTop";
 import MobileMenu from "../../components/common/MobileMenu";
-import LoginSignupModal from "@/app/components/common/login-signup";
-import CompareTable from "@/app/components/pages/compare/CompareTable";
+import LoginSignupModal from "../../components/common/login-signup";
+import CompareTable from "../../components/pages/compare/CompareTable";
 
 export const metadata = {
   title: "Compare || Carportal - Automotive & Car Dealer",

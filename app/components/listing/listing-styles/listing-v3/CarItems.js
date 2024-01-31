@@ -1,4 +1,3 @@
-import listingCar from "@/data/listingCar";
 import Image from "next/image";
 import Link from "next/link";
 

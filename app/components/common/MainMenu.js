@@ -1,6 +1,6 @@
 "use client";
-import menuItems from "@/data/menuItems";
-import { isParentActive } from "@/utils/isMenuActive";
+import menuItems from "../../../data/menuItems";
+import { isParentActive } from "../../../utils/isMenuActive";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
