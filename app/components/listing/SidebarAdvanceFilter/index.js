@@ -47,7 +47,7 @@ const SidebarAdvnaceFilter = ({ carModelsList, carBrandsList, onSearchClick }) =
             {/* End li select filter */}
 
             {/* <li>
-              <h5 className="subtitle">Mileage</h5>
+              <h5 className="subtitle">Mileage</h5> 
             </li>
             <li className="min_area list-inline-item">
               <div className="form-group">

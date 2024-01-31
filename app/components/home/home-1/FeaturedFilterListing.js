@@ -2,10 +2,12 @@
 import listingsData from "../../../../data/listingCar";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const FeaturedFilterListing = ({ collection }) => {
   const [filter, setFilter] = useState("*");
+  const router = useRouter();
 
   const filteredItems =
     filter === "*"
@@ -17,7 +19,7 @@ const FeaturedFilterListing = ({ collection }) => {
       {/* Tab panes */}
       <div className="row">
         {collection?.carModels?.map((listing) => (
-          <div className="col-sm-6 col-xl-3" key={listing._id}>
+          <div className="col-sm-6 col-xl-3" key={listing._id} onClick={() => router.push(`/model-detail/${listing?._id}`)}>
             <div className="car-listing">
               <div className="thumb">
                 <Image
@@ -44,22 +46,24 @@ const FeaturedFilterListing = ({ collection }) => {
               <div className="details">
                 <div className="wrapper">
                   <h5 className="price">₹ {listing?.priceRange?.minPrice} {listing?.priceRange?.minPriceType} - ₹ {listing?.priceRange?.maxPrice} {listing?.priceRange?.maxPriceType} *</h5>
-                  <h6 className="title">
-                    <Link href="/listing-single-v2">{listing.modelName}</Link>
+                  <h6 className="title" onClick={() => router.push(`/model-detail/${listing?._id}`)}>
+                    <Link href="">{listing.modelName}</Link>
                   </h6>
                   <p>Launched Date: <b>{listing?.year}</b></p>
                 </div>{" "}
               </div>
               <div className="listing_footer">
                     <ul className="mb0">
-                      {/* <li className="list-inline-item">
+                      <li className="list-inline-item">
                         <span className="flaticon-road-perspective me-2" />
                         {listing?.mileage.split('_').join('-')} kmpl
-                      </li> */}
+                      </li>
+                      <br/>
                       <li className="list-inline-item">
                         <span className="flaticon-gas-station me-2" />
                         {listing?.fuelType.join(', ')}
                       </li>
+                      <br/>
                       <li className="list-inline-item">
                         <span className="flaticon-gear me-2" />
                         {listing?.transmissionType.join(', ')}
