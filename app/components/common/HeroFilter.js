@@ -114,6 +114,8 @@ const HeroFilter = () => {
                 <button
                   onClick={() => router.push(`/model-detail/${selectedModelId}`)} 
                   className="btn btn-thm advnc_search_form_btn"
+                  style={{backgroundColor: !selectedModelId ? 'grey' : '', color: !selectedModelId ? 'white': ''}}
+                  disabled={!selectedModelId}
                 >
                   <span className="flaticon-magnifiying-glass" />
                   Search

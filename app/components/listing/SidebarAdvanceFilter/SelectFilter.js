@@ -15,7 +15,6 @@ const SelectFilter = ({ carBrandsList, onFilterChange, selectedFilters }) => {
   ];
 
   const handleSelection = (filterType, event) => {
-    console.log('filteredType ', filterType, event.target.value);
     onFilterChange(filterType, event.target.value);
   };
 
