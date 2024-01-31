@@ -19,9 +19,6 @@ const tabs = [
 ];
 
 const ContactDealerForm = ({ carModelDetails }) => {
-
-  
-
   return (
     <div className="modal-dialog modal-dialog-centered">
       <div className="modal-content">

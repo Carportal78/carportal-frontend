@@ -4,7 +4,7 @@ import DefaultHeader from "../../../../components/common/DefaultHeader";
 import HeaderSidebar from "../../../../components/common/HeaderSidebar";
 import HeaderTop from "../../../../components/common/HeaderTop";
 import MobileMenu from "../../../../components/common/MobileMenu";
-import ContactDealerForm from "../../../../components/common/contactDealerForm";
+import ContactDealerForm from "../../../../components/common/contactdealerForm/ContactDealerForm";
 import LoginSignupModal from "../../../../components/common/login-signup";
 import BreadCrumb from "../../../../components/listing/listing-single/BreadCrumb";
 import ProductGallery from "../../../../components/listing/listing-single/listing-single-v2/ProductGallery";
