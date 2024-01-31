@@ -60,57 +60,57 @@ const seatingCapacityButtons = [
 const bodyTypeData = [
   {
     title: "SUV",
-    imgSrc: "/images/category-item/1.png",
+    imgSrc: "/images/bodytype/suv.svg",
     route: "/suv-route",
   },
   {
     title: "Sedan",
-    imgSrc: "/images/category-item/1.png",
+    imgSrc: "/images/bodytype/sedan.svg",
     route: "/sedan-route",
   },
   {
     title: "Hatchback",
-    imgSrc: "/images/category-item/1.png",
+    imgSrc: "/images/bodytype/hatchback.svg",
     route: "/hatchback-route",
   },
   {
     title: "Compact SUV",
-    imgSrc: "/images/category-item/1.png",
+    imgSrc: "/images/bodytype/compactsuv.svg",
     route: "/compact-suv-route",
   },
   {
     title: "Compact Sedan",
-    imgSrc: "/images/category-item/1.png",
+    imgSrc: "/images/bodytype/compactsedan.svg",
     route: "/compact-sedan-route",
   },
   {
     title: "MUV",
-    imgSrc: "/images/category-item/1.png",
+    imgSrc: "/images/bodytype/muv.svg",
     route: "/muv-route",
   },
   {
     title: "Convertible",
-    imgSrc: "/images/category-item/1.png",
+    imgSrc: "/images/bodytype/convertible.svg",
     route: "/convetible-route",
   },
   {
     title: "Coupe",
-    imgSrc: "/images/category-item/1.png",
+    imgSrc: "/images/bodytype/coupe.svg",
     route: "/coupe-route",
   },
   {
     title: "Station Wegon",
-    imgSrc: "/images/category-item/1.png",
+    imgSrc: "/images/bodytype/wagon.svg",
     route: "/station-wegon-route",
   },
   {
     title: "Minivan",
-    imgSrc: "/images/category-item/1.png",
+    imgSrc: "/images/bodytype/van.svg",
     route: "/minivan-route",
   },
   {
     title: "Truck",
-    imgSrc: "/images/category-item/1.png",
+    imgSrc: "/images/bodytype/truck.svg",
     route: "/truck-route",
   },
   // ... Add other car types similarly ...
@@ -119,27 +119,27 @@ const bodyTypeData = [
 const fuelTypeData = [
     {
         title: "Petrol",
-        imgSrc: "/images/category-item/1.png",
+        imgSrc: "/images/fueltype/petrol.svg",
         route: "/petrol-route",
       },
       {
         title: "Diesel",
-        imgSrc: "/images/category-item/1.png",
+        imgSrc: "/images/fueltype/diesel.svg",
         route: "/diesel-route",
       },
       {
         title: "CNG",
-        imgSrc: "/images/category-item/1.png",
+        imgSrc: "/images/fueltype/cng.svg",
         route: "/cng-route",
       },
       {
         title: "Electric",
-        imgSrc: "/images/category-item/1.png",
+        imgSrc: "/images/fueltype/electric.svg",
         route: "/electric-route",
       },
       {
         title: "Hybrid",
-        imgSrc: "/images/category-item/1.png",
+        imgSrc: "/images/fueltype/hybrid.svg",
         route: "/hybrid-route",
       }
 ];
@@ -147,12 +147,12 @@ const fuelTypeData = [
 const transmissionTypeData = [
     {
         title: "Automatic",
-        imgSrc: "/images/category-item/1.png",
+        imgSrc: "/images/transmissiontype/automatic.svg",
         route: "/automatic-route",
       },
       {
         title: "Manual",
-        imgSrc: "/images/category-item/1.png",
+        imgSrc: "/images/transmissiontype/manual.svg",
         route: "/manual-route",
       }
 ];
@@ -259,7 +259,7 @@ function FindCarChoice() {
                     style={{ objectFit: "cover" }}
                     src={bodyType.imgSrc}
                     alt={bodyType.title}
-                    className={styles.bodyTypeImage}
+                    className={styles.bodyTypeCheckImage}
                 />
                 </div>
                 <span className={styles.bodyTypeTitle}>{bodyType.title}</span>
