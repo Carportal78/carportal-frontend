@@ -33,7 +33,7 @@ function AllBrandsList() {
   return (
     <div className="d-flex flex-wrap mb-2">
       {carBrands?.map((brand) => (
-        <Link href={`listing/lstingdata/${brand._id}` || '/fallback-route'} key={brand._id}>
+        <Link href={`listings?brand=${brand?.brandName}` || '/fallback-route'} key={brand._id}>
           <div className={`bodyTypeItem ${styles.bodyTypeItem} d-flex`}>
             <div>
               <Image

@@ -22,9 +22,11 @@ const ListingV3 = () => {
   const [carModelsList, setCarModelsList] = useState([]);
   const [brandFilter, setBrandFilter] = useState(null);
   const [bodyTypeFilter, setBodyTypeFilter] = useState(null);
+  const [budgetFilter, setBudgetFilter] = useState(null);
   // const [priceRange, setPriceRangeFilter] = useState({min: 100000, max: 1000000});
-  const [fuelTypeFilter, setFuelTypeFilter] = useState([]);
-  const [transmissionTypeFilter, setTransmissionTypeFilter] = useState([]);
+  const [fuelTypeFilter, setFuelTypeFilter] = useState(null);
+  const [transmissionTypeFilter, setTransmissionTypeFilter] = useState(null);
+  const [seatingCapacityFilter, setSeatingCapacityFilter] = useState(null);
 
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search);
@@ -32,6 +34,33 @@ const ListingV3 = () => {
     if (bodyType) {
       setBodyTypeFilter(bodyType);
     }
+
+    const brandType = queryParams.get('brand');
+    if(brandType) {
+      setBrandFilter(brandType);
+    }
+
+    const budget = queryParams.get('budget');
+    if(budget) {
+      setBudgetFilter(budget);
+    }
+
+    const fuelType = queryParams.get('fuelType');
+    if(fuelType) {
+      setFuelTypeFilter(fuelType);
+    }
+
+    const transmissionType = queryParams.get('transmissionType');
+    if(transmissionType) {
+      setTransmissionTypeFilter(transmissionType);
+    }
+
+    const seatingCapacity = queryParams.get('seatingCapacity');
+    if(seatingCapacity) {
+      console.log("setSeatingCapacityFilter ", seatingCapacity);
+      setSeatingCapacityFilter(seatingCapacity);
+    }
+
   }, []);
 
   useEffect(() => {
@@ -115,18 +144,30 @@ const ListingV3 = () => {
     setBodyTypeFilter(newFilterValue.bodyType);
     setFuelTypeFilter(newFilterValue.fuelType);
     setTransmissionTypeFilter(newFilterValue.transmissionType);
+    setBudgetFilter(newFilterValue.budget);
+    setSeatingCapacityFilter(newFilterValue.seatingCapacity);
   }
 
   const getFilteredCarModels = () => {
-    if (!brandFilter && !bodyTypeFilter && !fuelTypeFilter?.length && !transmissionTypeFilter?.length) {
+    if (!brandFilter && !bodyTypeFilter && !fuelTypeFilter?.length) {
       return carModelsList; // Return all models if no filters are applied
     }
   
     let filteredResults = new Set();
+
+    console.log("csadsdasdadadada ", seatingCapacityFilter);
   
     if (brandFilter) {
       carModelsList.forEach(model => {
-        if (model?.brand === brandFilter) {
+        if (model?.carBrand?.brandName === brandFilter) {
+          filteredResults.add(model);
+        }
+      });
+    }
+
+    if (budgetFilter) {
+      carModelsList.forEach(model => {
+        if (model?.budget === budgetFilter) {
           filteredResults.add(model);
         }
       });
@@ -140,17 +181,26 @@ const ListingV3 = () => {
       });
     }
   
-    if (fuelTypeFilter.length) {
+    if (fuelTypeFilter) {
       carModelsList.forEach(model => {
-        if (fuelTypeFilter.includes(model?.fuelType)) {
+        if (model?.fuelType.includes(fuelTypeFilter)) {
           filteredResults.add(model);
         }
       });
     }
   
-    if (transmissionTypeFilter.length) {
+    if (transmissionTypeFilter) {
       carModelsList.forEach(model => {
-        if (transmissionTypeFilter.includes(model?.transmissionType)) {
+        if (model?.transmissionType?.includes(transmissionTypeFilter)) {
+          filteredResults.add(model);
+        }
+      });
+    }
+
+    if (seatingCapacityFilter) {
+      console.log("seatingCapacityFilter ",seatingCapacityFilter);
+      carModelsList.forEach(model => {
+        if (model?.seatingCapacity === seatingCapacityFilter) {
           filteredResults.add(model);
         }
       });

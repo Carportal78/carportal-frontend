@@ -10,50 +10,50 @@ import Image from "next/image";
 const budgetButtons = [
   {
     title: "Under 5 Lakh",
-    route: "/1",
+    route: "under_5",
   },
   {
     title: "Under 10 Lakh",
-    route: "/1",
+    route: "under_10",
   },
   {
     title: "Under 15 Lakh",
-    route: "/1",
+    route: "under_15",
   },
   {
     title: "Under 20 Lakh",
-    route: "/1",
+    route: "under_20",
   },
   {
     title: "Under 25 Lakh",
-    route: "/1",
+    route: "under_25",
   },
   {
     title: "Under 30 Lakh",
-    route: "/1",
+    route: "under_30",
   },
   {
     title: "Luxury Cars",
-    route: "/1",
+    route: "above_15",
   },
 ];
 
 const seatingCapacityButtons = [
   {
     title: "5 Seater",
-    route: "/1",
+    route: "5_seater",
   },
   {
     title: "6 Seater",
-    route: "/1",
+    route: "6_seater",
   },
   {
     title: "7 Seater",
-    route: "/1",
+    route: "7_seater",
   },
   {
     title: "8 Seater",
-    route: "/1",
+    route: "8_seater",
   },
 ];
 
@@ -61,57 +61,57 @@ const bodyTypeData = [
   {
     title: "SUV",
     imgSrc: "/images/bodytype/suv.svg",
-    route: "/suv-route",
+    route: "SUV",
   },
   {
     title: "Sedan",
     imgSrc: "/images/bodytype/sedan.svg",
-    route: "/sedan-route",
+    route: "Sedan",
   },
   {
     title: "Hatchback",
     imgSrc: "/images/bodytype/hatchback.svg",
-    route: "/hatchback-route",
+    route: "Hatchback",
   },
   {
     title: "Compact SUV",
     imgSrc: "/images/bodytype/compactsuv.svg",
-    route: "/compact-suv-route",
+    route: "Compact-Suv",
   },
   {
     title: "Compact Sedan",
     imgSrc: "/images/bodytype/compactsedan.svg",
-    route: "/compact-sedan-route",
+    route: "Compact-Sedan",
   },
   {
     title: "MUV",
     imgSrc: "/images/bodytype/muv.svg",
-    route: "/muv-route",
+    route: "MuV",
   },
   {
     title: "Convertible",
     imgSrc: "/images/bodytype/convertible.svg",
-    route: "/convetible-route",
+    route: "Convertible",
   },
   {
     title: "Coupe",
     imgSrc: "/images/bodytype/coupe.svg",
-    route: "/coupe-route",
+    route: "Coupe",
   },
   {
     title: "Station Wegon",
     imgSrc: "/images/bodytype/wagon.svg",
-    route: "/station-wegon-route",
+    route: "Station-Wegon",
   },
   {
     title: "Minivan",
     imgSrc: "/images/bodytype/van.svg",
-    route: "/minivan-route",
+    route: "Minivan",
   },
   {
     title: "Truck",
     imgSrc: "/images/bodytype/truck.svg",
-    route: "/truck-route",
+    route: "Truck",
   },
   // ... Add other car types similarly ...
 ];
@@ -120,27 +120,27 @@ const fuelTypeData = [
     {
         title: "Petrol",
         imgSrc: "/images/fueltype/petrol.svg",
-        route: "/petrol-route",
+        route: "Petrol",
       },
       {
         title: "Diesel",
         imgSrc: "/images/fueltype/diesel.svg",
-        route: "/diesel-route",
+        route: "Diesel",
       },
       {
         title: "CNG",
         imgSrc: "/images/fueltype/cng.svg",
-        route: "/cng-route",
+        route: "CNG",
       },
       {
         title: "Electric",
         imgSrc: "/images/fueltype/electric.svg",
-        route: "/electric-route",
+        route: "Electric",
       },
       {
         title: "Hybrid",
         imgSrc: "/images/fueltype/hybrid.svg",
-        route: "/hybrid-route",
+        route: "Hybrid",
       }
 ];
 
@@ -148,12 +148,12 @@ const transmissionTypeData = [
     {
         title: "Automatic",
         imgSrc: "/images/transmissiontype/automatic.svg",
-        route: "/automatic-route",
+        route: "Automatic",
       },
       {
         title: "Manual",
         imgSrc: "/images/transmissiontype/manual.svg",
-        route: "/manual-route",
+        route: "Manual",
       }
 ];
 
@@ -174,7 +174,7 @@ function FindCarChoice() {
       >
         <div className="d-flex flex-wrap mb-2">
           {budgetButtons?.map((buttonType) => (
-            <Link href={buttonType.route} key={buttonType.title}>
+            <Link href={`listings?budget=${buttonType.route}`} key={buttonType.title}> 
               <Button
                 variant="outline-secondary"
                 size="lg"
@@ -196,7 +196,7 @@ function FindCarChoice() {
       >
         <div className="d-flex flex-wrap mb-2">
           {fuelTypeData?.map((bodyType) => (
-            <Link href={bodyType.route} key={bodyType.title}>
+            <Link href={`listings?fuelType=${bodyType.route}`} key={bodyType.title}>
               <div className={`bodyTypeItem ${styles.bodyTypeItem} d-flex`}>
                 <div>
                  <Image
@@ -223,7 +223,7 @@ function FindCarChoice() {
       >
            <div className="d-flex flex-wrap mb-2">
           {transmissionTypeData?.map((bodyType) => (
-            <Link href={bodyType.route} key={bodyType.title}>
+            <Link href={`listings?transmissionType=${bodyType.route}`} key={bodyType.title}>
               <div className={`bodyTypeItem ${styles.bodyTypeItem} d-flex`}>
                 <div>
                  <Image
@@ -250,7 +250,7 @@ function FindCarChoice() {
       >
         <div className="d-flex flex-wrap mb-2">
           {bodyTypeData?.map((bodyType) => (
-            <Link href={bodyType.route} key={bodyType.title}>
+            <Link href={`listings?bodyType=${bodyType.route}`} key={bodyType.title}>
               <div className={`bodyTypeItem ${styles.bodyTypeItem} d-flex`}>
                 <div>
                  <Image
@@ -278,7 +278,7 @@ function FindCarChoice() {
       >
         <div className="d-flex flex-wrap mb-2">
           {seatingCapacityButtons?.map((buttonType) => (
-            <Link href={buttonType.route} key={buttonType.title}>
+            <Link href={`listings?seatingCapacity=${buttonType.route}`} key={buttonType.title}>
               <Button
                 variant="outline-secondary"
                 size="lg"

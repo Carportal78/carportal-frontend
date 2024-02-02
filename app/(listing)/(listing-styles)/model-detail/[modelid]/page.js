@@ -72,7 +72,7 @@ const ModelDetails = () => {
     .then(data => {
       if (data && data.data && data.data) {
         setCarModelDetails(data.data.carModel);
-        setCarVariantsList(data.data.carVariantsList);
+        setCarVariantsList(data.data.carVariantList);
       }
     })
     .catch(error => {
@@ -253,13 +253,13 @@ const ModelDetails = () => {
                       <VariantsList carModelDetails={carModelDetails} variants={carVariantsList} />
                       {/* <Features /> */}
                       <hr />
-                      <div className="row">
+                      {/* <div className="row">
                         <div className="col-lg-12">
                           <a className="fz12 tdu color-blue" href="#">
                             View all variants
                           </a>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                     {/* End user profile service */}
                   </div>

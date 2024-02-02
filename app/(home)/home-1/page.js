@@ -125,7 +125,7 @@ const Home_1 = () => {
 
           <div className="row">
             <div className="col-lg-12" data-aos-delay="100" data-aos="fade-up">
-              <FindCarChoice />
+              <FindCarChoice /> 
             </div>
           </div>
           {/* End .row */}
