@@ -57,7 +57,6 @@ const ListingV3 = () => {
 
     const seatingCapacity = queryParams.get('seatingCapacity');
     if(seatingCapacity) {
-      console.log("setSeatingCapacityFilter ", seatingCapacity);
       setSeatingCapacityFilter(seatingCapacity);
     }
 
@@ -107,7 +106,6 @@ const ListingV3 = () => {
       setIsCarModelsLoading(false);
     })
     .catch(error => {
-      console.error('Error fetching data: ', error);
       setCarModelsList([]);
       setIsCarModelsLoading(false);
     });
@@ -132,7 +130,6 @@ const ListingV3 = () => {
       setIsCarModelsLoading(false);
     })
     .catch(error => {
-      console.error('Error fetching data: ', error);
       setCarModelsList([]);
       setIsCarModelsLoading(false);
     });
@@ -149,13 +146,11 @@ const ListingV3 = () => {
   }
 
   const getFilteredCarModels = () => {
-    if (!brandFilter && !bodyTypeFilter && !fuelTypeFilter?.length) {
+    if (!brandFilter && !bodyTypeFilter && !fuelTypeFilter && !budgetFilter && !seatingCapacityFilter) {
       return carModelsList; // Return all models if no filters are applied
     }
   
     let filteredResults = new Set();
-
-    console.log("csadsdasdadadada ", seatingCapacityFilter);
   
     if (brandFilter) {
       carModelsList.forEach(model => {
@@ -198,7 +193,6 @@ const ListingV3 = () => {
     }
 
     if (seatingCapacityFilter) {
-      console.log("seatingCapacityFilter ",seatingCapacityFilter);
       carModelsList.forEach(model => {
         if (model?.seatingCapacity === seatingCapacityFilter) {
           filteredResults.add(model);

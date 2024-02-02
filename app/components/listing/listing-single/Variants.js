@@ -284,7 +284,7 @@ const VariantsList = ({ carModelDetails, variants }) => {
           {renderAccordion(() => true)}
         </Tab>
         {variants?.map(variant=> variant?.carModel?.fuelType?.map(type => {
-          return  <Tab eventKey={type} title={type}>
+          return  <Tab eventKey={type} title={type} key={variant?._id}>
           {renderAccordion(variant => {
             return variant?.fuelAndPerformance.fuelType === type
             

@@ -30,7 +30,7 @@ const BlogDynamicSingle = () => {
   useEffect(() => {
     const blogData = JSON.parse(localStorage.getItem('selectedBlogPost'));
     setBlog(blogData);
-  })
+  }, [])
 
   return (
     <div className="wrapper">
