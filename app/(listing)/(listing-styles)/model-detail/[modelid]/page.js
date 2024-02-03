@@ -282,8 +282,8 @@ const ModelDetails = () => {
               </div>
               {/* <div className="listing_single_description d-flex flex-grow-1"> */}
               <div className="sidebar_recent_viewed_widgets">
-                <h4 className="title">Recently Viewed</h4>
-                <RecentlyViewed />
+                <h4 className="title">Top Viewed Cars</h4>
+                <RecentlyViewed cars={carModelsList} /> 
                 <BannerWidget />
               </div>
               

@@ -305,7 +305,7 @@ const ProductDescripitons = ({ carModelDetails, carVariantsList }) => {
     </Card>
       <div className="col-lg-8 col-xl-8 col">
         <div className='mt10'>
-          <h2>Mercedes-Benz GLA On Road Price in Jaipur</h2>
+          <h2>{carModelDetails?.modelName} On Road Price in Jaipur</h2>
         </div>
         <Tabs
         id="controlled-tab-example"
