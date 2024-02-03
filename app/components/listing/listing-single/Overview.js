@@ -5,7 +5,7 @@ const Overview = ({ carModelDetails }) => {
     { label: "Model Name", value: carModel?.modelName },
     { label: "Car Brand", value: carModel?.carBrand?.brandName },
     { label: "Body Type", value: carModel?.bodyType?.replace('-', ' ') },
-    { label: "Description", value: carModel?.description },
+    // { label: "Description", value: carModel?.description },
     { label: "Year", value: carModel?.year },
     { label: "Min Price", value: `${carModel?.priceRange?.minPrice} ${carModel?.priceRange?.minPriceType}` },
     { label: "Max Price", value: `${carModel?.priceRange?.maxPrice} ${carModel?.priceRange?.maxPriceType}` },

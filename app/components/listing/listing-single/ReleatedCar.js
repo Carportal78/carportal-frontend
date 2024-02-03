@@ -10,7 +10,7 @@ const ReleatedCar = ({ bodyType, carModelsList, relatedCars }) => {
   return (
     <>
       <Swiper
-        spaceBetween={20}
+        spaceBetween={10}
         speed={1000}
         modules={[Pagination]}
         pagination={{
@@ -19,18 +19,23 @@ const ReleatedCar = ({ bodyType, carModelsList, relatedCars }) => {
           clickable: true,
         }}
         breakpoints={{
-          // breakpoints for responsive design
           320: {
-            slidesPerView: 1,
+            slidesPerView: 1.1, // Allows peeking of next slide for a hint to swipe
           },
           640: {
             slidesPerView: 2,
+            spaceBetween: 15, // Increased space for larger screens
           },
           768: {
-            slidesPerView: 3,
+            slidesPerView: 2.5, // Slight peek for the next slides
           },
-          1068: {
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+          },
+          1200: {
             slidesPerView: 4,
+            spaceBetween: 20,
           },
         }}
       >
@@ -38,17 +43,15 @@ const ReleatedCar = ({ bodyType, carModelsList, relatedCars }) => {
           <SwiperSlide key={listing._id}>
           <div className="item">
             <div className="car-listing">
-              <div className="thumb">
-                <Image
-                  width={284}
-                  height={183}
-                  style={{
-                    objectFit: "cover",
-                  }}
-                  priority
-                  src={listing?.media?.[0]?.url ?? listing?.media?.url}
-                  alt={listing?.modelName}
-                />
+            <div className="thumb" style={{ position: 'relative', width: '100%', height: '200px', overflow: 'hidden' }}>
+                  <Image
+                    layout="fill"
+                    objectFit="cover"
+                    priority
+                    src={listing?.media?.[0]?.url ?? '/placeholder-image.png'}
+                    alt={listing?.modelName}
+                  />
+                </div>
                 <div className="thmb_cntnt2">
                   <ul className="mb0">
                     <li className="list-inline-item">
@@ -79,7 +82,7 @@ const ReleatedCar = ({ bodyType, carModelsList, relatedCars }) => {
                     </li>
                   </ul>
                 </div> */}
-              </div>
+           
               <div className="details">
                 <div className="wrapper">
                   <h5 className="price">₹ {listing?.priceRange?.minPrice} {listing?.priceRange?.minPriceType} - {listing?.priceRange?.maxPrice} {listing?.priceRange?.maxPriceType} *</h5>

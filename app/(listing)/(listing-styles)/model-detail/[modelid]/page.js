@@ -221,13 +221,10 @@ const ModelDetails = () => {
                     <div className="listing_single_description bdr_none pl0 pr0">
                       <h4 className="mb30">
                         Description{" "}
-                        <span className="float-end body-color fz13">
-                          ID #{carModelDetails?._id}
-                        </span>
                       </h4>
                       <Descriptions carModelDetails={carModelDetails} />
                     </div>
-                    {/* End car descriptions */}
+                    {/* End car descriptions */} 
                   </div>
                   {/* End description tabcontent */}
 

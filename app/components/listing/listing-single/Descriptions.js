@@ -1,3 +1,5 @@
+import { Container, Row, Col } from 'react-bootstrap';
+
 const Descriptions = ({ carModelDetails }) => {
   const paragraphs = [
     {
@@ -19,12 +21,20 @@ const Descriptions = ({ carModelDetails }) => {
 
   return (
     <>
-    <p>{carModelDetails?.description}</p>
-      {/* {paragraphs.map((paragraph, index) => (
-        <p className={paragraph.className} key={index}>
-          {paragraph.content}
-        </p>
-      ))} */}
+    <Container>
+      <Row>
+        <Col xs={12}> {/* Ensures full width on extra small (mobile) screens */}
+          <p>{carModelDetails?.description}</p>
+          {/* Uncomment if you wish to include additional paragraphs dynamically
+          {paragraphs.map((paragraph, index) => (
+            <p className={paragraph.className} key={index}>
+              {paragraph.content}
+            </p>
+          ))}
+          */}
+        </Col>
+      </Row>
+    </Container>
     </>
   );
 };
