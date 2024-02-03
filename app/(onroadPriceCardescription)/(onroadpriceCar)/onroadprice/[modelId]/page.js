@@ -34,6 +34,7 @@ const OnRoadPrice = () => {
 
   const [carModelDetails, setCarModelDetails] = useState({});
   const [carVariantsList, setCarVariantsList] = useState([]);
+  const [carModelsList, setCarModelsList] = useState([]);
 
   useEffect(() => {
     const apiUrl = `https://api.univolenitsolutions.com/v1/automobile/get/carmodel/${modelId}/for/65538448b78add9eaa02d417`;
@@ -56,7 +57,28 @@ const OnRoadPrice = () => {
     .catch(error => {
       console.error('Error fetching data: ', error);
     });
-  },[modelId])
+  },[modelId]);
+
+  useEffect(() => {
+    const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carmodels/for/65538448b78add9eaa02d417';
+    const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
+    fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'X-API-Key': apiKey,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data && data.data && data.data.carModelsList) {
+        setCarModelsList(data.data.carModelsList);
+      }
+    })
+    .catch(error => {
+      setCarModelsList([]);
+    });
+  }, []);
 
   return (
     <div className="wrapper">
@@ -186,7 +208,7 @@ const OnRoadPrice = () => {
               data-aos-delay="100"
             >
               <div className="listing_item_4grid_slider nav_none">
-                <ReleatedCar />
+              <ReleatedCar bodyType={carModelDetails?.bodyType} carModelDetails={carModelDetails} relatedCars={carModelsList} />
               </div>
             </div>
           </div>
