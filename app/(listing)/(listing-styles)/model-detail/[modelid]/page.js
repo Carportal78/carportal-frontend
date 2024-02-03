@@ -161,7 +161,7 @@ const ModelDetails = () => {
             <div className="col-lg-8 col-xl-12">
               <ProductGallery carModelDetails={carModelDetails} />
               {/* End Car Gallery */}
-
+              <div className="d-flex flex-wrap gap-3">
               <div className="listing_single_description col-lg-8 col-xl-8">
               <div className="row">
                 {/* Key Specs of Hyundia Creta  */}
@@ -275,6 +275,8 @@ const ModelDetails = () => {
               {/* End tabs content */}
        
           </div>
+              </div>
+              <div className="listing_single_description d-flex flex-grow-1">a</div>
               </div>
               {/* End car descriptions */}
             </div>

@@ -7,8 +7,10 @@ import "react-modal-video/scss/modal-video.scss";
 import { FreeMode, Navigation, Thumbs } from "swiper";
 import Image from "next/image";
 import Link from "next/link";
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import styles from './ProductGallery.module.css';
+import Offcanvas from 'react-bootstrap/Offcanvas';
+
 
 const slides = [
   {
@@ -33,6 +35,31 @@ const slides = [
   },
 ];
 
+function OffCanvasExample({ name, ...props }) {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  return (
+    <>
+      <a variant="primary" onClick={handleShow} className="me-2" style={{ textDecoration: 'underline', cursor: 'pointer' }}>
+        {name}
+      </a>
+
+      <Offcanvas show={show} onHide={handleClose} {...props}>
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title><h4 className="mt10">Compare any 2 cars</h4></Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          Some text as placeholder. In real life you can have the elements you
+          have chosen. Like, text, images, lists, etc.
+        </Offcanvas.Body>
+      </Offcanvas>
+    </>
+  );
+}
+
 export default function ProductGallery({ carModelDetails }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [isOpen, setOpen] = useState(false);
@@ -50,7 +77,7 @@ export default function ProductGallery({ carModelDetails }) {
 
   return (
     <>
-      <Container fluid>
+      <Container fluid style={{ backgroundColor: '#fff', border: '1px solid #eaeaea', borderRadius: '8px', position: 'relative', marginBottom: '10px', paddingTop: '20px' }}>
         <Row className="align-items-start">
           <Col xs={12} md={2} lg={2} xl={1} className="mb-4 mb-md-0">
             <Swiper
@@ -78,6 +105,7 @@ export default function ProductGallery({ carModelDetails }) {
                     objectFit="cover"
                     src={slide?.url}
                     alt={slide?.altText}
+                    style={{ borderRadius: '8px' }}
                   />
                 </SwiperSlide>
               ))}
@@ -103,6 +131,7 @@ export default function ProductGallery({ carModelDetails }) {
                     priority
                     src={slide?.url}
                     alt={slide?.altText}
+                    style={{ borderRadius: '16px' }}
                   />
                   {/* </div> */}
                 </SwiperSlide>
@@ -113,9 +142,10 @@ export default function ProductGallery({ carModelDetails }) {
           <Col xs={12} md={4} className="order-md-3">
             <div className="product-details px-md-0 d-flex justify-content-between"> {/* Added padding for mobile view */}
               <h3>{carModelDetails?.modelName}</h3>
-              <a className="fz12 tdu color-blue" href="#">
+              {/* <a className="fz12 tdu color-blue" href="#">
                 Compare
-              </a>
+              </a> */}
+              <OffCanvasExample key={1} placement={'end'} name={'Compare'} />
             </div>
             <div className="d-flex align-items-center">
               <span>
@@ -132,8 +162,8 @@ export default function ProductGallery({ carModelDetails }) {
               </Link>
             </div>
             <div className="d-flex flex-column flex-md-row mt-2">
-          <h4 className="mr10">₹ {carModelDetails?.priceRange?.minPrice} {carModelDetails?.priceRange?.minPriceType} - ₹ {carModelDetails?.priceRange?.maxPrice} {carModelDetails?.priceRange?.maxPriceType}</h4>
-          <Link href="/onroadprice" className="tdu color-blue mt-md-0">Get On Road Price</Link>
+              <h4 className="mr10">₹ {carModelDetails?.priceRange?.minPrice} {carModelDetails?.priceRange?.minPriceType} - ₹ {carModelDetails?.priceRange?.maxPrice} {carModelDetails?.priceRange?.maxPriceType}</h4>
+              <Link href="/onroadprice" className="tdu color-blue mt-md-0">Get On Road Price</Link>
             </div>
 
             <div className="mt-2 d-flex">
@@ -156,6 +186,22 @@ export default function ProductGallery({ carModelDetails }) {
                 </button>
               </div>
             </div>
+
+            <div className="d-flex align-items-center mt-3 justify-content-center gap-5">
+              <div className="me-3" style={{cursor: 'pointer'}} >
+                <Image width={30} height={30} src="/images/modeldetails/Compare.svg" className="ml10" alt="Image 1" fluid />
+                <p>Compare</p>
+              </div>
+              <div className="me-3" style={{cursor: 'pointer'}}>
+                <Image width={30} height={30}  src="/images/modeldetails/Variants.svg" alt="Image 2" fluid />
+                <p>Variant</p>
+              </div>
+              <div className="style={{cursor: 'pointer'}}">
+                <Image width={30} height={30}  src="/images/modeldetails/Share.svg" alt="Image 3" fluid />
+                <p>Share</p>
+              </div>
+            </div>
+
           </Col>
         </Row>
       </Container>
