@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const BreadCrumb = (props) => {
 
   const pactivePage = props.breadCrumbDetails ?? "Cars for Sale";
@@ -5,7 +7,7 @@ const BreadCrumb = (props) => {
   return (
     <ol className="breadcrumb float-start">
       <li className="breadcrumb-item">
-        <a href="#">Home</a>
+        <Link href="/">Home</Link>
       </li>
       <li className="breadcrumb-item active" aria-current="page">
         {pactivePage}

@@ -18,8 +18,7 @@ const ContactDealer = ({ carModelDetails }) => {
     phoneNumber: '',
     city: 'New Delhi',
     buyingPeriod: '6 days',
-    usage: '',
-    panDetails: ''
+    usage: ''
   });
 
   useEffect(() => {
@@ -260,10 +259,6 @@ const ContactDealer = ({ carModelDetails }) => {
               <option value="personal">Personal</option>
               <option value="commercial">Commercial</option>
             </select>
-          </div>
-          <div className="mb-2 mr-sm-2">
-            <label className="form-label">PAN Details</label>
-            <input type="text" name="panDetails" className="form-control" onChange={handleChange} value={formData.panDetails} />
           </div>
           <button className="btn btn-thm mt5" onClick={handleBack}>Back</button>
           <button className="btn btn-thm mt5 ml10" onClick={handleSubmit}>Submit</button>

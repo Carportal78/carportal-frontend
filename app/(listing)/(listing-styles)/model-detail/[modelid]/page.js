@@ -429,7 +429,7 @@ const ModelDetails = () => {
         tabIndex={-1}
         aria-hidden="true"
       >
-        <VariantListForm carVariantsList={carVariantsList} />
+        <VariantListForm modelName={carModelDetails?.modelName} carVariantsList={carVariantsList} />
       </div>
       {/* End Modal */}
     </div>

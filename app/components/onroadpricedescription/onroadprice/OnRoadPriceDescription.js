@@ -115,7 +115,7 @@ const onRoadPriceData = {
   ],
 };
 
-export default function OnRoadPriceDescription(props) {
+export default function OnRoadPriceDescription({ carModelDetails, carVariantsList }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [isOpen, setOpen] = useState(false);
   const [videoId, setVideoId] = useState("");
@@ -135,16 +135,13 @@ export default function OnRoadPriceDescription(props) {
       >
         <div className="opening_hour_widgets p30 bdr_none pl0 pr0">
           <div className="wrapper">
-            <h3>On Road Price of Mercedez benz in Jaipur</h3>
+            <h3>On Road Price of {carModelDetails?.modelName} in Jaipur</h3>
             <p>
-              Mercedes-Benz GLA price in New Delhi start at Rs. 48.50 Lakh. The
-              lowest price model is Mercedes-Benz GLA 200 and the most priced
-              model of Mercedes-Benz GLA AMG 35 4M priced at Rs. 52.70 Lakh.
-              Used Mercedes-Benz GLA in New Delhi available for sale at Rs.
-              18.50 Lakh onwards. Visit your nearest Mercedes-Benz GLA showroom
-              in New Delhi for best offers. Compared primarily with Audi Q3
-              price in New Delhi starting Rs. 46.27 Lakh and BMW X1 price in New
-              Delhi starting Rs. 45.90 Lakh. View all Mercedes-Benz cars price
+              {carModelDetails?.modelName} price in New Delhi start at ₹ {carModelDetails?.priceRange?.minPrice} {carModelDetails?.priceRange?.minPriceType}. The
+              lowest price model is {carVariantsList?.[0]?.basicInformation?.onRoadPrice} and the most priced
+              model of {carModelDetails?.modelName} priced at ₹ {carModelDetails?.priceRange?.maxPrice} {carModelDetails?.priceRange?.maxPriceType}.
+              Visit your nearest {carModelDetails?.modelName} showroom
+              in New Delhi for best offers. View all{carModelDetails?.modelName} cars price
               in your city.
             </p>
           </div>
@@ -158,15 +155,15 @@ export default function OnRoadPriceDescription(props) {
         </tr>
       </thead>
       <tbody>
-      {onRoadPriceData?.variants?.map((variant, index) => (
+      {carVariantsList?.map((variant, index) => (
           <tr key={index}>
             <td>{index + 1}</td>
             <td>
-              <Link className="tdu color-blue ml10" href={`/${variant.carname}/${variant.model}`}>
-                {`${variant.carname} ${variant.model}`}
+              <Link className="tdu color-blue ml10" href={`/${variant?.name}/${variant?._id}`}>
+                {`${variant?.name} ${variant.carModel?.modelName}`}
               </Link>
             </td>
-            <td>{`${variant.onRoadPrice} ${variant.priceType}`}</td>
+            <td>₹ {`${variant?.basicInformation?.onRoadPrice}`}</td>
           </tr>
         ))}
       </tbody>

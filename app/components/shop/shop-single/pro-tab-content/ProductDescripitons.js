@@ -1,8 +1,11 @@
 "use client";
+import Image from 'next/image';
 import { useState } from 'react';
-import { Accordion, DropdownDivider, Tab, Tabs } from 'react-bootstrap';
+import { Accordion, Button, Col, DropdownDivider, OverlayTrigger, Row, Tab, Tabs, Tooltip } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
+import ContactDealerForm from '../../../common/contactdealerForm/ContactDealerForm';
+import styles from './productDescription.module.css';
 
 const onRoadPriceData = {
   make: "Mercedez",
@@ -167,63 +170,111 @@ const onRoadPriceData = {
   ],
 };
 
-const ProductDescripitons = (props) => {
+const ProductDescripitons = ({ carModelDetails, carVariantsList }) => {
 
   const [key, setKey] = useState('all');
 
-  const renderAccordion = (filterFunc) => {
-    return (
-      <Accordion defaultActiveKey="0">
-        {onRoadPriceData.variants.filter(filterFunc)?.map((variant, index) => (
-          <Accordion.Item key={index} eventKey={index.toString()}>
-            <Accordion.Header>{variant.carname} {variant.model}</Accordion.Header>
-            <Accordion.Body className='d-flex'>
-              <div className='col-lg-8 col-xl-8'>
-              <div>{variant.model} ({variant.fuelType})</div>
-              <div className='d-flex justify-content-between mt10'>
-                <div>Ex-Showroom Price</div>
-                <div><strong>Rs {variant.onRoadPrice}</strong></div>
-              </div>
-              <div className='d-flex justify-content-between mt10'>
-              <div>RTO</div>
-                <div><strong>Rs {variant.rto}</strong></div>
-              </div>
-              <div className='d-flex justify-content-between mt10'>
-              <div>Insurance</div>
-                <div><strong>Rs {variant.insurance}</strong></div>
-              </div>
-              <div className='d-flex justify-content-between mt10'>
-              <div>Others <span></span></div>
-                <div><strong>Rs {+variant.tcsChange + (+variant.tdsCharge)}</strong></div>
-              </div>
-              <divider></divider>
-              <ListGroup className="list-group-flush">
-              <ListGroup.Item></ListGroup.Item>
-              <ListGroup.Item>Rs.48.50 - 52.70 Lakh*</ListGroup.Item>
-            </ListGroup>
-              </div>
-              <div className='col-lg-3 col-xl-3'>
-              <button className="btn btn-thm ofr_btn1 btn-block ml40 mt30 mb20">
-                    <span className="flaticon-profit-report mr10 fz18 vam" />
-                    Contact Dealer
-                  </button>
-              </div>
-            </Accordion.Body>
-          </Accordion.Item>
-        ))}
-      </Accordion>
-    );
-  };
+  const handleViewVariantHandler = (variant) => {
+    router.push(`/listing-single-v3/${variant?._id}`)
+  }
+
+  const renderVariantDetails = (variant) => (
+    <>
+      <div>{variant?.carModel?.modelName} ({variant?.fuelAndPerformance?.fuelType})</div>
+      <div className='d-flex justify-content-between flex-column mt-2'>
+        <div className="d-flex justify-content-between">
+          <div>Ex-Showroom Price</div>
+          <div><strong>₹ {variant.onRoadPrice}</strong></div>
+        </div>
+        <div className='d-flex justify-content-between mt10'>
+          <div>RTO</div>
+          <div><strong>₹ {variant.rto}</strong></div>
+        </div>
+        <div className='d-flex justify-content-between mt10'>
+          <div>
+            Insurance{" "}
+            <OverlayTrigger placement="right" overlay={<Tooltip id="tooltip">
+              <strong>Holy guacamole!</strong> Check this info.
+            </Tooltip>}>
+              <Image src="/images/icon/info.svg" width={15} height={15} />
+            </OverlayTrigger>
+          </div>
+          <div><strong>₹ {variant.insurance}</strong></div>
+        </div>
+        <div className='d-flex justify-content-between mt10'>
+          <div>
+            Others{" "}
+            <OverlayTrigger placement="right" overlay={<Tooltip id="tooltip">
+              <strong>Holy guacamole!</strong> Check this info.
+            </Tooltip>}>
+              <Image src="/images/icon/info.svg" width={15} height={15} />
+            </OverlayTrigger>
+          </div>
+          <div><strong>₹ {+variant.tcsChange + (+variant.tdsCharge)}</strong></div>
+        </div>
+        <divider></divider>
+        <ListGroup className="list-group-flush">
+          <ListGroup.Item></ListGroup.Item>
+          <ListGroup.Item>Rs.48.50 - 52.70 Lakh *</ListGroup.Item>
+        </ListGroup>
+      </div>
+
+    </>
+  );
+
+  const renderContactButton = (variant) => (
+    <Button className="btn btn-thm ofr_btn1 w-100" onClick={() => handleViewVariantHandler(variant)}>
+      <span className="flaticon-profit-report mr-2 fz18 vam" />
+      View Variant
+    </Button>
+  );
+
+  const renderAccordion = (filterFunc) => (
+    <Accordion defaultActiveKey="0">
+      {carVariantsList?.filter(filterFunc)?.map((variant, index) => (
+        <Accordion.Item key={index} eventKey={index.toString()}>
+          <Accordion.Header>{variant.name}</Accordion.Header>
+          <Accordion.Body>
+            <Row>
+              <Col xs={12} lg={8}>
+                {renderVariantDetails(variant)}
+              </Col>
+              <Col xs={12} lg={4} className="mt-3 mt-lg-0">
+                {renderContactButton(variant)}
+              </Col>
+            </Row>
+          </Accordion.Body>
+        </Accordion.Item>
+      ))}
+    </Accordion>
+  );
 
   return (
     <>
-    <div className='row'>
-      <Card className="col-lg-3 col-xl-3" style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="/images/listing/lsp1-v1.jpg" className='mt10' />
+    <div className={`row ${styles['mobile-mt-10']}`}>
+      <Card className="col-lg-3 col-xl-3">
+      <Card.Img variant="top" src={carModelDetails?.media?.[0]?.url} className='mt10' />
       <Card.Body>
-        <Card.Title><strong>Mercedes-Benz GLA</strong></Card.Title>
+        <Card.Title><strong>{carModelDetails?.modelName}</strong></Card.Title>
         <Card.Text>
-          <span>Merdez description will come here</span>
+          <div className="listing_footer">
+                    <ul className="mb0">
+                      <li className="list-inline-item">
+                        <span className="flaticon-road-perspective me-2" />
+                        {carModelDetails?.mileage?.split('_')?.join('-')} kmpl
+                      </li>
+                      <br/>
+                      <li className="list-inline-item">
+                        <span className="flaticon-gas-station me-2" />
+                        {carModelDetails?.fuelType?.join(', ')}
+                      </li>
+                      <br/>
+                      <li className="list-inline-item">
+                        <span className="flaticon-gear me-2" />
+                        {carModelDetails?.transmissionType?.join(', ')}
+                      </li>
+                    </ul>
+                  </div>
           <div className='mt10'>{Array.from(
                                                 { length: 4 },
                                                 (_, i) => (
@@ -242,10 +293,11 @@ const ProductDescripitons = (props) => {
         </Card.Text>
       </Card.Body>
       <ListGroup className="list-group-flush">
-        <ListGroup.Item><strong>Rs.48.50 - 52.70 Lakh*</strong></ListGroup.Item>
+        <ListGroup.Item><strong>₹ {carModelDetails?.priceRange?.minPrice} {carModelDetails?.priceRange?.minPriceType} - 
+                  ₹ {carModelDetails?.priceRange?.maxPrice} {carModelDetails?.priceRange?.maxPriceType} *</strong></ListGroup.Item>
       </ListGroup>
       <Card.Body>
-          <button className="btn btn-thm ofr_btn1 btn-block mt0 mb20">
+          <button className="btn btn-thm ofr_btn1 btn-block mt0 mb20" data-bs-toggle="modal" data-bs-target="#contactDealerForm">
                     <span className="flaticon-profit-report mr10 fz18 vam" />
                     Contact Dealer
                   </button>
@@ -256,26 +308,43 @@ const ProductDescripitons = (props) => {
           <h2>Mercedes-Benz GLA On Road Price in Jaipur</h2>
         </div>
         <Tabs
-      id="controlled-tab-example"
-      activeKey={key}
-      onSelect={(k) => setKey(k)}
-      className="mb-3"
-    >
-      <Tab eventKey="all" title="All">
-      {renderAccordion(() => true)}
-      </Tab>
-      <Tab eventKey="diesel" title="Diesel">
-      {renderAccordion(variant => variant.fuelType === 'Diesel')}
-      </Tab>
-      <Tab eventKey="petrol" title="Petrol">
-      {renderAccordion(variant => variant.fuelType === 'Petrol')}
-      </Tab>
-      <Tab eventKey="automatic" title="Automatic">
-      {renderAccordion(variant => variant.fuelType === 'Automatic')}
-      </Tab>
-    </Tabs>
+        id="controlled-tab-example"
+        activeKey={key}
+        onSelect={(k) => setKey(k)}
+        className="mb-3"
+      >
+        <Tab eventKey="all" title="All">
+          {renderAccordion(() => true)}
+        </Tab>
+        {carVariantsList?.map(variant => variant?.carModel?.fuelType?.map(type => {
+          return <Tab eventKey={type} title={type} key={variant?._id}>
+            {renderAccordion(variant => {
+              return variant?.fuelAndPerformance.fuelType === type
+
+            })}
+          </Tab>
+        }))}
+
+        {/* <Tab eventKey="petrol" title="Petrol">
+          {renderAccordion(variant => variant?.fuelAndPerformance?.fuelType === 'Petrol')}
+        </Tab>
+        <Tab eventKey="automatic" title="Automatic">
+          {renderAccordion(variant => variant?.fuelAndPerformance?.fuelType === 'Automatic')}
+        </Tab> */}
+      </Tabs>
       
       </div>
+      </div>
+
+      <div
+        className="sign_up_modal modal fade"
+        id="contactDealerForm"
+        data-backdrop="static"
+        data-keyboard=""
+        tabIndex={-1}
+        aria-hidden="true"
+      >
+        <ContactDealerForm carModelDetails={carModelDetails} />
       </div>
     </>
   );

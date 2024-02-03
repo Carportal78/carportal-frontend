@@ -1,31 +1,63 @@
-import Footer from "../../../components/common/Footer";
-import DefaultHeader from "../../../components/common/DefaultHeader";
-import HeaderSidebar from "../../../components/common/HeaderSidebar";
-import HeaderTop from "../../../components/common/HeaderTop";
-import MobileMenu from "../../../components/common/MobileMenu";
-import LoginSignupModal from "../../../components/common/login-signup";
-import BreadCrumb from "../../../components/listing/listing-single/BreadCrumb";
-import ShareMeta from "../../../components/listing/listing-single/ShareMeta";
-import ProductGallery from "../../../components/listing/listing-single/listing-single-v2/ProductGallery";
-import Overview from "../../../components/listing/listing-single/Overview";
-import Descriptions from "../../../components/listing/listing-single/Descriptions";
-import Features from "../../../components/listing/listing-single/Features";
-import Map from "../../../components/common/Map";
-import ConsumerReviews from "../../../components/listing/listing-single/ConsumerReviews";
-import ReviewBox from "../../../components/listing/listing-single/ReviewBox";
-import ContactSeller from "../../../components/listing/listing-single/sidebar/ContactSeller";
-import SellerDetail from "../../../components/listing/listing-single/sidebar/SellerDetail";
+'use client';
+import Footer from "../../../../components/common/Footer";
+import DefaultHeader from "../../../../components/common/DefaultHeader";
+import HeaderSidebar from "../../../../components/common/HeaderSidebar";
+import HeaderTop from "../../../../components/common/HeaderTop";
+import MobileMenu from "../../../../components/common/MobileMenu";
+import LoginSignupModal from "../../../../components/common/login-signup";
+import BreadCrumb from "../../../../components/listing/listing-single/BreadCrumb";
+import ShareMeta from "../../../../components/listing/listing-single/ShareMeta";
+import ProductGallery from "../../../../components/listing/listing-single/listing-single-v2/ProductGallery";
+import Overview from "../../../../components/listing/listing-single/Overview";
+import Descriptions from "../../../../components/listing/listing-single/Descriptions";
+import Features from "../../../../components/listing/listing-single/Features";
+import Map from "../../../../components/common/Map";
+import ConsumerReviews from "../../../../components/listing/listing-single/ConsumerReviews";
+import ReviewBox from "../../../../components/listing/listing-single/ReviewBox";
+import ContactSeller from "../../../../components/listing/listing-single/sidebar/ContactSeller";
+import SellerDetail from "../../../../components/listing/listing-single/sidebar/SellerDetail";
 import Link from "next/link";
-import ReleatedCar from "../../../components/listing/listing-single/ReleatedCar";
-import OnRoadPriceDescription from "../../../components/onroadpricedescription/onroadprice/OnRoadPriceDescription";
-import ProductDescripitons from "../../../components/shop/shop-single/pro-tab-content/ProductDescripitons";
+import ReleatedCar from "../../../../components/listing/listing-single/ReleatedCar";
+import OnRoadPriceDescription from "../../../../components/onroadpricedescription/onroadprice/OnRoadPriceDescription";
+import ProductDescripitons from "../../../../components/shop/shop-single/pro-tab-content/ProductDescripitons";
 import { Card } from "react-bootstrap";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
-export const metadata = {
+const metadata = {
   title: "OnRoad Price || Carportal - Automotive & Car Dealer",
 };
 
 const OnRoadPrice = () => {
+
+  const { modelId } = useParams();
+
+  const [carModelDetails, setCarModelDetails] = useState({});
+  const [carVariantsList, setCarVariantsList] = useState([]);
+
+  useEffect(() => {
+    const apiUrl = `https://api.univolenitsolutions.com/v1/automobile/get/carmodel/${modelId}/for/65538448b78add9eaa02d417`;
+    const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
+
+    fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'X-API-Key': apiKey,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data && data.data && data.data) {
+        setCarModelDetails(data.data.carModel);
+        setCarVariantsList(data.data.carVariantList);
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching data: ', error);
+    });
+  },[modelId])
+
   return (
     <div className="wrapper">
       <div
@@ -56,7 +88,7 @@ const OnRoadPrice = () => {
           <div className="row mb30">
             <div className="col-xl-12">
               <div className="breadcrumb_content style2">
-                <BreadCrumb breadCrumbDetails = "Cards for Sale / On road price" />
+                <BreadCrumb breadCrumbDetails = "On road price" />
               </div>
             </div>
           </div>
@@ -71,9 +103,11 @@ const OnRoadPrice = () => {
                       <a href="#">BRAND NEW</a>
                     </li>
                   </ul>
-                  <h2 className="title">Mercedez benz</h2>
+                  <h2 className="title">{carModelDetails?.modelName}</h2>
                   <p className="para">
-                    2.0h T8 11.6kWh Polestar Engineered Auto AWD (s/s) 5dr
+                    {carModelDetails?.bodyType},
+                  ₹ {carModelDetails?.priceRange?.minPrice} {carModelDetails?.priceRange?.minPriceType} - 
+                  ₹ {carModelDetails?.priceRange?.maxPrice} {carModelDetails?.priceRange?.maxPriceType} *
                   </p>
                 </div>
               </div>
@@ -105,13 +139,13 @@ const OnRoadPrice = () => {
 
           <div className="row listing_single_description">
             <div className="col-lg-12 col-xl-12">
-           <OnRoadPriceDescription />
+           <OnRoadPriceDescription carModelDetails={carModelDetails} carVariantsList={carVariantsList} />
             </div>
           </div>
 
           <Card className="row">
             <div className="col-lg-12 col-xl-12">
-           <ProductDescripitons />
+           <ProductDescripitons carModelDetails={carModelDetails} carVariantsList={carVariantsList} />
             </div>
           </Card>
           {/* End .row */}
@@ -124,10 +158,10 @@ const OnRoadPrice = () => {
         {/* Car For Rent */}
         <section className="car-for-rent bb1">
         <div className="container">
-          <div className="row">
+          <div className="row"> 
             <div className="col-sm-6">
               <div className="main-title text-center text-md-start mb10-520">
-                <h2 className="title">Releated Best Car</h2>
+                <h2 className="title">Related Best Car</h2>
               </div>
             </div>
             {/* End .col-sm-6 */}

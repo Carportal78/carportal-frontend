@@ -9,8 +9,8 @@ const BannerWidget = () => {
           height={357}
           priority
           style={{ objectFit: "cover", height: "100%", width: "100%" }}
-          src="/images/about/sidebar-vichel.jpg"
-          alt="sidebar-vichel.jpg"
+          src="/images/about/about.jpg"
+          alt="carportal"
         />
       </div>
       {/* End thumb */}

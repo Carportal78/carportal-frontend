@@ -190,7 +190,7 @@ export default function ProductGallery({ carModelDetails }) {
             </div>
             <div className="d-flex flex-column flex-md-row mt-2">
               <h4 className="mr10">₹ {carModelDetails?.priceRange?.minPrice} {carModelDetails?.priceRange?.minPriceType} - ₹ {carModelDetails?.priceRange?.maxPrice} {carModelDetails?.priceRange?.maxPriceType}</h4>
-              <Link href="/onroadprice" className="tdu color-blue mt-md-0">Get On Road Price</Link>
+              <Link href={`/onroadprice/${carModelDetails?._id}`} className="tdu color-blue mt-md-0">Get On Road Price</Link>
             </div>
 
             <div className="mt-2 d-flex">

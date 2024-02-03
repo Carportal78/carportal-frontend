@@ -1,0 +1,8 @@
+/* Add this CSS to your stylesheet */
+@media (max-width: 575.98px) { /* Bootstrap's XS breakpoint */
+    .mobile-mt-10 {
+      margin-top: 10px !important; /* Override any existing margin */
+      justify-content: center;
+    }
+  }
+

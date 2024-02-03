@@ -111,7 +111,7 @@ const onRoadPriceData = {
     ],
   };
 
-const VariantListForm = ({ carVariantsList }) => {
+const VariantListForm = ({ modelName, carVariantsList }) => {
     return (
         <div className="modal-dialog modal-dialog-centered" style={{maxWidth: '800px'}}>
             <div className="modal-content">
@@ -141,7 +141,7 @@ const VariantListForm = ({ carVariantsList }) => {
                                         aria-controls={1}
                                         aria-selected={true}
                                     >
-                                        Variants List
+                                        {modelName} Variants List
                                     </a>
                                 </li>
                             </ul>
