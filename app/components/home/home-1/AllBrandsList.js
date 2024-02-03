@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from '../../css/findCarOfChoice.module.css';
+import { Container, Row, Col } from 'react-bootstrap';
 
 function AllBrandsList() {
   const [carBrands, setCarBrands] = useState([]);
@@ -31,25 +32,27 @@ function AllBrandsList() {
   }, []);
 
   return (
-    <div className="d-flex flex-wrap mb-2">
-      {carBrands?.map((brand) => (
-        <Link href={`listings?brand=${brand?.brandName}` || '/fallback-route'} key={brand._id}>
-          <div className={`bodyTypeItem ${styles.bodyTypeItem} d-flex`}>
-            <div>
-              <Image
-                width={150}
-                height={58}
-                style={{ objectFit: "cover" }}
-                src={brand?.media?.url}
-                alt={brand?.brandName}
-                className={styles.bodyTypeImage}
-              />
-            </div>
-            <span className={styles.bodyTypeTitle}>{brand.brandName}</span>
-          </div>
-        </Link> 
-      ))}
-    </div>
+    <Container fluid>
+      <Row className="g-3"> {/* Adjust gap for spacing */}
+        {carBrands?.map((brand) => (
+          <Col xs={5} sm={4} md={3} lg={2} xl={1} key={brand._id} className="d-flex align-items-center justify-content-center">
+            <Link href={`listings?brand=${brand.brandName}`} passHref>
+              <div className="d-flex flex-column align-items-center text-center">
+                <Image
+                  width={150}
+                  height={58}
+                  src={brand.media.url || '/default-image.png'} // Fallback image if URL is missing
+                  alt={brand.brandName}
+                  className={styles.bodyTypeImage}
+                  style={{ objectFit: 'cover' }}
+                />
+                <span className={styles.bodyTypeTitle}>{brand.brandName}</span>
+              </div>
+            </Link>
+          </Col>
+        ))}
+      </Row>
+    </Container>
   );
 }
 

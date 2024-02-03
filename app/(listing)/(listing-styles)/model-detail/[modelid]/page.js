@@ -111,6 +111,10 @@ const ModelDetails = () => {
       return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
+    function handleContactDealer() {
+      
+    }
+
   return (
     <div className="wrapper">
       <div
@@ -315,7 +319,7 @@ const ModelDetails = () => {
                   </p> */}
                   <div className="offer_btns mt-5">
                 <div className="text-end">
-                  <button className="btn btn-thm ofr_btn1 btn-block mt0 mb20" data-bs-toggle="modal" data-bs-target="#contactDealerForm">
+                  <button className="btn btn-thm ofr_btn1 btn-block mt0 mb20" data-bs-toggle="modal" onClick={handleContactDealer} data-bs-target="#contactDealerForm">
                     <span className="flaticon-profit-report mr10 fz18 vam" />
                     Contact Dealer
                   </button>
@@ -348,7 +352,7 @@ const ModelDetails = () => {
 
             <div className="col-sm-6">
               <div className="text-center text-md-end mb30-520">
-                <Link href="/page-list-v1" className="more_listing">
+                <Link href={`/listings?brand=${carModelDetails?.carBrand?.brandName}`} className="more_listing">
                   Show All Crs
                   <span className="icon">
                     <span className="fas fa-plus" />
@@ -388,7 +392,7 @@ const ModelDetails = () => {
 
             <div className="col-sm-6">
               <div className="text-center text-md-end mb30-520">
-                <Link href="/page-list-v1" className="more_listing">
+                <Link href={`/listings?bodyType=${carModelDetails?.bodyType}`} className="more_listing">
                   Show All Cars
                   <span className="icon">
                     <span className="fas fa-plus" />
