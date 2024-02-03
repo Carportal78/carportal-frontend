@@ -3,21 +3,6 @@ import ContactDealer from "./ContactDealer";
 import SignupForm from "./SignupForm";
 import Link from "next/link";
 
-const tabs = [
-  {
-    title: "Contact Dealer",
-    id: "home",
-    content: (
-      <div className="login_form">
-        <p>
-          For Query? Please fill following details to contact a dealer.
-        </p>
-        <ContactDealer />
-      </div>
-    ),
-  }
-];
-
 const ContactDealerForm = ({ carModelDetails }) => {
   return (
     <div className="modal-dialog modal-dialog-centered">
@@ -40,40 +25,41 @@ const ContactDealerForm = ({ carModelDetails }) => {
                 id="myTab"
                 role="tablist"
               >
-                {tabs?.map(({ title, id }) => (
-                  <li className="nav-item" key={id}>
+                  <li className="nav-item">
                     <a
-                      className={`nav-link ${id === "home" ? "active" : ""}`}
-                      id={`${id}-tab`}
+                      className={`nav-link active`}
+                      id={`1-tab`}
                       data-bs-toggle="tab"
-                      href={`#${id}`}
+                      href={`#1`}
                       role="tab"
-                      aria-controls={id}
-                      aria-selected={id === "home" ? true : false}
+                      aria-controls={1}
+                      aria-selected={true}
                     >
-                      {title}
+                      Contact Dealer
                     </a>
                   </li>
-                ))}
               </ul>
             </div>
           </div>
           {/* End .row */}
 
           <div className="tab-content container p0" id="myTabContent">
-            {tabs?.map(({ id, content }) => (
               <div
-                className={`row mt30 tab-pane fade ${
-                  id === "home" ? "show active" : ""
-                }`}
-                id={id}
+                className={`row mt30 tab-pane fade show active`}
+                id={1}
                 role="tabpanel"
-                aria-labelledby={`${id}-tab`}
-                key={id}
+                aria-labelledby={`1-tab`}
+                key={1}
               >
-                <div className="col-lg-12">{content}</div>
+                <div className="col-lg-12">
+                <div className="login_form">
+                  <p>
+                    For Query? Please fill following details to contact a dealer.
+                  </p>
+                  <ContactDealer carModelDetails={carModelDetails} />
+                </div>
+                </div>
               </div>
-            ))}
           </div>
           {/* End tab-content */}
         </div>

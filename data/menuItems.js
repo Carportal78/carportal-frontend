@@ -15,6 +15,11 @@ module.exports = [
     subMenu: [],
   },
   {
+    label: "Dealers",
+      path: "/dealers",
+    subMenu: [],
+  },
+  {
     label: "Blog",
       path: "/blog-grid",
     subMenu: [],

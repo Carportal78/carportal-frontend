@@ -22,7 +22,9 @@ import ShareMeta from "../../../../components/listing/listing-single/ShareMeta";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import VariantsList from "../../../../components/listing/listing-single/Variants";
+import { selectCarModelAtom, selectCarBrandAtom, selectCarVariantAtom } from "../../../../components/atoms/categoriesAtoms";
 import Image from "next/image";
+import { useAtom } from 'jotai';
 
 const metadata = {
   title: "Listing Single V2 || Carportal - Automotive & Car Dealer",
@@ -39,6 +41,9 @@ const ModelDetails = () => {
   const [carModelsList, setCarModelsList] = useState([]);
   const [carVariantsList, setCarVariantsList] = useState([]);
   const [isModelsLoading,setIsModelsLoading] = useState(false);
+  const [selectCarModelData, setSelectCarModelData] = useAtom(selectCarModelAtom);
+  const [selectCarBrandData, setSelectCarBrandData] = useAtom(selectCarBrandAtom);
+  const [selectCarVariantData, setSelectCarVariantData] = useAtom(selectCarVariantAtom);
 
   useEffect(() => {
     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';  
@@ -73,6 +78,9 @@ const ModelDetails = () => {
       if (data && data.data && data.data) {
         setCarModelDetails(data.data.carModel);
         setCarVariantsList(data.data.carVariantList);
+        setSelectCarModelData(data.data.carModel);
+        setSelectCarVariantData(data.data.carVariantsList);
+
       }
     })
     .catch(error => {
@@ -109,10 +117,6 @@ const ModelDetails = () => {
     function capitalizeFirstLetter(string) {
       if (!string) return string;
       return string.charAt(0).toUpperCase() + string.slice(1);
-    }
-
-    function handleContactDealer() {
-      
     }
 
   return (
@@ -154,11 +158,11 @@ const ModelDetails = () => {
           
 
           <div className="row">
-            <div className="col-lg-8 col-xl-8">
+            <div className="col-lg-8 col-xl-12">
               <ProductGallery carModelDetails={carModelDetails} />
               {/* End Car Gallery */}
 
-              <div className="listing_single_description mt30">
+              <div className="listing_single_description col-lg-8 col-xl-8">
               <div className="row">
                 {/* Key Specs of Hyundia Creta  */}
                 
@@ -276,60 +280,7 @@ const ModelDetails = () => {
             </div>
             {/* End .col-xl-8 */}
 
-            <div className="col-lg-4 col-xl-4">
-              <div className="col">
-                <div className="d-flex align-items-center justify-content-between">
-                  <h3>{carModelDetails?.modelName}</h3>
-                  <a className="fz12 tdu color-blue" href="#">
-                            Compare
-                    </a>
-                </div>
-                <div className="d-flex align-items-center">
-                  <span>
-                    {[...Array(5)]?.map((_, i) => (
-                      <i
-                        key={i}
-                        className={i < 5 ? "fa fa-star" : "fa fa-star-o"}
-                        aria-hidden="true"
-                      ></i>
-                    ))}
-                  </span>
-                  <Link href="/page-list-v1" className="pl10 fz12">
-                    41 reviews{" "}
-                  </Link>
-                </div>
-                <div className="d-flex mt-2">
-                  <h4>₹ {carModelDetails?.priceRange?.minPrice} {carModelDetails?.priceRange?.minPriceType} - ₹ {carModelDetails?.priceRange?.maxPrice} {carModelDetails?.priceRange?.maxPriceType}</h4>*
-                  <Link href="/onroadprice" className="tdu color-blue ml10">Get On Road Price</Link>
-                </div>
-                <div className="mt-2 d-flex">
-                  <strong>Launched Year:</strong> <span className="ml5">{carModelDetails?.year}</span>
-                </div>
-                <div className="d-flex">
-                  <strong>Body Type:</strong> <span className="ml5">{carModelDetails?.bodyType?.replace('-',' ')}</span>
-                </div>
-                <div className="d-flex">
-                  <strong>Car Brand:</strong> <span className="ml5">{carModelDetails?.carBrand?.brandName}</span>
-                </div>
-                {/* <p className="para">
-                    *Ex-showroom Price in<a href="#" className="tdu color-blue ml10">Jaipur</a>
-                  </p> */}
-                  <div className="offer_btns mt-5">
-                <div className="text-end">
-                  <button className="btn btn-thm ofr_btn1 btn-block mt0 mb20" data-bs-toggle="modal" onClick={handleContactDealer} data-bs-target="#contactDealerForm">
-                    <span className="flaticon-profit-report mr10 fz18 vam" />
-                    Contact Dealer
-                  </button>
-                  
-                </div>
-              </div>
-              </div>
-              {/* End offer_btn
-               */}
-         
-
-              {/* End .col-xl-4 */}
-            </div>
+       
           </div>
           {/* End .row */}
         </div>

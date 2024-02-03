@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-const ContactDealer = () => {
+const ContactDealer = ({ carModelDetails }) => {
+
   const [currentStep, setCurrentStep] = useState(1);
   const [carBrands, setCarBrands] = useState([]);
   const [carModels, setCarModels] = useState([]);
@@ -9,8 +10,8 @@ const ContactDealer = () => {
   const [otp, setOtp] = useState('');
   const [otpError, setOtpError] = useState('');
   const [formData, setFormData] = useState({
-    carBrand: '',
-    carModel: '',
+    carBrand: carModelDetails?.carBrand?.brandName,
+    carModel: 'Hyundai',
     carVariant: '',
     name: '',
     email: '',
@@ -20,6 +21,22 @@ const ContactDealer = () => {
     usage: '',
     panDetails: ''
   });
+
+  useEffect(() => {
+    if (carModelDetails?.carBrand?.brandName) {
+      setFormData(prevFormData => ({
+        ...prevFormData,
+        carBrand: carModelDetails.carBrand.brandName,
+      }));
+    }
+
+    if(carModelDetails?.modelName) {
+      setFormData(prevFormData => ({
+        ...prevFormData,
+        carModel: carModelDetails?.modelName,
+      }));
+    }
+  }, [carModelDetails]);
 
   useEffect(() => {
     // Fetch car brands
