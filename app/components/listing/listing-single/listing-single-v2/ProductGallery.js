@@ -60,6 +60,33 @@ function OffCanvasExample({ name, ...props }) {
   );
 }
 
+function OffCanvasExampleCompare({ name, ...props }) {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  return (
+    <>
+     <div onClick={handleShow}>
+    <Image width={30} height={30} src="/images/modeldetails/Compare.svg" className="ml10" alt="Image 1" fluid />
+     <p className="me-2" style={{ cursor: 'pointer' }}>
+        {name}
+      </p>
+      </div>
+      <Offcanvas show={show} onHide={handleClose} {...props}>
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title><h4 className="mt10">Compare any 2 cars</h4></Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          Some text as placeholder. In real life you can have the elements you
+          have chosen. Like, text, images, lists, etc.
+        </Offcanvas.Body>
+      </Offcanvas>
+    </>
+  );
+}
+
 export default function ProductGallery({ carModelDetails }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [isOpen, setOpen] = useState(false);
@@ -189,14 +216,13 @@ export default function ProductGallery({ carModelDetails }) {
 
             <div className="d-flex align-items-center mt-3 justify-content-center gap-5">
               <div className="me-3" style={{cursor: 'pointer'}} >
-                <Image width={30} height={30} src="/images/modeldetails/Compare.svg" className="ml10" alt="Image 1" fluid />
-                <p>Compare</p>
+                <OffCanvasExampleCompare key={1} placement={'end'} name={'Compare'}  />
               </div>
-              <div className="me-3" style={{cursor: 'pointer'}}>
-                <Image width={30} height={30}  src="/images/modeldetails/Variants.svg" alt="Image 2" fluid />
-                <p>Variant</p>
+              <div className="me-3" style={{cursor: 'pointer'}} data-bs-toggle="modal" data-bs-target="#variantListForm">
+                <Image width={30} height={30} src="/images/modeldetails/Variants.svg" alt="Image 2" className="ml10" fluid />
+                <p>Variants</p>
               </div>
-              <div className="style={{cursor: 'pointer'}}">
+              <div style={{cursor: 'pointer'}} data-bs-toggle="modal" onClick={handleContactDealer} data-bs-target="#shareForm">
                 <Image width={30} height={30}  src="/images/modeldetails/Share.svg" alt="Image 3" fluid />
                 <p>Share</p>
               </div>

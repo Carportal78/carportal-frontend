@@ -3,7 +3,7 @@ import ContactDealer from "./ContactDealer";
 import SignupForm from "./SignupForm";
 import Link from "next/link";
 
-const ContactDealerForm = ({ carModelDetails }) => {
+const ContactDealerForm = ({ carModelDetails }) => { 
   return (
     <div className="modal-dialog modal-dialog-centered">
       <div className="modal-content">

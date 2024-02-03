@@ -5,6 +5,8 @@ import HeaderSidebar from "../../../../components/common/HeaderSidebar";
 import HeaderTop from "../../../../components/common/HeaderTop";
 import MobileMenu from "../../../../components/common/MobileMenu";
 import ContactDealerForm from "../../../../components/common/contactdealerForm/ContactDealerForm";
+import ShareForm from "../../../../components/common/contactdealerForm/ShareForm";
+import VariantListForm from "../../../../components/common/contactdealerForm/VariantListForm";
 import LoginSignupModal from "../../../../components/common/login-signup";
 import BreadCrumb from "../../../../components/listing/listing-single/BreadCrumb";
 import ProductGallery from "../../../../components/listing/listing-single/listing-single-v2/ProductGallery";
@@ -22,6 +24,8 @@ import ShareMeta from "../../../../components/listing/listing-single/ShareMeta";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import VariantsList from "../../../../components/listing/listing-single/Variants";
+import RecentlyViewed from "../../../../components/listing/sidebar/RecentlyViewed";
+import BannerWidget from "../../../../components/common/BannerWidget";
 import { selectCarModelAtom, selectCarBrandAtom, selectCarVariantAtom } from "../../../../components/atoms/categoriesAtoms";
 import Image from "next/image";
 import { useAtom } from 'jotai';
@@ -161,7 +165,7 @@ const ModelDetails = () => {
             <div className="col-lg-8 col-xl-12">
               <ProductGallery carModelDetails={carModelDetails} />
               {/* End Car Gallery */}
-              <div className="d-flex flex-wrap gap-3">
+              <div className="d-flex flex-wrap gap-4">
               <div className="listing_single_description col-lg-8 col-xl-8">
               <div className="row">
                 {/* Key Specs of Hyundia Creta  */}
@@ -276,7 +280,14 @@ const ModelDetails = () => {
        
           </div>
               </div>
-              <div className="listing_single_description d-flex flex-grow-1">a</div>
+              {/* <div className="listing_single_description d-flex flex-grow-1"> */}
+              <div className="sidebar_recent_viewed_widgets">
+                <h4 className="title">Recently Viewed</h4>
+                <RecentlyViewed />
+                <BannerWidget />
+              </div>
+              
+              {/* </div> */}
               </div>
               {/* End car descriptions */}
             </div>
@@ -303,7 +314,7 @@ const ModelDetails = () => {
             <div className="col-sm-6">
               <div className="text-center text-md-end mb30-520">
                 <Link href={`/listings?brand=${carModelDetails?.carBrand?.brandName}`} className="more_listing">
-                  Show All Crs
+                  Show All Cars
                   <span className="icon">
                     <span className="fas fa-plus" />
                   </span>
@@ -398,6 +409,27 @@ const ModelDetails = () => {
         aria-hidden="true"
       >
         <ContactDealerForm carModelDetails={carModelDetails} />
+      </div>
+
+      <div
+        className="sign_up_modal modal fade"
+        id="shareForm"
+        data-backdrop="static"
+        data-keyboard=""
+        tabIndex={-1}
+        aria-hidden="true"
+      >
+        <ShareForm carModelDetails={carModelDetails} />
+      </div>
+      <div
+        className="sign_up_modal modal fade"
+        id="variantListForm"
+        data-backdrop="static"
+        data-keyboard=""
+        tabIndex={-1}
+        aria-hidden="true"
+      >
+        <VariantListForm carVariantsList={carVariantsList} />
       </div>
       {/* End Modal */}
     </div>

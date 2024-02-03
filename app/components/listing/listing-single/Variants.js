@@ -5,6 +5,7 @@ import ProductDescripitons from "../../shop/shop-single/pro-tab-content/ProductD
 // import VariantDescripition from "../../shop/shop-single/pro-tab-content/VariantDescripition";
 import { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const onRoadPriceData = {
   make: "Mercedez",
@@ -171,6 +172,8 @@ const onRoadPriceData = {
 
 const VariantsList = ({ carModelDetails, variants }) => {
 
+  const router = useRouter();
+
   const featureCategories = [
     {
       title: "Convenience",
@@ -254,10 +257,14 @@ const VariantsList = ({ carModelDetails, variants }) => {
     </>
   );
 
-  const renderContactButton = () => (
-    <Button className="btn btn-thm ofr_btn1 w-100">
+  const handleViewVariantHandler = (variant) => {
+    router.push(`/listing-single-v3/${variant?._id}`)
+  }
+
+  const renderContactButton = (variant) => (
+    <Button className="btn btn-thm ofr_btn1 w-100" onClick={() => handleViewVariantHandler(variant)}>
       <span className="flaticon-profit-report mr-2 fz18 vam" />
-      Contact Dealer
+      View Variant
     </Button>
   );
 
@@ -272,7 +279,7 @@ const VariantsList = ({ carModelDetails, variants }) => {
                 {renderVariantDetails(variant)}
               </Col>
               <Col xs={12} lg={4} className="mt-3 mt-lg-0">
-                {renderContactButton()}
+                {renderContactButton(variant)}
               </Col>
             </Row>
           </Accordion.Body>
