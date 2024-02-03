@@ -20,7 +20,7 @@ const CarItems = ({ carModelsList }) => {
         <div className="col-sm-6 col-xl-4" key={listing._id}>
           <Link href={`/model-detail/${listing?._id}`}>
             <div className="car-listing">
-              <div className="thumb">
+            <div className="thumb" style={{ position: 'relative', width: '100%', height: '200px', overflow: 'hidden' }}>
                 {listing.featured ? (
                   <>
                     <div className="tag">FEATURED</div>
@@ -32,16 +32,14 @@ const CarItems = ({ carModelsList }) => {
                   </>
                 ) : undefined}
 
-                <Image
-                  width={284}
-                  height={183}
-                  style={{
-                    objectFit: "cover",
-                  }}
-                  priority
-                  src={listing?.media?.[0]?.url}
-                  alt={listing?.media?.[0]?.altText}
-                />
+                    <Image
+                    layout="fill"
+                    objectFit="cover"
+                    priority
+                    src={listing?.media?.[0]?.url ?? '/placeholder-image.png'}
+                    alt={listing?.modelName}
+                  />
+                </div>
                 <div className="thmb_cntnt2">
                   <ul className="mb0">
                     <li className="list-inline-item">
@@ -58,7 +56,6 @@ const CarItems = ({ carModelsList }) => {
                     </li>
                   </ul>
                 </div>
-              </div>
 
               <div className="details">
                 <div className="wrapper">

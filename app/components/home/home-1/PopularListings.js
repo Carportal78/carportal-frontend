@@ -39,17 +39,15 @@ const PopularListings = ({  collection }) => {
           <SwiperSlide key={listing._id}>
             <div className="item">
               <div className="car-listing">
-                <div className="thumb">
+                <div className="thumb" style={{ position: 'relative', width: '100%', height: '200px', overflow: 'hidden' }}>
                   <Image
-                    width={284}
-                    height={183}
-                    style={{
-                      objectFit: "cover",
-                    }}
+                    layout="fill"
+                    objectFit="cover"
                     priority
-                    src={listing?.media?.[0]?.url ?? listing?.media?.url}
+                    src={listing?.media?.[0]?.url ?? '/placeholder-image.png'}
                     alt={listing?.modelName}
                   />
+                </div>
                   <div className="thmb_cntnt2">
                     <ul className="mb0">
                       <li className="list-inline-item">
@@ -66,21 +64,7 @@ const PopularListings = ({  collection }) => {
                       </li>
                     </ul>
                   </div>
-                  {/* <div className="thmb_cntnt3">
-                    <ul className="mb0">
-                      <li className="list-inline-item">
-                        <a href="#">
-                          <span className="flaticon-shuffle-arrows" />
-                        </a>
-                      </li>
-                      <li className="list-inline-item">
-                        <a href="#">
-                          <span className="flaticon-heart" />
-                        </a>
-                      </li>
-                    </ul>
-                  </div> */}
-                </div>
+                 
                 <div className="details">
                   <div className="wrapper">
                     <h5 className="price">₹ {listing?.priceRange?.minPrice} {listing?.priceRange?.minPriceType} - ₹ {listing?.priceRange?.maxPrice} {listing?.priceRange?.maxPriceType} *</h5>

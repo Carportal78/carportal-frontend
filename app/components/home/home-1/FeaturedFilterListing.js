@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { Container, Row, Col } from 'react-bootstrap';
 
 const FeaturedFilterListing = ({ collection }) => {
   const [filter, setFilter] = useState("*");
@@ -15,45 +16,33 @@ const FeaturedFilterListing = ({ collection }) => {
       : listingsData.slice(0, 8).filter((item) => item.tags.includes(filter));
 
   return (
-    <div className="popular_listing_sliders ">
-      {/* Tab panes */}
-      <div className="row">
+    <Container>
+      <Row>
         {collection?.carModels?.map((listing) => (
-          <div className="col-sm-6 col-xl-3" key={listing._id} onClick={() => router.push(`/model-detail/${listing?._id}`)}>
-            <div className="car-listing">
+          <Col xs={12} sm={6} md={4} lg={3} key={listing._id} onClick={() => router.push(`/model-detail/${listing._id}`)}>
+            <div className="car-listing" style={{ cursor: 'pointer' }}>
               <div className="thumb">
-                <Image
-                  width={284}
-                  height={183}
-                  style={{
-                    objectFit: "cover",
-                  }}
+                <div style={{ position: 'relative', width: '100%', height: '200px', overflow: 'hidden' }}>
+                  <Image
+                  layout="fill" // Use fill layout to ensure the image covers the container
+                  objectFit="cover" // Cover ensures the image will fill the height and width of its container, clipping it if necessary
                   priority
-                  src={listing?.media?.[0]?.url ?? listing?.media?.url}
+                  src={listing?.media?.[0]?.url ?? '/placeholder-image.png'} // Fallback image
                   alt={listing?.modelName}
                 />
-                {/* <div className="thmb_cntnt2">
-                  <ul className="mb0">
-                    <li className="list-inline-item">
-                      <a className="text-white" href="#">
-                        <span className="flaticon-photo-camera mr3" />{" "}
-                        {listing?.}
-                      </a>
-                    </li>
-                  </ul>
-                </div> */}
+                </div>
               </div>
               <div className="details">
                 <div className="wrapper">
-                  <h5 className="price">₹ {listing?.priceRange?.minPrice} {listing?.priceRange?.minPriceType} - ₹ {listing?.priceRange?.maxPrice} {listing?.priceRange?.maxPriceType} *</h5>
-                  <h6 className="title" onClick={() => router.push(`/model-detail/${listing?._id}`)}>
-                    <Link href="">{listing.modelName}</Link>
+                  <h5 className="price">₹ {listing?.priceRange?.minPrice} - ₹ {listing?.priceRange?.maxPrice}</h5>
+                  <h6 className="title">
+                    <a onClick={(e) => { e.stopPropagation(); router.push(`/model-detail/${listing._id}`); }}>{listing.modelName}</a>
                   </h6>
                   <p>Launched Date: <b>{listing?.year}</b></p>
-                </div>{" "}
+                </div>
               </div>
               <div className="listing_footer">
-                    <ul className="mb0">
+              <ul className="mb0">
                       <li className="list-inline-item">
                         <span className="flaticon-road-perspective me-2" />
                         {listing?.mileage.split('_').join('-')} kmpl
@@ -69,28 +58,12 @@ const FeaturedFilterListing = ({ collection }) => {
                         {listing?.transmissionType.join(', ')}
                       </li>
                     </ul>
-                  </div>
-                {/* <div className="listing_footer">
-                      <ul className="mb0">
-                        <li className="list-inline-item">
-                          <span className="flaticon-road-perspective me-2" />
-                          {listing.mileage}
-                        </li>
-                        <li className="list-inline-item">
-                          <span className="flaticon-gas-station me-2" />
-                          {listing.fuelType}
-                        </li>
-                        <li className="list-inline-item">
-                          <span className="flaticon-gear me-2" />
-                          {listing.transmission}
-                        </li>
-                      </ul>
-                    </div> */}
+              </div>
             </div>
-          </div>
+          </Col>
         ))}
-      </div>
-    </div>
+      </Row>
+    </Container>
   );
 };
 
