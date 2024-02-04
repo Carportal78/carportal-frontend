@@ -25,6 +25,7 @@ function VerticalTab({ carModelDetails, carVariant }) {
           <Nav pills className="flex-column">
             {["1", "2", "3", "4", "5", "6", "7", "8", "9"].map((tabId) => (
               <NavLink
+              key={tabId}
               style={{ cursor: "pointer", borderRadius: '0.25rem', fontSize: '12px' }} // Added border-radius
               className={classnames("mb-2", { "active-tab": verticalActiveTab === tabId }, "btn-like")} // Added btn-like for additional styling
               onClick={() => toggleVertical(tabId)}

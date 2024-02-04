@@ -31,7 +31,6 @@ import Image from "next/image";
 import { useAtom } from 'jotai';
 import VariantsOverview from "../../../../../../../components/variants/VariantsOverview";
 import VariantPrice from "../../../../../../../components/variants/VariantPrice";
-import VariantFeature from "../../../../../../../components/variants/VariantFeature";
 import VerticalTab from "../../../../../../../components/variants/varianttab/VerticalTab";
 
 const metadata = {
