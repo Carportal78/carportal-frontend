@@ -11,6 +11,7 @@ import { Container, Row, Col, Button, FormLabel } from 'react-bootstrap';
 import styles from './ProductGallery.module.css';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Select from "react-select";
+import { useRouter } from "next/navigation";
 
 
 const slides = [
@@ -88,43 +89,28 @@ function OffCanvasExampleCompare({ name, ...props }) {
   );
 }
 
-const optionGroup = [
-  { value: 'variant1', label: 'Variant 1' },
-  { value: 'variant2', label: 'Variant 2' },
-  // Add more options as needed
-];
-
- // Custom styles for react-select
- const customStyles = {
-  control: (provided, state) => ({
-    ...provided,
-    backgroundColor: 'white',
-    borderColor: state.isFocused ? 'blue' : 'gray',
-    boxShadow: state.isFocused ? '0 0 0 1px blue' : 'none',
-    '&:hover': {
-      borderColor: state.isFocused ? 'blue' : 'gray',
-    },
-  }),
-  option: (provided, state) => ({
-    ...provided,
-    color: state.isSelected ? 'white' : 'black',
-    backgroundColor: state.isSelected ? 'blue' : state.isFocused ? 'lightgray' : null,
-  }),
-  // You can add more custom styles for other parts of the select component as needed
-};
-
-export default function ProductGallery({ carModelDetails, carVariantsList }) {
+export default function ProductGallery({ carModelDetails, carVariantsList, carVariant }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [isOpen, setOpen] = useState(false);
   const [videoId, setVideoId] = useState("");
   const [selectedGroup, setselectedGroup] = useState(null);
+  const router = useRouter();
 
   const openModal = (id) => {
     setVideoId(id);
     setOpen(true);
   };
 
+  // Assuming each variant object in carVariantsList has an 'id' and 'name' property
+  const optionGroup = carVariantsList.map(variant => ({
+    value: variant._id, // Use the unique identifier of the variant here
+    label: variant.name, // The name of the variant to be displayed
+  }));
+
   function handleSelectGroup(selectedGroup) {
+    const modelId = carModelDetails?._id;
+    const variantId = selectedGroup.value;
+    router.push(`/variantDetails/${carModelDetails?.modelName?.split(' ')?.join('-')?.toLowerCase()}/${modelId}/variant/${variantId}`);
     setselectedGroup(selectedGroup);
   }
 
@@ -218,9 +204,7 @@ export default function ProductGallery({ carModelDetails, carVariantsList }) {
                           <Select
                             placeholder="Change Variant..."
                             value={selectedGroup}
-                            onChange={() => {
-                              handleSelectGroup();
-                            }}
+                            onChange={handleSelectGroup}
                             options={optionGroup}
                             className="select2-selection"
                             // styles={customStyles} 

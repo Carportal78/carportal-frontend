@@ -199,7 +199,7 @@ const ModelDetails = () => {
 
           <div className="row">
             <div className="col-lg-8 col-xl-12">
-              <ProductGallery carModelDetails={carModelDetails} carVariantsList={carVariantsList} />
+              <ProductGallery carModelDetails={carModelDetails} carVariantsList={carVariantsList} carVariant={carVariant} />
               {/* End Car Gallery */}
               <div className="d-flex flex-wrap gap-4">
               <div className="col-lg-8 col-xl-8">
