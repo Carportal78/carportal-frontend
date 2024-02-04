@@ -19,14 +19,15 @@ const metadata = {
 
 const Dealers = () => {
 
-  const { modelId } = useParams();
+  const { brandid } = useParams();
 
+  const [carBrandsList, setCarBrandsList] = useState([]);
   const [carModelDetails, setCarModelDetails] = useState({});
   const [carVariantsList, setCarVariantsList] = useState([]);
   const [carModelsList, setCarModelsList] = useState([]);
 
   useEffect(() => {
-    const apiUrl = `https://api.univolenitsolutions.com/v1/automobile/get/carmodel/${modelId}/for/65538448b78add9eaa02d417`;
+    const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carbrands/for/65538448b78add9eaa02d417';
     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
 
     fetch(apiUrl, {
@@ -36,17 +37,17 @@ const Dealers = () => {
         'Content-Type': 'application/json'
       }
     })
-    .then(response => response.json())
-    .then(data => {
-      if (data && data.data && data.data) {
-        setCarModelDetails(data.data.carModel);
-        setCarVariantsList(data.data.carVariantList);
-      }
-    })
-    .catch(error => {
-      console.error('Error fetching data: ', error);
-    });
-  },[modelId]);
+      .then(response => response.json())
+      .then(data => {
+        if (data && data.data && data.data.carBrandsList) {
+          setCarBrandsList(data.data.carBrandsList);
+          localStorage.setItem('carBrandsList', JSON.stringify(data.data.carBrandsList));
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching data: ', error);
+      })
+  }, [brandid]);
 
   useEffect(() => {
     const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carmodels/for/65538448b78add9eaa02d417';
@@ -58,15 +59,15 @@ const Dealers = () => {
         'Content-Type': 'application/json'
       }
     })
-    .then(response => response.json())
-    .then(data => {
-      if (data && data.data && data.data.carModelsList) {
-        setCarModelsList(data.data.carModelsList);
-      }
-    })
-    .catch(error => {
-      setCarModelsList([]);
-    });
+      .then(response => response.json())
+      .then(data => {
+        if (data && data.data && data.data.carModelsList) {
+          setCarModelsList(data.data.carModelsList);
+        }
+      })
+      .catch(error => {
+        setCarModelsList([]);
+      });
   }, []);
 
   return (
@@ -97,28 +98,60 @@ const Dealers = () => {
       <section className="our-agent-single bgc-f9 pb90 mt70-992 pt30">
         <div className="container">
 
-          <div className="row listing_single_description">
+          <div className="row" style={{
+            backgroundColor: "#fff",
+            border: "1px solid #eaeaea",
+            borderRadius: "8px",
+            marginBottom: "30px",
+            paddingLeft: "30px",
+            paddingRight: "30px",
+            paddingTop: "30px",
+            position: "relative"
+          }}>
             <div className="col-lg-12 col-xl-12">
-           <DealersPageDescription carModelDetails={carModelDetails} carVariantsList={carVariantsList} />
+              <DealersPageDescription carModelDetails={carModelDetails} carVariantsList={carVariantsList} carBrandsList={carBrandsList} />
             </div>
           </div>
 
+
+
           <Card className="row">
             <div className="col-lg-12 col-xl-12">
-           <ProductDescripitons carModelDetails={carModelDetails} carVariantsList={carVariantsList} />
+              <ProductDescripitons carModelDetails={carModelDetails} carVariantsList={carVariantsList} />
             </div>
           </Card>
           {/* End .row */}
         </div>
+
+        <div className="container">
+
+          <div className="row" style={{
+            backgroundColor: "#fff",
+            border: "1px solid #eaeaea",
+            borderRadius: "8px",
+            marginBottom: "30px",
+            paddingLeft: "30px",
+            paddingRight: "30px",
+            paddingTop: "30px",
+            position: "relative"
+          }}>
+            <div className="col-lg-12 col-xl-12">
+              <DealersPageDescription carModelDetails={carModelDetails} carVariantsList={carVariantsList} carBrandsList={carBrandsList} />
+            </div>
+          </div>
+          {/* End .row */}
+        </div>
+
+        
         {/* End .container */}
       </section>
       {/* End Agent Single Grid View */}
 
       {/* End Car For Rent */}
-        {/* Car For Rent */}
-        <section className="car-for-rent bb1">
+      {/* Car For Rent */}
+      <section className="car-for-rent bb1">
         <div className="container">
-          <div className="row"> 
+          <div className="row">
             <div className="col-sm-6">
               <div className="main-title text-center text-md-start mb10-520">
                 <h2 className="title">Related Best Car</h2>
@@ -146,7 +179,7 @@ const Dealers = () => {
               data-aos-delay="100"
             >
               <div className="listing_item_4grid_slider nav_none">
-              <ReleatedCar bodyType={carModelDetails?.bodyType} carModelDetails={carModelDetails} relatedCars={carModelsList} />
+                <ReleatedCar bodyType={carModelDetails?.bodyType} carModelDetails={carModelDetails} relatedCars={carModelsList} />
               </div>
             </div>
           </div>
