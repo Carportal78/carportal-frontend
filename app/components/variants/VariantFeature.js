@@ -20,19 +20,22 @@ const VariantFeature = ({ carModelDetails }) => {
     ];
   
     return (
-      <ul className="list-group">
-        {carData?.map((item, index) => (
-          <li
-            className="list-group-item d-flex justify-content-between align-items-start"
-            key={index}
-          >
-            <div className="me-auto">
-              <div className="day">{item.label}</div>
-            </div>
-            <span className="schedule">{item.value}</span>
-          </li>
-        ))}
-      </ul>
+      <>
+      <VerticalTab data={resumeData.jobs} />
+      </>
+      // <ul className="list-group">
+      //   {carData?.map((item, index) => (
+      //     <li
+      //       className="list-group-item d-flex justify-content-between align-items-start"
+      //       key={index}
+      //     >
+      //       <div className="me-auto">
+      //         <div className="day">{item.label}</div>
+      //       </div>
+      //       <span className="schedule">{item.value}</span>
+      //     </li>
+      //   ))}
+      // </ul>
     );
   };
   

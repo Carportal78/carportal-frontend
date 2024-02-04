@@ -7,9 +7,10 @@ import "react-modal-video/scss/modal-video.scss";
 import { FreeMode, Navigation, Thumbs } from "swiper";
 import Image from "next/image";
 import Link from "next/link";
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button, FormLabel } from 'react-bootstrap';
 import styles from './ProductGallery.module.css';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import Select from "react-select";
 
 
 const slides = [
@@ -87,19 +88,44 @@ function OffCanvasExampleCompare({ name, ...props }) {
   );
 }
 
-export default function ProductGallery({ carModelDetails }) {
+const optionGroup = [
+  { value: 'variant1', label: 'Variant 1' },
+  { value: 'variant2', label: 'Variant 2' },
+  // Add more options as needed
+];
+
+ // Custom styles for react-select
+ const customStyles = {
+  control: (provided, state) => ({
+    ...provided,
+    backgroundColor: 'white',
+    borderColor: state.isFocused ? 'blue' : 'gray',
+    boxShadow: state.isFocused ? '0 0 0 1px blue' : 'none',
+    '&:hover': {
+      borderColor: state.isFocused ? 'blue' : 'gray',
+    },
+  }),
+  option: (provided, state) => ({
+    ...provided,
+    color: state.isSelected ? 'white' : 'black',
+    backgroundColor: state.isSelected ? 'blue' : state.isFocused ? 'lightgray' : null,
+  }),
+  // You can add more custom styles for other parts of the select component as needed
+};
+
+export default function ProductGallery({ carModelDetails, carVariantsList }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [isOpen, setOpen] = useState(false);
   const [videoId, setVideoId] = useState("");
+  const [selectedGroup, setselectedGroup] = useState(null);
 
   const openModal = (id) => {
     setVideoId(id);
     setOpen(true);
   };
 
-
-  function handleContactDealer() {
-
+  function handleSelectGroup(selectedGroup) {
+    setselectedGroup(selectedGroup);
   }
 
   return (
@@ -188,26 +214,29 @@ export default function ProductGallery({ carModelDetails }) {
                 41 reviews{" "}
               </Link>
             </div>
+                  <div className=" mb-3 w-75 mt-4">
+                          <Select
+                            placeholder="Change Variant..."
+                            value={selectedGroup}
+                            onChange={() => {
+                              handleSelectGroup();
+                            }}
+                            options={optionGroup}
+                            className="select2-selection"
+                            // styles={customStyles} 
+                          />
+                        </div>
             <div className="d-flex flex-column flex-md-row mt-2">
-              <h4 className="mr10">₹ {carModelDetails?.priceRange?.minPrice} {carModelDetails?.priceRange?.minPriceType} - ₹ {carModelDetails?.priceRange?.maxPrice} {carModelDetails?.priceRange?.maxPriceType}</h4>
+              <h4 className="mr10">₹ {carModelDetails?.priceRange?.minPrice} {carModelDetails?.priceRange?.minPriceType}*</h4>
               <Link href={`/onroadprice/${carModelDetails?._id}`} className="tdu color-blue mt-md-0">Get On Road Price</Link>
             </div>
-
-            <div className="mt-2 d-flex">
-              <strong>Launched Year:</strong> <span className="ml5">{carModelDetails?.year}</span>
-            </div>
-            <div className="d-flex">
-              <strong>Body Type:</strong> <span className="ml5">{carModelDetails?.bodyType?.replace('-', ' ')}</span>
-            </div>
-            <div className="d-flex">
-              <strong>Car Brand:</strong> <span className="ml5">{carModelDetails?.carBrand?.brandName}</span>
-            </div>
+            <div><span style={{fontSize: '12px'}}>*Ex-showroom price in</span> <span data-bs-toggle="modal" data-bs-target="#contactDealerForm"><Link href='a' style={{color: 'blue'}}>Jaipur</Link></span></div>
             {/* <p className="para">
                     *Ex-showroom Price in<a href="#" className="tdu color-blue ml10">Jaipur</a>
                   </p> */}
             <div className="offer_btns mt-5">
               <div className="text-end">
-                <button className="btn btn-thm ofr_btn1 btn-block mt0 mb20" data-bs-toggle="modal" onClick={handleContactDealer} data-bs-target="#contactDealerForm">
+                <button className="btn btn-thm ofr_btn1 btn-block mt0 mb20" data-bs-toggle="modal" data-bs-target="#contactDealerForm">
                   <span className="flaticon-profit-report mr10 fz18 vam" />
                   Contact Dealer
                 </button>
@@ -222,7 +251,7 @@ export default function ProductGallery({ carModelDetails }) {
                 <Image width={30} height={30} src="/images/modeldetails/Variants.svg" alt="Image 2" className="ml10" fluid />
                 <p>Variants</p>
               </div>
-              <div style={{cursor: 'pointer'}} data-bs-toggle="modal" onClick={handleContactDealer} data-bs-target="#shareForm">
+              <div style={{cursor: 'pointer'}} data-bs-toggle="modal" data-bs-target="#shareForm">
                 <Image width={30} height={30}  src="/images/modeldetails/Share.svg" alt="Image 3" fluid />
                 <p>Share</p>
               </div>

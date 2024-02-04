@@ -32,6 +32,7 @@ import { useAtom } from 'jotai';
 import VariantsOverview from "../../../../../../../components/variants/VariantsOverview";
 import VariantPrice from "../../../../../../../components/variants/VariantPrice";
 import VariantFeature from "../../../../../../../components/variants/VariantFeature";
+import VerticalTab from "../../../../../../../components/variants/varianttab/VerticalTab";
 
 const metadata = {
   title: "Car Models || Carportal - Automotive & Car Dealer",
@@ -198,7 +199,7 @@ const ModelDetails = () => {
 
           <div className="row">
             <div className="col-lg-8 col-xl-12">
-              <ProductGallery carModelDetails={carModelDetails} />
+              <ProductGallery carModelDetails={carModelDetails} carVariantsList={carVariantsList} />
               {/* End Car Gallery */}
               <div className="d-flex flex-wrap gap-4">
               <div className="col-lg-8 col-xl-8">
@@ -208,11 +209,18 @@ const ModelDetails = () => {
               <div className="listing_single_description">
                 <VariantPrice carModelDetails={carModelDetails} carVariantsList={carVariantsList} carVariant={carVariant} />
               </div>
-              <div className="listing_single_description">
+              <div style={{
+                backgroundColor: '#fff',
+                border: "1px solid #eaeaea",
+                borderRadius: "8px",
+                position: "relative",
+                paddingLeft: "20px",
+                paddingTop: "20px"
+              }}>
               <div className="row">
                 {/* Key Specs of Hyundia Creta  */}
                 
-              <div className="popular_listing_sliders single_page6_tabs row pr15">
+              <div className="popular_listing_sliders single_page6_tabs row">
                 {/* Nav tabs */}
                 <div className="nav nav-tabs col-lg-12" role="tablist">
                   <button
@@ -302,8 +310,8 @@ const ModelDetails = () => {
                   >
                     <div className="opening_hour_widgets p30 bdr_none pl0 pr0">
                       <div className="wrapper">
-                        <h4 className="title">Features</h4>
-                        <VariantFeature carModelDetails={carModelDetails} />
+                        <h4 className="title">{carVariant?.name} {carVariant?.fuelAndPerformance?.fuelType} Specifications & Features</h4>
+                        <VerticalTab carModelDetails={carModelDetails} carVariant={carVariant} />
                       </div>
                     </div>
                     {/* End opening_hour_widgets */}

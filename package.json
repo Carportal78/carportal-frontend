@@ -31,6 +31,7 @@
     "react-photoswipe-gallery": "^2.2.7",
     "react-pro-sidebar": "^1.0.0",
     "react-query": "^3.39.3",
+    "react-select": "^5.8.0",
     "react-tabs": "^6.0.1",
     "sass": "^1.69.0",
     "sharp": "^0.32.6",
