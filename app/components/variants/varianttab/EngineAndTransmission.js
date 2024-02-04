@@ -22,7 +22,7 @@ function EngineAndTransmisssions({ carVariant }) {
                             </tr>
                             <tr>
                                 <td>MaxTorque</td>
-                                <td>{carVariant?.engineAndTransmission?.maxTorque}</td>
+                                <td className="text-wrap">{carVariant?.engineAndTransmission?.maxTorque.replace('@', ' ')}</td>
                             </tr>
                             <tr>
                                 <td>noOfCylinders</td>
@@ -30,7 +30,7 @@ function EngineAndTransmisssions({ carVariant }) {
                             </tr>
                             <tr>
                                 <td>maxPower</td>
-                                <td>{carVariant?.engineAndTransmission?.maxPower}</td>
+                                <td>{carVariant?.engineAndTransmission?.maxPower?.replace('@', ' ')}</td>
                             </tr>
                             <tr>
                                 <td>valuePerCylinder</td>

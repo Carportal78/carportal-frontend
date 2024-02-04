@@ -25,3 +25,10 @@
   max-height: 80vh; /* Adjust based on your needs */
   overflow-y: auto;
 }
+
+.text-wrap {
+  word-wrap: break-word; /* Older browsers */
+  word-break: break-word; /* Break the word */
+  max-width: 150px; /* Set a max-width to control when to start wrapping */
+  white-space: pre-wrap; /* If your data includes spaces or new lines you want to preserve */
+}

@@ -3,6 +3,11 @@ import { Col, Nav, NavItem, NavLink, Row, TabPane } from "react-bootstrap";
 import classnames from "classnames";
 import './VerticalTab.css';
 import EngineAndTransmisssions from "./EngineAndTransmission";
+import FuelAndPerformace from "./FuelAndPerformance";
+import SuspensionAndSteeringAndBrakes from "./SuspensionAndSteeringAndBrakes";
+import DimensionAndCapacity from "./DimensionAndCapacity";
+import Interior from "./Interior";
+import Exterior from "./Exterior";
 
 function VerticalTab({ carModelDetails, carVariant }) {
   const [verticalActiveTab, setVerticalActiveTab] = useState("1");
@@ -48,24 +53,16 @@ function VerticalTab({ carModelDetails, carVariant }) {
           {["1", "2", "3", "4", "5", "6", "7", "8", "9"].map((tabId) => (
             <TabPane key={tabId} className={classnames("text-muted mt-md-0", { active: isTabActive(tabId) })} active={isTabActive(tabId)}>
               {tabId === "1" && (
-                <p className="flex-column">
                   <EngineAndTransmisssions carVariant={carVariant} />
-                </p>
               )}
               {tabId === "2" && (
-                <p>
-                  Profile content goes here. Food truck fixie locavore, accusamus mcsweeney marfa nulla.
-                </p>
+                  <FuelAndPerformace carVariant={carVariant} />
               )}
               {tabId === "3" && (
-                <p>
-                  Messages content goes here. Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out.
-                </p>
+                  <SuspensionAndSteeringAndBrakes carVariant={carVariant} />
               )}
               {tabId === "4" && (
-                <p>
-                  Settings content goes here. Trust fund seitan letterpress, keytar raw denim keffiyeh etsy.
-                </p>
+                  <DimensionAndCapacity carVariant={carVariant} />
               )}
               {tabId === "5" && (
                 <p>
@@ -73,14 +70,10 @@ function VerticalTab({ carModelDetails, carVariant }) {
                 </p>
               )}
               {tabId === "6" && (
-                <p>
-                  Settings content goes here. Trust fund seitan letterpress, keytar raw denim keffiyeh etsy.
-                </p>
+                <Interior carVariant={carVariant} />
               )}
               {tabId === "7" && (
-                <p>
-                  Settings content goes here. Trust fund seitan letterpress, keytar raw denim keffiyeh etsy.
-                </p>
+                <Exterior carVariant={carVariant} />
               )}
               {tabId === "8" && (
                 <p>
