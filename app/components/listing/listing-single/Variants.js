@@ -122,7 +122,7 @@ const VariantsList = ({ carModelDetails, variants }) => {
           </Accordion.Body>
         </Accordion.Item>
       ))}
-    </Accordion>
+  </Accordion>
   );
 
   return (

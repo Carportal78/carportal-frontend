@@ -171,7 +171,7 @@ const VariantListForm = ({ modelName, carVariantsList }) => {
                                             <tr key={index}>
                                                 <td>{index + 1}</td>
                                                 <td>
-                                                    <Link className="tdu color-blue ml10" href={`/${variant?.name?.toLowerCase()?.split(' ')?.join('-')}/${variant?._id}`}>
+                                                    <Link className="tdu color-blue ml10" href={`/variantDetails/${variant?.carModel?.modelName?.split(' ')?.join('-')?.toLowerCase()}/${variant?.carModel?._id}/variant/${variant?._id}`}>
                                                         {`${variant?.name} ${variant?.carModel?.modelName}`}
                                                     </Link>
                                                 </td>

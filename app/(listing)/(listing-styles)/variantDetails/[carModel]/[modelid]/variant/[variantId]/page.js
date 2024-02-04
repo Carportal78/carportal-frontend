@@ -9,7 +9,6 @@ import ShareForm from "../../../../../../../components/common/contactdealerForm/
 import VariantListForm from "../../../../../../../components/common/contactdealerForm/VariantListForm";
 import LoginSignupModal from "../../../../../../../components/common/login-signup";
 import BreadCrumb from "../../../../../../../components/listing/listing-single/BreadCrumb";
-import ProductGallery from "../../../../../../../components/listing/listing-single/listing-single-v2/ProductGallery";
 import Overview from "../../../../../../../components/listing/listing-single/Overview";
 import Descriptions from "../../../../../../../components/listing/listing-single/Descriptions";
 import Features from "../../../../../../../components/listing/listing-single/Features";
@@ -32,6 +31,7 @@ import { useAtom } from 'jotai';
 import VariantsOverview from "../../../../../../../components/variants/VariantsOverview";
 import VariantPrice from "../../../../../../../components/variants/VariantPrice";
 import VerticalTab from "../../../../../../../components/variants/varianttab/VerticalTab";
+import VariantProductGallary from "../../../../../../../components/variants/VariantProductGallary";
 
 const metadata = {
   title: "Car Models || Carportal - Automotive & Car Dealer",
@@ -198,7 +198,7 @@ const ModelDetails = () => {
 
           <div className="row">
             <div className="col-lg-8 col-xl-12">
-              <ProductGallery carModelDetails={carModelDetails} carVariantsList={carVariantsList} carVariant={carVariant} />
+              <VariantProductGallary carModelDetails={carModelDetails} carVariantsList={carVariantsList} carVariant={carVariant} />
               {/* End Car Gallery */}
               <div className="d-flex flex-wrap gap-4">
               <div className="col-lg-8 col-xl-8">

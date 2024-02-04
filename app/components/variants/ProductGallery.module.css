@@ -1,0 +1,12 @@
+/* Add this CSS to your stylesheet (e.g., App.css) */
+.image-responsive-height {
+    height: 400px; /* Default height for larger screens */
+  }
+  
+  /* Adjust height for screens smaller than 768px */
+  @media (max-width: 767.98px) {
+    .image-responsive-height {
+      height: 200px; /* Smaller height for mobile devices */
+    }
+  }
+  
