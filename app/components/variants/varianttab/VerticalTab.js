@@ -54,7 +54,7 @@ function VerticalTab({ carModelDetails, carVariant }) {
               )}
               {tabId === "2" && (
                 <p>
-                  Profile content goes here. Food truck fixie locavore, accusamus mcsweeney's marfa nulla.
+                  Profile content goes here. Food truck fixie locavore, accusamus mcsweeney marfa nulla.
                 </p>
               )}
               {tabId === "3" && (
