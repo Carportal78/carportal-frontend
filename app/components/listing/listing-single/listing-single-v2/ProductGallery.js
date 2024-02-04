@@ -11,6 +11,7 @@ import { Container, Row, Col, Button, FormLabel } from 'react-bootstrap';
 import styles from './ProductGallery.module.css';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Select from "react-select";
+import { useRouter } from "next/navigation";
 
 
 const slides = [
@@ -112,6 +113,7 @@ export default function ProductGallery({ carModelDetails, carVariantsList }) {
   const [isOpen, setOpen] = useState(false);
   const [videoId, setVideoId] = useState("");
   const [selectedGroup, setselectedGroup] = useState(null);
+  const router = useRouter();
 
   const openModal = (id) => {
     setVideoId(id);
@@ -213,7 +215,7 @@ export default function ProductGallery({ carModelDetails, carVariantsList }) {
               </Link>
             </div>
             <div className="d-flex flex-column flex-md-row mt-2">
-              <h4 className="mr10">₹ {carModelDetails?.priceRange?.minPrice} {carModelDetails?.priceRange?.minPriceType} - ₹ {carModelDetails?.priceRange?.maxPrice} {carModelDetails?.priceRange?.maxPriceType}</h4>
+              <h4 className="mr10">₹ {carModelDetails?.priceRange?.minPrice} {carModelDetails?.priceRange?.minPriceType} - ₹ {carModelDetails?.priceRange?.maxPrice} {carModelDetails?.priceRange?.maxPriceType}*</h4>
               <Link href={`/onroadprice/${carModelDetails?._id}`} className="tdu color-blue mt-md-0">Get On Road Price</Link>
             </div>
 

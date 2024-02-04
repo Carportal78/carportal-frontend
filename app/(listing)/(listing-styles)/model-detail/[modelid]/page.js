@@ -84,7 +84,6 @@ const ModelDetails = () => {
         setCarVariantsList(data.data.carVariantList);
         setSelectCarModelData(data.data.carModel);
         setSelectCarVariantData(data.data.carVariantsList);
-
       }
     })
     .catch(error => {

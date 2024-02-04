@@ -39,7 +39,7 @@ const VariantPrice = ({ carModelDetails, carVariantsList, carVariant }) => {
         <ListGroup.Item></ListGroup.Item>
       </ListGroup>
       <div className='d-flex justify-content-between mt-3'>
-      <div style={{color: '#24272c', fontSize: '15px', fontWeight: '500'}}>On-Road Price in {'Jaipur'}</div>
+      <div style={{color: '#24272c', fontSize: '15px', fontWeight: '500'}}  >On-Road Price in {'Jaipur'}</div>
       <div style={{color: '#24272c', fontSize: '15px', fontWeight: '500'}}>₹ 16,30,195*</div>
     </div>
    </Col>
