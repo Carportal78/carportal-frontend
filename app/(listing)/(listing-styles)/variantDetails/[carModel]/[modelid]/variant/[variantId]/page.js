@@ -1,34 +1,37 @@
 "use client"
-import Footer from "../../../../components/common/Footer";
-import DefaultHeader from "../../../../components/common/DefaultHeader";
-import HeaderSidebar from "../../../../components/common/HeaderSidebar";
-import HeaderTop from "../../../../components/common/HeaderTop";
-import MobileMenu from "../../../../components/common/MobileMenu";
-import ContactDealerForm from "../../../../components/common/contactdealerForm/ContactDealerForm";
-import ShareForm from "../../../../components/common/contactdealerForm/ShareForm";
-import VariantListForm from "../../../../components/common/contactdealerForm/VariantListForm";
-import LoginSignupModal from "../../../../components/common/login-signup";
-import BreadCrumb from "../../../../components/listing/listing-single/BreadCrumb";
-import ProductGallery from "../../../../components/listing/listing-single/listing-single-v2/ProductGallery";
-import Overview from "../../../../components/listing/listing-single/Overview";
-import Descriptions from "../../../../components/listing/listing-single/Descriptions";
-import Features from "../../../../components/listing/listing-single/Features";
-import Map from "../../../../components/common/Map";
-import ConsumerReviews from "../../../../components/listing/listing-single/ConsumerReviews";
-import ReviewBox from "../../../../components/listing/listing-single/ReviewBox";
-import ContactSeller from "../../../../components/listing/listing-single/sidebar/ContactSeller";
-import SellerDetail from "../../../../components/listing/listing-single/sidebar/SellerDetail";
+import Footer from "../../../../../../../components/common/Footer";
+import DefaultHeader from "../../../../../../../components/common/DefaultHeader";
+import HeaderSidebar from "../../../../../../../components/common/HeaderSidebar";
+import HeaderTop from "../../../../../../../components/common/HeaderTop";
+import MobileMenu from "../../../../../../../components/common/MobileMenu";
+import ContactDealerForm from "../../../../../../../components/common/contactdealerForm/ContactDealerForm";
+import ShareForm from "../../../../../../../components/common/contactdealerForm/ShareForm";
+import VariantListForm from "../../../../../../../components/common/contactdealerForm/VariantListForm";
+import LoginSignupModal from "../../../../../../../components/common/login-signup";
+import BreadCrumb from "../../../../../../../components/listing/listing-single/BreadCrumb";
+import ProductGallery from "../../../../../../../components/listing/listing-single/listing-single-v2/ProductGallery";
+import Overview from "../../../../../../../components/listing/listing-single/Overview";
+import Descriptions from "../../../../../../../components/listing/listing-single/Descriptions";
+import Features from "../../../../../../../components/listing/listing-single/Features";
+import Map from "../../../../../../../components/common/Map";
+import ConsumerReviews from "../../../../../../../components/listing/listing-single/ConsumerReviews";
+import ReviewBox from "../../../../../../../components/listing/listing-single/ReviewBox";
+import ContactSeller from "../../../../../../../components/listing/listing-single/sidebar/ContactSeller";
+import SellerDetail from "../../../../../../../components/listing/listing-single/sidebar/SellerDetail";
 import Link from "next/link";
-import ReleatedCar from "../../../../components/listing/listing-single/ReleatedCar";
-import ShareMeta from "../../../../components/listing/listing-single/ShareMeta";
+import ReleatedCar from "../../../../../../../components/listing/listing-single/ReleatedCar";
+import ShareMeta from "../../../../../../../components/listing/listing-single/ShareMeta";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import VariantsList from "../../../../components/listing/listing-single/Variants";
-import RecentlyViewed from "../../../../components/listing/sidebar/RecentlyViewed";
-import BannerWidget from "../../../../components/common/BannerWidget";
-import { selectCarModelAtom, selectCarBrandAtom, selectCarVariantAtom } from "../../../../components/atoms/categoriesAtoms";
+import VariantsList from "../../../../../../../components/listing/listing-single/Variants";
+import RecentlyViewed from "../../../../../../../components/listing/sidebar/RecentlyViewed";
+import BannerWidget from "../../../../../../../components/common/BannerWidget";
+import { selectCarModelAtom, selectCarBrandAtom, selectCarVariantAtom } from "../../../../../../../components/atoms/categoriesAtoms";
 import Image from "next/image";
 import { useAtom } from 'jotai';
+import VariantsOverview from "../../../../../../../components/variants/VariantsOverview";
+import VariantPrice from "../../../../../../../components/variants/VariantPrice";
+import VariantFeature from "../../../../../../../components/variants/VariantFeature";
 
 const metadata = {
   title: "Car Models || Carportal - Automotive & Car Dealer",
@@ -36,7 +39,7 @@ const metadata = {
 
 const ModelDetails = () => {
 
-  const { modelid } = useParams();
+  const { arModel, modelid, variantId } = useParams();
 
   const [carModelDetails, setCarModelDetails] = useState({});
 
@@ -44,12 +47,15 @@ const ModelDetails = () => {
 
   const [carModelsList, setCarModelsList] = useState([]);
   const [carVariantsList, setCarVariantsList] = useState([]);
+  const [carVariant, setCarVariant] = useState({});
   const [isModelsLoading,setIsModelsLoading] = useState(false);
   const [selectCarModelData, setSelectCarModelData] = useAtom(selectCarModelAtom);
   const [selectCarBrandData, setSelectCarBrandData] = useAtom(selectCarBrandAtom);
   const [selectCarVariantData, setSelectCarVariantData] = useAtom(selectCarVariantAtom);
 
   useEffect(() => {
+    // alert('modelId ', modelid);
+
     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';  
     const relatedCars = fetch(`https://api.univolenitsolutions.com/v1/automobile/get/carmodels/bodyType/${carModelDetails?.bodyType}/for/65538448b78add9eaa02d417`, {
     headers: {
@@ -84,7 +90,11 @@ const ModelDetails = () => {
         setCarVariantsList(data.data.carVariantList);
         setSelectCarModelData(data.data.carModel);
         setSelectCarVariantData(data.data.carVariantsList);
-
+        if(variantId) {
+          const variant = data.data.carVariantList?.find(variant => variant._id === variantId);
+          setCarVariant(variant);
+          console.log("variantData ", variant);
+        }
       }
     })
     .catch(error => {
@@ -117,6 +127,31 @@ const ModelDetails = () => {
         .finally(() => setIsModelsLoading(false));
     
     }, [carModelDetails]);
+
+    useEffect(() => {
+      const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';
+      setIsModelsLoading(true);
+      // Replace this URL with the appropriate one for fetching models
+      fetch(`https://api.univolenitsolutions.com/v1/automobile/get/carmodels/${carModelDetails?.carBrand?._id}/for/65538448b78add9eaa02d417`, {
+        method: 'GET',
+        headers: {
+          'X-API-Key': apiKey,
+          'Content-Type': 'application/json'
+          // Include any necessary headers
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data && data.data && data.data.carModelsList) {
+          setCarModelsList(data.data.carModelsList);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching car models: ', error);
+      })
+      .finally(() => setIsModelsLoading(false));
+  
+    }, [variantId])
 
     function capitalizeFirstLetter(string) {
       if (!string) return string;
@@ -166,7 +201,14 @@ const ModelDetails = () => {
               <ProductGallery carModelDetails={carModelDetails} />
               {/* End Car Gallery */}
               <div className="d-flex flex-wrap gap-4">
-              <div className="listing_single_description col-lg-8 col-xl-8">
+              <div className="col-lg-8 col-xl-8">
+              <div className="listing_single_description">
+                <VariantsOverview carModelDetails={carModelDetails} carVariantsList={carVariantsList} carVariant={carVariant} />
+              </div>
+              <div className="listing_single_description">
+                <VariantPrice carModelDetails={carModelDetails} carVariantsList={carVariantsList} carVariant={carVariant} />
+              </div>
+              <div className="listing_single_description">
               <div className="row">
                 {/* Key Specs of Hyundia Creta  */}
                 
@@ -197,6 +239,17 @@ const ModelDetails = () => {
                   </button>
                   <button
                     className="nav-link"
+                    id="nav-features-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#nav-features"
+                    role="tab"
+                    aria-controls="nav-features"
+                    aria-selected="false"
+                  >
+                    Features
+                  </button>
+                  <button
+                    className="nav-link"
                     id="nav-variants-tab"
                     data-bs-toggle="tab"
                     data-bs-target="#nav-variants"
@@ -206,17 +259,6 @@ const ModelDetails = () => {
                   >
                     Variants
                   </button>
-                  {/* <button
-                    className="nav-link"
-                    id="nav-review-tab"
-                    data-bs-toggle="tab"
-                    data-bs-target="#nav-review"
-                    role="tab"
-                    aria-controls="nav-review"
-                    aria-selected="false"
-                  >
-                    Reviews
-                  </button> */}
                 </div>
                 {/* Tab panes */}
                 <div className="tab-content col-lg-12" id="nav-tabContent">
@@ -253,6 +295,21 @@ const ModelDetails = () => {
                   {/* End overview tabcontent */}
 
                   <div
+                    className="tab-pane fade show active"
+                    id="nav-features"
+                    role="tabpanel"
+                    aria-labelledby="nav-features-tab"
+                  >
+                    <div className="opening_hour_widgets p30 bdr_none pl0 pr0">
+                      <div className="wrapper">
+                        <h4 className="title">Features</h4>
+                        <VariantFeature carModelDetails={carModelDetails} />
+                      </div>
+                    </div>
+                    {/* End opening_hour_widgets */}
+                  </div>
+
+                  <div
                     className="tab-pane fade"
                     id="nav-variants"
                     role="tabpanel"
@@ -280,6 +337,9 @@ const ModelDetails = () => {
        
           </div>
               </div>
+              </div>
+             
+              
               {/* <div className="listing_single_description d-flex flex-grow-1"> */}
               <div className="sidebar_recent_viewed_widgets">
                 <h4 className="title">Top Viewed Cars</h4>
@@ -289,6 +349,9 @@ const ModelDetails = () => {
               
               {/* </div> */}
               </div>
+
+              
+
               {/* End car descriptions */}
             </div>
             {/* End .col-xl-8 */}

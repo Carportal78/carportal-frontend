@@ -258,7 +258,7 @@ const VariantsList = ({ carModelDetails, variants }) => {
   );
 
   const handleViewVariantHandler = (variant) => {
-    router.push(`/listing-single-v3/${variant?._id}`)
+    router.push(`/variantDetails/${carModelDetails?.modelName?.split(' ')?.join('-')?.toLowerCase()}/${carModelDetails?._id}/variant/${variant?._id}`)
   }
 
   const renderContactButton = (variant) => (
