@@ -18,17 +18,17 @@ const DefaultHeader = () => {
           </div>
           <Link href="/" className="navbar_brand float-start dn-md">
             <Image
-              width={140}
-              height={45}
+              width={60}
+              height={60}
               className="logo1 img-fluid"
-              src="/images/header-"
+              src="/images/Carportal-Logo.png"
               alt="header-logo.svg"
             />
             <Image
-              width={140}
-              height={45}
+              width={60}
+              height={60}
               className="logo2 img-fluid"
-              src="/images/header"
+              src="/images/Carportal-Logo.png"
               alt="header-logo2.svg"
             />
           </Link>

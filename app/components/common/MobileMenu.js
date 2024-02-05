@@ -78,10 +78,10 @@ const MobileMenu = () => {
 
                         <div className="mobile_menu_main_logo">
                             <Image
-                                width={140}
+                                width={45}
                                 height={45}
                                 priority
-                                src="/images/header"
+                                src="/images/Carportal-Logo.png"
                                 alt="brand"
                             />
                         </div>
@@ -104,10 +104,10 @@ const MobileMenu = () => {
                     <div className="pro-header">
                         <Link href="/">
                             <Image
-                                width={140}
+                                width={45}
                                 height={45}
                                 priority
-                                src="/images/header-logo.svg"
+                                src="/images/Carportal-Logo.png"
                                 alt="brand"
                             />
                         </Link>
