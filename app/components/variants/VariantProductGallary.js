@@ -215,7 +215,7 @@ export default function VariantProductGallery({ carModelDetails, carVariantsList
                         </div>
             <div className="d-flex flex-column flex-md-row mt-2">
               <h4 className="mr10">₹ {carModelDetails?.priceRange?.minPrice} {carModelDetails?.priceRange?.minPriceType}*</h4>
-              <Link href={`/onroadprice/${carModelDetails?._id}`} className="tdu color-blue mt-md-0">Get On Road Price</Link>
+              <Link href={`/onroadprice/${carModelDetails?._id}`} className="tdu mt-md-0 color-black">Get On Road Price</Link>
             </div>
             <div><span style={{fontSize: '12px'}}>*Ex-showroom price in</span> <span data-bs-toggle="modal" data-bs-target="#contactDealerForm" style={{color: 'blue', textDecoration: 'underline', cursor: 'pointer'}}>Jaipur</span></div>
             {/* <p className="para">
