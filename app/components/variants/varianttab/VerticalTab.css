@@ -17,8 +17,8 @@
 
 .active-tab {
   color: #fff !important; /* White text for active tab */
-  background-color: #1a3760 !important; /* Bootstrap primary button background color */
-  border-color: #1a3760 !important; /* Matching border color */
+  background-color: black !important; /* Bootstrap primary button background color */
+  border-color: black !important; /* Matching border color */
 }
 
 .tab-content-area {

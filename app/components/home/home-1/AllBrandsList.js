@@ -45,6 +45,7 @@ function AllBrandsList() {
                   alt={brand.brandName}
                   className={styles.bodyTypeImage}
                   style={{ objectFit: 'cover' }}
+                  layout='responsive'
                 />
                 <span className={styles.bodyTypeTitle}>{brand.brandName}</span>
               </div>

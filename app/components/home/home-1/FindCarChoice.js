@@ -195,6 +195,7 @@ function FindCarChoice() {
                     src={bodyType.imgSrc}
                     alt={bodyType.title}
                     className={styles.bodyTypeImage}
+                    layout='responsive'
                   />
                   <span className={styles.bodyTypeTitle}>{bodyType.title}</span>
                 </div>
@@ -221,6 +222,7 @@ function FindCarChoice() {
                     alt={bodyType.title}
                     style={{ objectFit: "cover" }}
                     className={styles.bodyTypeImage}
+                    layout='responsive'
                   />
                   <div className={styles.bodyTypeTitle}>{bodyType.title}</div>
                 </div>
@@ -249,6 +251,7 @@ function FindCarChoice() {
                 width={150}
                     height={58}
                 className={styles.bodyTypeCheckImage}
+                layout='responsive'
               />
             </div>
             <div className={styles.bodyTypeTitle}>{bodyType.title}</div>

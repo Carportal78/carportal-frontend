@@ -80,7 +80,7 @@ const Home_1 = () => {
       {/* End Hero */}
 
       {/* Car Category */}
-      <section className="car-category mobile_space bgc-f9  pb100">
+      <section className="car-category mobile_space bgc-f9  pb10">
         <div className="container">
           <div className="row">
             <Category />
@@ -171,7 +171,7 @@ const Home_1 = () => {
       {/* End Featured Product  */}
 
       {/* Why Chose us  */}
-      <section className="why-chose pt0 pb90">
+      {/* <section className="why-chose pt0 pb90">
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-8">
@@ -184,15 +184,15 @@ const Home_1 = () => {
             <WhyChoose />
           </div>
         </div>
-      </section>
+      </section> */}
       {/* Why Chose us  */}
 
       {/* Delivery Divider */}
-      <section className="deliver-divider bg-img1">
+      {/* <section className="deliver-divider bg-img1">
         <div className="container">
           <CarIntro />
         </div>
-      </section>
+      </section> */}
       {/* End Delivery Divider */}
 
       {/* Our Popular Listing */}
