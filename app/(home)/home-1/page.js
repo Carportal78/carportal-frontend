@@ -39,15 +39,15 @@ const Home_1 = () => {
         'Content-Type': 'application/json'
       }
     })
-    .then(response => response.json())
-    .then(data => {
-      if (data && data.data && data.data.carCollectionsList) {
-        setCollections(data.data.carCollectionsList);
-      }
-    })
-    .catch(error => {
-      console.error('Error fetching data: ', error);
-    });
+      .then(response => response.json())
+      .then(data => {
+        if (data && data.data && data.data.carCollectionsList) {
+          setCollections(data.data.carCollectionsList);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching data: ', error);
+      });
   }, []);
   return (
     <div className="wrapper ovh">
@@ -89,8 +89,8 @@ const Home_1 = () => {
       </section>
       {/* End Car Cartegory */}
 
-       {/* All brands List */}
-       <section className="featured-product">
+      {/* All brands List */}
+      <section className="featured-product">
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-8">
@@ -111,7 +111,7 @@ const Home_1 = () => {
         {/* End .container */}
       </section>
 
-       {/* Find the car pf choice */}
+      {/* Find the car pf choice */}
       <section className="featured-product">
         <div className="container">
           <div className="row justify-content-center">
@@ -125,7 +125,7 @@ const Home_1 = () => {
 
           <div className="row">
             <div className="col-lg-12" data-aos-delay="100" data-aos="fade-up">
-              <FindCarChoice /> 
+              <FindCarChoice />
             </div>
           </div>
           {/* End .row */}
@@ -134,40 +134,44 @@ const Home_1 = () => {
       </section>
 
       {/* Featured Product  */}
-      <section className="featured-product">
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-lg-8">
-              <div className="main-title text-center">
-                <h2>{collections?.[0]?.name}</h2>
+      {collections?.map(collection => (
+        <section className="featured-product">
+          <div className="container">
+            <div className="row justify-content-center">
+              <div className="col-lg-8">
+                <div className="main-title text-center">
+                  <h2>{collection?.name}</h2>
+                </div>
               </div>
             </div>
-          </div>
-          {/* End .row */}
+            {/* End .row */}
 
-          <div className="row">
-            <div className="col-lg-12" data-aos-delay="100" data-aos="fade-up">
-              <FeaturedFilterListing collection={collections?.[0]} />
-            </div>
-          </div>
-          {/* End .row */}
-
-          <div className="row mt20">
-            <div className="col-lg-12">
-              <div className="text-center">
-                <Link href="/page-list-v1" className="more_listing">
-                  Show All Cars{" "}
-                  <span className="icon">
-                    <span className="fas fa-plus" />
-                  </span>
-                </Link>
+            <div className="row">
+              <div className="col-lg-12" data-aos-delay="100" data-aos="fade-up">
+              <PopularListings collection={collection} />
+                {/* <FeaturedFilterListing collection={collection} /> */}
               </div>
             </div>
+            {/* End .row */}
+
+            <div className="row mt20">
+              <div className="col-lg-12">
+                <div className="text-center">
+                  <Link href="/page-list-v1" className="more_listing">
+                    Show All Cars{" "}
+                    <span className="icon">
+                      <span className="fas fa-plus" />
+                    </span>
+                  </Link>
+                </div>
+              </div>
+            </div>
+            {/* End .row */}
           </div>
-          {/* End .row */}
-        </div>
-        {/* End .container */}
-      </section>
+          {/* End .container */}
+        </section>
+      ))}
+
       {/* End Featured Product  */}
 
       {/* Why Chose us  */}
@@ -196,7 +200,7 @@ const Home_1 = () => {
       {/* End Delivery Divider */}
 
       {/* Our Popular Listing */}
-      <section className="popular-listing pb80 bg-ptrn1 bgc-heading-color">
+      {/* <section className="popular-listing pb80 bg-ptrn1 bgc-heading-color">
         <div className="container">
           <div className="row">
             <div className="col-lg-6 offset-lg-3">
@@ -204,9 +208,9 @@ const Home_1 = () => {
                 <h2 className="text-white">{collections?.[1]?.name}</h2>
               </div>
             </div>
-          </div>
+          </div> */}
           {/* End .row */}
-
+{/* 
           <div className="col-lg-12">
             <div className="home1_popular_listing">
               <div className="listing_item_4grid_slider dots_none">
@@ -215,7 +219,7 @@ const Home_1 = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
       {/* End Our Popular Listing */}
 
       {/* <!-- Funfact --> */}
