@@ -12,10 +12,10 @@ const Footer = () => {
             <div className="footer_about_widget text-start">
               <div className="logo mb40 mb0-sm">
                 <Image
-                  width={140}
-                  height={45}
+                  width={60}
+                  height={60}
                   className="logo2 img-fluid"
-                  src="/images/heade"
+                  src="/images/Carportal-Logo.png"
                   alt="header"
                 />
               </div>
