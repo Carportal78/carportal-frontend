@@ -135,7 +135,7 @@ const Home_1 = () => {
 
       {/* Featured Product  */}
       {collections?.map(collection => (
-        <section className="featured-product">
+        <section className="featured-product" key={collection?._id}>
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-lg-8">
