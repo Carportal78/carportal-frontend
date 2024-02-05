@@ -70,7 +70,8 @@ const MobileMenu = () => {
                                 data-bs-target="#mobileMenu"
                                 aria-controls="mobileMenu"
                             >
-                                <small>Menu</small>
+                                {/* <small>Menu</small> */}
+                                <span />
                                 <span />
                             </a>
                         </div>

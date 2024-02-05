@@ -1,0 +1,31 @@
+.search_icon {
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .search_dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    z-index: 1000;
+  }
+  
+  .search_dropdown ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .search_dropdown ul li a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+  }
+  
+  .search_dropdown ul li a:hover {
+    background-color: #f2f2f2;
+  }
+  

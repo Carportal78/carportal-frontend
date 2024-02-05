@@ -2,46 +2,34 @@ import Link from "next/link";
 import MainMenu from "../../common/MainMenu";
 import Image from "next/image";
 
-const Header = () => {
+const Header = ({ carModelList }) => {
   return (
     <header className="header-nav menu_style_home_one transparent main-menu">
-      {/* Ace Responsive Menu */}
       <nav>
         <div className="container posr">
-          {/* Menu Toggle btn*/}
           <div className="menu-toggle">
             <button type="button" id="menu-btn">
-              <span className="icon-bar" />
-              <span className="icon-bar" />
-              <span className="icon-bar" />
+              <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
             </button>
           </div>
-          <Link href="/" className="navbar_brand float-start dn-md">
-            <Image
-              width={60}
-              height={60}
-              className="logo1 img-fluid"
-              src="/images/Carportal-Logo.png"
-              alt="Carportal-Logo.png"
-            />
-            <Image
-              width={60}
-              height={60}
-              className="logo2 img-fluid"
-              src="/images/Carportal-Logo.png"
-              alt="Carportal-Logo.png"
-            />
+          <Link href="/" passHref>
+            <div className="navbar_brand float-start dn-md">
+              <Image
+                width={60}
+                height={60}
+                src="/images/Carportal-Logo.png"
+                alt="Carportal-Logo"
+              />
+            </div>
           </Link>
-          {/* Responsive Menu Structure*/}
           <ul
             id="respMenu"
             className="ace-responsive-menu text-end"
             data-menu-style="horizontal"
           >
             <MainMenu />
-            {/* <li className="add_listing">
-              <Link href="/add-listings">+ Add Listing</Link>
-            </li> */}
             <li
               className="sidebar_panel"
               data-bs-toggle="offcanvas"
@@ -49,7 +37,7 @@ const Header = () => {
               aria-controls="offcanvasRight"
             >
               <a className="sidebar_switch pt0" role="button">
-                <span />
+                <span></span>
               </a>
             </li>
           </ul>

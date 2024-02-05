@@ -3,6 +3,7 @@ import menuItems from "../../../data/menuItems";
 import { isParentActive } from "../../../utils/isMenuActive";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Select from "react-select";
 
 const MainMenu = () => {
     const path = usePathname();
@@ -51,7 +52,7 @@ const MainMenu = () => {
                                                         <Link
                                                             className={
                                                                 path ===
-                                                                nestedSubItem.path
+                                                                    nestedSubItem.path
                                                                     ? "active"
                                                                     : ""
                                                             }

@@ -10,19 +10,6 @@ const Hero = () => {
             <div className="home_content home1_style">
               <div className="home-text text-center mb30">
                 <h2 className="title">
-                  <span className="aminated-object1">
-                    <Image
-                      width={110}
-                      height={14}
-                      style={{
-                        objectFit: "contain",
-                      }}
-                      priority
-                      className="objects" 
-                      src="/images/home/header-background.jpg"
-                      alt="img"
-                    />
-                  </span>
                   Find Your Next Match
                 </h2>
                 <p className="para">Find the right price, dealer and advice.</p>
