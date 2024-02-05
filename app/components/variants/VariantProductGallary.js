@@ -154,7 +154,7 @@ export default function VariantProductGallery({ carModelDetails, carVariantsList
             </Swiper>
           </Col>
 
-          <Col xs={12} md={6} className="order-md-2 mb-4 mb-md-0">
+          <Col xs={12} md={5} className="order-md-2 mb-4 mb-md-0">
             <Swiper
               spaceBetween={10}
               navigation={true}
@@ -183,7 +183,7 @@ export default function VariantProductGallery({ carModelDetails, carVariantsList
 
           <Col xs={12} md={4} className="order-md-3">
             <div className="product-details px-md-0 d-flex justify-content-between"> {/* Added padding for mobile view */}
-              <h3>{carVariant?.name}</h3>
+              <h3 style={{fontSize: '20px'}}>{carVariant?.name}</h3>
               {/* <a className="fz12 tdu color-blue" href="#">
                 Compare
               </a> */}

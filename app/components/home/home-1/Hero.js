@@ -10,7 +10,7 @@ const Hero = () => {
             <div className="home_content home1_style">
               <div className="home-text text-center mb30">
                 <h2 className="title">
-                  Find Your Next Match
+                  Find Your Right Car
                 </h2>
                 <p className="para">Find the right price, dealer and advice.</p>
               </div>
