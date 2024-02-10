@@ -21,9 +21,9 @@ const Descriptions = ({ carModelDetails }) => {
 
   return (
     <>
-    <Container>
+    <div>
       <Row>
-        <Col xs={12}> {/* Ensures full width on extra small (mobile) screens */}
+        <div> {/* Ensures full width on extra small (mobile) screens */}
           <p>{carModelDetails?.description}</p>
           {/* Uncomment if you wish to include additional paragraphs dynamically
           {paragraphs.map((paragraph, index) => (
@@ -32,9 +32,9 @@ const Descriptions = ({ carModelDetails }) => {
             </p>
           ))}
           */}
-        </Col>
+        </div>
       </Row>
-    </Container>
+    </div>
     </>
   );
 };

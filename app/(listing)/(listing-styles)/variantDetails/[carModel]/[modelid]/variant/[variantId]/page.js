@@ -322,7 +322,7 @@ const ModelDetails = () => {
                     role="tabpanel"
                     aria-labelledby="nav-variants-tab"
                   >
-                    <div className="user_profile_service  bdr_none pl0 pr0">
+                    <div className="user_profile_service bdr_none pl0 pr0">
                       <VariantsList carModelDetails={carModelDetails} variants={carVariantsList} />
                       {/* <Features /> */}
                       <hr />

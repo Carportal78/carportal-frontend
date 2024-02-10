@@ -165,7 +165,7 @@ const ModelDetails = () => {
               <ProductGallery carModelDetails={carModelDetails} />
               {/* End Car Gallery */}
               <div className="d-flex flex-wrap gap-4">
-              <div className="listing_single_description col-lg-8 col-xl-8">
+              <div className= "col-lg-8 col-xl-8" style={{backgroundColor: "rgb(255, 255, 255)", border: "1px solid rgb(234, 234, 234)", borderRadius: "8px", position: "relative", paddingLeft: "20px", paddingTop: "20px"}}>
               <div className="row">
                 {/* Key Specs of Hyundia Creta  */}
                 
@@ -257,7 +257,7 @@ const ModelDetails = () => {
                     role="tabpanel"
                     aria-labelledby="nav-variants-tab"
                   >
-                    <div className="user_profile_service  bdr_none pl0 pr0">
+                    <div className="user_profile_service bdr_none pl0 pr0">
                       <VariantsList carModelDetails={carModelDetails} variants={carVariantsList} />
                       {/* <Features /> */}
                       <hr />
