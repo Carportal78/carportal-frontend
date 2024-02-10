@@ -84,11 +84,20 @@ const VariantsList = ({ carModelDetails, variants }) => {
           </div>
           <div><strong>₹ {+variant.tcsChange + (+variant.tdsCharge)}</strong></div>
         </div>
-        <divider></divider>
+        <div style={{ border: '0.1px solid #dee2e6', marginTop:'1em' }}><divider></divider></div>
+        {/* <ListGroup variant="flush">
+        <ListGroup.Item></ListGroup.Item>
+        <ListGroup.Item></ListGroup.Item>
+      </ListGroup> */}
+      <div className='d-flex justify-content-between mt-3'>
+      <div style={{color: '#24272c', fontSize: '15px', fontWeight: '500'}}  >On-Road Price in {'Jaipur'}</div>
+      <div style={{color: '#24272c', fontSize: '15px', fontWeight: '500'}}>Rs.48.50 - 52.70 Lakh *</div>
+    </div>
+        {/* <divider></divider>
         <ListGroup className="list-group-flush">
           <ListGroup.Item></ListGroup.Item>
           <ListGroup.Item>Rs.48.50 - 52.70 Lakh *</ListGroup.Item>
-        </ListGroup>
+        </ListGroup> */}
       </div>
 
     </>
@@ -100,7 +109,7 @@ const VariantsList = ({ carModelDetails, variants }) => {
 
   const renderContactButton = (variant) => (
     <Button className="btn btn-thm ofr_btn1 w-100" onClick={() => handleViewVariantHandler(variant)}>
-      <span className="flaticon-profit-report mr-2 fz18 vam" />
+      <span className="flaticon-profit-report mr-2 fz18 vam" />{"  "}
       View Variant
     </Button>
   );
