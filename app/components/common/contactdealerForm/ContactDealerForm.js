@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ContactDealer from "./ContactDealer";
 import SignupForm from "./SignupForm";
 import Link from "next/link";
+import { useAtom } from "jotai";
+import { selectCarBrandAtom, selectCarModelAtom, selectCarVariantAtom } from "../../atoms/categoriesAtoms";
 
-const ContactDealerForm = ({ carModelDetails }) => { 
+const ContactDealerForm = ({ carModelDetails, carVariantsList }) => { 
+
+  const [hideHeader, setHideHeader] = useState(false);
+
+  const handleHeaderHide = () => {
+    setHideHeader(true);
+  }
+
+  useEffect(() => {
+    setHideHeader(false);
+  }, [])
+  
   return (
     <div className="modal-dialog modal-dialog-centered">
       <div className="modal-content">
@@ -18,6 +31,7 @@ const ContactDealerForm = ({ carModelDetails }) => {
         {/* End Modal close button */}
 
         <div className="modal-body container p60">
+          {!hideHeader &&
           <div className="row">
             <div className="col-lg-12">
               <ul
@@ -41,6 +55,7 @@ const ContactDealerForm = ({ carModelDetails }) => {
               </ul>
             </div>
           </div>
+}
           {/* End .row */}
 
           <div className="tab-content container p0" id="myTabContent">
@@ -53,10 +68,10 @@ const ContactDealerForm = ({ carModelDetails }) => {
               >
                 <div className="col-lg-12">
                 <div className="login_form">
-                  <p>
-                    For Query? Please fill following details to contact a dealer.
-                  </p>
-                  <ContactDealer carModelDetails={carModelDetails} />
+                {!hideHeader && <p>
+                    For Query? Please fill following details to contact a dealer for <strong style={{color: 'blue'}}>{carModelDetails?.modelName}</strong>.
+                  </p>}
+                  <ContactDealer carModelDetails={carModelDetails} carVariantsList={carVariantsList} onCLickHideHeader={handleHeaderHide} />
                 </div>
                 </div>
               </div>

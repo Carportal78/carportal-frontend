@@ -12,6 +12,8 @@ import styles from './ProductGallery.module.css';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Select from "react-select";
 import { useRouter } from "next/navigation";
+import { useAtom } from "jotai";
+import { selectCarBrandAtom, selectCarModelAtom, selectCarVariantAtom } from "../../../atoms/categoriesAtoms";
 
 
 const slides = [
@@ -113,9 +115,12 @@ export default function ProductGallery({ carModelDetails, carVariantsList }) {
   const [isOpen, setOpen] = useState(false);
   const [videoId, setVideoId] = useState("");
   const [selectedGroup, setselectedGroup] = useState(null);
+  const [,setSelectCarBrandData] = useAtom(selectCarBrandAtom);
+  const [,setSelectCarModelData] = useAtom(selectCarModelAtom);
+  const [,setSelectCarVariantData] = useAtom(selectCarVariantAtom);
   const router = useRouter();
 
-  const openModal = (id) => {
+  const openModal = (id) => { 
     setVideoId(id);
     setOpen(true);
   };
@@ -126,6 +131,12 @@ export default function ProductGallery({ carModelDetails, carVariantsList }) {
 
   function handleRedirectToDealersPage() {
     router.push(`/dealers/${carModelDetails?.carBrand?._id}`);
+  }
+
+  function handleContactDealer() {
+    setSelectCarBrandData(carModelDetails?.carBrand);
+    setSelectCarModelData(carModelDetails);
+    setSelectCarVariantData({});
   }
 
   return (
@@ -233,7 +244,7 @@ export default function ProductGallery({ carModelDetails, carVariantsList }) {
                   </p> */}
             <div className="offer_btns mt-5">
               <div className="text-end">
-                <button className="btn btn-thm ofr_btn1 btn-block mt0 mb20" data-bs-toggle="modal" data-bs-target="#contactDealerForm">
+                <button className="btn btn-thm ofr_btn1 btn-block mt0 mb20" onClick={handleContactDealer} data-bs-toggle="modal" data-bs-target="#contactDealerForm">
                   <span className="flaticon-profit-report mr10 fz18 vam" />
                   Contact Dealer
                 </button>

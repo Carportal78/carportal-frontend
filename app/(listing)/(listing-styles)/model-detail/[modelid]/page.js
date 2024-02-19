@@ -231,7 +231,7 @@ const ModelDetails = () => {
                       </h4>
                       <Descriptions carModelDetails={carModelDetails} />
                     </div>
-                    {/* End car descriptions */} 
+                    {/* End car descriptions */}
                   </div>
                   {/* End description tabcontent */}
 
@@ -407,7 +407,7 @@ const ModelDetails = () => {
         tabIndex={-1}
         aria-hidden="true"
       >
-        <ContactDealerForm carModelDetails={carModelDetails} />
+        <ContactDealerForm carModelDetails={carModelDetails} carVariantsList={carVariantsList} />
       </div>
 
       <div

@@ -51,6 +51,10 @@ export default function DealersPageDescription({ carModelDetails, carVariantsLis
         setselectedGroup(selectedGroup);
     }
 
+    function handleSearchDealer() {
+        
+    }
+
     return (
         <>
             <div className=" p20 bdr_none pl0 pr0">
@@ -84,9 +88,9 @@ export default function DealersPageDescription({ carModelDetails, carVariantsLis
                         />
                     </Col>
                     <Col className=" mb-3 mt-md-5">
-                    <button className="btn btn-thm ofr_btn1 btn-block mt0 mb20" data-bs-toggle="modal" data-bs-target="#contactDealerForm">
+                    <button className="btn btn-thm ofr_btn1 btn-block mt0 mb20" onClick={handleSearchDealer}>
                   <span className="flaticon-profit-report mr10 fz18 vam" />
-                  Contact Dealer
+                  Search Dealer
                 </button>
                     </Col>
                 </div>

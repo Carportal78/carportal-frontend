@@ -217,7 +217,7 @@ export default function VariantProductGallery({ carModelDetails, carVariantsList
               <h4 className="mr10">₹ {carModelDetails?.priceRange?.minPrice} {carModelDetails?.priceRange?.minPriceType}*</h4>
               <Link href={`/onroadprice/${carModelDetails?._id}`} className="tdu mt-md-0 color-black">Get On Road Price</Link>
             </div>
-            <div><span style={{fontSize: '12px'}}>*Ex-showroom price in</span> <span data-bs-toggle="modal" data-bs-target="#contactDealerForm" style={{color: 'blue', textDecoration: 'underline', cursor: 'pointer'}}>Jaipur</span></div>
+            <div><span style={{fontSize: '12px'}}>*Ex-showroom price in</span> <span data-bs-toggle="modal" data-bs-target="#exShowroomPriceForm" style={{color: 'blue', textDecoration: 'underline', cursor: 'pointer'}}>Jaipur</span></div>
             {/* <p className="para">
                     *Ex-showroom Price in<a href="#" className="tdu color-blue ml10">Jaipur</a>
                   </p> */}

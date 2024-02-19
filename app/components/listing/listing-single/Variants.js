@@ -68,7 +68,7 @@ const VariantsList = ({ carModelDetails, variants }) => {
             <OverlayTrigger placement="right" overlay={<Tooltip id="tooltip">
               <strong>Holy guacamole!</strong> Check this info.
             </Tooltip>}>
-              <Image src="/images/icon/info.svg" width={15} height={15} />
+              <Image src="/images/icon/info.svg" width={15} height={15} alt="info icon of variant" />
             </OverlayTrigger>
           </div>
           <div><strong>₹ {variant.insurance}</strong></div>
@@ -79,7 +79,7 @@ const VariantsList = ({ carModelDetails, variants }) => {
             <OverlayTrigger placement="right" overlay={<Tooltip id="tooltip">
               <strong>Holy guacamole!</strong> Check this info.
             </Tooltip>}>
-              <Image src="/images/icon/info.svg" width={15} height={15} />
+              <Image src="/images/icon/info.svg" width={15} height={15} alt={'info text'} />
             </OverlayTrigger>
           </div>
           <div><strong>₹ {+variant.tcsChange + (+variant.tdsCharge)}</strong></div>
@@ -90,8 +90,8 @@ const VariantsList = ({ carModelDetails, variants }) => {
         <ListGroup.Item></ListGroup.Item>
       </ListGroup> */}
       <div className='d-flex justify-content-between mt-3'>
-      <div style={{color: '#24272c', fontSize: '15px', fontWeight: '500'}}  >On-Road Price in {'Jaipur'}</div>
-      <div style={{color: '#24272c', fontSize: '15px', fontWeight: '500'}}>Rs.48.50 - 52.70 Lakh *</div>
+      <div style={{color: '#24272c', fontSize: '15px', fontWeight: '800'}}  >On-Road Price in {'Jaipur'}</div>
+      <div style={{color: '#24272c', fontSize: '15px', fontWeight: '500'}}>Rs.48.50 Lakh</div>
     </div>
         {/* <divider></divider>
         <ListGroup className="list-group-flush">

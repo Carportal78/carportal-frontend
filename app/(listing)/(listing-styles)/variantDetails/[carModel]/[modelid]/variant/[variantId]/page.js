@@ -6,6 +6,7 @@ import HeaderTop from "../../../../../../../components/common/HeaderTop";
 import MobileMenu from "../../../../../../../components/common/MobileMenu";
 import ContactDealerForm from "../../../../../../../components/common/contactdealerForm/ContactDealerForm";
 import ShareForm from "../../../../../../../components/common/contactdealerForm/ShareForm";
+import ExShowroomPriceForm from "../../../../../../../components/common/contactdealerForm/ExShowroomPriceForm";
 import VariantListForm from "../../../../../../../components/common/contactdealerForm/VariantListForm";
 import LoginSignupModal from "../../../../../../../components/common/login-signup";
 import BreadCrumb from "../../../../../../../components/listing/listing-single/BreadCrumb";
@@ -481,6 +482,16 @@ const ModelDetails = () => {
         <ContactDealerForm carModelDetails={carModelDetails} />
       </div>
 
+      <div
+        className="sign_up_modal modal fade"
+        id="exShowroomPriceForm"
+        data-backdrop="static"
+        data-keyboard=""
+        tabIndex={-1}
+        aria-hidden="true"
+      >
+        <ExShowroomPriceForm carModelDetails={carModelDetails} />
+      </div>
       <div
         className="sign_up_modal modal fade"
         id="shareForm"
