@@ -6,3 +6,7 @@ export const selectCarModelAtom = atom({}); // Replace 'initialValue' with the i
 export const selectCarBrandAtom = atom({});
 
 export const selectCarVariantAtom = atom({});
+
+export const selectCarDealerAtom = atom({});
+
+export const selectCarDealersListAtom = atom([]);

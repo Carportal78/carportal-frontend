@@ -9,9 +9,11 @@ import Link from "next/link";
 import ReleatedCar from "../../../../components/listing/listing-single/ReleatedCar";
 import DealersPageDescription from "../../../../components/dealers/DealersPageDescription";
 import ProductDescripitons from "../../../../components/shop/shop-single/pro-tab-content/ProductDescripitons";
-import { Card } from "react-bootstrap";
+import { Card, Col } from "react-bootstrap";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { selectCarDealerAtom } from "../../../../components/atoms/categoriesAtoms";
+import { useAtom } from "jotai";
 
 const metadata = {
   title: "OnRoad Price || Carportal - Automotive & Car Dealer",
@@ -25,6 +27,7 @@ const Dealers = () => {
   const [carModelDetails, setCarModelDetails] = useState({});
   const [carVariantsList, setCarVariantsList] = useState([]);
   const [carModelsList, setCarModelsList] = useState([]);
+  const [selectCarVariantData, setSelectCarVariantData] = useAtom(selectCarDealerAtom);
 
   useEffect(() => {
     const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carbrands/for/65538448b78add9eaa02d417';
@@ -113,19 +116,11 @@ const Dealers = () => {
             </div>
           </div>
 
-
-
-          <Card className="row">
-            <div className="col-lg-12 col-xl-12">
-              <ProductDescripitons carModelDetails={carModelDetails} carVariantsList={carVariantsList} />
-            </div>
-          </Card>
-          {/* End .row */}
-        </div>
-
-        <div className="container">
-
-          <div className="row" style={{
+          <p className="col-lg-12 col-xl-12 mb-3" style={{ fontSize: '1.5em', fontWeight: "600", color: '#24272c' }}>
+            21 Mahindra Car Dealers in New Delhi
+          </p>
+          <div >
+            <Col xs={5} sm={4} md={3} lg={4} xl={4} style={{
             backgroundColor: "#fff",
             border: "1px solid #eaeaea",
             borderRadius: "8px",
@@ -133,16 +128,20 @@ const Dealers = () => {
             paddingLeft: "30px",
             paddingRight: "30px",
             paddingTop: "30px",
-            position: "relative"
+            paddingBottom: "30px",
+            boxShadow: "0px 2px 12px rgba(36,40,44,.08)"
           }}>
-            <div className="col-lg-12 col-xl-12">
-              <DealersPageDescription carModelDetails={carModelDetails} carVariantsList={carVariantsList} carBrandsList={carBrandsList} />
-            </div>
+            <h4>Harbans Motors Pvt Ltd</h4>
+            <p style={{fontWeight: '400', fontSize: '1em'}}>PLOT NO 19 BLOCK NO 62, UPPER GROUND FLOOR, KAROL BAGH, NEW ROHTAK ROAD, New Delhi, Delhi 110005</p>
+            <button>DIrection</button>
+            <button>Contact</button>
+            </Col>
+            
           </div>
           {/* End .row */}
         </div>
 
-        
+
         {/* End .container */}
       </section>
       {/* End Agent Single Grid View */}
