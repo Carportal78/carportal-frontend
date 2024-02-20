@@ -53,6 +53,7 @@ const ModelDetails = () => {
   const [selectCarModelData, setSelectCarModelData] = useAtom(selectCarModelAtom);
   const [selectCarBrandData, setSelectCarBrandData] = useAtom(selectCarBrandAtom);
   const [selectCarVariantData, setSelectCarVariantData] = useAtom(selectCarVariantAtom);
+  const [cityCode, setCityCode] = useState(1);
 
   useEffect(() => {
     // alert('modelId ', modelid);
@@ -74,7 +75,7 @@ const ModelDetails = () => {
   }, [carModelDetails]);
 
   useEffect(() => {
-    const apiUrl = `https://api.univolenitsolutions.com/v1/automobile/get/carmodel/${modelid}/for/65538448b78add9eaa02d417`;
+    const apiUrl = `http://localhost:3005/v1/automobile/get/carmodel/${modelid}/citycode/${cityCode}/for/65538448b78add9eaa02d417`;
     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
 
     fetch(apiUrl, {
@@ -87,14 +88,16 @@ const ModelDetails = () => {
     .then(response => response.json())
     .then(data => {
       if (data && data.data && data.data) {
+        console.log('variantpagedata ', data.data);
         setCarModelDetails(data.data.carModel);
         setCarVariantsList(data.data.carVariantList);
         setSelectCarModelData(data.data.carModel);
         setSelectCarVariantData(data.data.carVariantsList);
+        console.log('variantID ', variantId);
         if(variantId) {
           const variant = data.data.carVariantList?.find(variant => variant._id === variantId);
+          console.log('variantIddata ', variant);
           setCarVariant(variant);
-          console.log("variantData ", variant);
         }
       }
     })

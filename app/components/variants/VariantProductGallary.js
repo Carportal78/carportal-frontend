@@ -69,11 +69,11 @@ function OffCanvasExampleCompare({ name, ...props }) {
 
   return (
     <>
-     <div onClick={handleShow}>
-    <Image width={30} height={30} src="/images/modeldetails/Compare.svg" className="ml10" alt="Image 1" fluid />
-     <p className="me-2" style={{ cursor: 'pointer' }}>
-        {name}
-      </p>
+      <div onClick={handleShow}>
+        <Image width={30} height={30} src="/images/modeldetails/Compare.svg" className="ml10" alt="Image 1" fluid />
+        <p className="me-2" style={{ cursor: 'pointer' }}>
+          {name}
+        </p>
       </div>
       <Offcanvas show={show} onHide={handleClose} {...props}>
         <Offcanvas.Header closeButton>
@@ -183,7 +183,7 @@ export default function VariantProductGallery({ carModelDetails, carVariantsList
 
           <Col xs={12} md={4} className="order-md-3">
             <div className="product-details px-md-0 d-flex justify-content-between"> {/* Added padding for mobile view */}
-              <h3 style={{fontSize: '20px'}}>{carVariant?.name}</h3>
+              <h3 style={{ fontSize: '20px' }}>{carVariant?.name}</h3>
               {/* <a className="fz12 tdu color-blue" href="#">
                 Compare
               </a> */}
@@ -203,24 +203,21 @@ export default function VariantProductGallery({ carModelDetails, carVariantsList
                 41 reviews{" "}
               </Link>
             </div>
-                  <div className=" mb-3 w-75 mt-4">
-                          <Select
-                            placeholder="Change Variant..."
-                            value={selectedGroup}
-                            onChange={handleSelectGroup}
-                            options={optionGroup}
-                            className="select2-selection"
-                            // styles={customStyles} 
-                          />
-                        </div>
+            <div className=" mb-3 w-75 mt-4">
+              <Select
+                placeholder="Change Variant..."
+                value={selectedGroup}
+                onChange={handleSelectGroup}
+                options={optionGroup}
+                className="select2-selection"
+              // styles={customStyles} 
+              />
+            </div>
             <div className="d-flex flex-column flex-md-row mt-2">
               <h4 className="mr10">₹ {carModelDetails?.priceRange?.minPrice} {carModelDetails?.priceRange?.minPriceType}*</h4>
               <Link href={`/onroadprice/${carModelDetails?._id}`} className="tdu mt-md-0 color-black">Get On Road Price</Link>
             </div>
-            <div><span style={{fontSize: '12px'}}>*Ex-showroom price in</span> <span data-bs-toggle="modal" data-bs-target="#exShowroomPriceForm" style={{color: 'blue', textDecoration: 'underline', cursor: 'pointer'}}>Jaipur</span></div>
-            {/* <p className="para">
-                    *Ex-showroom Price in<a href="#" className="tdu color-blue ml10">Jaipur</a>
-                  </p> */}
+            <div><span style={{ fontSize: '12px' }}>*Ex-showroom price in</span> <span data-bs-toggle="modal" data-bs-target="#exShowroomPriceForm" style={{ color: 'blue', textDecoration: 'underline', cursor: 'pointer' }}>{carVariant?.pricingDetails?.city}</span></div>
             <div className="offer_btns mt-5">
               <div className="text-end">
                 <button className="btn btn-thm ofr_btn1 btn-block mt0 mb20" data-bs-toggle="modal" data-bs-target="#contactDealerForm">
@@ -231,10 +228,10 @@ export default function VariantProductGallery({ carModelDetails, carVariantsList
             </div>
 
             <div className="d-flex align-items-center mt-3 justify-content-center gap-5">
-              <div className="me-3" style={{cursor: 'pointer'}} >
-                <OffCanvasExampleCompare key={1} placement={'end'} name={'Compare'}  />
+              <div className="me-3" style={{ cursor: 'pointer' }} >
+                <OffCanvasExampleCompare key={1} placement={'end'} name={'Compare'} />
               </div>
-              <div className="me-3" style={{cursor: 'pointer'}} data-bs-toggle="modal" data-bs-target="#variantListForm">
+              <div className="me-3" style={{ cursor: 'pointer' }} data-bs-toggle="modal" data-bs-target="#variantListForm">
                 <Image width={30} height={30} src="/images/modeldetails/Variants.svg" alt="Image 2" className="ml10" fluid />
                 <p>Variants</p>
               </div>
@@ -242,8 +239,8 @@ export default function VariantProductGallery({ carModelDetails, carVariantsList
                 <Image width={30} height={30}  src="/images/modeldetails/Share.svg" alt="Image 3" fluid />
                 <p>Share</p>
               </div> */}
-              <div style={{cursor: 'pointer'}} onClick={handleRedirectToDealersPage}>
-                <Image width={30} height={30} className="ml10"  src="/images/modeldetails/dealers.svg" alt="Dealers" fluid />
+              <div style={{ cursor: 'pointer' }} onClick={handleRedirectToDealersPage}>
+                <Image width={30} height={30} className="ml10" src="/images/modeldetails/dealers.svg" alt="Dealers" fluid />
                 <p>Dealers</p>
               </div>
             </div>

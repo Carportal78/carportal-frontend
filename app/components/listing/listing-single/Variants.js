@@ -114,7 +114,7 @@ const VariantsList = ({ carModelDetails, variants }) => {
         <ListGroup.Item></ListGroup.Item>
       </ListGroup> */}
         <div className='d-flex justify-content-between mt-3'>
-          <div style={{ color: '#24272c', fontSize: '15px', fontWeight: '800' }}  >On-Road Price in {'Delhi'}</div>
+          <div style={{ color: '#24272c', fontSize: '15px', fontWeight: '800' }}  >On-Road Price in {variant?.pricingDetails?.city}</div>
           <div style={{ color: '#24272c', fontSize: '15px', fontWeight: '500' }}>₹ {calculateTotalPrice(variant).toLocaleString('en-IN')}</div>
         </div>
         {/* <divider></divider>
