@@ -27,6 +27,29 @@ const metadata = {
 const Home_1 = () => {
 
   const [collections, setCollections] = useState([]);
+  const [testimonials, setTestimonials] = useState([]);
+
+  useEffect(() => {
+    const apiUrl = 'http://localhost:3005/v1/testimonial/get/submitted/all/for/65538448b78add9eaa02d417';
+    const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
+
+    fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'X-API-Key': apiKey,
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data && data.data && data.data.testimonialsList) {
+          setTestimonials(data.data.testimonialsList);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching data: ', error);
+      });
+  }, []);
 
   useEffect(() => {
     const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carCollections/for/65538448b78add9eaa02d417';
@@ -49,6 +72,29 @@ const Home_1 = () => {
         console.error('Error fetching data: ', error);
       });
   }, []);
+
+  useEffect(() => {
+    const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carCollections/for/65538448b78add9eaa02d417';
+    const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
+
+    fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'X-API-Key': apiKey,
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data && data.data && data.data.carCollectionsList) {
+          setCollections(data.data.carCollectionsList);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching data: ', error);
+      });
+  }, []);
+
   return (
     <div className="wrapper ovh">
       {/* Sidebar Panel Start */}
@@ -148,7 +194,7 @@ const Home_1 = () => {
 
             <div className="row">
               <div className="col-lg-12" data-aos-delay="100" data-aos="fade-up">
-              <PopularListings collection={collection} />
+                <PopularListings collection={collection} />
                 {/* <FeaturedFilterListing collection={collection} /> */}
               </div>
             </div>
@@ -171,6 +217,27 @@ const Home_1 = () => {
           {/* End .container */}
         </section>
       ))}
+
+      <section className="featured-product">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-lg-8">
+              <div className="main-title text-center">
+                <h2>Testimonials</h2>
+              </div>
+            </div>
+          </div>
+          {/* End .row */}
+
+          <div className="row">
+            <div className="col-lg-12" data-aos-delay="100" data-aos="fade-up">
+              <Testimonial testimonials={testimonials} />
+              {/* <FeaturedFilterListing collection={collection} /> */}
+            </div>
+          </div>
+        </div>
+        {/* End .container */}
+      </section>
 
       {/* End Featured Product  */}
 
@@ -209,8 +276,8 @@ const Home_1 = () => {
               </div>
             </div>
           </div> */}
-          {/* End .row */}
-{/* 
+      {/* End .row */}
+      {/* 
           <div className="col-lg-12">
             <div className="home1_popular_listing">
               <div className="listing_item_4grid_slider dots_none">
