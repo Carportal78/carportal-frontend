@@ -25,8 +25,7 @@ const ExShowroomPriceForm = ({ carModelDetails }) => {
     const handleCityChange = (selectedOption) => {
         selectCityData(selectedOption);
         setSelectedCity(selectedOption);
-        document.querySelector('.btn-close[data-bs-dismiss="modal"]').click();
-    };
+        };
 
     return (
         <div className="modal-dialog modal-dialog-centered">
