@@ -10,6 +10,18 @@ import styles from "../../components/css/findCarOfChoice.module.css";
 
 const VariantPrice = ({ carModelDetails, carVariantsList, carVariant }) => {
 
+  const calculateTotalPrice = (variant) => {
+    const exShowroomPrice = Number(variant?.pricingDetails?.exShowroomPrice) || 0;
+    const rtoPrice = Number(variant?.pricingDetails?.rtoPrice) || 0;
+    const insurance = Number(variant?.pricingDetails?.insurance) || 0;
+    const othersTotal = variant?.pricingDetails?.others?.reduce((acc, curr) => {
+      const value = Number(curr.value);
+      return acc + (isNaN(value) ? 0 : value);
+    }, 0) || 0;
+  
+    return exShowroomPrice + rtoPrice + insurance + othersTotal;
+  };
+
   return (
     <>
       <div className="d-flex justify-content-between">
@@ -65,8 +77,8 @@ const VariantPrice = ({ carModelDetails, carVariantsList, carVariant }) => {
             <ListGroup.Item></ListGroup.Item>
           </ListGroup>
           <div className='d-flex justify-content-between mt-3'>
-            <div style={{ color: '#24272c', fontSize: '15px', fontWeight: '500' }}  >On-Road Price in {'Jaipur'}</div>
-            <div style={{ color: '#24272c', fontSize: '15px', fontWeight: '500' }}>₹ 16,30,195*</div>
+            <div style={{ color: '#24272c', fontSize: '15px', fontWeight: '500' }}  >On-Road Price in {carVariant?.pricingDetails?.city}</div>
+            <div style={{ color: '#24272c', fontSize: '15px', fontWeight: '500' }}>₹ {calculateTotalPrice(carVariant).toLocaleString('en-IN')}</div>
           </div>
         </Col>
       </div>

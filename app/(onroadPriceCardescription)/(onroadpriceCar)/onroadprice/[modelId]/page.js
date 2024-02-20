@@ -35,9 +35,10 @@ const OnRoadPrice = () => {
   const [carModelDetails, setCarModelDetails] = useState({});
   const [carVariantsList, setCarVariantsList] = useState([]);
   const [carModelsList, setCarModelsList] = useState([]);
+  const [cityCode, setCityCode] = useState(1);
 
   useEffect(() => {
-    const apiUrl = `https://api.univolenitsolutions.com/v1/automobile/get/carmodel/${modelId}/for/65538448b78add9eaa02d417`;
+    const apiUrl = `http://localhost:3005/v1/automobile/get/carmodel/${modelId}/citycode/${cityCode}/for/65538448b78add9eaa02d417`;
     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
 
     fetch(apiUrl, {
@@ -47,17 +48,17 @@ const OnRoadPrice = () => {
         'Content-Type': 'application/json'
       }
     })
-    .then(response => response.json())
-    .then(data => {
-      if (data && data.data && data.data) {
-        setCarModelDetails(data.data.carModel);
-        setCarVariantsList(data.data.carVariantList);
-      }
-    })
-    .catch(error => {
-      console.error('Error fetching data: ', error);
-    });
-  },[modelId]);
+      .then(response => response.json())
+      .then(data => {
+        if (data && data.data && data.data) {
+          setCarModelDetails(data.data.carModel);
+          setCarVariantsList(data.data.carVariantList);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching data: ', error);
+      });
+  }, [modelId]);
 
   useEffect(() => {
     const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carmodels/for/65538448b78add9eaa02d417';
@@ -69,15 +70,15 @@ const OnRoadPrice = () => {
         'Content-Type': 'application/json'
       }
     })
-    .then(response => response.json())
-    .then(data => {
-      if (data && data.data && data.data.carModelsList) {
-        setCarModelsList(data.data.carModelsList);
-      }
-    })
-    .catch(error => {
-      setCarModelsList([]);
-    });
+      .then(response => response.json())
+      .then(data => {
+        if (data && data.data && data.data.carModelsList) {
+          setCarModelsList(data.data.carModelsList);
+        }
+      })
+      .catch(error => {
+        setCarModelsList([]);
+      });
   }, []);
 
   return (
@@ -110,77 +111,46 @@ const OnRoadPrice = () => {
           <div className="row mb30">
             <div className="col-xl-12">
               <div className="breadcrumb_content style2">
-                <BreadCrumb breadCrumbDetails = "On road price" />
+                <BreadCrumb breadCrumbDetails="On road price" />
               </div>
             </div>
           </div>
-          {/* End .row bradcrumb */}
 
-          <div className="row mb30">
+          <div className="row mb15">
             <div className="col-lg-7 col-xl-8">
               <div className="single_page_heading_content">
                 <div className="car_single_content_wrapper">
-                  <ul className="car_info mb20-md">
-                    <li className="list-inline-item">
-                      <a href="#">BRAND NEW</a>
-                    </li>
-                  </ul>
                   <h2 className="title">{carModelDetails?.modelName}</h2>
-                  <p className="para">
+                  {/* <p className="para">
                     {carModelDetails?.bodyType},
-                  ₹ {carModelDetails?.priceRange?.minPrice} {carModelDetails?.priceRange?.minPriceType} - 
-                  ₹ {carModelDetails?.priceRange?.maxPrice} {carModelDetails?.priceRange?.maxPriceType} *
-                  </p>
+                    ₹ {carModelDetails?.priceRange?.minPrice} {carModelDetails?.priceRange?.minPriceType} -
+                    ₹ {carModelDetails?.priceRange?.maxPrice} {carModelDetails?.priceRange?.maxPriceType} *
+                  </p> */}
                 </div>
               </div>
             </div>
-            
-
-            {/* End .col-lg-7 */}
-
-            <div className="col-lg-5 col-xl-4">
-              <div className="single_page_heading_content text-start text-lg-end">
-                <div className="share_content">
-                  <ShareMeta />
-                </div>
-                <div className="price_content">
-                  <div className="price mt60 mb10 mt10-md">
-                    <h3>
-                      <small className="mr15">
-                        <del>Rs 92,480,000</del>
-                      </small>
-                      Rs 89,480,000
-                    </h3>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* End col-lg-5 */}
           </div>
-          {/* End .row */}
 
           <div className="row listing_single_description">
             <div className="col-lg-12 col-xl-12">
-           <OnRoadPriceDescription carModelDetails={carModelDetails} carVariantsList={carVariantsList} />
+              <OnRoadPriceDescription carModelDetails={carModelDetails} carVariantsList={carVariantsList} />
             </div>
           </div>
 
           <Card className="row">
             <div className="col-lg-12 col-xl-12">
-           <ProductDescripitons carModelDetails={carModelDetails} carVariantsList={carVariantsList} />
+              <ProductDescripitons carModelDetails={carModelDetails} carVariantsList={carVariantsList} />
             </div>
           </Card>
-          {/* End .row */}
         </div>
-        {/* End .container */}
       </section>
       {/* End Agent Single Grid View */}
 
       {/* End Car For Rent */}
-        {/* Car For Rent */}
-        <section className="car-for-rent bb1">
+      {/* Car For Rent */}
+      <section className="car-for-rent bb1">
         <div className="container">
-          <div className="row"> 
+          <div className="row">
             <div className="col-sm-6">
               <div className="main-title text-center text-md-start mb10-520">
                 <h2 className="title">Related Best Car</h2>
@@ -208,7 +178,7 @@ const OnRoadPrice = () => {
               data-aos-delay="100"
             >
               <div className="listing_item_4grid_slider nav_none">
-              <ReleatedCar bodyType={carModelDetails?.bodyType} carModelDetails={carModelDetails} relatedCars={carModelsList} />
+                <ReleatedCar bodyType={carModelDetails?.bodyType} carModelDetails={carModelDetails} relatedCars={carModelsList} />
               </div>
             </div>
           </div>
@@ -238,4 +208,4 @@ const OnRoadPrice = () => {
   );
 };
 
-export default OnRoadPrice;
+export default OnRoadPrice; 
