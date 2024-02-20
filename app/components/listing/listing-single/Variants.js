@@ -50,49 +50,73 @@ const VariantsList = ({ carModelDetails, variants }) => {
     </Tooltip>
   );
 
+  const calculateTotalPrice = (variant) => {
+    const exShowroomPrice = Number(variant?.pricingDetails?.exShowroomPrice) || 0;
+    const rtoPrice = Number(variant?.pricingDetails?.rtoPrice) || 0;
+    const insurance = Number(variant?.pricingDetails?.insurance) || 0;
+    const othersTotal = variant?.pricingDetails?.others?.reduce((acc, curr) => {
+      const value = Number(curr.value);
+      return acc + (isNaN(value) ? 0 : value);
+    }, 0) || 0;
+  
+    return exShowroomPrice + rtoPrice + insurance + othersTotal;
+  };
+
   const renderVariantDetails = (variant) => (
     <>
       <div>{variant?.carModel?.modelName} ({variant?.fuelAndPerformance?.fuelType})</div>
       <div className='d-flex justify-content-between flex-column mt-2'>
         <div className="d-flex justify-content-between">
           <div>Ex-Showroom Price</div>
-          <div><strong>₹ {variant.onRoadPrice}</strong></div>
+          <div><strong>₹ {Number(variant?.pricingDetails?.exShowroomPrice).toLocaleString('en-IN')}</strong></div>
         </div>
         <div className='d-flex justify-content-between mt10'>
           <div>RTO</div>
-          <div><strong>₹ {variant.rto}</strong></div>
+          <div><strong>₹ {Number(variant?.pricingDetails?.rtoPrice).toLocaleString('en-IN')}</strong></div>
         </div>
         <div className='d-flex justify-content-between mt10'>
           <div>
             Insurance{" "}
             <OverlayTrigger placement="right" overlay={<Tooltip id="tooltip">
-              <strong>Holy guacamole!</strong> Check this info.
+              {variant?.pricingDetails?.insuranceDescription}
             </Tooltip>}>
               <Image src="/images/icon/info.svg" width={15} height={15} alt="info icon of variant" />
             </OverlayTrigger>
           </div>
-          <div><strong>₹ {variant.insurance}</strong></div>
+          <div><strong>₹ {Number(variant?.pricingDetails?.insurance).toLocaleString('en-IN')}</strong></div>
         </div>
         <div className='d-flex justify-content-between mt10'>
           <div>
             Others{" "}
             <OverlayTrigger placement="right" overlay={<Tooltip id="tooltip">
-              <strong>Holy guacamole!</strong> Check this info.
+              {
+                variant?.pricingDetails?.others?.map((other, index) => (
+                  <div key={index} className='d-flex justify-content-between mt-2'>
+                    <div>
+                      {other.key}{" "}
+                    </div>{" "}
+                    <div className="ml-3"><strong>₹ {Number(other.value).toLocaleString('en-IN')}</strong></div>
+                  </div>
+                ))
+              }
             </Tooltip>}>
               <Image src="/images/icon/info.svg" width={15} height={15} alt={'info text'} />
             </OverlayTrigger>
           </div>
-          <div><strong>₹ {+variant.tcsChange + (+variant.tdsCharge)}</strong></div>
+          <div><strong>₹ {variant?.pricingDetails?.others?.reduce((acc, curr) => {
+        const value = Number(curr.value);
+        return acc + (isNaN(value) ? 0 : value);
+      }, 0).toLocaleString('en-IN')}</strong></div>
         </div>
-        <div style={{ border: '0.1px solid #dee2e6', marginTop:'1em' }}><divider></divider></div>
+        <div style={{ border: '0.1px solid #dee2e6', marginTop: '1em' }}><divider></divider></div>
         {/* <ListGroup variant="flush">
         <ListGroup.Item></ListGroup.Item>
         <ListGroup.Item></ListGroup.Item>
       </ListGroup> */}
-      <div className='d-flex justify-content-between mt-3'>
-      <div style={{color: '#24272c', fontSize: '15px', fontWeight: '800'}}  >On-Road Price in {'Jaipur'}</div>
-      <div style={{color: '#24272c', fontSize: '15px', fontWeight: '500'}}>Rs.48.50 Lakh</div>
-    </div>
+        <div className='d-flex justify-content-between mt-3'>
+          <div style={{ color: '#24272c', fontSize: '15px', fontWeight: '800' }}  >On-Road Price in {'Delhi'}</div>
+          <div style={{ color: '#24272c', fontSize: '15px', fontWeight: '500' }}>₹ {calculateTotalPrice(variant).toLocaleString('en-IN')}</div>
+        </div>
         {/* <divider></divider>
         <ListGroup className="list-group-flush">
           <ListGroup.Item></ListGroup.Item>
@@ -131,7 +155,7 @@ const VariantsList = ({ carModelDetails, variants }) => {
           </Accordion.Body>
         </Accordion.Item>
       ))}
-  </Accordion>
+    </Accordion>
   );
 
   return (

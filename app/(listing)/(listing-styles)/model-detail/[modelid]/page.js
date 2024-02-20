@@ -48,6 +48,7 @@ const ModelDetails = () => {
   const [selectCarModelData, setSelectCarModelData] = useAtom(selectCarModelAtom);
   const [selectCarBrandData, setSelectCarBrandData] = useAtom(selectCarBrandAtom);
   const [selectCarVariantData, setSelectCarVariantData] = useAtom(selectCarVariantAtom);
+  const [cityCode, setCityCode] = useState(1);
 
   useEffect(() => {
     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';  
@@ -67,7 +68,7 @@ const ModelDetails = () => {
   }, [carModelDetails]);
 
   useEffect(() => {
-    const apiUrl = `https://api.univolenitsolutions.com/v1/automobile/get/carmodel/${modelid}/for/65538448b78add9eaa02d417`;
+    const apiUrl = `http://localhost:3005/v1/automobile/get/carmodel/${modelid}/citycode/${cityCode}/for/65538448b78add9eaa02d417`;
     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
 
     fetch(apiUrl, {

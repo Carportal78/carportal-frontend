@@ -229,15 +229,17 @@ export default function ProductGallery({ carModelDetails, carVariantsList }) {
               <h4 className="mr10">₹ {carModelDetails?.priceRange?.minPrice} {carModelDetails?.priceRange?.minPriceType} - ₹ {carModelDetails?.priceRange?.maxPrice} {carModelDetails?.priceRange?.maxPriceType}*</h4>
               <Link href={`/onroadprice/${carModelDetails?._id}`} className="tdu color-black mt-md-0 c">Get On Road Price</Link>
             </div>
-
-            <div className="mt-2 d-flex">
-              <strong>Launched Year:</strong> <span className="ml5">{carModelDetails?.year}</span>
-            </div>
             <div className="d-flex">
               <strong>Body Type:</strong> <span className="ml5">{carModelDetails?.bodyType?.replace('-', ' ')}</span>
             </div>
             <div className="d-flex">
-              <strong>Car Brand:</strong> <span className="ml5">{carModelDetails?.carBrand?.brandName}</span>
+              <strong>Fuel Type:</strong> <span className="ml5">{carModelDetails?.fuelType?.join(', ')}</span>
+            </div>
+            <div className="d-flex">
+              <strong>Seating Capacity:</strong> <span className="ml5">{carModelDetails?.seatingCapacity?.replace('_', ' ')}</span>
+            </div>
+            <div className="d-flex">
+              <strong>Transmission Type:</strong> <span className="ml5">{carModelDetails?.transmissionType?.join(', ')}</span>
             </div>
             {/* <p className="para">
                     *Ex-showroom Price in<a href="#" className="tdu color-blue ml10">Jaipur</a>
