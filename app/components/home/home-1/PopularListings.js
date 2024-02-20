@@ -37,6 +37,7 @@ const PopularListings = ({  collection }) => {
       >
         {collection?.carModels?.map((listing) => (
           <SwiperSlide key={listing._id}>
+            <Link href={`/model-detail/${listing?._id}`}>
             <div className="item">
               <div className="car-listing">
                 <div className="thumb" style={{ position: 'relative', width: '100%', height: '200px', overflow: 'hidden' }}>
@@ -63,13 +64,12 @@ const PopularListings = ({  collection }) => {
                         </a>
                       </li>
                     </ul>
-                  </div>
-                 
+                  </div>               
                 <div className="details">
                   <div className="wrapper">
                     <h5 className="price">₹ {listing?.priceRange?.minPrice} {listing?.priceRange?.minPriceType} - ₹ {listing?.priceRange?.maxPrice} {listing?.priceRange?.maxPriceType} *</h5>
                     <h6 className="title">
-                      <Link href="/listing-single-v2">{listing.modelName}</Link>
+                      <Link href={`/model-detail/${listing?._id}`}>{listing.modelName}</Link>
                     </h6>
                     <div className="listign_review">
                       <ul className="mb0">
@@ -98,6 +98,7 @@ const PopularListings = ({  collection }) => {
                 </div>
               </div>
             </div>
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>
