@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
+import ContactDealer from "./ContactDealer";
+import SignupForm from "./SignupForm";
+import Link from "next/link";
 import Select from 'react-select';
 import statesCitiesList from '../../../../public/jsondata/state-and-city.json';
 import { useAtom } from "jotai";
-import { selectCityAtom } from "../../atoms/categoriesAtoms";
 
 const ExShowroomPriceForm = ({ carModelDetails }) => {
     const [selectedCity, setSelectedCity] = useState(null);
-    const [city, selectCityData] = useAtom(selectCityAtom);
     const [cityOptions, setCityOptions] = useState([]);
 
     useEffect(() => {
@@ -24,8 +25,9 @@ const ExShowroomPriceForm = ({ carModelDetails }) => {
 
     const handleCityChange = (selectedOption) => {
         selectCityData(selectedOption);
+        console.log('Selected city: ', selectedOption);
         setSelectedCity(selectedOption);
-        };
+    };
 
     return (
         <div className="modal-dialog modal-dialog-centered">
