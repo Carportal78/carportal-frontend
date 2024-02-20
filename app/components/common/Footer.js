@@ -23,13 +23,13 @@ const Footer = () => {
           </div>
           {/* End .col-md-4 */}
 
-          <div className="col-md-8 col-xl-5">
+          {/* <div className="col-md-8 col-xl-5">
             <div className="footer_menu_widget text-start text-md-end mt15">
               <ul>
                 <Navigation />
               </ul>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       {/* End .container */}

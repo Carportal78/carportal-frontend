@@ -10,3 +10,5 @@ export const selectCarVariantAtom = atom({});
 export const selectCarDealerAtom = atom({});
 
 export const selectCarDealersListAtom = atom([]);
+
+export const selectCityAtom = atom();

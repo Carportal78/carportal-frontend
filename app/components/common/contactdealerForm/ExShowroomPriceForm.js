@@ -1,22 +1,31 @@
-import React, { useState } from "react";
-import ContactDealer from "./ContactDealer";
-import SignupForm from "./SignupForm";
-import Link from "next/link";
+import React, { useEffect, useState } from "react";
 import Select from 'react-select';
-import cities from '../../../../public/jsondata/cities.json'
+import statesCitiesList from '../../../../public/jsondata/state-and-city.json';
+import { useAtom } from "jotai";
+import { selectCityAtom } from "../../atoms/categoriesAtoms";
 
 const ExShowroomPriceForm = ({ carModelDetails }) => {
     const [selectedCity, setSelectedCity] = useState(null);
+    const [city, selectCityData] = useAtom(selectCityAtom);
+    const [cityOptions, setCityOptions] = useState([]);
 
-    // Prepare options for React Select
-    const cityOptions = cities.map(city => ({
-        value: city.id, // Using city ID as value
-        label: city.name // City name as label
-    }));
+    useEffect(() => {
+        const allCities = [];
+        Object.keys(statesCitiesList).forEach(state => {
+            statesCitiesList[state].forEach(city => {
+                allCities.push({
+                    value: city.id,
+                    label: city.city
+                });
+            });
+        });
+        setCityOptions(allCities);
+    }, []);
 
-    // Handler for change in city selection with React Select
     const handleCityChange = (selectedOption) => {
+        selectCityData(selectedOption);
         setSelectedCity(selectedOption);
+        document.querySelector('.btn-close[data-bs-dismiss="modal"]').click();
     };
 
     return (
@@ -30,36 +39,18 @@ const ExShowroomPriceForm = ({ carModelDetails }) => {
                         aria-label="Close"
                     />
                 </div>
-                {/* End Modal close button */}
-
                 <div className="modal-body container p60">
                     <div className="row">
                         <div className="col-lg-12">
-                            <ul
-                                className="sign_up_tab nav nav-tabs"
-                                id="myTab"
-                                role="tablist"
-                            >
+                            <ul className="sign_up_tab nav nav-tabs" id="myTab" role="tablist">
                                 <li className="nav-item">
-                                    <a
-                                        className={`nav-link active`}
-                                        id={`1-tab`}
-                                        data-bs-toggle="tab"
-                                        href={`#1`}
-                                        role="tab"
-                                        aria-controls={1}
-                                        aria-selected={true}
-                                    >
-                                        Select City
-                                    </a>
+                                    <a className="nav-link active" id="select-city-tab" data-bs-toggle="tab" href="#select-city" role="tab" aria-controls="select-city" aria-selected="true">Select City</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
-                    {/* End .row */}
-
                     <div className="tab-content container p0" id="myTabContent">
-                        <div className="row mt30 tab-pane fade show active" id="1" role="tabpanel" aria-labelledby="1-tab" key="1">
+                        <div className="row mt30 tab-pane fade show active" id="select-city" role="tabpanel" aria-labelledby="select-city-tab" key="select-city">
                             <div className="col-lg-12">
                                 <div className="login_form">
                                     <p>We need your city to customize your experience</p>
@@ -74,9 +65,7 @@ const ExShowroomPriceForm = ({ carModelDetails }) => {
                             </div>
                         </div>
                     </div>
-                    {/* End tab-content */}
                 </div>
-                {/* End modal-body */}
             </div>
         </div>
     );
