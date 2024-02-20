@@ -8,17 +8,26 @@ import ContactDealerForm from "../../../../components/common/contactdealerForm/C
 import ShareForm from "../../../../components/common/contactdealerForm/ShareForm";
 import VariantListForm from "../../../../components/common/contactdealerForm/VariantListForm";
 import LoginSignupModal from "../../../../components/common/login-signup";
+import BreadCrumb from "../../../../components/listing/listing-single/BreadCrumb";
 import ProductGallery from "../../../../components/listing/listing-single/listing-single-v2/ProductGallery";
 import Overview from "../../../../components/listing/listing-single/Overview";
 import Descriptions from "../../../../components/listing/listing-single/Descriptions";
+import Features from "../../../../components/listing/listing-single/Features";
+import Map from "../../../../components/common/Map";
+import ConsumerReviews from "../../../../components/listing/listing-single/ConsumerReviews";
+import ReviewBox from "../../../../components/listing/listing-single/ReviewBox";
+import ContactSeller from "../../../../components/listing/listing-single/sidebar/ContactSeller";
+import SellerDetail from "../../../../components/listing/listing-single/sidebar/SellerDetail";
 import Link from "next/link";
 import ReleatedCar from "../../../../components/listing/listing-single/ReleatedCar";
+import ShareMeta from "../../../../components/listing/listing-single/ShareMeta";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import VariantsList from "../../../../components/listing/listing-single/Variants";
 import RecentlyViewed from "../../../../components/listing/sidebar/RecentlyViewed";
 import BannerWidget from "../../../../components/common/BannerWidget";
 import { selectCarModelAtom, selectCarBrandAtom, selectCarVariantAtom } from "../../../../components/atoms/categoriesAtoms";
+import Image from "next/image";
 import { useAtom } from 'jotai';
 
 const metadata = {
@@ -26,9 +35,13 @@ const metadata = {
 };
 
 const ModelDetails = () => {
+
   const { modelid } = useParams();
+
   const [carModelDetails, setCarModelDetails] = useState({});
+
   const [relatedCars,setRelatedCars] = useState([]);
+
   const [carModelsList, setCarModelsList] = useState([]);
   const [carVariantsList, setCarVariantsList] = useState([]);
   const [isModelsLoading,setIsModelsLoading] = useState(false);
