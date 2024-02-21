@@ -30,7 +30,7 @@ const Home_1 = () => {
   const [testimonials, setTestimonials] = useState([]);
 
   useEffect(() => {
-    const apiUrl = 'http://localhost:3005/v1/testimonial/get/submitted/all/for/65538448b78add9eaa02d417';
+    const apiUrl = 'https://api.univolenitsolutions.com/v1/testimonial/get/submitted/all/for/65538448b78add9eaa02d417';
     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
 
     fetch(apiUrl, {

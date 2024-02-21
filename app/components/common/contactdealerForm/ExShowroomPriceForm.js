@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Select from 'react-select';
 import statesCitiesList from '../../../../public/jsondata/state-and-city.json';
 import { useAtom } from "jotai";
@@ -8,6 +8,8 @@ const ExShowroomPriceForm = ({ carModelDetails }) => {
     const [selectedCity, setSelectedCity] = useState(null);
     const [city, selectCityData] = useAtom(selectCityAtom);
     const [cityOptions, setCityOptions] = useState([]);
+    // Create a ref to attach to the modal
+    const modalRef = useRef(null);
 
     useEffect(() => {
         const allCities = [];
@@ -25,10 +27,26 @@ const ExShowroomPriceForm = ({ carModelDetails }) => {
     const handleCityChange = (selectedOption) => {
         selectCityData(selectedOption);
         setSelectedCity(selectedOption);
+        const condition = true; // your condition
+
+        if (condition) {
+            const modalElement = modalRef.current;
+            if (modalElement) {
+                // Remove the 'show' class and set 'aria-hidden' attribute
+                modalElement.classList.remove('show');
+                modalElement.setAttribute('aria-hidden', 'true');
+                // Hide the modal backdrop
+                document.body.classList.remove('modal-open');
+                const backdrop = document.querySelector('.modal-backdrop');
+                if (backdrop) {
+                    backdrop.parentNode.removeChild(backdrop);
+                }
+            }
+        }
     };
 
     return (
-        <div className="modal-dialog modal-dialog-centered">
+        <div className="modal-dialog modal-dialog-centered" ref={modalRef} >
             <div className="modal-content">
                 <div className="modal-header">
                     <button
