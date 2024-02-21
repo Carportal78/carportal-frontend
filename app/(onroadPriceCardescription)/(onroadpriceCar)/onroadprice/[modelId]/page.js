@@ -23,6 +23,8 @@ import ProductDescripitons from "../../../../components/shop/shop-single/pro-tab
 import { Card } from "react-bootstrap";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useAtom } from "jotai";
+import { selectCityAtom } from "../../../../components/atoms/categoriesAtoms";
 
 const metadata = {
   title: "OnRoad Price || Carportal - Automotive & Car Dealer",
@@ -36,7 +38,7 @@ const OnRoadPrice = () => {
   const [carVariantsList, setCarVariantsList] = useState([]);
   const [carModelsList, setCarModelsList] = useState([]);
   const [cityCode, setCityCode] = useState(1);
-
+  
   useEffect(() => {
     const apiUrl = `https://api.univolenitsolutions.com/v1/automobile/get/carmodel/${modelId}/citycode/${cityCode}/for/65538448b78add9eaa02d417`;
     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key

@@ -4,9 +4,8 @@ import statesCitiesList from '../../../../public/jsondata/state-and-city.json';
 import { useAtom } from "jotai";
 import { selectCityAtom } from "../../atoms/categoriesAtoms";
 
-const ExShowroomPriceForm = ({ carModelDetails }) => {
+const ExShowroomPriceForm = ({ carModelDetails, cityCodeChange }) => {
     const [selectedCity, setSelectedCity] = useState(null);
-    const [city, selectCityData] = useAtom(selectCityAtom);
     const [cityOptions, setCityOptions] = useState([]);
     // Create a ref to attach to the modal
     const modalRef = useRef(null);
@@ -25,25 +24,12 @@ const ExShowroomPriceForm = ({ carModelDetails }) => {
     }, []);
 
     const handleCityChange = (selectedOption) => {
-        selectCityData(selectedOption);
         setSelectedCity(selectedOption);
-        const condition = true; // your condition
-
-        if (condition) {
-            const modalElement = modalRef.current;
-            if (modalElement) {
-                // Remove the 'show' class and set 'aria-hidden' attribute
-                modalElement.classList.remove('show');
-                modalElement.setAttribute('aria-hidden', 'true');
-                // Hide the modal backdrop
-                document.body.classList.remove('modal-open');
-                const backdrop = document.querySelector('.modal-backdrop');
-                if (backdrop) {
-                    backdrop.parentNode.removeChild(backdrop);
-                }
-            }
-        }
     };
+
+    const handleCitySearch = () => {
+        cityCodeChange(selectedCity);
+    }
 
     return (
         <div className="modal-dialog modal-dialog-centered" ref={modalRef} >
@@ -78,6 +64,13 @@ const ExShowroomPriceForm = ({ carModelDetails }) => {
                                         options={cityOptions}
                                         className="select2-selection"
                                     />
+                                    <button
+                                        type="button"
+                                        data-bs-dismiss="modal"
+                                        aria-label="Close"
+                                        className="btn btn-primary mt-2"
+                                        onClick={handleCitySearch}
+                                    >Submit</button>
                                 </div>
                             </div>
                         </div>

@@ -26,7 +26,7 @@ import { useParams } from "next/navigation";
 import VariantsList from "../../../../../../../components/listing/listing-single/Variants";
 import RecentlyViewed from "../../../../../../../components/listing/sidebar/RecentlyViewed";
 import BannerWidget from "../../../../../../../components/common/BannerWidget";
-import { selectCarModelAtom, selectCarBrandAtom, selectCarVariantAtom } from "../../../../../../../components/atoms/categoriesAtoms";
+import { selectCarModelAtom, selectCarBrandAtom, selectCarVariantAtom, selectCityAtom } from "../../../../../../../components/atoms/categoriesAtoms";
 import Image from "next/image";
 import { useAtom } from 'jotai';
 import VariantsOverview from "../../../../../../../components/variants/VariantsOverview";
@@ -54,6 +54,10 @@ const ModelDetails = () => {
   const [selectCarBrandData, setSelectCarBrandData] = useAtom(selectCarBrandAtom);
   const [selectCarVariantData, setSelectCarVariantData] = useAtom(selectCarVariantAtom);
   const [cityCode, setCityCode] = useState(1);
+
+  const handleCityCodeChange = (data) => {
+    setCityCode(data.value);
+  }
 
   useEffect(() => {
     // alert('modelId ', modelid);
@@ -104,7 +108,7 @@ const ModelDetails = () => {
     .catch(error => {
       console.error('Error fetching data: ', error);
     });
-  },[])
+  },[cityCode])
 
     // Fetch car models based on selected brand
     useEffect(() => {
@@ -493,7 +497,7 @@ const ModelDetails = () => {
         tabIndex={-1}
         aria-hidden="true"
       >
-        <ExShowroomPriceForm carModelDetails={carModelDetails} />
+        <ExShowroomPriceForm carModelDetails={carModelDetails} cityCodeChange={handleCityCodeChange} />
       </div>
       <div
         className="sign_up_modal modal fade"
