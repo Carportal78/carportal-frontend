@@ -1,3 +1,4 @@
+"use client"
 import Footer from "../../components/common/Footer";
 import DefaultHeader from "../../components/common/DefaultHeader";
 import HeaderSidebar from "../../components/common/HeaderSidebar";
@@ -10,7 +11,7 @@ import Testimonial from "../../components/common/Testimonial";
 import Partner from "../../components/common/Partner";
 import LoginSignupModal from "../../components/common/login-signup";
 
-export const metadata = {
+const metadata = {
   title: "About Us || Carportal - Automotive & Car Dealer",
 };
 
