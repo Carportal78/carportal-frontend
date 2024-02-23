@@ -6,16 +6,6 @@ import HeaderTop from "../../../../components/common/HeaderTop";
 import MobileMenu from "../../../../components/common/MobileMenu";
 import LoginSignupModal from "../../../../components/common/login-signup";
 import BreadCrumb from "../../../../components/listing/listing-single/BreadCrumb";
-import ShareMeta from "../../../../components/listing/listing-single/ShareMeta";
-import ProductGallery from "../../../../components/listing/listing-single/listing-single-v2/ProductGallery";
-import Overview from "../../../../components/listing/listing-single/Overview";
-import Descriptions from "../../../../components/listing/listing-single/Descriptions";
-import Features from "../../../../components/listing/listing-single/Features";
-import Map from "../../../../components/common/Map";
-import ConsumerReviews from "../../../../components/listing/listing-single/ConsumerReviews";
-import ReviewBox from "../../../../components/listing/listing-single/ReviewBox";
-import ContactSeller from "../../../../components/listing/listing-single/sidebar/ContactSeller";
-import SellerDetail from "../../../../components/listing/listing-single/sidebar/SellerDetail";
 import Link from "next/link";
 import ReleatedCar from "../../../../components/listing/listing-single/ReleatedCar";
 import OnRoadPriceDescription from "../../../../components/onroadpricedescription/onroadprice/OnRoadPriceDescription";
@@ -23,8 +13,6 @@ import ProductDescripitons from "../../../../components/shop/shop-single/pro-tab
 import { Card } from "react-bootstrap";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useAtom } from "jotai";
-import { selectCityAtom } from "../../../../components/atoms/categoriesAtoms";
 
 const metadata = {
   title: "OnRoad Price || Carportal - Automotive & Car Dealer",

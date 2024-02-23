@@ -9,6 +9,32 @@
   border-radius: 16px;
 }
 
+/* findCarOfChoice.module.css */
+.brandBox {
+  border: 1px solid #ddd; /* Light grey border */
+  border-radius: 8px; /* Rounded corners for the box */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
+  transition: transform 0.2s; /* Smooth transition for hover effect */
+  overflow: hidden; /* Ensures the image does not overflow the rounded corners */
+}
+
+.brandBox:hover {
+  transform: translateY(-5px); /* Slightly raise the box on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Darker shadow on hover for a "lifting" effect */
+}
+
+.bodyTypeImage {
+  object-fit: contain; /* Ensures the image fits nicely within the box */
+}
+
+.bodyTypeTitle {
+  display: block; /* Ensures the title is on its own line */
+  margin-top: 8px; /* Adds space between the image and the title */
+  color: #333; /* Dark text color for the title */
+  font-weight: bold; /* Make the brand name bold */
+}
+
+
 .bodyTypeItem {
   display: flex;
   flex-direction: column;

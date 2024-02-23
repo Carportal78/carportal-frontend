@@ -5,6 +5,9 @@ import { Col } from "react-bootstrap";
 
 // import required modules
 import Select from "react-select";
+import { selectCityAtom } from "../atoms/categoriesAtoms";
+import statesCitiesList from '../../../public/jsondata/state-and-city.json'
+import { useAtom } from "jotai";
 
 export default function DealersPageDescription({ carModelDetails, carVariantsList, carBrandsList }) {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -12,12 +15,48 @@ export default function DealersPageDescription({ carModelDetails, carVariantsLis
     const [videoId, setVideoId] = useState("");
     const [selectedBrandGroup, setselectedBrandGroup] = useState(null);
     const [selectedGroup, setselectedGroup] = useState(null);
+    const [cityData] = useAtom(selectCityAtom);
     const { brandid } = useParams();
+    const [cityOptions, setCityOptions] = useState([]);
 
     const openModal = (id) => {
         setVideoId(id);
         setOpen(true);
     };
+
+    useEffect(() => {
+        console.log('cityData ', cityData);
+    })
+
+    useEffect(() => {
+        const allCities = [];
+        Object.keys(statesCitiesList).forEach(state => {
+            statesCitiesList[state].forEach(city => {
+                allCities.push({
+                    value: city.id,
+                    label: city.city
+                });
+            });
+        });
+        setCityOptions(allCities);
+    }, []);
+    
+    // New useEffect for setting initial selected city based on cityData
+    useEffect(() => {
+        if (cityData && cityOptions.length > 0) {
+            const initialCity = cityOptions.find(city => city.value === cityData.id);
+            if (initialCity) {
+                setselectedGroup(initialCity);
+            }
+        }
+    }, [cityData, cityOptions]);
+    
+    // No changes needed here if it's working as expected
+    function handleSelectGroup(selectedGroup) {
+        setselectedGroup(selectedGroup);
+    }
+    
+    
 
     useEffect(() => {
         const selectedBrand = carBrandsList?.find(brand => brand._id === brandid);
@@ -38,21 +77,17 @@ export default function DealersPageDescription({ carModelDetails, carVariantsLis
         label: variant.name, // The name of the variant to be displayed
     }));
 
+    useEffect(() => {
+    }, [carVariantsList, carModelDetails]);
+
     function handleSelectBrandGroup(selectedGroup) {
         const modelId = carModelDetails?._id;
         const variantId = selectedGroup.value;
         setselectedBrandGroup(selectedGroup);
     }
 
-
-    function handleSelectGroup(selectedGroup) {
-        const modelId = carModelDetails?._id;
-        const variantId = selectedGroup.value;
-        setselectedGroup(selectedGroup);
-    }
-
     function handleSearchDealer() {
-        
+
     }
 
     return (
@@ -79,19 +114,18 @@ export default function DealersPageDescription({ carModelDetails, carVariantsLis
                     </Col>
                     <Col xl={4} className=" mb-3 mt-4">
                         <Select
-                            placeholder="Change City..."
+                            placeholder="Select City..."
                             value={selectedGroup}
                             onChange={handleSelectGroup}
-                            options={optionGroup}
+                            options={cityOptions}
                             className="select2-selection"
-                        // styles={customStyles} 
                         />
                     </Col>
                     <Col className=" mb-3 mt-md-5">
-                    <button className="btn btn-thm ofr_btn1 btn-block mt0 mb20" onClick={handleSearchDealer}>
-                  <span className="flaticon-profit-report mr10 fz18 vam" />
-                  Search Dealer
-                </button>
+                        <button className="btn btn-thm ofr_btn1 btn-block mt0 mb20" onClick={handleSearchDealer}>
+                            <span className="flaticon-profit-report mr10 fz18 vam" />
+                            Search Dealer
+                        </button>
                     </Col>
                 </div>
                 {/* End opening_hour_widgets */}

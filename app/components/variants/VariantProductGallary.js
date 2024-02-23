@@ -12,30 +12,6 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import Select from "react-select";
 import { useRouter } from "next/navigation";
 
-
-const slides = [
-  {
-    imageSrc: "/images/listing/lsp1-v1.jpg",
-    videoId: "VWrJkx6O0L8",
-  },
-  {
-    imageSrc: "/images/listing/lsp1-v2.jpg",
-    videoId: "TLEyLGWvjII",
-  },
-  {
-    imageSrc: "/images/listing/lsp1-v3.jpg",
-    videoId: "BS2jGGYC60c",
-  },
-  {
-    imageSrc: "/images/listing/lsp1-v4.jpg",
-    videoId: "8PiZNUCexrA",
-  },
-  {
-    imageSrc: "/images/listing/lsp1-v5.jpg",
-    videoId: "m4ZGuAbUMg8",
-  },
-];
-
 function OffCanvasExample({ name, ...props }) {
   const [show, setShow] = useState(false);
 
@@ -88,7 +64,7 @@ function OffCanvasExampleCompare({ name, ...props }) {
   );
 }
 
-export default function VariantProductGallery({ carModelDetails, carVariantsList, carVariant }) {
+export default function VariantProductGallery({ carModelDetails, carVariantsList, carVariant, onDealerClick }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [isOpen, setOpen] = useState(false);
   const [videoId, setVideoId] = useState("");
@@ -114,7 +90,8 @@ export default function VariantProductGallery({ carModelDetails, carVariantsList
   }
 
   function handleRedirectToDealersPage() {
-    router.push(`/dealers/${carModelDetails?.carBrand?._id}`);
+    onDealerClick(carModelDetails?.carBrand?._id);
+    // router.push(`/dealers/${carModelDetails?.carBrand?._id}`);
   }
 
   return (

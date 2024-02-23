@@ -50,6 +50,9 @@ const FooterItems = () => {
         <p><Link href="/about-us" style={{color: 'white'}}>Corporate Policies</Link></p>
         <p><Link href="/about-us" style={{color: 'white'}}>Investors</Link></p>
         <p><Link href="/about-us" style={{color: 'white'}}>FAQs</Link></p>
+        <p><Link href="/about-us" style={{color: 'white'}}>Feedback</Link></p>
+        <p><Link href="/about-us" style={{color: 'white'}}>Contact Us</Link></p>
+        <p><Link href="/about-us" style={{color: 'white'}}>Advertise with us</Link></p>
         </div>
       </div>
       {/* End .col */}

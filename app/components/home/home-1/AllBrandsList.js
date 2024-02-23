@@ -1,10 +1,9 @@
-"use client";
-
+// Assuming your styles.bodyTypeImage and styles.bodyTypeTitle correspond to the image and title styles, respectively.
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import styles from '../../css/findCarOfChoice.module.css';
 import { Container, Row, Col } from 'react-bootstrap';
+import styles from '../../css/findCarOfChoice.module.css';
 
 function AllBrandsList() {
   const [carBrands, setCarBrands] = useState([]);
@@ -32,23 +31,23 @@ function AllBrandsList() {
   }, []);
 
   return (
-    <Container fluid>
+    <Container fluid className="my-3"> {/* Add some margin on the y-axis */}
       <Row className="g-3"> {/* Adjust gap for spacing */}
         {carBrands?.map((brand) => (
-          <Col xs={5} sm={4} md={3} lg={2} xl={1} key={brand._id} className="d-flex align-items-center justify-content-center">
-            <Link href={`listings?brand=${brand.brandName}`} passHref>
-              <div className="d-flex flex-column align-items-center text-center">
-                <Image
-                  width={150}
-                  height={58}
-                  src={brand.media.url || '/default-image.png'} // Fallback image if URL is missing
-                  alt={brand.brandName}
-                  className={styles.bodyTypeImage}
-                  style={{ objectFit: 'cover' }}
-                  layout='responsive'
-                />
-                <span className={styles.bodyTypeTitle}>{brand.brandName}</span>
-              </div>
+          <Col xs={4} sm={4} md={3} lg={2} xl={1} className="d-flex align-items-center justify-content-center" key={brand._id}>
+            {/* Use Link for navigation, wrapping the entire card */}
+            <Link href={`listings?brand=${brand.brandName}`} passHref className='d-block text-decoration-none'>
+               <div className="p-3 p-md-0 d-flex flex-column align-items-center text-center"> {/* Add padding */}
+                  <Image
+                    width={150} // You may need to adjust this depending on your layout
+                    height={58} // You may need to adjust this depending on your layout
+                    src={brand.media.url || '/default-image.png'} // Fallback image if URL is missing
+                    alt={brand.brandName}
+                    className={styles.bodyTypeImage}
+                    layout='responsive'
+                  />
+                  <span className={styles.bodyTypeTitle}>{brand.brandName}</span>
+                </div>
             </Link>
           </Col>
         ))}

@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Select from 'react-select';
 import statesCitiesList from '../../../../public/jsondata/state-and-city.json';
-import { useAtom } from "jotai";
-import { selectCityAtom } from "../../atoms/categoriesAtoms";
 
 const ExShowroomPriceForm = ({ carModelDetails, cityCodeChange }) => {
     const [selectedCity, setSelectedCity] = useState(null);

@@ -9,25 +9,16 @@ import ShareForm from "../../../../../../../components/common/contactdealerForm/
 import ExShowroomPriceForm from "../../../../../../../components/common/contactdealerForm/ExShowroomPriceForm";
 import VariantListForm from "../../../../../../../components/common/contactdealerForm/VariantListForm";
 import LoginSignupModal from "../../../../../../../components/common/login-signup";
-import BreadCrumb from "../../../../../../../components/listing/listing-single/BreadCrumb";
 import Overview from "../../../../../../../components/listing/listing-single/Overview";
 import Descriptions from "../../../../../../../components/listing/listing-single/Descriptions";
-import Features from "../../../../../../../components/listing/listing-single/Features";
-import Map from "../../../../../../../components/common/Map";
-import ConsumerReviews from "../../../../../../../components/listing/listing-single/ConsumerReviews";
-import ReviewBox from "../../../../../../../components/listing/listing-single/ReviewBox";
-import ContactSeller from "../../../../../../../components/listing/listing-single/sidebar/ContactSeller";
-import SellerDetail from "../../../../../../../components/listing/listing-single/sidebar/SellerDetail";
 import Link from "next/link";
 import ReleatedCar from "../../../../../../../components/listing/listing-single/ReleatedCar";
-import ShareMeta from "../../../../../../../components/listing/listing-single/ShareMeta";
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import VariantsList from "../../../../../../../components/listing/listing-single/Variants";
 import RecentlyViewed from "../../../../../../../components/listing/sidebar/RecentlyViewed";
 import BannerWidget from "../../../../../../../components/common/BannerWidget";
 import { selectCarModelAtom, selectCarBrandAtom, selectCarVariantAtom, selectCityAtom } from "../../../../../../../components/atoms/categoriesAtoms";
-import Image from "next/image";
 import { useAtom } from 'jotai';
 import VariantsOverview from "../../../../../../../components/variants/VariantsOverview";
 import VariantPrice from "../../../../../../../components/variants/VariantPrice";
@@ -53,7 +44,9 @@ const ModelDetails = () => {
   const [selectCarModelData, setSelectCarModelData] = useAtom(selectCarModelAtom);
   const [selectCarBrandData, setSelectCarBrandData] = useAtom(selectCarBrandAtom);
   const [selectCarVariantData, setSelectCarVariantData] = useAtom(selectCarVariantAtom);
+  const [, setCityData] = useAtom(selectCityAtom);
   const [cityCode, setCityCode] = useState(1);
+  const router = useRouter();
 
   const handleCityCodeChange = (data) => {
     setCityCode(data.value);
@@ -166,6 +159,11 @@ const ModelDetails = () => {
       return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
+    const handleDealerCLick = (brandId) => {
+      setCityData(cityCode);
+      router.push(`/dealers/${carModelDetails?.carBrand?._id}`);
+    }
+
   return (
     <div className="wrapper">
       <div
@@ -206,7 +204,7 @@ const ModelDetails = () => {
 
           <div className="row">
             <div className="col-lg-8 col-xl-12">
-              <VariantProductGallary carModelDetails={carModelDetails} carVariantsList={carVariantsList} carVariant={carVariant} />
+              <VariantProductGallary carModelDetails={carModelDetails} carVariantsList={carVariantsList} carVariant={carVariant} onDealerClick={handleDealerCLick} />
               {/* End Car Gallery */}
               <div className="d-flex flex-wrap gap-4">
               <div className="col-lg-8 col-xl-8">

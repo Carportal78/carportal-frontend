@@ -93,7 +93,7 @@ const HeroFilter = () => {
               </div>
             </li>
             {/* Model Selection */}
-            <li className="list-inline-item">
+            <li className="list-inline-item  mt-2 mt-md-0">
               <div className="select-boxes">
                 <div className="car_brand">
                   <h6 className="title">Models</h6>
@@ -109,7 +109,7 @@ const HeroFilter = () => {
             {/* Additional filters can be added similarly */}
             
             {/* Search button */}
-            <li className="list-inline-item">
+            <li className="list-inline-item mt-2 mt-md-0">
               <div className="d-block">
                 <button
                   onClick={() => router.push(`/model-detail/${selectedModelId}`)} 

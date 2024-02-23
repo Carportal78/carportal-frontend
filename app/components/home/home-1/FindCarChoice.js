@@ -169,9 +169,9 @@ function FindCarChoice() {
       className={`${styles.tabItem} ${key === "budget" ? styles.active : ""} mb-2`}
     >
       <Tab eventKey="budget" title="Budget">
-        <Row>
+        <Row className="mt-3">
           {budgetButtons.map((buttonType) => (
-            <Col xs={3} sm={3} md={2} lg={2} xl={2} key={buttonType.title}> {/* Responsive grid setup */}
+            <Col xs={6} sm={3} md={2} lg={2} xl={2} key={buttonType.title}> {/* Responsive grid setup */}
               <Link href={`listings?budget=${buttonType.route}`}>
                 <Button variant="outline-secondary" size="md" className={`mb-2 ${styles.budgetCarButton} w-100`}>
                   {buttonType.title}
@@ -183,7 +183,7 @@ function FindCarChoice() {
       </Tab>
 
       <Tab eventKey="fuelType" title="Fuel Type" className={`${styles.tabItem} ${key === "fuelType" ? styles.active : ""}`}>
-        <Row>
+        <Row className="mt-3">
           {fuelTypeData?.map((bodyType) => (
             <Col xs={3} sm={3} md={2} lg={2} xl={1} key={bodyType.title} className="mb-2">
               <Link href={`listings?fuelType=${bodyType.route}`}>
@@ -210,7 +210,7 @@ function FindCarChoice() {
         title="Transmission Type"
         className={`${styles.tabItem} ${key === "transmissionType" ? styles.active : ""}`}
       >
-        <Row>
+        <Row className="mt-3">
           {transmissionTypeData?.map((bodyType) => (
             <Col xs={3} sm={3} md={2} lg={1} xl={1} className="mb-2 text-center" key={bodyType.title}>
               <Link href={`listings?transmissionType=${bodyType.route}`}>
@@ -233,55 +233,51 @@ function FindCarChoice() {
       </Tab>
 
       <Tab
-  eventKey="bodyType"
-  title="Body Type"
-  className={`${styles.tabItem} ${key === "bodyType" ? styles.active : ""}`}
->
-  <Row className="g-2"> {/* Adjusted gap for closer packing */}
-    {bodyTypeData?.map((bodyType) => (
-      <Col xs={3} sm={3} md={2} lg={2} xl={1} key={bodyType.title} className="mb-2 text-center">
-        <Link href={`listings?bodyType=${bodyType.route}`}>
-          <div className="d-inline-block text-center">
-            <div className="position-relative" style={{ width: '100%', height: 58 }}>
-              <Image
-                src={bodyType.imgSrc}
-                alt={bodyType.title}
-                // layout="fill" 
-                // objectFit="contain" 
-                width={150}
-                    height={58}
-                className={styles.bodyTypeCheckImage}
-                layout='responsive'
-              />
-            </div>
-            <div className={styles.bodyTypeTitle}>{bodyType.title}</div>
-          </div>
-        </Link>
-      </Col>
-    ))}
-  </Row>
-</Tab>
+        eventKey="bodyType"
+        title="Body Type"
+        className={`${styles.tabItem} ${key === "bodyType" ? styles.active : ""}`}
+      >
+        <Row className="g-4 flex-wrap mt-3"> {/* Adjusted gap for closer packing */}
+          {bodyTypeData?.map((bodyType) => (
+            <Col xs={4} sm={3} md={2} lg={2} xl={1} key={bodyType.title} className="mb-2 text-center">
+              <Link href={`listings?bodyType=${bodyType.route}`}>
+                <div className="d-inline-block text-center">
+                  <div className="position-relative" style={{ width: '100%', height: 58 }}>
+                    <Image
+                      src={bodyType.imgSrc}
+                      alt={bodyType.title}
+                      // layout="fill" 
+                      // objectFit="contain" 
+                      width={150}
+                      height={58}
+                      className={styles.bodyTypeCheckImage}
+                      layout='responsive'
+                    />
+                  </div>
+                  <div className={styles.bodyTypeTitle}>{bodyType.title}</div>
+                </div>
+              </Link>
+            </Col>
+          ))}
+        </Row>
+      </Tab>
 
       <Tab
         eventKey="seatingCapacity"
         title="Seating Capacity"
-        className={`${styles.tabItem} ${key === "bodyType" ? styles.active : ""
-          }`}
       >
-        <div className="d-flex flex-wrap mb-2">
-          {seatingCapacityButtons?.map((buttonType) => (
-            <Link href={`listings?seatingCapacity=${buttonType.route}`} key={buttonType.title}>
-              <Button
-                variant="outline-secondary"
-                size="lg"
-                key={buttonType.title}
-                className={`mr10 mt-2 ${styles.budgetCarButton} pl30 pr30`}
-              >
-                {buttonType.title}
-              </Button>
-            </Link>
-          ))}
-        </div>
+          <Row className="mt-3">
+            {seatingCapacityButtons.map((buttonType) => (
+              <Col xs={6} sm={2} md={2} lg={2} xl={2} key={buttonType.title}> {/* Responsive grid setup */}
+                <Link href={`listings?seatingCapacity=${buttonType.route}`}>
+                  <Button variant="outline-secondary" size="md" className={`mb-2 ${styles.budgetCarButton} w-100`}>
+                    {buttonType.title}
+                  </Button>
+                </Link>
+              </Col>
+            ))}
+          </Row>
+  
       </Tab>
     </Tabs>
   );
