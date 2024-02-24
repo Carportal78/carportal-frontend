@@ -130,37 +130,31 @@ const MobileMenu = () => {
                             className="my-custom-class"
                         >
                             <Menu>
+                                
                                 {menuItems?.map((item, index) => (
-                                    <SubMenu
-                                        key={index}
-                                        className={
-                                            isParentActive(item.subMenu, path)
-                                                ? "active"
-                                                : ""
-                                        }
-                                        label={item.label}
-                                    >
-                                        {item?.subMenu?.map((subItem, subIndex) =>
-                                         (
+                                    // <SubMenu
+                                    //     key={index}
+                                    //     label={item.label}
+                                    // >
+                                    //     {item?.subMenu?.map((subItem, subIndex) =>
                                                 <MenuItem
-                                                    key={subIndex}
+                                                    key={index}
                                                     component={
                                                         <Link
                                                             className={
-                                                                subItem.path ==
+                                                                item.path ==
                                                                 path
                                                                     ? "active"
                                                                     : ""
                                                             }
-                                                            href={subItem.path}
+                                                            href={item.path}
                                                         />
                                                     }
                                                 >
-                                                    {subItem.label}
+                                                    {item.label}
                                                 </MenuItem>
-                                            )
-                                        )}
-                                    </SubMenu>
+                                    //     )}
+                                    // </SubMenu>
                                 ))}
                             </Menu>
                         </Sidebar>
