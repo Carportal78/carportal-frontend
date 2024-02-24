@@ -6,6 +6,7 @@ import "swiper/css/navigation";
 import listingCar from "../../../../data/listingCar";
 import Image from "next/image";
 import Link from "next/link";
+import { Button } from "react-bootstrap";
 
 const PopularListings = ({  collection }) => {
   return (
@@ -67,17 +68,20 @@ const PopularListings = ({  collection }) => {
                   </div>               
                 <div className="details">
                   <div className="wrapper">
-                    <h5 className="price">₹ {listing?.priceRange?.minPrice} {listing?.priceRange?.minPriceType} - ₹ {listing?.priceRange?.maxPrice} {listing?.priceRange?.maxPriceType} *</h5>
-                    <h6 className="title">
+                  <div className="title">
                       <Link href={`/model-detail/${listing?._id}`}>{listing.modelName}</Link>
-                    </h6>
-                    <div className="listign_review">
+                    </div>
+                    <div className="price">₹ {listing?.priceRange?.minPrice} {listing?.priceRange?.minPriceType} - ₹ {listing?.priceRange?.maxPrice} {listing?.priceRange?.maxPriceType} *</div>
+                    <Button variant="outline-secondary" size="md" className={`w-100 mt-3`}>
+                      VIew Details
+                    </Button>
+                    {/* <div className="listign_review">
                       <ul className="mb0">
                       <p>Launched Date: {listing?.year}</p>
                       </ul>
-                    </div>
+                    </div> */}
                   </div>{" "}
-                  <div className="listing_footer">
+                  {/* <div className="listing_footer">
                     <ul className="mb0">
                       <li className="list-inline-item">
                         <span className="flaticon-road-perspective me-2" />
@@ -94,7 +98,7 @@ const PopularListings = ({  collection }) => {
                         {listing?.transmissionType.join(', ')}
                       </li>
                     </ul>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>

@@ -164,7 +164,8 @@ const Home_1 = () => {
           <div className="row justify-content-center">
             <div className="col-lg-8">
               <div className="main-title text-center">
-                <h2>Find the car of your choice</h2>
+              <h2 className="d-none d-md-block">Find the car of your choice</h2>
+                <h3 className="d-md-none d-sm-block">Find the car of your choice</h3>
               </div>
             </div>
           </div>
@@ -187,7 +188,8 @@ const Home_1 = () => {
             <div className="row justify-content-center">
               <div className="col-lg-8">
                 <div className="main-title text-center">
-                  <h2>{collection?.name}</h2>
+                  <h2 className="d-none d-md-block">{collection?.name}</h2>
+                <h3 className="d-md-none d-sm-block">{collection?.name}</h3>
                 </div>
               </div>
             </div>

@@ -105,10 +105,10 @@ const MobileMenu = () => {
                     <div className="pro-header">
                         <Link href="/">
                             <Image
-                                width={45}
-                                height={45}
+                                width={140}
+                                height={35}
                                 priority
-                                src="/images/Carportal-Logo.png"
+                                src="/images/carportal-logo-white.png"
                                 alt="brand"
                             />
                         </Link>
@@ -141,50 +141,7 @@ const MobileMenu = () => {
                                         label={item.label}
                                     >
                                         {item?.subMenu?.map((subItem, subIndex) =>
-                                            subItem.subMenu ? (
-                                                <SubMenu
-                                                    key={subIndex}
-                                                    label={subItem.label}
-                                                    className={
-                                                        isParentActive(
-                                                            subItem.subMenu,
-                                                            path
-                                                        )
-                                                            ? "active"
-                                                            : ""
-                                                    }
-                                                >
-                                                    {subItem?.subMenu?.map(
-                                                        (
-                                                            nestedItem,
-                                                            nestedIndex
-                                                        ) => (
-                                                            <MenuItem
-                                                                key={
-                                                                    nestedIndex
-                                                                }
-                                                                component={
-                                                                    <Link
-                                                                        className={
-                                                                            nestedItem.path ==
-                                                                            path
-                                                                                ? "active"
-                                                                                : ""
-                                                                        }
-                                                                        href={
-                                                                            nestedItem.path
-                                                                        }
-                                                                    />
-                                                                }
-                                                            >
-                                                                {
-                                                                    nestedItem.label
-                                                                }
-                                                            </MenuItem>
-                                                        )
-                                                    )}
-                                                </SubMenu>
-                                            ) : (
+                                         (
                                                 <MenuItem
                                                     key={subIndex}
                                                     component={

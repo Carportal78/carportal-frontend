@@ -16145,7 +16145,7 @@ span.ui-slider-handle.ui-corner-all.ui-state-default:focus-visible,
   background-color: var(--primary-color);
   border: 1px solid var(--primary-color);
   border-radius: 8px;
-  color: black;
+  color: white;
   -webkit-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
@@ -16154,7 +16154,7 @@ span.ui-slider-handle.ui-corner-all.ui-state-default:focus-visible,
 .btn-thm.rounded {
   background-color: var(--primary-color);
   border-radius: 5px;
-  color: black;
+  color: white;
 }
 
 .btn-thm:hover,
@@ -23379,7 +23379,7 @@ input.quantity-num[type="number"]::-webkit-outer-spin-button {
   transform: scale(1.1);
 }
 .car-listing .details {
-  padding: 15px 9px 5px;
+  padding: 0px 9px 5px;
 }
 .car-listing .details .wrapper {
   padding-bottom: 15px;
