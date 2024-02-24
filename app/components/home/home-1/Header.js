@@ -17,9 +17,9 @@ const Header = ({ carModelList }) => {
           <Link href="/" passHref>
             <div className="navbar_brand float-start dn-md">
               <Image
-                width={60}
-                height={60}
-                src="/images/Carportal-Logo.png"
+                width={160}
+                height={35}
+                src="/images/carportal-logo-white.png"
                 alt="Carportal-Logo"
               />
             </div>
