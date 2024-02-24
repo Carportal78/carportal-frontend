@@ -82,9 +82,9 @@ const HeroFilter = () => {
             <li className="list-inline-item">
               <div className="select-boxes">
                 <div className="car_brand">
-                  <h6 className="title">Make</h6>
+                  <h6 className="title">Brand</h6>
                   <select className="form-select" onChange={handleBrandChange} value={selectedBrandId}>
-                    <option value="">{isBrandsLoading ? "Loading..." : "Select Makes"}</option>
+                    <option value="">{isBrandsLoading ? "Loading..." : "Select Brand"}</option>
                     {carBrands?.map(brand => (
                       <option key={brand._id} value={brand._id}>{brand.brandName}</option>
                     ))}

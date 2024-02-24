@@ -79,10 +79,10 @@ const MobileMenu = () => {
 
                         <div className="mobile_menu_main_logo">
                             <Image
-                                width={45}
-                                height={45}
+                                width={120}
+                                height={30}
                                 priority
-                                src="/images/Carportal-Logo.png"
+                                src="/images/carportal-logo-blue.png"
                                 alt="brand"
                             />
                         </div>

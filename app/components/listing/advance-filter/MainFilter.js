@@ -78,7 +78,7 @@ const MainFilter = () => {
             value={selectedBrandId}
             disabled={isBrandsLoading}
           >
-            <option>{isBrandsLoading ? "Loading brands..." : "Select Makes"}</option>
+            <option>{isBrandsLoading ? "Loading brands..." : "Select Brand"}</option>
             {carBrands?.map((brand, index) => (
               <option key={index} value={brand._id}>{brand.brandName}</option>
             ))}

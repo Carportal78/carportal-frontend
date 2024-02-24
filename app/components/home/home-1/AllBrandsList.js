@@ -35,7 +35,7 @@ function AllBrandsList() {
 
   return (
     <>
-    <Container fluid className="my-3">
+    <Container fluid className="my-3 d-none d-md-flex">
       <Row className="g-3">
         {carBrands?.map((brand) => (
           <Col xs={4} sm={4} md={3} lg={2} xl={1} className="d-flex align-items-center justify-content-center" key={brand._id}>
@@ -85,7 +85,7 @@ function AllBrandsList() {
             </Button> */}
             <div className="text-center">
               <div className="more_listing" onClick={() => setShowAll(!showAll)}>
-                {showAll ? 'View More Brands' : 'View Less Brands'}
+                {showAll ? 'View Less Brands' : 'View More Brands'}
                 {showAll ? <span className="icon">
                   <span className="fas fa-minus" />
                 </span> :

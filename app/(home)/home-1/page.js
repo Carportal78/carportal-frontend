@@ -136,12 +136,13 @@ const Home_1 = () => {
       {/* End Car Cartegory */}
 
       {/* All brands List */}
-      <section className="featured-product">
+      <section className="featured-product all-brands-mobile-view">
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-8">
               <div className="text-center mb-md-3">
-                <h2>All Brands</h2>
+                <h2 className="d-none d-md-block">All Brands</h2>
+                <h3 className="d-md-none d-sm-block">All Brands</h3>
               </div>
             </div>
           </div>

@@ -4869,6 +4869,11 @@ form.listing_page_v9 {
 .home-one {
   margin-top: -126px;
 }
+@media (max-width: 520px) {
+  .all-brands-mobile-view {
+    margin-top: 170px;
+  }
+}
 .home-four {
   margin-top: -86px;
   padding: 0;
@@ -9978,7 +9983,7 @@ form.listing_page_v9 {
 }
 a.btn_error {
   border-radius: 8px;
-  color: black;
+  color: white;
   font-size: 13px;
   font-style: normal;
   font-weight: 600;
@@ -23798,7 +23803,7 @@ input.quantity-num[type="number"]::-webkit-outer-spin-button {
   margin-bottom: 0;
 }
 .more_listing .icon {
-  color: black;
+  color: white;
 }
 .more_listing .icon:hover {
   background-color: black;
