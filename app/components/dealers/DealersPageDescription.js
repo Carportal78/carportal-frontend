@@ -1,98 +1,83 @@
-"use client";
 import { useParams } from "next/navigation";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Col } from "react-bootstrap";
-
-// import required modules
 import Select from "react-select";
-import { selectCityAtom } from "../atoms/categoriesAtoms";
-import statesCitiesList from '../../../public/jsondata/state-and-city.json'
 import { useAtom } from "jotai";
+import { selectCityAtom } from "../atoms/categoriesAtoms";
+import statesCitiesList from '../../../public/jsondata/state-and-city.json';
 
 export default function DealersPageDescription({ carModelDetails, carVariantsList, carBrandsList }) {
+    // State for the UI
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const [isOpen, setOpen] = useState(false);
     const [videoId, setVideoId] = useState("");
     const [selectedBrandGroup, setselectedBrandGroup] = useState(null);
-    const [selectedGroup, setselectedGroup] = useState(null);
-    const [cityData] = useAtom(selectCityAtom);
-    const { brandid } = useParams();
+    const [selectedGroup, setselectedGroup] = useState(null);  // This seems to be unused and can be removed if not needed
+
+    // State for the selected city and city options
+    const [selectedCity, setSelectedCity] = useState(null);
     const [cityOptions, setCityOptions] = useState([]);
 
-    const openModal = (id) => {
-        setVideoId(id);
-        setOpen(true);
-    };
+    // Fetch cityData from Jotai state
+    const [cityData] = useAtom(selectCityAtom);
 
-    useEffect(() => {
-        console.log('cityData ', cityData);
-    })
+    // URL parameter
+    const { brandid } = useParams();
 
+    // Populate city options
     useEffect(() => {
-        const allCities = [];
-        Object.keys(statesCitiesList).forEach(state => {
-            statesCitiesList[state].forEach(city => {
-                allCities.push({
-                    value: city.id,
-                    label: city.city
-                });
-            });
-        });
-        setCityOptions(allCities);
+        const loadedCityOptions = Object.keys(statesCitiesList).flatMap(state => (
+            statesCitiesList[state].map(city => ({
+                value: city.id.toString(),  // Convert to string if cityData is a string
+                label: city.city
+            }))
+        ));
+        setCityOptions(loadedCityOptions);
     }, []);
-    
-    // New useEffect for setting initial selected city based on cityData
+
+    // Prepopulate selected city based on cityData ID
     useEffect(() => {
-        if (cityData && cityOptions.length > 0) {
-            const initialCity = cityOptions.find(city => city.value === cityData.id);
-            if (initialCity) {
-                setselectedGroup(initialCity);
-            }
+        if (cityData !== null && cityOptions.length > 0) {
+            // Find the matching city by converting both values to the same type (string)
+            const matchingCity = cityOptions.find(option => option.value === cityData.toString());
+            setSelectedCity(matchingCity || null);
         }
     }, [cityData, cityOptions]);
-    
-    // No changes needed here if it's working as expected
-    function handleSelectGroup(selectedGroup) {
-        setselectedGroup(selectedGroup);
-    }
-    
-    
 
+    // Handle brand selection
+    function handleSelectBrandGroup(selected) {
+        setselectedBrandGroup(selected);
+    }
+
+    // Handle city selection
+    function handleSelectCity(selected) {
+        setSelectedCity(selected);
+    }
+
+    // Search dealer function
+    function handleSearchDealer() {
+        // Perform search operation here
+    }
+
+    // Populate brand options
     useEffect(() => {
-        const selectedBrand = carBrandsList?.find(brand => brand._id === brandid);
-        if (selectedBrand) {
-            setselectedBrandGroup({ value: selectedBrand._id, label: selectedBrand.brandName });
+        if (brandid) {
+            const selectedBrand = carBrandsList.find(brand => brand._id === brandid);
+            if (selectedBrand) {
+                setselectedBrandGroup({ value: selectedBrand._id, label: selectedBrand.brandName });
+            }
         }
     }, [brandid, carBrandsList]);
 
-    // Assuming each variant object in carVariantsList has an 'id' and 'name' property
-    const brandOptionGroup = carBrandsList?.map(brand => ({
-        value: brand._id, // Use the unique identifier of the variant here
-        label: brand.brandName, // The name of the variant to be displayed
+    // Brand options for the select component
+    const brandOptionGroup = carBrandsList.map(brand => ({
+        value: brand._id,
+        label: brand.brandName
     }));
-
-    // Assuming each variant object in carVariantsList has an 'id' and 'name' property
-    const optionGroup = carVariantsList?.map(variant => ({
-        value: variant._id, // Use the unique identifier of the variant here
-        label: variant.name, // The name of the variant to be displayed
-    }));
-
-    useEffect(() => {
-    }, [carVariantsList, carModelDetails]);
-
-    function handleSelectBrandGroup(selectedGroup) {
-        const modelId = carModelDetails?._id;
-        const variantId = selectedGroup.value;
-        setselectedBrandGroup(selectedGroup);
-    }
-
-    function handleSearchDealer() {
-
-    }
 
     return (
         <>
-            <div className=" p20 bdr_none pl0 pr0">
+            <div className="p20 bdr_none pl0 pr0">
                 <div className="wrapper">
                     <h4>Hyundai Cars Dealers and Showrooms in Bangalore</h4>
                     <p>
@@ -102,33 +87,31 @@ export default function DealersPageDescription({ carModelDetails, carVariantsLis
                 </div>
 
                 <div className="d-flex flex-wrap gap-2 align-items-center">
-                    <Col xl={4} className=" mb-3 mt-4">
+                    <Col xl={4} className="mb-3 mt-4">
                         <Select
                             placeholder="Change Brand..."
                             value={selectedBrandGroup}
                             onChange={handleSelectBrandGroup}
                             options={brandOptionGroup}
                             className="select2-selection"
-                        // styles={customStyles}
                         />
                     </Col>
-                    <Col xl={4} className=" mb-3 mt-4">
+                    <Col xl={4} className="mb-3 mt-4">
                         <Select
                             placeholder="Select City..."
-                            value={selectedGroup}
-                            onChange={handleSelectGroup}
+                            value={selectedCity}
+                            onChange={handleSelectCity}
                             options={cityOptions}
                             className="select2-selection"
                         />
                     </Col>
-                    <Col className=" mb-3 mt-md-5">
+                    <Col className="mb-3 mt-md-5">
                         <button className="btn btn-thm ofr_btn1 btn-block mt0 mb20" onClick={handleSearchDealer}>
                             <span className="flaticon-profit-report mr10 fz18 vam" />
                             Search Dealer
                         </button>
                     </Col>
                 </div>
-                {/* End opening_hour_widgets */}
             </div>
         </>
     );
