@@ -60,3 +60,32 @@
   font-weight: bold;
 }
 
+/* findCarOfChoice.module.css */
+.tabsContainer {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* for smooth scrolling on iOS */
+}
+
+.nav-tabs {
+  flex-wrap: nowrap;
+  border-bottom: 0;
+}
+
+.nav-item {
+  display: inline-block;
+  margin-right: 10px; /* Adjust the margin as needed */
+}
+
+/* Hide scrollbar */
+.tabsContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.tabsContainer {
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+}
+
+

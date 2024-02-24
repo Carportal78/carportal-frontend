@@ -126,13 +126,13 @@ const Home_1 = () => {
       {/* End Hero */}
 
       {/* Car Category */}
-      <section className="car-category mobile_space bgc-f9  pb10">
+      {/* <section className="car-category mobile_space bgc-f9  pb10">
         <div className="container">
           <div className="row">
             <Category />
           </div>
         </div>
-      </section>
+      </section> */}
       {/* End Car Cartegory */}
 
       {/* All brands List */}
@@ -140,7 +140,7 @@ const Home_1 = () => {
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-8">
-              <div className="main-title text-center">
+              <div className="text-center mb-md-3">
                 <h2>All Brands</h2>
               </div>
             </div>
