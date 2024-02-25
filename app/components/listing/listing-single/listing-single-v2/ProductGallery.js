@@ -211,7 +211,7 @@ export default function ProductGallery({ carModelDetails, carVariantsList }) {
               </a> */}
               <OffCanvasExample key={1} placement={'end'} name={'Compare'} />
             </div>
-            <div className="d-flex align-items-center">
+            {/* <div className="d-flex align-items-center">
               <span>
                 {[...Array(5)]?.map((_, i) => (
                   <i
@@ -224,8 +224,8 @@ export default function ProductGallery({ carModelDetails, carVariantsList }) {
               <Link href="/page-list-v1" className="pl10 fz12">
                 41 reviews{" "}
               </Link>
-            </div>
-            <div className="d-flex flex-column flex-md-row mt-2">
+            </div> */}
+            <div className="d-flex flex-column flex-md-row mt-0">
               <h4 className="mr10">₹ {carModelDetails?.priceRange?.minPrice} {carModelDetails?.priceRange?.minPriceType} - ₹ {carModelDetails?.priceRange?.maxPrice} {carModelDetails?.priceRange?.maxPriceType}*</h4>
               <Link href={`/onroadprice/${carModelDetails?._id}`} className="tdu color-black mt-md-0 c">Get On Road Price</Link>
             </div>

@@ -150,13 +150,13 @@ const ModelDetails = () => {
       {/* Agent Single Grid View */}
       <section className="our-agent-single bgc-f9 pb90 mt70-992 pt30">
         <div className="container">
-          {/* <div className="row mb30">
+          <div className="row mb30">
             <div className="col-xl-12">
               <div className="breadcrumb_content style2">
-                <BreadCrumb />
+                <BreadCrumb breadCrumbDetails={`New Car / ${carModelDetails?.modelName}`} />
               </div>
             </div>
-          </div> */}
+          </div>
           {/* End .row bradcrumb */}
           {/* End .row */}
           

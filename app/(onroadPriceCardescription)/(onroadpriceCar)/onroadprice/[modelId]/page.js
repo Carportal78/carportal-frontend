@@ -101,7 +101,7 @@ const OnRoadPrice = () => {
           <div className="row mb30">
             <div className="col-xl-12">
               <div className="breadcrumb_content style2">
-                <BreadCrumb breadCrumbDetails="On road price" />
+                <BreadCrumb breadCrumbDetails={`On road price / ${carModelDetails?.modelName}`} />
               </div>
             </div>
           </div>

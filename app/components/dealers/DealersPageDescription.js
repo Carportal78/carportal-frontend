@@ -5,6 +5,7 @@ import Select from "react-select";
 import { useAtom } from "jotai";
 import { selectCityAtom } from "../atoms/categoriesAtoms";
 import statesCitiesList from '../../../public/jsondata/state-and-city.json';
+import BreadCrumb from "../listing/listing-single/BreadCrumb";
 
 export default function DealersPageDescription({ carModelDetails, carVariantsList, carBrandsList }) {
     // State for the UI
@@ -77,6 +78,13 @@ export default function DealersPageDescription({ carModelDetails, carVariantsLis
 
     return (
         <>
+        <div className="row mb10">
+            <div className="col-xl-12">
+              <div className="breadcrumb_content style2">
+                <BreadCrumb breadCrumbDetails={`New Car / Dealers`} />
+              </div>
+            </div>
+          </div>
             <div className="p20 bdr_none pl0 pr0">
                 <div className="wrapper">
                     <h4>Hyundai Cars Dealers and Showrooms in Bangalore</h4>

@@ -166,7 +166,7 @@ export default function VariantProductGallery({ carModelDetails, carVariantsList
               </a> */}
               <OffCanvasExample key={1} placement={'end'} name={'Compare'} />
             </div>
-            <div className="d-flex align-items-center">
+            {/* <div className="d-flex align-items-center">
               <span>
                 {[...Array(5)]?.map((_, i) => (
                   <i
@@ -179,8 +179,8 @@ export default function VariantProductGallery({ carModelDetails, carVariantsList
               <Link href="/page-list-v1" className="pl10 fz12">
                 41 reviews{" "}
               </Link>
-            </div>
-            <div className=" mb-3 w-75 mt-4">
+            </div> */}
+            <div className=" mb-3 w-75 mt-0">
               <Select
                 placeholder="Change Variant..."
                 value={selectedGroup}

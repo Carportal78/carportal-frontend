@@ -246,7 +246,7 @@ const ListingSingleV2 = () => {
                             Change Car
                     </a>
                 </div>
-                <div className="d-flex align-items-center">
+                {/* <div className="d-flex align-items-center">
                   <span>
                     {[...Array(5)]?.map((_, i) => (
                       <i
@@ -259,8 +259,8 @@ const ListingSingleV2 = () => {
                   <Link href="/page-list-v1" className="pl10 fz12">
                     41 reviews{" "}
                   </Link>
-                </div>
-                <div className="d-flex mt-2">
+                </div> */}
+                <div className="d-flex mt-0">
                   <h4>Rs.48.50 - 52.70 Lakh</h4>*
                   <Link href="/onroadprice" className="tdu color-blue ml10">Get On Road Price</Link>
                 </div>
