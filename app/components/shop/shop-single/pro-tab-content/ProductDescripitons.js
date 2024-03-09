@@ -12,6 +12,8 @@ const ProductDescripitons = ({ carModelDetails, carVariantsList }) => {
 
   const [key, setKey] = useState('all');
 
+  const uniqueFuelTypes = [...new Set(carVariantsList.flatMap(variant => variant.fuelAndPerformance.fuelType))];
+
   const handleViewVariantHandler = (variant) => {
     router.push(`/listing-single-v3/${variant?._id}`)
   }
@@ -24,7 +26,7 @@ const ProductDescripitons = ({ carModelDetails, carVariantsList }) => {
       const value = Number(curr.value);
       return acc + (isNaN(value) ? 0 : value);
     }, 0) || 0;
-  
+
     return exShowroomPrice + rtoPrice + insurance + othersTotal;
   };
 
@@ -41,48 +43,48 @@ const ProductDescripitons = ({ carModelDetails, carVariantsList }) => {
           <div>₹ {Number(variant?.pricingDetails?.rtoPrice).toLocaleString('en-IN')}</div>
         </div>
         <div className='d-flex justify-content-between mt10'>
-        <div>
-              Insurance{" "}
-              <OverlayTrigger placement="right" overlay={<Tooltip id="tooltip">
-                {variant?.pricingDetails?.insuranceDescription}
-              </Tooltip>}>
-                <Image src="/images/icon/info.svg" width={15} height={15} alt="info icon of variant" />
-              </OverlayTrigger>
-            </div>
-            <div>₹ {Number(variant?.pricingDetails?.insurance).toLocaleString('en-IN')}</div>
-          
+          <div>
+            Insurance{" "}
+            <OverlayTrigger placement="right" overlay={<Tooltip id="tooltip">
+              {variant?.pricingDetails?.insuranceDescription}
+            </Tooltip>}>
+              <Image src="/images/icon/info.svg" width={15} height={15} alt="info icon of variant" />
+            </OverlayTrigger>
+          </div>
+          <div>₹ {Number(variant?.pricingDetails?.insurance).toLocaleString('en-IN')}</div>
+
         </div>
         <div className='d-flex justify-content-between mt10'>
-        <div>
-              Others{" "}
-              <OverlayTrigger placement="right" overlay={<Tooltip id="tooltip">
-                {
-                  variant?.pricingDetails?.others?.map((other, index) => (
-                    <div key={index} className='d-flex justify-content-between mt-2'>
-                      <div>
-                        {other.key}{" "}
-                      </div>{" "}
-                      <div className="ml-3">₹ {Number(other.value).toLocaleString('en-IN')}</div>
-                    </div>
-                  ))
-                }
-              </Tooltip>}>
-                <Image src="/images/icon/info.svg" width={15} height={15} alt={'info text'} />
-              </OverlayTrigger>
-            </div>
-            <div>₹ {variant?.pricingDetails?.others?.reduce((acc, curr) => {
-              const value = Number(curr.value);
-              return acc + (isNaN(value) ? 0 : value);
-            }, 0).toLocaleString('en-IN')}</div>
+          <div>
+            Others{" "}
+            <OverlayTrigger placement="right" overlay={<Tooltip id="tooltip">
+              {
+                variant?.pricingDetails?.others?.map((other, index) => (
+                  <div key={index} className='d-flex justify-content-between mt-2'>
+                    <div>
+                      {other.key}{" "}
+                    </div>{" "}
+                    <div className="ml-3">₹ {Number(other.value).toLocaleString('en-IN')}</div>
+                  </div>
+                ))
+              }
+            </Tooltip>}>
+              <Image src="/images/icon/info.svg" width={15} height={15} alt={'info text'} />
+            </OverlayTrigger>
+          </div>
+          <div>₹ {variant?.pricingDetails?.others?.reduce((acc, curr) => {
+            const value = Number(curr.value);
+            return acc + (isNaN(value) ? 0 : value);
+          }, 0).toLocaleString('en-IN')}</div>
         </div>
         <ListGroup variant="flush">
-            <ListGroup.Item></ListGroup.Item>
-            <ListGroup.Item></ListGroup.Item>
-          </ListGroup>
-          <div className='d-flex justify-content-between'>
-            <div style={{ color: '#24272c', fontSize: '15px', fontWeight: '500' }}  >On-Road Price in {variant?.pricingDetails?.city}</div>
-            <div style={{ color: '#24272c', fontSize: '15px', fontWeight: '500' }}>₹ {calculateTotalPrice(variant).toLocaleString('en-IN')}</div>
-          </div>
+          <ListGroup.Item></ListGroup.Item>
+          <ListGroup.Item></ListGroup.Item>
+        </ListGroup>
+        <div className='d-flex justify-content-between'>
+          <div style={{ color: '#24272c', fontSize: '15px', fontWeight: '500' }}  >On-Road Price in {variant?.pricingDetails?.city}</div>
+          <div style={{ color: '#24272c', fontSize: '15px', fontWeight: '500' }}>₹ {calculateTotalPrice(variant).toLocaleString('en-IN')}</div>
+        </div>
       </div>
 
     </>
@@ -117,89 +119,94 @@ const ProductDescripitons = ({ carModelDetails, carVariantsList }) => {
 
   return (
     <>
-    <div className={`row ${styles['mobile-mt-10']}`}>
-      <Card className="col-lg-3 col-xl-3">
-      <Card.Img variant="top" src={carModelDetails?.media?.[0]?.url} className='mt10' />
-      <Card.Body>
-        <Card.Title><strong>{carModelDetails?.modelName}</strong></Card.Title>
-        <Card.Text>
-          <div className="listing_footer">
-                    <ul className="mb0">
-                      <li className="list-inline-item">
-                        <span className="flaticon-road-perspective me-2" />
-                        {carModelDetails?.mileage?.split('_')?.join('-')} kmpl
-                      </li>
-                      <br/>
-                      <li className="list-inline-item">
-                        <span className="flaticon-gas-station me-2" />
-                        {carModelDetails?.fuelType?.join(', ')}
-                      </li>
-                      <br/>
-                      <li className="list-inline-item">
-                        <span className="flaticon-gear me-2" />
-                        {carModelDetails?.transmissionType?.join(', ')}
-                      </li>
-                    </ul>
-                  </div>
-          <div className='mt10'>{Array.from(
-                                                { length: 4 },
-                                                (_, i) => (
-                                                    <li
-                                                        className="list-inline-item"
-                                                        key={i}
-                                                    >
-                                                        <a href="#">
-                                                            <i className="fa fa-star" />
-                                                        </a>
-                                                    </li>
-                                                )
-                                            )}
-                                            <span>4 ratings</span>
-                                            </div>
-        </Card.Text>
-      </Card.Body>
-      <ListGroup className="list-group-flush">
-        <ListGroup.Item><strong>₹ {carModelDetails?.priceRange?.minPrice} {carModelDetails?.priceRange?.minPriceType} - 
-                  ₹ {carModelDetails?.priceRange?.maxPrice} {carModelDetails?.priceRange?.maxPriceType} *</strong></ListGroup.Item>
-      </ListGroup>
-      <Card.Body>
-          <button className="btn btn-thm ofr_btn1 btn-block mt0 mb20" data-bs-toggle="modal" data-bs-target="#contactDealerForm">
-                    <span className="flaticon-profit-report mr10 fz18 vam" />
-                    Contact Dealer
-                  </button>
-      </Card.Body>
-    </Card>
-      <div className="col-lg-8 col-xl-8 col">
-        <div className='mt10'>
-          <h2>{carModelDetails?.modelName} On Road Price in Jaipur</h2>
-        </div>
-        <Tabs
-        id="controlled-tab-example"
-        activeKey={key}
-        onSelect={(k) => setKey(k)}
-        className="mb-3"
-      >
-        <Tab eventKey="all" title="All">
-          {renderAccordion(() => true)}
-        </Tab>
-        {carVariantsList?.map(variant => variant?.carModel?.fuelType?.map(type => {
-          return <Tab eventKey={type} title={type} key={variant?._id}>
-            {renderAccordion(variant => {
-              return variant?.fuelAndPerformance.fuelType === type
-
-            })}
+      <div className={`row ${styles['mobile-mt-10']}`}>
+        <Card className="col-lg-3 col-xl-3">
+          <Card.Img variant="top" src={carModelDetails?.media?.[0]?.url} className='mt10' />
+          <Card.Body>
+            <Card.Title><strong>{carModelDetails?.modelName}</strong></Card.Title>
+            <Card.Text>
+              <div className="listing_footer">
+                <ul className="mb0">
+                  <li className="list-inline-item">
+                    <span className="flaticon-road-perspective me-2" />
+                    {carModelDetails?.mileage?.split('_')?.join('-')} kmpl
+                  </li>
+                  <br />
+                  <li className="list-inline-item">
+                    <span className="flaticon-gas-station me-2" />
+                    {carModelDetails?.fuelType?.join(', ')}
+                  </li>
+                  <br />
+                  <li className="list-inline-item">
+                    <span className="flaticon-gear me-2" />
+                    {carModelDetails?.transmissionType?.join(', ')}
+                  </li>
+                </ul>
+              </div>
+              <div className='mt10'>{Array.from(
+                { length: 4 },
+                (_, i) => (
+                  <li
+                    className="list-inline-item"
+                    key={i}
+                  >
+                    <a href="#">
+                      <i className="fa fa-star" />
+                    </a>
+                  </li>
+                )
+              )}
+                <span>4 ratings</span>
+              </div>
+            </Card.Text>
+          </Card.Body>
+          <ListGroup className="list-group-flush">
+            <ListGroup.Item><strong>₹ {carModelDetails?.priceRange?.minPrice} {carModelDetails?.priceRange?.minPriceType} -
+              ₹ {carModelDetails?.priceRange?.maxPrice} {carModelDetails?.priceRange?.maxPriceType} *</strong></ListGroup.Item>
+          </ListGroup>
+          <Card.Body>
+            <button className="btn btn-thm ofr_btn1 btn-block mt0 mb20" data-bs-toggle="modal" data-bs-target="#contactDealerForm">
+              <span className="flaticon-profit-report mr10 fz18 vam" />
+              Contact Dealer
+            </button>
+          </Card.Body>
+        </Card>
+        <div className="col-lg-8 col-xl-8 col">
+          <div className='mt10'>
+            <h2>{carModelDetails?.modelName} On Road Price in Jaipur</h2>
+          </div>
+          <Tabs
+            id="controlled-tab-example"
+            activeKey={key}
+            onSelect={(k) => setKey(k)}
+            className="mb-3"
+          >
+            <Tab eventKey="all" title="All">
+              {renderAccordion(() => true)}
+            </Tab>
+            {uniqueFuelTypes.map((fuelType) => (
+          <Tab eventKey={fuelType} title={fuelType} key={fuelType}>
+            {renderAccordion(variant => variant.fuelAndPerformance.fuelType === fuelType)}
           </Tab>
-        }))}
+        ))}
+            {/* {carVariantsList?.map(variant => variant?.carModel?.fuelType?.map(type => {
+              return <Tab eventKey={type} title={type} key={variant?._id}>
+                {renderAccordion(variant => {
+                  return variant?.fuelAndPerformance.fuelType === type
 
-        {/* <Tab eventKey="petrol" title="Petrol">
+                })}
+              </Tab>
+            }))} */}
+
+            {/* <Tab eventKey="petrol" title="Petrol">
           {renderAccordion(variant => variant?.fuelAndPerformance?.fuelType === 'Petrol')}
         </Tab>
         <Tab eventKey="automatic" title="Automatic">
           {renderAccordion(variant => variant?.fuelAndPerformance?.fuelType === 'Automatic')}
         </Tab> */}
-      </Tabs>
-      
-      </div>
+          </Tabs>
+
+        </div>
       </div>
 
       <div
