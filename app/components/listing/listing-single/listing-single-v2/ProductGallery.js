@@ -130,7 +130,7 @@ export default function ProductGallery({ carModelDetails, carVariantsList }) {
   }
 
   function handleRedirectToDealersPage() {
-    router.push(`/dealers/${carModelDetails?.carBrand?._id}`);
+    router.push(`/dealers/${carModelDetails?.carBrand?._id}`); 
   }
 
   function handleContactDealer() {

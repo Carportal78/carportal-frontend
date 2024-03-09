@@ -12,7 +12,7 @@ const ProductDescripitons = ({ carModelDetails, carVariantsList }) => {
 
   const [key, setKey] = useState('all');
 
-  const uniqueFuelTypes = [...new Set(carVariantsList.flatMap(variant => variant.fuelAndPerformance.fuelType))];
+  const uniqueFuelTypes = [...new Set(carVariantsList?.flatMap(variant => variant.fuelAndPerformance.fuelType))];
 
   const handleViewVariantHandler = (variant) => {
     router.push(`/listing-single-v3/${variant?._id}`)

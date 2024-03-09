@@ -27,7 +27,7 @@ export default function DealersPageDescription({ carModelDetails, carVariantsLis
 
     // Populate city options
     useEffect(() => {
-        const loadedCityOptions = Object.keys(statesCitiesList).flatMap(state => (
+        const loadedCityOptions = Object.keys(statesCitiesList)?.flatMap(state => (
             statesCitiesList[state].map(city => ({
                 value: city.id.toString(),  // Convert to string if cityData is a string
                 label: city.city

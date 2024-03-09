@@ -41,7 +41,7 @@ const VariantsList = ({ carModelDetails, variants }) => {
     },
   ];
 
-  const uniqueFuelTypes = [...new Set(variants.flatMap(variant => variant.fuelAndPerformance.fuelType))];
+  const uniqueFuelTypes = [...new Set(variants?.flatMap(variant => variant.fuelAndPerformance.fuelType))];
 
   const [key, setKey] = useState('all');
 
