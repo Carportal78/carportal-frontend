@@ -41,6 +41,8 @@ const VariantsList = ({ carModelDetails, variants }) => {
     },
   ];
 
+  const uniqueFuelTypes = [...new Set(variants.flatMap(variant => variant.fuelAndPerformance.fuelType))];
+
   const [key, setKey] = useState('all');
 
   // Custom Tooltip for additional information
@@ -58,7 +60,7 @@ const VariantsList = ({ carModelDetails, variants }) => {
       const value = Number(curr.value);
       return acc + (isNaN(value) ? 0 : value);
     }, 0) || 0;
-  
+
     return exShowroomPrice + rtoPrice + insurance + othersTotal;
   };
 
@@ -104,9 +106,9 @@ const VariantsList = ({ carModelDetails, variants }) => {
             </OverlayTrigger>
           </div>
           <div><strong>₹ {variant?.pricingDetails?.others?.reduce((acc, curr) => {
-        const value = Number(curr.value);
-        return acc + (isNaN(value) ? 0 : value);
-      }, 0).toLocaleString('en-IN')}</strong></div>
+            const value = Number(curr.value);
+            return acc + (isNaN(value) ? 0 : value);
+          }, 0).toLocaleString('en-IN')}</strong></div>
         </div>
         <div style={{ border: '0.1px solid #dee2e6', marginTop: '1em' }}><divider></divider></div>
         {/* <ListGroup variant="flush">
@@ -160,8 +162,6 @@ const VariantsList = ({ carModelDetails, variants }) => {
 
   return (
     <>
-      {/* <div className="d-flex">{ProductDescripitons()}</div> */}
-      {/* {<VariantDescripition />} */}
       <h3>Variants</h3>
       <div>
         <div className="mb15">{carModelDetails?.modelName} price starts at Rs. {carModelDetails?.priceRange?.minPrice} {carModelDetails?.priceRange?.minPriceType} and top model price goes upto Rs. {carModelDetails?.priceRange?.maxPrice} {carModelDetails?.priceRange?.maxPriceType}. {carModelDetails?.modelName} is offered in {variants?.length ?? 0} variants - all the models are mentioned below.</div>
@@ -175,41 +175,12 @@ const VariantsList = ({ carModelDetails, variants }) => {
         <Tab eventKey="all" title="All">
           {renderAccordion(() => true)}
         </Tab>
-        {variants?.map(variant => variant?.carModel?.fuelType?.map(type => {
-          return <Tab eventKey={type} title={type} key={variant?._id}>
-            {renderAccordion(variant => {
-              return variant?.fuelAndPerformance.fuelType === type
-
-            })}
+        {uniqueFuelTypes.map((fuelType) => (
+          <Tab eventKey={fuelType} title={fuelType} key={fuelType}>
+            {renderAccordion(variant => variant.fuelAndPerformance.fuelType === fuelType)}
           </Tab>
-        }))}
-
-        {/* <Tab eventKey="petrol" title="Petrol">
-          {renderAccordion(variant => variant?.fuelAndPerformance?.fuelType === 'Petrol')}
-        </Tab>
-        <Tab eventKey="automatic" title="Automatic">
-          {renderAccordion(variant => variant?.fuelAndPerformance?.fuelType === 'Automatic')}
-        </Tab> */}
+        ))}
       </Tabs>
-      {/* <div className="col-lg-12">
-        <h4 className="title">Variants</h4>
-      </div>
-      <div className="mb15">{carModelDetails?.modelName} price starts at Rs. {carModelDetails?.priceRange?.minPrice} {carModelDetails?.priceRange?.minPriceType} and top model price goes upto Rs. {carModelDetails?.priceRange?.maxPrice} {carModelDetails?.priceRange?.maxPriceType}. {carModelDetails?.modelName} is offered in {carModelDetails?.carVariants?.length ?? 0} variants - the base model of Creta is E and the top model Hyundai Creta SX Opt Knight Diesel AT DT.</div>
-      {featureCategories.map((category, index) => (
-        <div className="row" key={index}>
-          <div className="col-lg-6 col-xl-6">
-            <h5 className="subtitle">{category.title}</h5>
-          </div>
-          <div className="col-lg-6 col-xl-5">
-            <ul className="service_list">
-              {category.items.map((item, itemIndex) => (
-                <li key={itemIndex}>{item}</li>
-              ))}
-            </ul>
-          </div>
-          {index < featureCategories.length - 1 && <hr />}
-        </div>
-      ))} */}
     </>
   );
 };

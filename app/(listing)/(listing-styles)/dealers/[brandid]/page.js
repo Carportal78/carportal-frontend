@@ -73,6 +73,10 @@ const Dealers = () => {
       });
   }, []);
 
+  useEffect(() => {
+    
+  },[brandid])
+
   return (
     <div className="wrapper">
       <div

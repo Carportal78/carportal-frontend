@@ -87,7 +87,7 @@ export default function DealersPageDescription({ carModelDetails, carVariantsLis
           </div>
             <div className="p20 bdr_none pl0 pr0">
                 <div className="wrapper">
-                    <h4>Hyundai Cars Dealers and Showrooms in Bangalore</h4>
+                    <h4>{carModelDetails?.modelName} Cars Dealers and Showrooms in Bangalore</h4>
                     <p>
                         Carportal connects you with authorized Hyundai Showrooms and dealers in Bangalore with their address and complete contact info.
                         For more information on Hyundai Cars Price, Offers, EMI options and test drive contact the below mentioned dealers in Bangalore.
