@@ -8,8 +8,7 @@ import LoginSignupModal from "../../../../components/common/login-signup";
 import Link from "next/link";
 import ReleatedCar from "../../../../components/listing/listing-single/ReleatedCar";
 import DealersPageDescription from "../../../../components/dealers/DealersPageDescription";
-import ProductDescripitons from "../../../../components/shop/shop-single/pro-tab-content/ProductDescripitons";
-import { Button, Card, Col, Image, Row, Spinner } from "react-bootstrap";
+import { Card, Col, Image, Row, Spinner } from "react-bootstrap";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { selectCarDealerAtom, selectCityAtom } from "../../../../components/atoms/categoriesAtoms";
@@ -155,7 +154,7 @@ const Dealers = () => {
           </div>
 
           <p className="col-lg-12 col-xl-12 mb-3" style={{ fontSize: '1.5em', fontWeight: "600", color: '#24272c' }}>
-            {carDealers?.length} {carBrand?.brandName} Car Dealers in New Delhi
+            {carDealers?.length} {carBrand?.brandName} Car Dealers in {cityData}
           </p>
           <Row className="g-3">
             {isLoading ? <Spinner className="d-flex" style={{ marginLeft: 'auto', marginRight: 'auto' }} animation="border" role="status">
@@ -240,8 +239,6 @@ const Dealers = () => {
 
           {/* End .row */}
         </div >
-
-
 
         {/* End .container */}
       </section >

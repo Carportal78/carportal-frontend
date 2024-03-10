@@ -175,7 +175,7 @@ const VariantListForm = ({ modelName, carVariantsList }) => {
                                                         {`${variant?.name} ${variant?.carModel?.modelName}`}
                                                     </Link>
                                                 </td>
-                                                <td>{`${variant?.basicInformation?.onRoadPrice}`}</td>
+                                                <td>{`${variant?.basicInformation?.onRoadPrice.toLocaleString('en-IN')}`}</td>
                                             </tr>
                                         ))}
                                     </tbody>

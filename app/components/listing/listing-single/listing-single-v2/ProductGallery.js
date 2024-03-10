@@ -7,37 +7,11 @@ import "react-modal-video/scss/modal-video.scss";
 import { FreeMode, Navigation, Thumbs } from "swiper";
 import Image from "next/image";
 import Link from "next/link";
-import { Container, Row, Col, Button, FormLabel } from 'react-bootstrap';
-import styles from './ProductGallery.module.css';
+import { Container, Row, Col } from 'react-bootstrap';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import Select from "react-select";
 import { useRouter } from "next/navigation";
 import { useAtom } from "jotai";
 import { selectCarBrandAtom, selectCarModelAtom, selectCarVariantAtom } from "../../../atoms/categoriesAtoms";
-
-
-const slides = [
-  {
-    imageSrc: "/images/listing/lsp1-v1.jpg",
-    videoId: "VWrJkx6O0L8",
-  },
-  {
-    imageSrc: "/images/listing/lsp1-v2.jpg",
-    videoId: "TLEyLGWvjII",
-  },
-  {
-    imageSrc: "/images/listing/lsp1-v3.jpg",
-    videoId: "BS2jGGYC60c",
-  },
-  {
-    imageSrc: "/images/listing/lsp1-v4.jpg",
-    videoId: "8PiZNUCexrA",
-  },
-  {
-    imageSrc: "/images/listing/lsp1-v5.jpg",
-    videoId: "m4ZGuAbUMg8",
-  },
-];
 
 function OffCanvasExample({ name, ...props }) {
   const [show, setShow] = useState(false);
@@ -204,27 +178,13 @@ export default function ProductGallery({ carModelDetails, carVariantsList }) {
           </Col>
 
           <Col xs={12} md={4} className="order-md-3">
-            <div className="product-details px-md-0 d-flex justify-content-between"> {/* Added padding for mobile view */}
+            <div className="product-details px-md-0 d-flex justify-content-between">
               <h3 style={{fontSize: '20px'}}>{carModelDetails?.modelName}</h3>
               {/* <a className="fz12 tdu color-blue" href="#">
                 Compare
               </a> */}
               <OffCanvasExample key={1} placement={'end'} name={'Compare'} />
             </div>
-            {/* <div className="d-flex align-items-center">
-              <span>
-                {[...Array(5)]?.map((_, i) => (
-                  <i
-                    key={i}
-                    className={i < 5 ? "fa fa-star" : "fa fa-star-o"}
-                    aria-hidden="true"
-                  ></i>
-                ))}
-              </span>
-              <Link href="/page-list-v1" className="pl10 fz12">
-                41 reviews{" "}
-              </Link>
-            </div> */}
             <div className="d-flex flex-column flex-md-row mt-0">
               <h4 className="mr10">₹ {carModelDetails?.priceRange?.minPrice} {carModelDetails?.priceRange?.minPriceType} - ₹ {carModelDetails?.priceRange?.maxPrice} {carModelDetails?.priceRange?.maxPriceType}*</h4>
               <Link href={`/onroadprice/${carModelDetails?._id}`} className="tdu color-black mt-md-0 c">Get On Road Price</Link>
@@ -241,9 +201,6 @@ export default function ProductGallery({ carModelDetails, carVariantsList }) {
             <div className="d-flex">
               <strong>Transmission Type:</strong> <span className="ml5">{carModelDetails?.transmissionType?.join(', ')}</span>
             </div>
-            {/* <p className="para">
-                    *Ex-showroom Price in<a href="#" className="tdu color-blue ml10">Jaipur</a>
-                  </p> */}
             <div className="offer_btns mt-5">
               <div className="text-end">
                 <button className="btn btn-thm ofr_btn1 btn-block mt0 mb20" onClick={handleContactDealer} data-bs-toggle="modal" data-bs-target="#contactDealerForm">

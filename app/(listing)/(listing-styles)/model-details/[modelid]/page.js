@@ -20,56 +20,6 @@ const metadata = {
 };
 
 const ListingV3 = () => {
-  
-  const { modelid } = useParams();
-
-  // const [carVariants, setCarVariants] = useState([]);
-  // const [carBrandsList, setCarBrandsList] = useState([]);
-  // const [carCollections, setCarCollections] = useState([]);
-
-  // useEffect(() => {
-  //   const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carCollections/for/65538448b78add9eaa02d417';
-  //   const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
-
-  //   fetch(apiUrl, {
-  //     method: 'GET',
-  //     headers: {
-  //       'X-API-Key': apiKey,
-  //       'Content-Type': 'application/json'
-  //     }
-  //   })
-  //   .then(response => response.json())
-  //   .then(data => {
-  //     if (data && data.data && data.data.carCollectionsList) {
-  //       setCarCollections(data.data.carCollectionsList);
-  //     }
-  //   })
-  //   .catch(error => {
-  //     console.error('Error fetching data: ', error);
-  //   });
-  // }, []);
-
-  // useEffect(() => {
-  //   const apiUrl = `https://api.univolenitsolutions.com/v1/automobile/carvariants/from/carmodel/${modelid}/for/65538448b78add9eaa02d417`;
-  //   const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
-
-  //   fetch(apiUrl, {
-  //     method: 'GET',
-  //     headers: {
-  //       'X-API-Key': apiKey,
-  //       'Content-Type': 'application/json'
-  //     }
-  //   })
-  //   .then(response => response.json())
-  //   .then(data => {
-  //     if (data && data.data && data.data.carVariantList) {
-  //       setCarVariants(data.data.carVariantList);
-  //     }
-  //   })
-  //   .catch(error => {
-  //     console.error('Error fetching data: ', error);
-  //   });
-  // }, [modelid]);
 
   return (
     <div className="wrapper">

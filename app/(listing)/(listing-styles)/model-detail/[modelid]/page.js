@@ -198,17 +198,6 @@ const ModelDetails = () => {
                   >
                     Variants
                   </button>
-                  {/* <button
-                    className="nav-link"
-                    id="nav-review-tab"
-                    data-bs-toggle="tab"
-                    data-bs-target="#nav-review"
-                    role="tab"
-                    aria-controls="nav-review"
-                    aria-selected="false"
-                  >
-                    Reviews
-                  </button> */}
                 </div>
                 {/* Tab panes */}
                 <div className="tab-content col-lg-12" id="nav-tabContent">
