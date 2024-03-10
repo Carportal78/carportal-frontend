@@ -9,11 +9,13 @@ import Link from "next/link";
 import ReleatedCar from "../../../../components/listing/listing-single/ReleatedCar";
 import DealersPageDescription from "../../../../components/dealers/DealersPageDescription";
 import ProductDescripitons from "../../../../components/shop/shop-single/pro-tab-content/ProductDescripitons";
-import { Card, Col } from "react-bootstrap";
+import { Button, Card, Col, Image, Row, Spinner } from "react-bootstrap";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { selectCarDealerAtom } from "../../../../components/atoms/categoriesAtoms";
+import { selectCarDealerAtom, selectCityAtom } from "../../../../components/atoms/categoriesAtoms";
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { useAtom } from "jotai";
+import { useRouter } from "next/navigation";
 
 const metadata = {
   title: "OnRoad Price || Carportal - Automotive & Car Dealer",
@@ -27,7 +29,13 @@ const Dealers = () => {
   const [carModelDetails, setCarModelDetails] = useState({});
   const [carVariantsList, setCarVariantsList] = useState([]);
   const [carModelsList, setCarModelsList] = useState([]);
+  const [carBrand, setCarBrand] = useState({});
   const [selectCarVariantData, setSelectCarVariantData] = useAtom(selectCarDealerAtom);
+  // Fetch cityData from Jotai state
+  const [cityData] = useAtom(selectCityAtom);
+  const [carDealers, setCarDealers] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carbrands/for/65538448b78add9eaa02d417';
@@ -44,6 +52,7 @@ const Dealers = () => {
       .then(data => {
         if (data && data.data && data.data.carBrandsList) {
           setCarBrandsList(data.data.carBrandsList);
+          setCarBrand(data.data.carBrandsList.find(brand => brand._id.toString() === brandid.toString()));
           localStorage.setItem('carBrandsList', JSON.stringify(data.data.carBrandsList));
         }
       })
@@ -74,8 +83,33 @@ const Dealers = () => {
   }, []);
 
   useEffect(() => {
-    
-  },[brandid])
+    setIsLoading(true);
+    const apiUrl = `http://localhost:3005/v1/cardealer/get/dealer/brand/${brandid}/cityCode/${cityData}/for/website/65538448b78add9eaa02d417`;
+    const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
+    fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'X-API-Key': apiKey,
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data && data.data && data.data.carDealersList) {
+          setCarDealers(data.data.carDealersList);
+          setIsLoading(false);
+        }
+      })
+      .catch(error => {
+        setCarDealers([]);
+        setIsLoading(false);
+      });
+  }, [brandid, cityData])
+
+  // const handleBrandClick = (brand) => {
+  //   alert(brand?._id)
+  //   router.push(`/dealer/${brand?._id}`) 
+  // }
 
   return (
     <div className="wrapper">
@@ -116,38 +150,101 @@ const Dealers = () => {
             position: "relative"
           }}>
             <div className="col-lg-12 col-xl-12">
-              <DealersPageDescription carModelDetails={carModelDetails} carVariantsList={carVariantsList} carBrandsList={carBrandsList} />
+              <DealersPageDescription carModelDetails={carModelDetails} carVariantsList={carVariantsList} carBrandsList={carBrandsList} carBrand={carBrand} cityData={cityData} />
             </div>
           </div>
 
           <p className="col-lg-12 col-xl-12 mb-3" style={{ fontSize: '1.5em', fontWeight: "600", color: '#24272c' }}>
-            21 Mahindra Car Dealers in New Delhi
+            {carDealers?.length} {carBrand?.brandName} Car Dealers in New Delhi
           </p>
-          <div >
-            <Col xs={5} sm={4} md={3} lg={4} xl={4} style={{
-            backgroundColor: "#fff",
-            border: "1px solid #eaeaea",
-            borderRadius: "8px",
-            marginBottom: "30px",
-            paddingLeft: "30px",
-            paddingRight: "30px",
-            paddingTop: "30px",
-            paddingBottom: "30px",
-            boxShadow: "0px 2px 12px rgba(36,40,44,.08)"
-          }}>
-            <h4>Harbans Motors Pvt Ltd</h4>
-            <p style={{fontWeight: '400', fontSize: '1em'}}>PLOT NO 19 BLOCK NO 62, UPPER GROUND FLOOR, KAROL BAGH, NEW ROHTAK ROAD, New Delhi, Delhi 110005</p>
-            <button>DIrection</button>
-            <button>Contact</button>
-            </Col>
-            
-          </div>
+          <Row className="g-3">
+            {isLoading ? <Spinner className="d-flex" style={{ marginLeft: 'auto', marginRight: 'auto' }} animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner> : carDealers?.map(dealer => (
+              <Col xs={12} md={4} lg={4} className="d-flex align-items-stretch" key={dealer?._id}>
+                <div style={{
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  border: "1px solid #eaeaea",
+                  borderRadius: "8px",
+                  marginBottom: "30px",
+                  padding: "30px",
+                  boxShadow: "0px 2px 12px rgba(36,40,44,.08)"
+                }}>
+                  <Card.Body>
+                    <Card.Title style={{ marginBottom: "12px" }}>{dealer?.dealerName}</Card.Title>
+                    <Card.Text style={{
+                      fontWeight: "400",
+                      lineHeight: "18px",
+                      fontSize: "12px",
+                      marginBottom: "12px",
+                      color: "rgba(36, 39, 44, .7)",
+                      textTransform: "capitalize"
+                    }}>
+                      <span style={{ color: 'black' }}>Address:</span> {dealer?.address} {dealer?.city} {dealer?.state}
+                    </Card.Text>
+                    <OverlayTrigger
+                      trigger="click"
+                      key={`tooltip-${dealer?._id}`}
+                      placement="top"
+                      overlay={
+                        <Tooltip id={`tooltip-${dealer?._id}`}>
+                          {dealer?.phoneNumber}
+                        </Tooltip>
+                      }
+                    >
+                      <button className="btn btn-thm ofr_btn1 btn-block mt0 mb20">
+                        <span className="flaticon-profit-report mr10 fz18 vam" />
+                        Click for Number
+                      </button>
+                    </OverlayTrigger>
+                  </Card.Body>
+                </div>
+              </Col>
+            ))}
+          </Row>
+
+          <p className="col-lg-12 col-xl-12 mb-3" style={{ fontSize: '1.5em', fontWeight: "600", color: '#24272c' }}>
+            Other Brand Dealers to Explore
+          </p>
+          <Row className="g-3">
+            {isLoading ? <Spinner className="d-flex" style={{ marginLeft: 'auto', marginRight: 'auto' }} animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner> : carBrandsList?.map(brand => (
+              <Col xs={6} md={4} lg={2} className="d-flex align-items-stretch pointer" key={brand?._id} onClick={() => router.push(`/dealers/${brand?._id}`)}>
+                <div style={{
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  border: "1px solid #eaeaea",
+                  borderRadius: "8px",
+                  marginBottom: "30px",
+                  padding: "30px",
+                  boxShadow: "0px 2px 12px rgba(36,40,44,.08)"
+                }}>
+                  <Card.Body>
+                    <Image
+                      width={120}
+                      height={58}
+                      src={brand.media.url || '/default-image.png'}
+                      alt={brand.brandName}
+                      className="d-flex"
+                      style={{ marginLeft: 'auto', marginRight: 'auto' }}
+                      layout='responsive'
+                    />
+                    <span className="d-flex justify-content-center font-600">{brand.brandName}</span>
+                  </Card.Body>
+                </div>
+              </Col>
+            ))}
+          </Row>
+
           {/* End .row */}
-        </div>
+        </div >
+
 
 
         {/* End .container */}
-      </section>
+      </section >
       {/* End Agent Single Grid View */}
 
       {/* End Car For Rent */}
@@ -207,7 +304,7 @@ const Dealers = () => {
         <LoginSignupModal />
       </div>
       {/* End Modal */}
-    </div>
+    </div >
     // End wrapper
   );
 };

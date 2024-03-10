@@ -7,7 +7,7 @@ import { selectCityAtom } from "../atoms/categoriesAtoms";
 import statesCitiesList from '../../../public/jsondata/state-and-city.json';
 import BreadCrumb from "../listing/listing-single/BreadCrumb";
 
-export default function DealersPageDescription({ carModelDetails, carVariantsList, carBrandsList }) {
+export default function DealersPageDescription({ carModelDetails, carVariantsList, carBrandsList, carBrand, cityData }) {
     // State for the UI
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const [isOpen, setOpen] = useState(false);
@@ -19,9 +19,6 @@ export default function DealersPageDescription({ carModelDetails, carVariantsLis
     const [selectedCity, setSelectedCity] = useState(null);
     const [cityOptions, setCityOptions] = useState([]);
 
-    // Fetch cityData from Jotai state
-    const [cityData] = useAtom(selectCityAtom);
-
     // URL parameter
     const { brandid } = useParams();
 
@@ -29,33 +26,29 @@ export default function DealersPageDescription({ carModelDetails, carVariantsLis
     useEffect(() => {
         const loadedCityOptions = Object.keys(statesCitiesList)?.flatMap(state => (
             statesCitiesList[state].map(city => ({
-                value: city.id.toString(),  // Convert to string if cityData is a string
+                value: city.id.toString(),
                 label: city.city
             }))
         ));
         setCityOptions(loadedCityOptions);
     }, []);
 
-    // Prepopulate selected city based on cityData ID
     useEffect(() => {
         if (cityData !== null && cityOptions.length > 0) {
-            // Find the matching city by converting both values to the same type (string)
             const matchingCity = cityOptions.find(option => option.value === cityData.toString());
             setSelectedCity(matchingCity || null);
+            console.log('selectedCity ', matchingCity);
         }
     }, [cityData, cityOptions]);
 
-    // Handle brand selection
     function handleSelectBrandGroup(selected) {
         setselectedBrandGroup(selected);
     }
 
-    // Handle city selection
     function handleSelectCity(selected) {
         setSelectedCity(selected);
     }
 
-    // Search dealer function
     function handleSearchDealer() {
         // Perform search operation here
     }
@@ -87,10 +80,10 @@ export default function DealersPageDescription({ carModelDetails, carVariantsLis
           </div>
             <div className="p20 bdr_none pl0 pr0">
                 <div className="wrapper">
-                    <h4>{carModelDetails?.modelName} Cars Dealers and Showrooms in Bangalore</h4>
+                    <h4>{carBrand?.brandName} Cars Dealers and Showrooms in {selectedCity?.label}</h4>
                     <p>
-                        Carportal connects you with authorized Hyundai Showrooms and dealers in Bangalore with their address and complete contact info.
-                        For more information on Hyundai Cars Price, Offers, EMI options and test drive contact the below mentioned dealers in Bangalore.
+                        Carportal connects you with authorized {carBrand?.brandName} Showrooms and dealers in {selectedCity?.label} with their address and complete contact info.
+                        For more information on {carBrand?.brandName} Cars Price, Offers, EMI options and test drive contact the below mentioned dealers in {selectedCity?.label}.
                     </p>
                 </div>
 
