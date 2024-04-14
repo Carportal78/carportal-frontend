@@ -26,7 +26,7 @@ const RecentlyViewed = ({ cars }) => {
   return (
     <>
       {cars?.slice(0,4).map((car, index) => (
-        <Link href="/listing-single-v1" className="d-flex mb20" key={index}>
+        <Link href={`/model-detail/${car._id}`} className="d-flex mb20" key={index}>
           <div className="flex-shrink-0">
             <Image
               width={90}
