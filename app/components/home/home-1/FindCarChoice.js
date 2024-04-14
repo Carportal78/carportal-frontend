@@ -247,7 +247,7 @@ function FindCarChoice() {
                       src={bodyType.imgSrc}
                       alt={bodyType.title}
                       // layout="fill" 
-                      // objectFit="contain" 
+                      // objectFit="contain"
                       width={150}
                       height={58}
                       className={styles.bodyTypeCheckImage}
@@ -268,7 +268,7 @@ function FindCarChoice() {
       >
           <Row className="mt-3">
             {seatingCapacityButtons.map((buttonType) => (
-              <Col xs={6} sm={2} md={2} lg={2} xl={2} key={buttonType.title}> {/* Responsive grid setup */}
+              <Col xs={6} sm={2} md={2} lg={2} xl={2} key={buttonType.title}>
                 <Link href={`listings?seatingCapacity=${buttonType.route}`}>
                   <Button variant="outline-secondary" size="md" className={`mb-2 ${styles.budgetCarButton} w-100`}>
                     {buttonType.title}
@@ -277,7 +277,6 @@ function FindCarChoice() {
               </Col>
             ))}
           </Row>
-  
       </Tab>
     </Tabs>
   );

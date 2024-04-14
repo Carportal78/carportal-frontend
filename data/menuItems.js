@@ -6,7 +6,7 @@ module.exports = [
   },
   {
     label: "Cars",
-      path: "listings",
+      path: "/listings",
     subMenu: [],
   },
   {

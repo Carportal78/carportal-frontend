@@ -6,12 +6,15 @@ import { useState } from "react";
 const CarItems = ({ carModelsList }) => {
   const itemsPerPage = 10;
   const [visibleItems, setVisibleItems] = useState(carModelsList.length < itemsPerPage ? carModelsList.length : itemsPerPage);
-  // const repeatedArray = repeatArray(carModelsList, 50);
 
   const showMoreItems = (event) => {
     event.preventDefault();
-    setVisibleItems(prev => prev + itemsPerPage);
+    setVisibleItems(prevVisibleItems => {
+      const nextVisibleItems = prevVisibleItems + itemsPerPage;
+      return nextVisibleItems > carModelsList.length ? carModelsList.length : nextVisibleItems;
+    });
   };
+
 
   return (
     <>
@@ -20,7 +23,7 @@ const CarItems = ({ carModelsList }) => {
         <div className="col-sm-6 col-xl-4" key={listing._id}>
           <Link href={`/model-detail/${listing?._id}`}>
             <div className="car-listing">
-            <div className="thumb" style={{ position: 'relative', width: '100%', height: '200px', overflow: 'hidden' }}>
+              <div className="thumb" style={{ position: 'relative', width: '100%', height: '200px', overflow: 'hidden' }}>
                 {listing.featured ? (
                   <>
                     <div className="tag">FEATURED</div>
@@ -32,30 +35,30 @@ const CarItems = ({ carModelsList }) => {
                   </>
                 ) : undefined}
 
-                    <Image
-                    layout="fill"
-                    objectFit="cover"
-                    priority
-                    src={listing?.media?.[0]?.url ?? '/placeholder-image.png'}
-                    alt={listing?.modelName}
-                  />
-                </div>
-                <div className="thmb_cntnt2">
-                  <ul className="mb0">
-                    <li className="list-inline-item">
-                      <a className="text-white" href="#">
-                        <span className="flaticon-photo-camera mr3" />{" "}
-                        {listing?.media?.length}
-                      </a>
-                    </li>
-                    <li className="list-inline-item">
-                      <a className="text-white" href="#">
-                        <span className="flaticon-play-button mr3" />{" "}
-                        {listing?.year}
-                      </a>
-                    </li>
-                  </ul>
-                </div>
+                <Image
+                  layout="fill"
+                  objectFit="cover"
+                  priority
+                  src={listing?.media?.[0]?.url ?? '/placeholder-image.png'}
+                  alt={listing?.modelName}
+                />
+              </div>
+              <div className="thmb_cntnt2">
+                <ul className="mb0">
+                  <li className="list-inline-item">
+                    <a className="text-white" href="#">
+                      <span className="flaticon-photo-camera mr3" />{" "}
+                      {listing?.media?.length}
+                    </a>
+                  </li>
+                  <li className="list-inline-item">
+                    <a className="text-white" href="#">
+                      <span className="flaticon-play-button mr3" />{" "}
+                      {listing?.year}
+                    </a>
+                  </li>
+                </ul>
+              </div>
 
               <div className="details">
                 <div className="wrapper">
@@ -119,25 +122,13 @@ const CarItems = ({ carModelsList }) => {
             <div className="new_line_pagination text-center">
               <p>Showing {visibleItems} of {carModelsList.length} Results</p>
               <div className="pagination_line" />
-              <a className="pagi_btn" href="#">
-              Show More
-            </a>
+              <a className="pagi_btn" href="#" onClick={showMoreItems}>
+                Show More
+              </a>
             </div>
           </div>
         </div>
       )}
-
-      <div className="col-lg-12">
-        <div className="mbp_pagination mt20">
-          <div className="new_line_pagination text-center">
-            <p>Showing {visibleItems} of {carModelsList?.length} Results</p>
-            <div className="pagination_line" />
-            <a className="pagi_btn" href="#" onClick={showMoreItems}>
-              Show More
-            </a>
-          </div>
-        </div>
-      </div>
     </>
   );
 };
