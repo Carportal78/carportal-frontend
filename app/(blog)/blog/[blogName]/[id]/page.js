@@ -2,21 +2,14 @@
 import Footer from "../../../../components/common/Footer";
 import DefaultHeader from "../../../../components/common/DefaultHeader";
 import HeaderSidebar from "../../../../components/common/HeaderSidebar";
-import HeaderTop from "../../../../components/common/HeaderTop";
+import HeaderTop from "../../../../components/common/HeaderTop"; 
 import MobileMenu from "../../../../components/common/MobileMenu";
 import LoginSignupModal from "../../../../components/common/login-signup";
-import Image from "next/image";
-import Blog from "../../../../components/common/Blog";
-import Meta from "../../../../components/blog/blog-single/Meta";
-import Blockquote from "../../../../components/blog/blog-single/Blockquote";
-import Features from "../../../../components/blog/blog-single/Features";
-import Requirements from "../../../../components/blog/blog-single/Requirements";
-import Share from "../../../../components/blog/blog-single/Share";
-import Tag from "../../../../components/blog/blog-single/Tag";
-import Pagination from "../../../../components/blog/blog-single/Pagination";
-import Comments from "../../../../components/blog/blog-single/Comments";
-import CommentForm from "../../../../components/blog/blog-single/CommentForm";
+import { Container, Row, Col, Image, Button } from 'react-bootstrap';
+import { Facebook, Twitter, Instagram } from 'react-bootstrap-icons';
+
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const metadata = {
   title:
@@ -56,109 +49,72 @@ const BlogDynamicSingle = () => {
       <MobileMenu />
       {/* End Main Header Nav For Mobile */}
 
-      {/* Blog Single Post */}
-      <section className="blog_post_container bt1 pt50 pb0 mt70-992">
-        <div className="container">
-          <div className="row">
-            <div className="col-xl-8 m-auto">
-              <div className="for_blog blog_single_post">
-                <div className="details">
-                  <div className="wrapper">
-                    <h2 className="title">
-                      {blog?.blogName}
-                    </h2>
-                    <Meta blog={blog} />
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* End .col */}
+      <Container className="my-5">
+      <Row className="justify-content-center">
+        <Col xs={12} md={8}>
+          <div className="text-secondary">
+            <small>
+              <a href="#" className="text-primary">Election</a>, <a href="#" className="text-primary">Politics</a>
+            </small>
           </div>
-          {/* End .row */}
-        </div>
-        {/* End .container */}
+          <h1 className="font-weight-bold text-dark">Revenge of the Never Trumpers</h1>
+          <p className="my-2" style={{ lineHeight: 2 }}>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.
+          </p>
 
-        <div className="container-fluid p0">
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="blog-single-post-thumb">
-                <Image
-                  width={1519}
-                  height={475}
-                  priority
-                  style={{ objectFit: "cover" }}
-                  className="img-whp"
-                  src={blog?.carModel?.media?.url}
-                  alt={blog?.carModel?.media?.altText}
-                />
-              </div>
-            </div>
+          <Row className="my-3 d-flex align-items-center justify-content-between">
+            <Col className="d-flex align-items-center">
+              <Image src="https://avatars0.githubusercontent.com/u/39916324?s=460&u=602ca47fcce463981a2511a21148236f304ec934&v=4" roundedCircle style={{ width: '50px' }} />
+              <small className="ml-2">
+                <a href="#" className="text-primary d-block">Ahmad Sultani</a>
+                <span>Aug 18</span>
+              </small>
+            </Col>
+            <Col className="text-primary">
+              {/* <Button variant="link" className="mx-1">a</Button>
+              <Button variant="link" className="mx-1">b</Button>
+              <Button variant="link" className="mx-1">c</Button> */}
+              <a href="https://twitter.com/CarPortalindia" target="_blank" rel="noopener noreferrer" className="mx-1">
+              <Button variant="link" className="mx-1"><Twitter color="currentColor" size={30} /></Button></a>
+              <a href="https://www.facebook.com/carportal" target="_blank" rel="noopener noreferrer" className="mx-1">
+              <Button variant="link" className="mx-1"><Facebook color="currentColor" size={30} /></Button></a>
+              <a href="https://www.instagram.com/carportal.co.in" target="_blank" rel="noopener noreferrer" className="mx-1">
+              <Button variant="link" className="mx-1"><Instagram color="currentColor" size={30} /></Button>
+              </a>
+            </Col>
+          </Row>
+        </Col>
+      </Row>
+
+      <Image src="https://api.time.com/wp-content/uploads/2020/07/never-trumpers-2020-election-01.jpg?quality=85&w=1201&h=676&crop=1" fluid className="my-3" />
+
+      <Row className="justify-content-center">
+        <Col xs={12} md={8}>
+          <p className="my-2" style={{ lineHeight: 2 }}>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry...
+          </p>
+          <br />
+          <h3 className="font-weight-bold text-dark">#1. What is Lorem Ipsum?</h3>
+          <p className="my-2" style={{ lineHeight: 2 }}>
+            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...
+          </p>
+          <br />
+          <blockquote className="text-primary p-3" style={{ borderLeft: '4px solid black', lineHeight: 2 }}>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry...
+          </blockquote>
+          <br />
+          <p className="my-2" style={{ lineHeight: 2 }}>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry...
+          </p>
+          <div className="my-3">
+            <small>
+              <a href="#" className="text-primary">#election</a>, <a href="#" className="text-primary">#politics</a>, <a href="#" className="text-primary">#trump</a>, <a href="#" className="text-primary">#revenge</a>, <a href="#" className="text-primary">#2020</a>
+            </small>
           </div>
-          {/* End .row */}
-        </div>
-        {/* End container-fluid */}
-      </section>
-      {/* Blog Single Post */}
-
-      {/* Start Blog Single Post Description */}
-      <section className="blog_post_container pt50 pb70">
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-xl-8">
-              <div className="main_blog_post_content">
-                <div className="mbp_thumb_post">
-                  <h4>Description</h4>
-                  <p className="para mb25 mt20">
-                    {blog?.blogDescription}
-                  </p>
-                  <div className="mbp_blockquote">
-                    <Blockquote />
-                  </div>
-
-                  <div className="row">
-                    <div className="col-lg-12">
-                      <Image
-                        width={796}
-                        height={465}
-                        style={{
-                          objectFit: "cover",
-                        }}
-                        src={blog?.carModel?.media?.url}
-                        alt={blog?.carModel?.media?.altText}
-                      />
-                    </div>
-                  </div>
-                  {/* End .row */}
-
-                  <hr className="mb40" />
-                </div>
-                {/* End mbp_thumb_post */}
-
-                {/* <hr className="mt50" />
-                <Pagination />
-                <hr /> */}
-{/* 
-                <div className="product_single_content mt50 mb50">
-                  <div className="mbp_pagination_comments">
-                    <h4 className="title mb10">Comment</h4>
-                    <Comments />
-                  </div>
-                </div> */}
-                {/* End comments */}
-
-                {/* <div className="bsp_reveiw_wrt">
-                  <CommentForm />
-                </div> */}
-                {/* End CommentForm */}
-              </div>
-              {/* End main_blog_post_content */}
-            </div>
-            {/* End .col */}
-          </div>
-          {/* End .row */}
-        </div>
-        {/* End .container */}
-      </section>
+        </Col>
+      </Row>
+    </Container>
+      
       <Footer />
       {/* End Our Footer */}
 

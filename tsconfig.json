@@ -27,7 +27,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "app/(listing)/(listing-styles)/dealers/psge.js"  ],
   "exclude": [
     "node_modules"
   ]

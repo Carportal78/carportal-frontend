@@ -99,13 +99,13 @@ const Blog = () => {
           </div>
           {/* End .row */}
 
-          <div className="row">
+          {/* <div className="row">
             <div className="col-lg-12">
               <div className="mbp_pagination mt20">
                 <Pagination />
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
       {/* <!-- Main Blog Post Content --> */}

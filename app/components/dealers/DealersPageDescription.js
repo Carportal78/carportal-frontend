@@ -37,7 +37,6 @@ export default function DealersPageDescription({ carModelDetails, carVariantsLis
         if (cityData !== null && cityOptions.length > 0) {
             const matchingCity = cityOptions.find(option => option.value === cityData.toString());
             setSelectedCity(matchingCity || null);
-            console.log('selectedCity ', matchingCity);
         }
     }, [cityData, cityOptions]);
 
@@ -51,6 +50,8 @@ export default function DealersPageDescription({ carModelDetails, carVariantsLis
 
     function handleSearchDealer() {
         // Perform search operation here
+        alert('sds');
+        router.push(`/dealers/${brand?._id}`);
     }
 
     // Populate brand options
@@ -80,7 +81,8 @@ export default function DealersPageDescription({ carModelDetails, carVariantsLis
           </div>
             <div className="p20 bdr_none pl0 pr0">
                 <div className="wrapper">
-                    <h4>{carBrand?.brandName} Cars Dealers and Showrooms in {selectedCity?.label}</h4>
+                    {!carBrand && <h4></h4> }
+                    {carBrand && <h4>{carBrand?.brandName} Cars Dealers and Showrooms in {selectedCity?.label}</h4>}
                     <p>
                         Carportal connects you with authorized {carBrand?.brandName} Showrooms and dealers in {selectedCity?.label} with their address and complete contact info.
                         For more information on {carBrand?.brandName} Cars Price, Offers, EMI options and test drive contact the below mentioned dealers in {selectedCity?.label}.

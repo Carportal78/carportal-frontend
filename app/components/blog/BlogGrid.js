@@ -16,6 +16,7 @@ const BlogGrid = ({ blogs }) => {
   return (
     <>
       {blogs?.map((post) => (
+         <Link href={`/blog/${post.carBrand.brandName}/${post._id}`}>
         <div
           key={post?._id}
           className="col-md-6 col-xl-4"
@@ -77,6 +78,7 @@ const BlogGrid = ({ blogs }) => {
             </div>
           </div>
         </div>
+        </Link>
       ))}
     </>
   );
