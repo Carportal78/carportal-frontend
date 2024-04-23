@@ -36,7 +36,7 @@ const Footer = () => {
       {/* End .container */}
 
       <hr />
-      <div className="container pt80 pt20-sm pb70 pb0-sm">
+      <div className="container pt30 pt20-sm pb30 pb0-sm">
         <FooterItems />
         {/* End .row */}
       </div>
