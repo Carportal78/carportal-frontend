@@ -64,7 +64,7 @@ const BlogDynamicSingle = () => {
             </div>
             <h1 className="font-weight-bold text-dark">{blog?.blogName}</h1>
             <p className="my-2" style={{ lineHeight: 2 }}>
-              {truncateText(blog.blogDescription, 40)}
+              {truncateText(blog?.blogDescription, 40)}
             </p>
 
             <Row className="my-3 d-flex align-items-center justify-content-between">
@@ -101,15 +101,15 @@ const BlogDynamicSingle = () => {
             <br />
             <h3 className="font-weight-bold text-dark">#1. What is Lorem Ipsum?</h3>
             <p className="my-2" style={{ lineHeight: 2 }}>
-              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...
+              {`Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...`}
             </p>
             <br />
             <blockquote className="text-primary p-3" style={{ borderLeft: '4px solid black', lineHeight: 2 }}>
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry...
+              {`Lorem Ipsum is simply dummy text of the printing and typesetting industry...`}
             </blockquote>
             <br />
             <p className="my-2" style={{ lineHeight: 2 }}>
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry...
+              {`Lorem Ipsum is simply dummy text of the printing and typesetting industry...`}
             </p>
             <div className="my-3">
               <small>
