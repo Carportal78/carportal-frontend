@@ -90,7 +90,7 @@ const Blog = () => {
       {/* Inner Page Breadcrumb */}
 
       {/* <!-- Main Blog Post Content --> */}
-      <section className="blog_post_container inner_page_section_spacing">
+      <section className="blog_post_container inner_page_section_spacing"> 
         <div className="container">
           <div className="row">
             {isBlogsLoading? (<Spinner className="d-flex" style={{marginLeft: 'auto', marginRight: 'auto'}} animation="border" role="status">
@@ -99,7 +99,7 @@ const Blog = () => {
           </div>
           {/* End .row */}
 
-          {/* <div className="row">
+          {/* <div className="row">               
             <div className="col-lg-12">
               <div className="mbp_pagination mt20">
                 <Pagination />
