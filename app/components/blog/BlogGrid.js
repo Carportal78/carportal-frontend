@@ -9,7 +9,7 @@ const BlogGrid = ({ blogs }) => {
     e.preventDefault();
     if (typeof window !== 'undefined') {
       localStorage.setItem('selectedBlogPost', JSON.stringify(post));
-      window.location.href = `/blog/${post.carBrand.brandName}/${post._id}`;
+      window.location.href = `/blog/${post.carBrand.brandName}/${post.urlslug}`;
     }
   };
 
@@ -23,7 +23,7 @@ const BlogGrid = ({ blogs }) => {
           data-aos="fade-up"
           data-aos-delay="100"
         >
-          <Link href={`/blog/${post.carBrand.brandName}/${post._id}`}>
+          <Link href={`/blog/${post.carBrand.brandName}/${post._id}`} onClick={(e) => handleReadMoreClick(post, e)}>
             <div className="for_blog">
               <div className="thumb">
                 <div className="tag">

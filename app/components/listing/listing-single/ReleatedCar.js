@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-const ReleatedCar = ({ bodyType, carModelsList, relatedCars }) => {
+const ReleatedCar = ({ relatedCars }) => {
   return (
     <>
       <Swiper

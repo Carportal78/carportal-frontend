@@ -10,6 +10,7 @@ import { Facebook, Twitter, Instagram } from 'react-bootstrap-icons';
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import ReleatedCar from "../../../../components/listing/listing-single/ReleatedCar";
 
 const metadata = {
   title:
@@ -19,16 +20,27 @@ const metadata = {
 const BlogDynamicSingle = () => {
 
   const [blog, setBlog] = useState({});
+  const [relatedCars, setRelatedCars] = useState([]);
 
   useEffect(() => {
     const blogData = JSON.parse(localStorage.getItem('selectedBlogPost'));
     setBlog(blogData);
-  }, [])
+  }, []);
 
-  function truncateText(text, limit) {
-    const words = text?.split(' ', limit);
-    return words?.length < limit ? text : words?.join(' ') + '...';
-  }
+  useEffect(() => {
+    const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';  
+    const relatedCars = fetch(`https://api.univolenitsolutions.com/v1/automobile/get/carmodels/${blog.carBrand?._id}/for/65538448b78add9eaa02d417`, {
+    headers: {
+        'x-api-key': apiKey
+      }
+    }).then(response => response.json());
+    relatedCars.then(cars => {
+      if(cars?.data?.carModelsList) {
+        console.log('relatedCars ', cars?.data?.carModelsList);
+        setRelatedCars(cars?.data?.carModelsList);
+      }
+    });
+  }, [blog]);
 
   return (
     <div className="wrapper">
@@ -64,15 +76,14 @@ const BlogDynamicSingle = () => {
             </div>
             <h1 className="font-weight-bold text-dark">{blog?.blogName}</h1>
             <p className="my-2" style={{ lineHeight: 2 }}>
-              {truncateText(blog?.blogDescription, 40)}
+              {blog?.blogTagLine}
             </p>
 
             <Row className="my-3 d-flex align-items-center justify-content-between">
               <Col className="d-flex align-items-center">
                 <Image src="https://avatars0.githubusercontent.com/u/39916324?s=460&u=602ca47fcce463981a2511a21148236f304ec934&v=4" roundedCircle style={{ width: '50px' }} />
                 <small className="ml-2">
-                  <a href="#" className="text-primary d-block">Carportal</a>
-                  <span>Blog Update</span>
+                  <a href="#" className="text-primary d-block ml10">Carportal</a>
                 </small>
               </Col>
               <Col className="text-primary">
@@ -91,7 +102,7 @@ const BlogDynamicSingle = () => {
           </Col>
         </Row>
 
-        <Image src={blog?.media?.url} fluid className="my-3" style={{ width: "100%" }} />
+        <Image src={blog?.media?.url} fluid className="my-3" style={{ width: "100%" , height: '80%' }} />
 
         <Row className="justify-content-center">
           <Col xs={12} md={8}>
@@ -119,6 +130,46 @@ const BlogDynamicSingle = () => {
           </Col>
         </Row>
       </Container>
+
+      {/* Car For Rent */}
+      {relatedCars?.length>0 ? <section className="car-for-rent bb1 pt-2" >
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-6">
+              <div className="main-title text-center text-md-start mb10-520">
+                <h2 className="title">Related cars of {relatedCars?.[0].carBrand?.brandName}</h2>
+              </div>
+            </div>
+            {/* End .col-sm-6 */}
+
+            <div className="col-sm-6">
+              <div className="text-center text-md-end mb30-520">
+                <Link href={`/listings?brand=${relatedCars?.[0]?.carBrand?.brandName}`} className="more_listing">
+                  Show All Cars
+                  <span className="icon">
+                    <span className="fas fa-plus" />
+                  </span>
+                </Link>
+              </div>
+            </div>
+            {/* End .col-sm-6 */}
+          </div>
+          {/* End .row */}
+
+          <div className="col-lg-12">
+            <div
+              className="home1_popular_listing home3_style"
+              data-aos-delay="100"
+            >
+              <div className="listing_item_4grid_slider nav_none">
+                <ReleatedCar relatedCars={relatedCars} />
+              </div>
+            </div>
+          </div>
+          {/* End .col-lg-12 */}
+        </div>
+        {/* End .container */}
+      </section> : ' '};
 
       <Footer />
       {/* End Our Footer */}
