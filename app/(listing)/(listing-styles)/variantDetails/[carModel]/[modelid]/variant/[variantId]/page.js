@@ -197,7 +197,7 @@ const ModelDetails = () => {
           <div className="row mb30">
             <div className="col-xl-12">
               <div className="breadcrumb_content style2">
-                <BreadCrumb breadCrumbDetails={`New Car / ${carModelDetails?.carBrand?.brandName} / ${carVariant?.name}`} />
+                <BreadCrumb breadCrumbDetails={`New Car / ${carModelDetails?.carBrand?.brandName} Car / ${carVariant?.name}`} />
               </div>
             </div>
           </div>
