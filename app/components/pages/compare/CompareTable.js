@@ -3,8 +3,8 @@
 import { React ,useState,useEffect, use } from "react";
 import Image from "next/image";
 import "./styles.scss"
-import Car from "./car.jpg"
-import Select from "react-select";
+// import Car from "./car.jpg"
+// import Select from "react-select";
 
 const CompareTable = () => {
   const [carDetails, setCarDetails] = useState([]);
