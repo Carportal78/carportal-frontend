@@ -21,6 +21,7 @@ import RecentlyViewed from "../../../../components/listing/sidebar/RecentlyViewe
 import BannerWidget from "../../../../components/common/BannerWidget";
 import { selectCarModelAtom, selectCarBrandAtom, selectCarVariantAtom } from "../../../../components/atoms/categoriesAtoms";
 import { useAtom } from 'jotai';
+import VariantsDescription from "../../../../components/variants/VariantsDescription";
 
 const metadata = {
   title: "Car Models || Carportal - Automotive & Car Dealer",
@@ -158,14 +159,16 @@ const ModelDetails = () => {
               <ProductGallery carModelDetails={carModelDetails} />
               {/* End Car Gallery */}
               <div className="d-flex flex-wrap gap-4">
-              <div className= "col-lg-8 col-xl-8" style={{backgroundColor: "rgb(255, 255, 255)", border: "1px solid rgb(234, 234, 234)", borderRadius: "8px", position: "relative", paddingLeft: "20px", paddingTop: "20px"}}>
-              <div className="row">
+              <div className= "col-lg-8 col-xl-8" >   
+              <div className="listing_single_description">
+                <VariantsDescription carModelDetails={carModelDetails} carVariantsList={carVariantsList} name={carModelDetails?.modelName } />
+              </div>
+              <div className="listing_single_description" style={{backgroundColor: "rgb(255, 255, 255)", border: "1px solid rgb(234, 234, 234)", borderRadius: "8px", position: "relative", paddingLeft: "20px", paddingTop: "20px"}}>
                 {/* Key Specs of Hyundia Creta  */}
-                
               <div className="popular_listing_sliders single_page6_tabs row pr15">
                 {/* Nav tabs */}
                 <div className="nav nav-tabs col-lg-12" role="tablist">
-                  <button
+                  {/* <button
                     className="nav-link"
                     id="nav-description-tab"
                     data-bs-toggle="tab"
@@ -175,7 +178,7 @@ const ModelDetails = () => {
                     aria-selected="true"
                   >
                     Description
-                  </button>
+                  </button> */}
                   <button
                     className="nav-link active"
                     id="nav-overview-tab"

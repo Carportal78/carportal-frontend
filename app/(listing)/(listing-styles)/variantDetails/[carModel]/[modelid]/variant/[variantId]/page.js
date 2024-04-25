@@ -16,11 +16,12 @@ import ReleatedCar from "../../../../../../../components/listing/listing-single/
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import VariantsList from "../../../../../../../components/listing/listing-single/Variants";
-import RecentlyViewed from "../../../../../../../components/listing/sidebar/RecentlyViewed";
+import RecentlyViewed from "../../../../../../../components/listing/sidebar/RecentlyViewed"; 
 import BannerWidget from "../../../../../../../components/common/BannerWidget";
-import { selectCarModelAtom, selectCarBrandAtom, selectCarVariantAtom, selectCityAtom } from "../../../../../../../components/atoms/categoriesAtoms";
+import { selectCarModelAtom, selectCarBrandAtom, selectCarVariantAtom, selectCityAtom, selectBrandAtom } from "../../../../../../../components/atoms/categoriesAtoms";
 import { useAtom } from 'jotai';
 import VariantsOverview from "../../../../../../../components/variants/VariantsOverview";
+import VariantsDescription from "../../../../../../../components/variants/VariantsDescription";
 import VariantPrice from "../../../../../../../components/variants/VariantPrice";
 import VerticalTab from "../../../../../../../components/variants/varianttab/VerticalTab";
 import VariantProductGallary from "../../../../../../../components/variants/VariantProductGallary";
@@ -47,10 +48,11 @@ const ModelDetails = () => {
   const [selectCarVariantData, setSelectCarVariantData] = useAtom(selectCarVariantAtom);
   const [, setCityData] = useAtom(selectCityAtom);
   const [cityCode, setCityCode] = useState(1);
+  const [setBrandData] = useAtom(selectBrandAtom);
   const router = useRouter();
-
+ 
   const handleCityCodeChange = (data) => {
-    setCityCode(data.value);
+    setCityCode(data.value); 
   }
 
   useEffect(() => {
@@ -214,6 +216,9 @@ const ModelDetails = () => {
               </div>
               <div className="listing_single_description">
                 <VariantPrice carModelDetails={carModelDetails} carVariantsList={carVariantsList} carVariant={carVariant} />
+              </div>
+              <div className="listing_single_description">
+                <VariantsDescription carModelDetails={carModelDetails} carVariantsList={carVariantsList} name={carVariant?.name} />
               </div>
               <div style={{
                 backgroundColor: '#fff',
