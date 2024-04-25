@@ -21,10 +21,8 @@ const PopularListings = ({  collection }) => {
       }
       return str.trim().replace(/\s+/g, '-').toLowerCase();
     }
-    console.log('listing ', listing);
     const brandName = formatUrlPart(listing?.carBrand?.brandName);
     const modelName = formatUrlPart(listing?.modelName);
-    console.log('brandName ', brandName , modelName);
     localStorage.setItem('model-details', JSON.stringify(listing));
     router.push(`cars/${brandName}/${modelName}`);
   }
