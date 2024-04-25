@@ -7,8 +7,28 @@ import listingCar from "../../../../data/listingCar";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "react-bootstrap";
+import { useRouter } from "next/navigation";
 
 const PopularListings = ({  collection }) => {
+
+  const router = useRouter();
+
+  const handleCarDetailsRoute = (listing) => {
+    const formatUrlPart = (str) => {
+      if (typeof str !== 'string') {
+        console.error('Expected a string but got:', typeof str);
+        return '';
+      }
+      return str.trim().replace(/\s+/g, '-').toLowerCase();
+    }
+    console.log('listing ', listing);
+    const brandName = formatUrlPart(listing?.carBrand);
+    const modelName = formatUrlPart(listing?.modelName);
+    console.log('brandName ', brandName , modelName);
+    localStorage.setItem('model-details', JSON.stringify(listing));
+    router.push(`cars/${brandName}/${modelName}`);
+  }
+
   return (
     <>
       <Swiper
@@ -37,9 +57,8 @@ const PopularListings = ({  collection }) => {
         }}
       >
         {collection?.carModels?.map((listing) => (
-          <SwiperSlide key={listing._id}>
-            <Link href={`/model-detail/${listing?._id}`}>
-            <div className="item">
+          <SwiperSlide key={listing._id} onClick={() => handleCarDetailsRoute(listing)}>
+            <div className="item pointer">
               <div className="car-listing">
                 <div className="thumb" style={{ position: 'relative', width: '100%', height: '200px', overflow: 'hidden' }}>
                   <Image
@@ -68,9 +87,9 @@ const PopularListings = ({  collection }) => {
                   </div>               
                 <div className="details">
                   <div className="wrapper">
-                  <div className="title">
-                      <Link href={`/model-detail/${listing?._id}`}>{listing.modelName}</Link>
-                    </div>
+                  <div className="title pointer" onClick={() => handleCarDetailsRoute(listing)}>
+                                            {listing.modelName}
+                                        </div>
                     <div className="price">₹ {listing?.priceRange?.minPrice} {listing?.priceRange?.minPriceType} - ₹ {listing?.priceRange?.maxPrice} {listing?.priceRange?.maxPriceType} *</div>
                     <Button variant="outline-secondary" size="md" className={`w-100 mt-3`}>
                       VIew Details
@@ -102,7 +121,6 @@ const PopularListings = ({  collection }) => {
                 </div>
               </div>
             </div>
-            </Link>
           </SwiperSlide>
         ))}
       </Swiper>

@@ -1,27 +1,27 @@
 "use client"
-import Footer from "../../../../components/common/Footer";
-import DefaultHeader from "../../../../components/common/DefaultHeader";
-import HeaderSidebar from "../../../../components/common/HeaderSidebar";
-import HeaderTop from "../../../../components/common/HeaderTop";
-import MobileMenu from "../../../../components/common/MobileMenu";
-import ContactDealerForm from "../../../../components/common/contactdealerForm/ContactDealerForm";
-import ShareForm from "../../../../components/common/contactdealerForm/ShareForm";
-import VariantListForm from "../../../../components/common/contactdealerForm/VariantListForm";
-import LoginSignupModal from "../../../../components/common/login-signup";
-import BreadCrumb from "../../../../components/listing/listing-single/BreadCrumb";
-import ProductGallery from "../../../../components/listing/listing-single/listing-single-v2/ProductGallery";
-import Overview from "../../../../components/listing/listing-single/Overview";
-import Descriptions from "../../../../components/listing/listing-single/Descriptions";
+import Footer from "../../../../../components/common/Footer";
+import DefaultHeader from "../../../../../components/common/DefaultHeader";
+import HeaderSidebar from "../../../../../components/common/HeaderSidebar";
+import HeaderTop from "../../../../../components/common/HeaderTop";
+import MobileMenu from "../../../../../components/common/MobileMenu";
+import ContactDealerForm from "../../../../../components/common/contactdealerForm/ContactDealerForm";
+import ShareForm from "../../../../../components/common/contactdealerForm/ShareForm";
+import VariantListForm from "../../../../../components/common/contactdealerForm/VariantListForm";
+import LoginSignupModal from "../../../../../components/common/login-signup";
+import BreadCrumb from "../../../../../components/listing/listing-single/BreadCrumb";
+import ProductGallery from "../../../../../components/listing/listing-single/listing-single-v2/ProductGallery";
+import Overview from "../../../../../components/listing/listing-single/Overview";
+import Descriptions from "../../../../../components/listing/listing-single/Descriptions";
 import Link from "next/link";
-import ReleatedCar from "../../../../components/listing/listing-single/ReleatedCar";
+import ReleatedCar from "../../../../../components/listing/listing-single/ReleatedCar";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import VariantsList from "../../../../components/listing/listing-single/Variants";
-import RecentlyViewed from "../../../../components/listing/sidebar/RecentlyViewed";
-import BannerWidget from "../../../../components/common/BannerWidget";
-import { selectCarModelAtom, selectCarBrandAtom, selectCarVariantAtom } from "../../../../components/atoms/categoriesAtoms";
+import VariantsList from "../../../../../components/listing/listing-single/Variants";
+import RecentlyViewed from "../../../../../components/listing/sidebar/RecentlyViewed";
+import BannerWidget from "../../../../../components/common/BannerWidget";
+import { selectCarModelAtom, selectCarBrandAtom, selectCarVariantAtom } from "../../../../../components/atoms/categoriesAtoms";
 import { useAtom } from 'jotai';
-import VariantsDescription from "../../../../components/variants/VariantsDescription";
+import VariantsDescription from "../../../../../components/variants/VariantsDescription";
 
 const metadata = {
   title: "Car Models || Carportal - Automotive & Car Dealer",
@@ -29,7 +29,7 @@ const metadata = {
 
 const ModelDetails = () => {
 
-  const { modelid } = useParams();
+  const { brand, modelName } = useParams();
 
   const [carModelDetails, setCarModelDetails] = useState({});
 
@@ -42,6 +42,15 @@ const ModelDetails = () => {
   const [selectCarBrandData, setSelectCarBrandData] = useAtom(selectCarBrandAtom);
   const [selectCarVariantData, setSelectCarVariantData] = useAtom(selectCarVariantAtom);
   const [cityCode, setCityCode] = useState(1);
+  const [modelid, setModelId] = useState('');
+
+  useEffect(() => {
+    const modelDetails = JSON.parse(localStorage.getItem('model-details'));
+    console.log('modelDetails ', modelDetails);
+    if(modelDetails) {
+    setModelId(modelDetails?._id);
+    }
+  }, [brand, modelName])
 
   useEffect(() => {
     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';  
@@ -83,7 +92,7 @@ const ModelDetails = () => {
     .catch(error => {
       console.error('Error fetching data: ', error);
     });
-  },[])
+  },[modelid])
 
     // Fetch car models based on selected brand
     useEffect(() => {
@@ -246,36 +255,21 @@ const ModelDetails = () => {
                       <VariantsList carModelDetails={carModelDetails} variants={carVariantsList} />
                       {/* <Features /> */}
                       <hr />
-                      {/* <div className="row">
-                        <div className="col-lg-12">
-                          <a className="fz12 tdu color-blue" href="#">
-                            View all variants
-                          </a>
-                        </div>
-                      </div> */}
                     </div>
-                    {/* End user profile service */}
                   </div>
-                  {/* End user profile service tabcontent */}
              
                 </div>
               </div>
-              {/* End tabs content */}
        
           </div>
               </div>
-              {/* <div className="listing_single_description d-flex flex-grow-1"> */}
               <div className="sidebar_recent_viewed_widgets">
                 <h4 className="title">Top Viewed Cars</h4>
                 <RecentlyViewed cars={carModelsList} /> 
                 <BannerWidget />
               </div>
-              
-              {/* </div> */}
               </div>
-              {/* End car descriptions */}
             </div>
-            {/* End .col-xl-8 */}
 
        
           </div>

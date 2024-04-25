@@ -1,9 +1,11 @@
 "use client"
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const CarItems = ({ carModelsList }) => {
+  const router = useRouter();
   const itemsPerPage = 10;
   const [visibleItems, setVisibleItems] = useState(carModelsList.length < itemsPerPage ? carModelsList.length : itemsPerPage);
 
@@ -15,13 +17,24 @@ const CarItems = ({ carModelsList }) => {
     });
   };
 
+  const handleCarDetailsRoute = (listing) => {
+    const formatUrlPart = (str) => {
+      if (typeof str !== 'string') {
+        console.error('Expected a string but got:', typeof str);
+        return '';
+      }
+      return str.trim().replace(/\s+/g, '-').toLowerCase();
+    }
+    const brandName = formatUrlPart(listing?.carBrand?.brandName);
+    const modelName = formatUrlPart(listing?.modelName);
+    localStorage.setItem('model-details', JSON.stringify(listing));
+    router.push(`cars/${brandName}/${modelName}`);
+  }
 
   return (
     <>
       {carModelsList?.slice(0, visibleItems)?.map((listing) => (
-
-        <div className="col-sm-6 col-xl-4" key={listing._id}>
-          <Link href={`/model-detail/${listing?._id}`}>
+        <div className="col-sm-6 col-xl-4 pointer" key={listing._id} onClick={() => handleCarDetailsRoute(listing)}>
             <div className="car-listing">
               <div className="thumb" style={{ position: 'relative', width: '100%', height: '200px', overflow: 'hidden' }}>
                 {listing.featured ? (
@@ -63,9 +76,9 @@ const CarItems = ({ carModelsList }) => {
               <div className="details">
                 <div className="wrapper">
                   <h5 className="price">₹ {listing?.priceRange?.minPrice} {listing?.priceRange?.minPriceType} - ₹ {listing?.priceRange?.maxPrice} {listing?.priceRange?.maxPriceType} *</h5>
-                  <h6 className="title">
-                    <Link href={`/model-detail/${listing?._id}`}>{listing?.modelName}</Link>
-                  </h6>
+                  <div className="title pointer" onClick={() => handleCarDetailsRoute(listing)}>
+                                            {listing.modelName}
+                                        </div>
                   <div className="listign_review">
                     <ul className="mb0">
                       <p>Launched Date: {listing?.year}</p>
@@ -111,7 +124,7 @@ const CarItems = ({ carModelsList }) => {
                 </div>
               </div>
             </div>
-          </Link>
+ 
         </div>
 
       ))}

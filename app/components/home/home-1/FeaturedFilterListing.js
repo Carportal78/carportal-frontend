@@ -15,11 +15,25 @@ const FeaturedFilterListing = ({ collection }) => {
       ? listingsData.slice(0, 8)
       : listingsData.slice(0, 8).filter((item) => item.tags.includes(filter));
 
+      const handleCarDetailsRoute = (listing) => {
+        const formatUrlPart = (str) => {
+          if (typeof str !== 'string') {
+            console.error('Expected a string but got:', typeof str);
+            return '';
+          }
+          return str.trim().replace(/\s+/g, '-').toLowerCase();
+        }
+        const brandName = formatUrlPart(listing?.carBrand?.brandName);
+        const modelName = formatUrlPart(listing?.modelName);
+        localStorage.setItem('model-details', JSON.stringify(listing));
+        router.push(`cars/${brandName}/${modelName}`);
+      }
+
   return (
     <Container>
       <Row>
         {collection?.carModels?.map((listing) => (
-          <Col xs={12} sm={6} md={4} lg={3} key={listing._id} onClick={() => router.push(`/model-detail/${listing._id}`)}>
+          <Col xs={12} sm={6} md={4} lg={3} key={listing._id} onClick={() => handleCarDetailsRoute(listing)}>
             <div className="car-listing" style={{ cursor: 'pointer' }}>
               <div className="thumb">
                 <div style={{ position: 'relative', width: '100%', height: '200px', overflow: 'hidden' }}>
@@ -35,9 +49,9 @@ const FeaturedFilterListing = ({ collection }) => {
               <div className="details">
                 <div className="wrapper">
                   <h5 className="price">₹ {listing?.priceRange?.minPrice} - ₹ {listing?.priceRange?.maxPrice}</h5>
-                  <h6 className="title">
-                    <a onClick={(e) => { e.stopPropagation(); router.push(`/model-detail/${listing._id}`); }}>{listing.modelName}</a>
-                  </h6>
+                  <div className="title pointer" onClick={() => handleCarDetailsRoute(listing)}>
+                                            {listing.modelName}
+                                        </div>
                   <p>Launched Date: <b>{listing?.year}</b></p>
                 </div>
               </div>

@@ -5,8 +5,27 @@ import "swiper/swiper-bundle.css";
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const ReleatedCar = ({ relatedCars }) => {
+  const router = useRouter();
+
+  const handleCarDetailsRoute = (listing) => {
+    const formatUrlPart = (str) => {
+      if (typeof str !== 'string') {
+        console.error('Expected a string but got:', typeof str);
+        return '';
+      }
+      return str.trim().replace(/\s+/g, '-').toLowerCase();
+    }
+    const brandName = formatUrlPart(listing?.carBrand?.brandName);
+    const modelName = formatUrlPart(listing?.modelName);
+    localStorage.setItem('model-details', JSON.stringify(listing));
+
+    router.push(`/cars/${brandName}/${modelName}`);
+  }
+
+
   return (
     <>
       <Swiper
@@ -41,10 +60,9 @@ const ReleatedCar = ({ relatedCars }) => {
       >
         {relatedCars?.slice(0, 6).map((listing) => (
           <SwiperSlide key={listing._id}>
-            <Link href={`/model-detail/${listing._id}`}>
-          <div className="item">
-            <div className="car-listing">
-            <div className="thumb" style={{ position: 'relative', width: '100%', height: '200px', overflow: 'hidden' }}>
+            <div className="item" onClick={() => handleCarDetailsRoute(listing)}>
+              <div className="car-listing">
+                <div className="thumb" style={{ position: 'relative', width: '100%', height: '200px', overflow: 'hidden' }}>
                   <Image
                     layout="fill"
                     objectFit="cover"
@@ -83,42 +101,41 @@ const ReleatedCar = ({ relatedCars }) => {
                     </li>
                   </ul>
                 </div> */}
-           
-              <div className="details">
-                <div className="wrapper">
-                  <h5 className="price">₹ {listing?.priceRange?.minPrice} {listing?.priceRange?.minPriceType} - {listing?.priceRange?.maxPrice} {listing?.priceRange?.maxPriceType} *</h5>
-                  <h6 className="title">
-                    {listing.modelName}
-                  </h6>
-                  <div className="listign_review">
+
+                <div className="details">
+                  <div className="wrapper">
+                    <h5 className="price">₹ {listing?.priceRange?.minPrice} {listing?.priceRange?.minPriceType} - {listing?.priceRange?.maxPrice} {listing?.priceRange?.maxPriceType} *</h5>
+                    <h6 className="title">
+                      {listing.modelName}
+                    </h6>
+                    <div className="listign_review">
+                      <ul className="mb0">
+                        <p>Launched Date: {listing?.year}</p>
+                      </ul>
+                    </div>
+                  </div>{" "}
+                  <div className="listing_footer">
                     <ul className="mb0">
-                    <p>Launched Date: {listing?.year}</p>
+                      <li className="list-inline-item">
+                        <span className="flaticon-road-perspective me-2" />
+                        {listing?.mileage.split('_').join('-')} kmpl
+                      </li>
+                      <br />
+                      <li className="list-inline-item">
+                        <span className="flaticon-gas-station me-2" />
+                        {listing?.fuelType.join(', ')}
+                      </li>
+                      <br />
+                      <li className="list-inline-item">
+                        <span className="flaticon-gear me-2" />
+                        {listing?.transmissionType.join(', ')}
+                      </li>
                     </ul>
                   </div>
-                </div>{" "}
-                <div className="listing_footer">
-                  <ul className="mb0">
-                    <li className="list-inline-item">
-                      <span className="flaticon-road-perspective me-2" />
-                      {listing?.mileage.split('_').join('-')} kmpl
-                    </li>
-                    <br/>
-                    <li className="list-inline-item">
-                      <span className="flaticon-gas-station me-2" />
-                      {listing?.fuelType.join(', ')}
-                    </li>
-                    <br/>
-                    <li className="list-inline-item">
-                      <span className="flaticon-gear me-2" />
-                      {listing?.transmissionType.join(', ')}
-                    </li>
-                  </ul>
                 </div>
               </div>
             </div>
-          </div>
-          </Link>
-        </SwiperSlide>
+          </SwiperSlide>
         ))}
       </Swiper>
       <div className="mt-3 text-center">
