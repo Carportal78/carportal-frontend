@@ -118,7 +118,7 @@ const OnRoadPrice = () => {
                   </p> */}
                 </div>
               </div>
-            </div>
+            </div> 
           </div>
 
           <div className="row listing_single_description">

@@ -17,7 +17,7 @@ import { useAtom } from "jotai";
 import { useRouter } from "next/navigation";
 
 const metadata = {
-  title: "OnRoad Price || Carportal - Automotive & Car Dealer",
+  title: "Dealers List || Carportal - Automotive & Car Dealer",
 };
 
 const Dealers = () => {
@@ -158,9 +158,9 @@ const Dealers = () => {
             </div>
           </div>
 
-          {carDealers?.length > 0 && <p className="col-lg-12 col-xl-12 mb-3" style={{ fontSize: '1.5em', fontWeight: "600", color: '#24272c' }}>
+          {carDealers?.length > 0 && (<p className="col-lg-12 col-xl-12 mb-3" style={{ fontSize: '1.5em', fontWeight: "600", color: '#24272c' }}>
             {carDealers?.length} {carBrand?.brandName} Car Dealers in {cityData}
-          </p> }
+          </p>) }
           <Row className="g-3">
             {isLoading ? <Spinner className="d-flex" style={{ marginLeft: 'auto', marginRight: 'auto' }} animation="border" role="status">
               <span className="visually-hidden">Loading...</span>

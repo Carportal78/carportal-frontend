@@ -14,11 +14,11 @@ module.exports = [
       path: "/compare",
     subMenu: [],
   },
-  // {
-  //   label: "Dealers",
-  //     path: "/dealers",
-  //   subMenu: [],
-  // },
+  {
+    label: "Dealers",
+      path: "/dealers-list",
+    subMenu: [],
+  },
   {
     label: "Blog",
       path: "/blog-grid",

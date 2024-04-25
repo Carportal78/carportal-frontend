@@ -1,28 +1,27 @@
 'use client';
-import Footer from "../../../../components/common/Footer";
-import DefaultHeader from "../../../../components/common/DefaultHeader";
-import HeaderSidebar from "../../../../components/common/HeaderSidebar";
-import HeaderTop from "../../../../components/common/HeaderTop";
-import MobileMenu from "../../../../components/common/MobileMenu";
-import LoginSignupModal from "../../../../components/common/login-signup";
+import Footer from "../../../../../../components/common/Footer";
+import DefaultHeader from "../../../../../../components/common/DefaultHeader";
+import HeaderSidebar from "../../../../../../components/common/HeaderSidebar";
+import HeaderTop from "../../../../../../components/common/HeaderTop";
+import MobileMenu from "../../../../../../components/common/MobileMenu";
+import LoginSignupModal from "../../../../../../components/common/login-signup";
 import Link from "next/link";
-import ReleatedCar from "../../../../components/listing/listing-single/ReleatedCar";
-import DealersPageDescription from "../../../../components/dealers/DealersPageDescription";
+import ReleatedCar from "../../../../../../components/listing/listing-single/ReleatedCar";
+import DealersPageDescription from "../../../../../../components/dealers/DealersPageDescription";
 import { Card, Col, Image, Row, Spinner } from "react-bootstrap";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { selectCarDealerAtom, selectCityAtom } from "../../../../components/atoms/categoriesAtoms";
+import { selectBrandAtom, selectCarDealerAtom, selectCityAtom } from "../../../../../../components/atoms/categoriesAtoms";
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { useAtom } from "jotai";
 import { useRouter } from "next/navigation";
+import statesCitiesList from '../../../../../../../public/jsondata/state-and-city.json';
 
 const metadata = {
   title: "OnRoad Price || Carportal - Automotive & Car Dealer",
 };
 
 const Dealers = () => {
-
-  const { brandid } = useParams();
 
   const [carBrandsList, setCarBrandsList] = useState([]);
   const [carModelDetails, setCarModelDetails] = useState({});
@@ -31,10 +30,24 @@ const Dealers = () => {
   const [carBrand, setCarBrand] = useState({});
   const [selectCarVariantData, setSelectCarVariantData] = useAtom(selectCarDealerAtom);
   // Fetch cityData from Jotai state
-  const [cityData] = useAtom(selectCityAtom);
+  const [cityData, setCityData] = useAtom(selectCityAtom);
+  const [brandData, setBrandData] = useAtom(selectBrandAtom);
   const [carDealers, setCarDealers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [cityLabel, setCityLabel] = useState('Delhi');
   const router = useRouter();
+
+  useEffect(() => {
+    if(!brandData || !cityData) {
+    const data = JSON?.parse(localStorage?.getItem('dealer-type'));
+    if(data) {
+      setCityData(data?.city);
+      setBrandData(data?.brand);
+    }
+    }
+
+    console.log("localStorage ", JSON.parse(localStorage.getItem('dealer-type')));
+  }, [brandData, cityData]);
 
   useEffect(() => {
     const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carbrands/for/65538448b78add9eaa02d417';
@@ -51,14 +64,14 @@ const Dealers = () => {
       .then(data => {
         if (data && data.data && data.data.carBrandsList) {
           setCarBrandsList(data.data.carBrandsList);
-          setCarBrand(data.data.carBrandsList.find(brand => brand._id.toString() === brandid.toString()));
+          setCarBrand(data.data.carBrandsList.find(brand => brand._id.toString() === brandData?.toString()));
           localStorage.setItem('carBrandsList', JSON.stringify(data.data.carBrandsList));
         }
       })
       .catch(error => {
         console.error('Error fetching data: ', error);
       })
-  }, [brandid]);
+  }, [brandData]);
 
   useEffect(() => {
     const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carmodels/for/65538448b78add9eaa02d417';
@@ -83,7 +96,7 @@ const Dealers = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    const apiUrl = `https://api.univolenitsolutions.com/v1/cardealer/get/dealer/brand/${brandid}/cityCode/${cityData}/for/website/65538448b78add9eaa02d417`;
+    const apiUrl = `http://localhost:3005/v1/cardealer/get/dealer/brand/${brandData}/cityCode/${cityData}/for/website/65538448b78add9eaa02d417`;
     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
     fetch(apiUrl, {
       method: 'GET',
@@ -103,12 +116,37 @@ const Dealers = () => {
         setCarDealers([]);
         setIsLoading(false);
       });
-  }, [brandid, cityData])
+  }, [brandData, cityData])
+
+  function handleSearchDealer(brandName, cityName) {
+    setBrandData(cityData);
+    setCityData(brandData);
+    console.log('cityData', cityData, brandData);
+    localStorage.setItem('dealer-type', JSON.stringify({ brand: brandData, city: cityData }))
+    router.push(`/dealers/list/${brandName}/${cityName}`);
+}
 
   // const handleBrandClick = (brand) => {
   //   alert(brand?._id)
   //   router.push(`/dealer/${brand?._id}`) 
   // }
+
+  const getCityName = (cityData) => {
+    const loadedCityOptions = Object.keys(statesCitiesList)?.flatMap(state => (
+      statesCitiesList[state].map(city => ({
+        value: city.id.toString(),
+        label: city.city
+      }))
+    ));
+
+    if (cityData !== null && loadedCityOptions.length > 0) {
+      const matchingCity = loadedCityOptions?.find(option => option.value === cityData?.toString());
+      // setCityLabel(matchingCity?.label);
+      return matchingCity?.label;
+    }
+
+    return 'Delhi';
+  }
 
   return (
     <div className="wrapper">
@@ -149,17 +187,17 @@ const Dealers = () => {
             position: "relative"
           }}>
             <div className="col-lg-12 col-xl-12">
-              <DealersPageDescription carModelDetails={carModelDetails} carVariantsList={carVariantsList} carBrandsList={carBrandsList} carBrand={carBrand} cityData={cityData} />
+              <DealersPageDescription carModelDetails={carModelDetails} carVariantsList={carVariantsList} carBrandsList={carBrandsList} carBrand={carBrand} cityData={cityData} brandData={brandData} />
             </div>
           </div>
 
-          <p className="col-lg-12 col-xl-12 mb-3" style={{ fontSize: '1.5em', fontWeight: "600", color: '#24272c' }}>
-            {carDealers?.length} {carBrand?.brandName} Car Dealers in {cityData}
-          </p>
+          {carDealers?.length > 0 && <p className="col-lg-12 col-xl-12 mb-3" style={{ fontSize: '1.5em', fontWeight: "600", color: '#24272c' }}>
+            {carDealers?.length} {carBrand?.brandName} Car Dealers in {getCityName(cityData)}
+          </p>}
           <Row className="g-3">
             {isLoading ? <Spinner className="d-flex" style={{ marginLeft: 'auto', marginRight: 'auto' }} animation="border" role="status">
               <span className="visually-hidden">Loading...</span>
-            </Spinner> : carDealers?.map(dealer => (
+            </Spinner> : carDealers?.length > 0 ? carDealers?.map(dealer => (
               <Col xs={12} md={4} lg={4} className="d-flex align-items-stretch" key={dealer?._id}>
                 <div style={{
                   width: '100%',
@@ -200,7 +238,7 @@ const Dealers = () => {
                   </Card.Body>
                 </div>
               </Col>
-            ))}
+            )) : <p>No Records Found</p>}
           </Row>
 
           <p className="col-lg-12 col-xl-12 mb-3" style={{ fontSize: '1.5em', fontWeight: "600", color: '#24272c' }}>
@@ -210,7 +248,7 @@ const Dealers = () => {
             {isLoading ? <Spinner className="d-flex" style={{ marginLeft: 'auto', marginRight: 'auto' }} animation="border" role="status">
               <span className="visually-hidden">Loading...</span>
             </Spinner> : carBrandsList?.map(brand => (
-              <Col xs={6} md={4} lg={2} className="d-flex align-items-stretch pointer" key={brand?._id} onClick={() => router.push(`/dealers/${brand?._id}`)}>
+              <Col xs={6} md={4} lg={2} className="d-flex align-items-stretch pointer" key={brand?._id} onClick={() => handleSearchDealer(brand?.brandName, cityLabel)}>
                 <div style={{
                   width: '100%',
                   backgroundColor: "#fff",
