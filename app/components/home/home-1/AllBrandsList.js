@@ -1,4 +1,5 @@
 // Assuming your styles.bodyTypeImage and styles.bodyTypeTitle correspond to the image and title styles, respectively.
+"use client"
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
