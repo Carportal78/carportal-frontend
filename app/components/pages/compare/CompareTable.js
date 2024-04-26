@@ -174,6 +174,7 @@ const CompareTable = () => {
   const handleEditCloseClick = (index) => {
     if(index === cards.length-1) {
       const updatedCards = [...cards]
+      updatedCards[index] = defaultState
       updatedCards[index].isEnabled = false
       setCards(updatedCards)
     } else {
