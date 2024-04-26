@@ -37,6 +37,10 @@ const CompareTable = () => {
     "Safety",
     "Entertainment and Communication"]
 
+  const idsArray = cards
+  .filter(car => car.id !== "") // Filter out objects with empty id
+  .map(car => car.id); 
+  
   useEffect(() => {
       const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';
       if (true) {
@@ -65,9 +69,6 @@ const CompareTable = () => {
 
   const handleOnCompareClick = () => {
     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';
-    const idsArray = cards
-    .filter(car => car.id !== "") // Filter out objects with empty id
-    .map(car => car.id); 
     const selectedCarIds = {
       "carIds": idsArray
     }
@@ -475,7 +476,7 @@ const CompareTable = () => {
           {cards.map((card, index) => renderCardPage(card, index))}
       </div>
       <div style={{ width: "100%", display: "flex", alignItems: 'center', justifyContent: 'center'}}>
-        <button className="btn btn-thm ofr_btn1 btn-block mt40 mb20" style={{width: "200px"}} data-bs-toggle="modal" data-bs-target="#compareForm" onClick={handleOnCompareClick}>
+        <button className="btn btn-thm ofr_btn1 btn-block mt40 mb20" style={{width: "200px"}} data-bs-toggle="modal" data-bs-target="#compareForm" onClick={handleOnCompareClick} disabled={idsArray.length <2}>
           <span className="flaticon-profit-report mr10 fz18 vam" />
           Compare Cars
         </button>
