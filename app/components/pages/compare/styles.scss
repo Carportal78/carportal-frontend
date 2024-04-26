@@ -66,3 +66,21 @@ table {
     width: 200px;
     text-align: left;
 }
+
+.compare-table-button {
+    margin: 10px;
+    text-decoration: none;
+    color: #0a2357;
+    font-size: 14px;
+}
+
+.compare-table-button:hover {
+    margin: 10px;
+    text-decoration: none;
+    color: #0a2357;
+    font-size: 14px;
+}
+
+.new {
+    flex: none !important
+}
