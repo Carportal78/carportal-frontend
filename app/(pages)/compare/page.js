@@ -63,7 +63,7 @@ const AboutUs = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
-              <div className="compare_table table-responsive">
+              <div className="compare_table table-responsive pt60">
                 <CompareTable />
               </div>
             </div>

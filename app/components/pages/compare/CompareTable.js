@@ -1,271 +1,769 @@
 "use client";
 
 import { React ,useState,useEffect, use } from "react";
-import Image from "next/image";
 import "./styles.scss"
-// import Car from "./car.jpg"
-// import Select from "react-select";
+import { Table } from "react-bootstrap";
+import { Spinner } from "react-bootstrap";
+
+const mock = [
+  {
+      "_id": "6617f73f789dbcb6884b501c",
+      "name": "Renault Kiger RXE",
+      "carModel": {
+          "_id": "6617f504789dbcb6884b4fe8",
+          "modelName": "Renault Kiger",
+          "carBrand": {
+              "_id": "65daae8d9a3a80f62857cc51",
+              "brandName": "Renault",
+              "countryOfOrigin": "India",
+              "status": true,
+              "author": "653374d3f45cbd1a7f47c32d",
+              "media": {
+                  "url": "https://res.cloudinary.com/dojcxwt5h/image/upload/v1708830370/categories/qcoibir9boo1ggbdqvmi.jpg",
+                  "mediaType": "image/jpeg",
+                  "altText": "bmw (3).jpg"
+              },
+              "createdBy": "653374d3f45cbd1a7f47c32d",
+              "updatedBy": "653374d3f45cbd1a7f47c32d",
+              "__v": 0
+          },
+          "bodyType": "SUV",
+          "description": "Renault Kiger is a 5 seater SUV car with FWD option. Renault Kiger Price starts from ₹ 6 Lakh & top model price goes upto ₹ 11.23 Lakh. This model is available with 999 cc engine option. This car is available in Petrol option with both Manual & Automatic transmission. It's Petrol mileage ranges between 18.24 to 20.5 kmpl. This model has safety airbags. & 405 Litres boot space. This model is available in 9 colours. Based on Renault Kiger user reviews, it has earned an overall user rating of 4.2 out of 5.",
+          "year": "2024",
+          "priceRange": {
+              "minPrice": 6,
+              "minPriceType": "Lakhs",
+              "maxPrice": 11.23,
+              "maxPriceType": "Lakhs"
+          },
+          "status": true,
+          "budget": "under_15",
+          "fuelType": [
+              "Petrol"
+          ],
+          "mileage": "above_15",
+          "seatingCapacity": "5_seater",
+          "transmissionType": [
+              "Manual",
+              "Automatic"
+          ],
+          "displacement": "below_1000",
+          "author": "653374d3f45cbd1a7f47c32d",
+          "media": [
+              {
+                  "url": "https://res.cloudinary.com/dojcxwt5h/image/upload/v1712846082/categories/xclhmytmo2xvr4butn9i.jpg",
+                  "mediaType": "image/jpeg",
+                  "altText": "1.jpg",
+                  "_id": "6617f504789dbcb6884b4fe9"
+              },
+              {
+                  "url": "https://res.cloudinary.com/dojcxwt5h/image/upload/v1712846082/categories/dkasfjtudd9rzkyr5s3t.jpg",
+                  "mediaType": "image/jpeg",
+                  "altText": "2.jpg",
+                  "_id": "6617f504789dbcb6884b4fea"
+              },
+              {
+                  "url": "https://res.cloudinary.com/dojcxwt5h/image/upload/v1712846083/categories/efg6calmfemkquwklfqu.jpg",
+                  "mediaType": "image/jpeg",
+                  "altText": "3.jpg",
+                  "_id": "6617f504789dbcb6884b4feb"
+              },
+              {
+                  "url": "https://res.cloudinary.com/dojcxwt5h/image/upload/v1712846083/categories/tjxihdhuvaot29cby63g.jpg",
+                  "mediaType": "image/jpeg",
+                  "altText": "4.jpg",
+                  "_id": "6617f504789dbcb6884b4fec"
+              }
+          ],
+          "categories": [],
+          "createdBy": "653374d3f45cbd1a7f47c32d",
+          "updatedBy": "653374d3f45cbd1a7f47c32d",
+          "__v": 0
+      },
+      "basicInformation": {
+          "onRoadPrice": "664202",
+          "userRating": 4.2,
+          "startEmiAmount": "13446",
+          "startInsuranceAmount": "33382",
+          "serviceCost": "NA"
+      },
+      "engineAndTransmission": {
+          "engineType": "1.0L energy",
+          "displacement": "999",
+          "noOfCylinders": "3",
+          "maxPower": "71.01bhp@6250rpm",
+          "maxTorque": "96Nm@3500rpm",
+          "valuePerCylinder": "4",
+          "fuelSupplySystem": "MPFi",
+          "compressionRatio": "NA",
+          "turboCharge": "No",
+          "transmissionType": "Manual",
+          "gearBox": "5-Speed",
+          "mildHybrid": "NO",
+          "driverType": "FWD",
+          "cluchType": "NA"
+      },
+      "fuelAndPerformance": {
+          "fuelType": "Petrol",
+          "mileageCity": "NA",
+          "mileageArai": "19.17",
+          "fuelTankCapacity": "40",
+          "emissionNormCompliance": "BS VI 2.0"
+      },
+      "suspensionAndSteeringAndBrakes": {
+          "fontSuspension": "Mac Pherson strut with lower transverse link",
+          "rearSuspension": "Twist beam suspension with coil spring",
+          "steeringType": "Electric",
+          "steeringColumn": "NA",
+          "turningRadius": "NA",
+          "frontBrakeType": "Disc",
+          "rearBrakeType": "Drum",
+          "emissionNormCompliance": "BS VI 2.0",
+          "tyreSize": "195/60 R16",
+          "tyreType": "Radial, Tubeless",
+          "wheelSize": "16 Inch",
+          "alloyWheelSize": "NA",
+          "alloyWheelSizeFront": "NA",
+          "alloyWheelSizeRear": "NA",
+          "bootSpace": "84"
+      },
+      "dimensionAndCapacity": {
+          "length": "3991",
+          "width": "1750",
+          "height": "1605",
+          "groundClearanceUnladen": "205",
+          "wheelBase": "2500",
+          "frontTread": "NA",
+          "rearTread": "1535",
+          "kerbWeight": "1012",
+          "grossWeight": "NA",
+          "seatingCapacity": "5",
+          "bootSpace": "405",
+          "noOfDoors": "5"
+      },
+      "interior": {
+          "tachometer": true,
+          "electronicutiTripmeter": false,
+          "fabricUpholestry": false,
+          "leatherSteeringWheel": false,
+          "gloveCompartment": true,
+          "digitalClock": false,
+          "outsideTemperatureisplay": false,
+          "digitalOdometer": true,
+          "dualToneDashboard": false,
+          "additionFeatures": "Muted melange seat upholstery,8.9 cm LED instrument cluster",
+          "digitalCluster": "",
+          "digitalClusterSize": 0,
+          "upholstery": null
+      },
+      "exterior": {
+          "bodyType": "SUV",
+          "adjustableHeadlights": "YES",
+          "fogLightsFront": false,
+          "powerAdjustableExteriorRearViewMirror": false,
+          "manuallyAdjustableExtRearViewMirror": true,
+          "electricFoldingRearViewMirror": false,
+          "rearWindowWiper": false,
+          "rearWindowWasher": false,
+          "rearWindowDefogger": false,
+          "wheelCovers": false,
+          "alloyWheels": false,
+          "powerAntenna": false,
+          "rearSpoiler": true,
+          "outsideRearViewMirrorTurnIndicators": true,
+          "integratedAntenna": false,
+          "chromeGrille": false,
+          "chromeGarnish": false,
+          "projectorHeadlamps": false,
+          "roofRail": false,
+          "ledDrls": true,
+          "ledHeadlights": false,
+          "ledTaillights": true,
+          "ledFogLamps": false,
+          "fogLights": false,
+          "additionalFeatures": "C-shaped signature LED tail lamps,Mystery black ORVMs,Sporty rear spoiler,Satin silver roof rails,Mystery black front fender accentuator",
+          "antenna": "",
+          "bootOpening": "",
+          "puddleLamps": "",
+          "tyreSize": "195/60 R16",
+          "tyreType": "Radial, Tubeless",
+          "wheelSize": "16 Inch",
+          "allowWheelSize": "NA",
+          "availableColors": []
+      },
+      "status": true,
+      "author": {
+          "_id": "653374d3f45cbd1a7f47c32d"
+      },
+      "media": [
+          {
+              "url": "https://res.cloudinary.com/dojcxwt5h/image/upload/v1712846653/categories/o5rhxxl2onpdfhdw2eyk.jpg",
+              "mediaType": "image/jpeg",
+              "altText": "1.jpg",
+              "_id": "6617f73f789dbcb6884b501d"
+          },
+          {
+              "url": "https://res.cloudinary.com/dojcxwt5h/image/upload/v1712846653/categories/tgyxfovjqvjx6p6fxiiz.jpg",
+              "mediaType": "image/jpeg",
+              "altText": "2.jpg",
+              "_id": "6617f73f789dbcb6884b501e"
+          },
+          {
+              "url": "https://res.cloudinary.com/dojcxwt5h/image/upload/v1712846653/categories/yr7nug8prsla2sl39bos.jpg",
+              "mediaType": "image/jpeg",
+              "altText": "3.jpg",
+              "_id": "6617f73f789dbcb6884b501f"
+          },
+          {
+              "url": "https://res.cloudinary.com/dojcxwt5h/image/upload/v1712846654/categories/wwxngy3221xsrbajkcni.jpg",
+              "mediaType": "image/jpeg",
+              "altText": "4.jpg",
+              "_id": "6617f73f789dbcb6884b5020"
+          }
+      ],
+      "createdBy": {
+          "_id": "653374d3f45cbd1a7f47c32d"
+      },
+      "updatedBy": {
+          "_id": "653374d3f45cbd1a7f47c32d"
+      },
+      "__v": 0
+  },
+  {
+      "_id": "6608243918897bca4e53916c",
+      "name": "Hyundai Venue N Line N6 Turbo",
+      "carModel": {
+          "_id": "6608201818897bca4e5390e8",
+          "modelName": "Hyundai Venue N Line",
+          "carBrand": {
+              "_id": "65ba688d2aadf572616a4b08",
+              "brandName": "Hyundai",
+              "countryOfOrigin": "South Korea",
+              "status": true,
+              "author": "653374d3f45cbd1a7f47c32d",
+              "media": {
+                  "url": "https://res.cloudinary.com/dojcxwt5h/image/upload/v1708830095/categories/fftxnjhfqwbfbkj6oi0u.jpg",
+                  "mediaType": "image/jpeg",
+                  "altText": "hyundai (1).jpg"
+              },
+              "createdBy": "653374d3f45cbd1a7f47c32d",
+              "updatedBy": "653374d3f45cbd1a7f47c32d",
+              "__v": 0
+          },
+          "bodyType": "SUV",
+          "description": "Hyundai Venue N Line is a 5 seater SUV car with FWD option. Hyundai Venue N Line Price starts from ₹ 12.08 Lakh & top model price goes upto ₹ 13.90 Lakh. This model is available with 998 cc engine option. This car is available in Petrol option with both Manual & Automatic transmission. It's Petrol mileage is 18 kmpl. This model has 6 safety airbags. This model is available in 5 colours. Based on Hyundai Venue N Line user reviews, it has earned an overall user rating of 4.6 out of 5.",
+          "year": "2024",
+          "priceRange": {
+              "minPrice": 12.08,
+              "minPriceType": "Lakhs",
+              "maxPrice": 13.9,
+              "maxPriceType": "Lakhs"
+          },
+          "status": true,
+          "budget": "under_15",
+          "fuelType": [
+              "Petrol"
+          ],
+          "mileage": "above_15",
+          "seatingCapacity": "5_seater",
+          "transmissionType": [
+              "Manual",
+              "Automatic"
+          ],
+          "displacement": "below_1000",
+          "author": "653374d3f45cbd1a7f47c32d",
+          "media": [
+              {
+                  "url": "https://res.cloudinary.com/dojcxwt5h/image/upload/v1711808534/categories/safzb14drd6b0trkfwn1.jpg",
+                  "mediaType": "image/jpeg",
+                  "altText": "1.jpg",
+                  "_id": "6608201818897bca4e5390e9"
+              },
+              {
+                  "url": "https://res.cloudinary.com/dojcxwt5h/image/upload/v1711808534/categories/wc7gberwk0jeg9eevmmv.jpg",
+                  "mediaType": "image/jpeg",
+                  "altText": "2.jpg",
+                  "_id": "6608201818897bca4e5390ea"
+              },
+              {
+                  "url": "https://res.cloudinary.com/dojcxwt5h/image/upload/v1711808535/categories/xqitlsupgfsipzkwafuc.jpg",
+                  "mediaType": "image/jpeg",
+                  "altText": "3.jpg",
+                  "_id": "6608201818897bca4e5390eb"
+              },
+              {
+                  "url": "https://res.cloudinary.com/dojcxwt5h/image/upload/v1711808535/categories/zukm6kkqctfq9u6u4ilf.jpg",
+                  "mediaType": "image/jpeg",
+                  "altText": "4.jpg",
+                  "_id": "6608201818897bca4e5390ec"
+              }
+          ],
+          "categories": [],
+          "createdBy": "653374d3f45cbd1a7f47c32d",
+          "updatedBy": "653374d3f45cbd1a7f47c32d",
+          "__v": 0
+      },
+      "basicInformation": {
+          "onRoadPrice": "1392861",
+          "userRating": 4.6,
+          "startEmiAmount": "26726",
+          "startInsuranceAmount": "44841",
+          "serviceCost": "3619"
+      },
+      "engineAndTransmission": {
+          "engineType": "Kappa 1.0 l turbo GDi",
+          "displacement": "998",
+          "noOfCylinders": "3",
+          "maxPower": "118.41bhp@6000rpm",
+          "maxTorque": "172Nm@1500-4000rpm",
+          "valuePerCylinder": "4",
+          "fuelSupplySystem": "N/A",
+          "compressionRatio": "N/A",
+          "turboCharge": "YES",
+          "transmissionType": "Manual",
+          "gearBox": "6-Speed iMT",
+          "mildHybrid": "NO",
+          "driverType": "FWD",
+          "cluchType": "N/A"
+      },
+      "fuelAndPerformance": {
+          "fuelType": "Petrol",
+          "mileageCity": "N/A",
+          "mileageArai": "18",
+          "fuelTankCapacity": "45",
+          "emissionNormCompliance": "BS VI 2.0"
+      },
+      "suspensionAndSteeringAndBrakes": {
+          "fontSuspension": "Macpherson Strut with Coil Spring",
+          "rearSuspension": "Coupled torsion beam axle with coil spring",
+          "steeringType": "Electric",
+          "steeringColumn": "Tilt",
+          "turningRadius": "5.1",
+          "frontBrakeType": "Disc",
+          "rearBrakeType": "Disc",
+          "emissionNormCompliance": "BS VI 2.0",
+          "tyreSize": "215/60 R16",
+          "tyreType": "Tubeless, Radial",
+          "wheelSize": "16 Inch",
+          "alloyWheelSize": "16 Inch",
+          "alloyWheelSizeFront": "16 Inch",
+          "alloyWheelSizeRear": "16 Inch",
+          "bootSpace": "350"
+      },
+      "dimensionAndCapacity": {
+          "length": "3995",
+          "width": "1770",
+          "height": "1617",
+          "groundClearanceUnladen": "190",
+          "wheelBase": "2500",
+          "frontTread": "N/A",
+          "rearTread": "N/A",
+          "kerbWeight": "N/A",
+          "grossWeight": "N/A",
+          "seatingCapacity": "5",
+          "bootSpace": "350",
+          "noOfDoors": "5"
+      },
+      "interior": {
+          "tachometer": true,
+          "electronicutiTripmeter": false,
+          "fabricUpholestry": false,
+          "leatherSteeringWheel": true,
+          "gloveCompartment": true,
+          "digitalClock": false,
+          "outsideTemperatureisplay": false,
+          "digitalOdometer": false,
+          "dualToneDashboard": false,
+          "additionFeatures": "Dashcam with dual camera,Sporty black interiors with athletic red inserts,Leatherette seats,Exciting red ambient lighting,Sporty metal pedals,Dark metal finish inside door handles, Upholstery Leatherette",
+          "digitalCluster": "Semi",
+          "digitalClusterSize": 0,
+          "upholstery": null
+      },
+      "exterior": {
+          "bodyType": "SUV",
+          "adjustableHeadlights": "YES",
+          "fogLightsFront": false,
+          "powerAdjustableExteriorRearViewMirror": true,
+          "manuallyAdjustableExtRearViewMirror": false,
+          "electricFoldingRearViewMirror": true,
+          "rearWindowWiper": true,
+          "rearWindowWasher": true,
+          "rearWindowDefogger": true,
+          "wheelCovers": false,
+          "alloyWheels": true,
+          "powerAntenna": false,
+          "rearSpoiler": true,
+          "outsideRearViewMirrorTurnIndicators": true,
+          "integratedAntenna": true,
+          "chromeGrille": false,
+          "chromeGarnish": false,
+          "projectorHeadlamps": true,
+          "roofRail": true,
+          "ledDrls": true,
+          "ledHeadlights": true,
+          "ledTaillights": true,
+          "ledFogLamps": false,
+          "fogLights": false,
+          "additionalFeatures": "Dark chrome front grille,Body coloured Bumpers,Body coloured Outside door handles,Painted black finish - Outside door mirrors,Front & rear skid plates,Side sill garnish,Side fenders (Left & right),N Line emblem (Front radiator grille Side fenders (Left & right),Twin tip muffler with exhaust note, Cornering Headlamps, Single Pane Sun Roof",
+          "antenna": "Shark Fin",
+          "bootOpening": "Manual",
+          "puddleLamps": "YES",
+          "tyreSize": "215/60 R16",
+          "tyreType": "Tubeless, Radial",
+          "wheelSize": "16 Inch",
+          "allowWheelSize": "16 Inch",
+          "availableColors": []
+      },
+      "status": true,
+      "author": {
+          "_id": "653374d3f45cbd1a7f47c32d"
+      },
+      "media": [
+          {
+              "url": "https://res.cloudinary.com/dojcxwt5h/image/upload/v1711809592/categories/glkget3afqwxxfbvsqiv.jpg",
+              "mediaType": "image/jpeg",
+              "altText": "1.jpg",
+              "_id": "6608243918897bca4e53916d"
+          },
+          {
+              "url": "https://res.cloudinary.com/dojcxwt5h/image/upload/v1711809592/categories/vxed5im43xmgfz6ffxyp.jpg",
+              "mediaType": "image/jpeg",
+              "altText": "2.jpg",
+              "_id": "6608243918897bca4e53916e"
+          },
+          {
+              "url": "https://res.cloudinary.com/dojcxwt5h/image/upload/v1711809593/categories/mwvul8fcop8nh3k6njxg.jpg",
+              "mediaType": "image/jpeg",
+              "altText": "3.jpg",
+              "_id": "6608243918897bca4e53916f"
+          },
+          {
+              "url": "https://res.cloudinary.com/dojcxwt5h/image/upload/v1711809592/categories/zav6wn4rtaqrkrbflltk.jpg",
+              "mediaType": "image/jpeg",
+              "altText": "4.jpg",
+              "_id": "6608243918897bca4e539170"
+          }
+      ],
+      "createdBy": {
+          "_id": "653374d3f45cbd1a7f47c32d"
+      },
+      "updatedBy": {
+          "_id": "653374d3f45cbd1a7f47c32d"
+      },
+      "__v": 0
+  },
+    {
+      "_id": "6608243918897bca4e53916c",
+      "name": "Hyundai Venue N Line N6 Turbo",
+      "carModel": {
+          "_id": "6608201818897bca4e5390e8",
+          "modelName": "Hyundai Venue N Line",
+          "carBrand": {
+              "_id": "65ba688d2aadf572616a4b08",
+              "brandName": "Hyundai",
+              "countryOfOrigin": "South Korea",
+              "status": true,
+              "author": "653374d3f45cbd1a7f47c32d",
+              "media": {
+                  "url": "https://res.cloudinary.com/dojcxwt5h/image/upload/v1708830095/categories/fftxnjhfqwbfbkj6oi0u.jpg",
+                  "mediaType": "image/jpeg",
+                  "altText": "hyundai (1).jpg"
+              },
+              "createdBy": "653374d3f45cbd1a7f47c32d",
+              "updatedBy": "653374d3f45cbd1a7f47c32d",
+              "__v": 0
+          },
+          "bodyType": "SUV",
+          "description": "Hyundai Venue N Line is a 5 seater SUV car with FWD option. Hyundai Venue N Line Price starts from ₹ 12.08 Lakh & top model price goes upto ₹ 13.90 Lakh. This model is available with 998 cc engine option. This car is available in Petrol option with both Manual & Automatic transmission. It's Petrol mileage is 18 kmpl. This model has 6 safety airbags. This model is available in 5 colours. Based on Hyundai Venue N Line user reviews, it has earned an overall user rating of 4.6 out of 5.",
+          "year": "2024",
+          "priceRange": {
+              "minPrice": 12.08,
+              "minPriceType": "Lakhs",
+              "maxPrice": 13.9,
+              "maxPriceType": "Lakhs"
+          },
+          "status": true,
+          "budget": "under_15",
+          "fuelType": [
+              "Petrol"
+          ],
+          "mileage": "above_15",
+          "seatingCapacity": "5_seater",
+          "transmissionType": [
+              "Manual",
+              "Automatic"
+          ],
+          "displacement": "below_1000",
+          "author": "653374d3f45cbd1a7f47c32d",
+          "media": [
+              {
+                  "url": "https://res.cloudinary.com/dojcxwt5h/image/upload/v1711808534/categories/safzb14drd6b0trkfwn1.jpg",
+                  "mediaType": "image/jpeg",
+                  "altText": "1.jpg",
+                  "_id": "6608201818897bca4e5390e9"
+              },
+              {
+                  "url": "https://res.cloudinary.com/dojcxwt5h/image/upload/v1711808534/categories/wc7gberwk0jeg9eevmmv.jpg",
+                  "mediaType": "image/jpeg",
+                  "altText": "2.jpg",
+                  "_id": "6608201818897bca4e5390ea"
+              },
+              {
+                  "url": "https://res.cloudinary.com/dojcxwt5h/image/upload/v1711808535/categories/xqitlsupgfsipzkwafuc.jpg",
+                  "mediaType": "image/jpeg",
+                  "altText": "3.jpg",
+                  "_id": "6608201818897bca4e5390eb"
+              },
+              {
+                  "url": "https://res.cloudinary.com/dojcxwt5h/image/upload/v1711808535/categories/zukm6kkqctfq9u6u4ilf.jpg",
+                  "mediaType": "image/jpeg",
+                  "altText": "4.jpg",
+                  "_id": "6608201818897bca4e5390ec"
+              }
+          ],
+          "categories": [],
+          "createdBy": "653374d3f45cbd1a7f47c32d",
+          "updatedBy": "653374d3f45cbd1a7f47c32d",
+          "__v": 0
+      },
+      "basicInformation": {
+          "onRoadPrice": "1392861",
+          "userRating": 4.6,
+          "startEmiAmount": "26726",
+          "startInsuranceAmount": "44841",
+          "serviceCost": "3619"
+      },
+      "engineAndTransmission": {
+          "engineType": "Kappa 1.0 l turbo GDi",
+          "displacement": "998",
+          "noOfCylinders": "3",
+          "maxPower": "118.41bhp@6000rpm",
+          "maxTorque": "172Nm@1500-4000rpm",
+          "valuePerCylinder": "4",
+          "fuelSupplySystem": "N/A",
+          "compressionRatio": "N/A",
+          "turboCharge": "YES",
+          "transmissionType": "Manual",
+          "gearBox": "6-Speed iMT",
+          "mildHybrid": "NO",
+          "driverType": "FWD",
+          "cluchType": "N/A"
+      },
+      "fuelAndPerformance": {
+          "fuelType": "Petrol",
+          "mileageCity": "N/A",
+          "mileageArai": "18",
+          "fuelTankCapacity": "45",
+          "emissionNormCompliance": "BS VI 2.0"
+      },
+      "suspensionAndSteeringAndBrakes": {
+          "fontSuspension": "Macpherson Strut with Coil Spring",
+          "rearSuspension": "Coupled torsion beam axle with coil spring",
+          "steeringType": "Electric",
+          "steeringColumn": "Tilt",
+          "turningRadius": "5.1",
+          "frontBrakeType": "Disc",
+          "rearBrakeType": "Disc",
+          "emissionNormCompliance": "BS VI 2.0",
+          "tyreSize": "215/60 R16",
+          "tyreType": "Tubeless, Radial",
+          "wheelSize": "16 Inch",
+          "alloyWheelSize": "16 Inch",
+          "alloyWheelSizeFront": "16 Inch",
+          "alloyWheelSizeRear": "16 Inch",
+          "bootSpace": "350"
+      },
+      "dimensionAndCapacity": {
+          "length": "3995",
+          "width": "1770",
+          "height": "1617",
+          "groundClearanceUnladen": "190",
+          "wheelBase": "2500",
+          "frontTread": "N/A",
+          "rearTread": "N/A",
+          "kerbWeight": "N/A",
+          "grossWeight": "N/A",
+          "seatingCapacity": "5",
+          "bootSpace": "350",
+          "noOfDoors": "5"
+      },
+      "interior": {
+          "tachometer": true,
+          "electronicutiTripmeter": false,
+          "fabricUpholestry": false,
+          "leatherSteeringWheel": true,
+          "gloveCompartment": true,
+          "digitalClock": false,
+          "outsideTemperatureisplay": false,
+          "digitalOdometer": false,
+          "dualToneDashboard": false,
+          "additionFeatures": "Dashcam with dual camera,Sporty black interiors with athletic red inserts,Leatherette seats,Exciting red ambient lighting,Sporty metal pedals,Dark metal finish inside door handles, Upholstery Leatherette",
+          "digitalCluster": "Semi",
+          "digitalClusterSize": 0,
+          "upholstery": null
+      },
+      "exterior": {
+          "bodyType": "SUV",
+          "adjustableHeadlights": "YES",
+          "fogLightsFront": false,
+          "powerAdjustableExteriorRearViewMirror": true,
+          "manuallyAdjustableExtRearViewMirror": false,
+          "electricFoldingRearViewMirror": true,
+          "rearWindowWiper": true,
+          "rearWindowWasher": true,
+          "rearWindowDefogger": true,
+          "wheelCovers": false,
+          "alloyWheels": true,
+          "powerAntenna": false,
+          "rearSpoiler": true,
+          "outsideRearViewMirrorTurnIndicators": true,
+          "integratedAntenna": true,
+          "chromeGrille": false,
+          "chromeGarnish": false,
+          "projectorHeadlamps": true,
+          "roofRail": true,
+          "ledDrls": true,
+          "ledHeadlights": true,
+          "ledTaillights": true,
+          "ledFogLamps": false,
+          "fogLights": false,
+          "additionalFeatures": "Dark chrome front grille,Body coloured Bumpers,Body coloured Outside door handles,Painted black finish - Outside door mirrors,Front & rear skid plates,Side sill garnish,Side fenders (Left & right),N Line emblem (Front radiator grille Side fenders (Left & right),Twin tip muffler with exhaust note, Cornering Headlamps, Single Pane Sun Roof",
+          "antenna": "Shark Fin",
+          "bootOpening": "Manual",
+          "puddleLamps": "YES",
+          "tyreSize": "215/60 R16",
+          "tyreType": "Tubeless, Radial",
+          "wheelSize": "16 Inch",
+          "allowWheelSize": "16 Inch",
+          "availableColors": []
+      },
+      "status": true,
+      "author": {
+          "_id": "653374d3f45cbd1a7f47c32d"
+      },
+      "media": [
+          {
+              "url": "https://res.cloudinary.com/dojcxwt5h/image/upload/v1711809592/categories/glkget3afqwxxfbvsqiv.jpg",
+              "mediaType": "image/jpeg",
+              "altText": "1.jpg",
+              "_id": "6608243918897bca4e53916d"
+          },
+          {
+              "url": "https://res.cloudinary.com/dojcxwt5h/image/upload/v1711809592/categories/vxed5im43xmgfz6ffxyp.jpg",
+              "mediaType": "image/jpeg",
+              "altText": "2.jpg",
+              "_id": "6608243918897bca4e53916e"
+          },
+          {
+              "url": "https://res.cloudinary.com/dojcxwt5h/image/upload/v1711809593/categories/mwvul8fcop8nh3k6njxg.jpg",
+              "mediaType": "image/jpeg",
+              "altText": "3.jpg",
+              "_id": "6608243918897bca4e53916f"
+          },
+          {
+              "url": "https://res.cloudinary.com/dojcxwt5h/image/upload/v1711809592/categories/zav6wn4rtaqrkrbflltk.jpg",
+              "mediaType": "image/jpeg",
+              "altText": "4.jpg",
+              "_id": "6608243918897bca4e539170"
+          }
+      ],
+      "createdBy": {
+          "_id": "653374d3f45cbd1a7f47c32d"
+      },
+      "updatedBy": {
+          "_id": "653374d3f45cbd1a7f47c32d"
+      },
+      "__v": 0
+  }
+]
 
 const CompareTable = () => {
   const [carDetails, setCarDetails] = useState([]);
-  // const [selectedMake, setSelectedMake] = useState('');
-  // const [selectedModel, setSelectedModel] = useState('');
-  // const [selectedVariant, setSelectedVariant] = useState('');
-  // const [carbrands, setCarbrands] = useState([]);
-  // const [carmodals, setCarmodals] = useState([]);
-  // const [carmodalsId, setCarmodalsId] = useState('');
-  // const [carbrandsId, setCarbrandsId] = useState('');
-  // const [carvariants, setCarvariants] = useState([]);
-  // const [compareVaraints, setCompareVariants] = useState([]);
-  const dats={
-    "carIds": ["6582cd226358c2cb68bc3a37","658310ce01c99e9e9aebdd0c","658316d114223608b85569ba"]
-  }
+  const defaultState = { id:'', make: '', model: '', variant: '', price: '', image: '', isEnabled: true, allFieldsSelected: false }
+  const [compareData, setCompareData] = useState([])
+  const [isEditCard, setIsEditCard] = useState(false);
+  const [isLoading, setIsLoading] = useState(false)
+  const [prevCards, setPrevCards] = useState([
+    { id: '', make: '', model: '', variant: '', price: '', image: '', isEnabled: false, allFieldsSelected: false },
+    { id: '', make: '', model: '', variant: '', price: '', image: '', isEnabled: false, allFieldsSelected: false },
+    { id: '', make: '', model: '', variant: '', price: '', image: '', isEnabled: false, allFieldsSelected: false }
+  ])
+  const [cards, setCards] = useState([
+    { id: '', make: '', model: '', variant: '', price: '', image: '', isEnabled: true, allFieldsSelected: false },
+    { id: '', make: '', model: '', variant: '', price: '', image: '', isEnabled: false, allFieldsSelected: false },
+    { id: '', make: '', model: '', variant: '', price: '', image: '', isEnabled: false, allFieldsSelected: false }
+  ]);
 
-    useEffect(() => {
+  const comparisonCards = [
+    "Basic Information",
+    "Engine and Transmission",
+    "Fuel & Performance",
+    "Suspension, Steering & Brakes",
+    "Dimension & Capacity",
+    "Comfort & Convinience",
+    "Interior",
+    "Exterior",
+    "Safety",
+    "Entertainment and Communication"]
+
+  useEffect(() => {
+      const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';
+      if (true) {
+        setIsLoading(false)
+        fetch(`https://api.univolenitsolutions.com/v1/automobile/get/carinfo/for/65538448b78add9eaa02d417`,
+        {
+          method: 'GET',
+          headers: {
+            'X-API-Key': apiKey,
+            'Content-Type': 'application/json'
+          }
+        })
+        .then(response => response.json())
+        .then(data => {
+          setIsLoading(false)
+          if (data  && data?.data) {
+            setCarDetails(data?.data);
+          }
+        })
+        .catch(error => {
+          setIsLoading(false)
+          console.error('Error fetching car details: ', error);
+        })
+      }
+  },[]);
+
+  const handleOnCompareClick = () => {
     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';
+    const idsArray = cards
+    .filter(car => car.id !== "") // Filter out objects with empty id
+    .map(car => car.id); 
+    const selectedCarIds = {
+      "carIds": idsArray
+    }
     if (true) {
-      fetch(`https://api.univolenitsolutions.com/v1/automobile/get/carinfo/for/65538448b78add9eaa02d417`,
+      setIsLoading(true)
+      fetch(`https://api.univolenitsolutions.com/v1/automobile/get/compare/carsvariants/for/65538448b78add9eaa02d417`,
        {
-        method: 'GET',
+        method: 'POST',
         headers: {
           'X-API-Key': apiKey,
           'Content-Type': 'application/json'
-        }
+        },
+        body: JSON.stringify(selectedCarIds) 
       })
       .then(response => response.json())
       .then(data => {
-        if (data  && data?.data) {
-          setCarDetails(data?.data);
+        setIsLoading(false)
+        if (data  && data.data && data.data.cars) {
+          setCompareData(data.data.cars);
         }
       })
       .catch(error => {
-        console.error('Error fetching car details: ', error);
+        setIsLoading(false)
+        console.error('Error fetching car models: ', error);
       })
     }
-  },[]);
-
-  // useEffect(() => {
-  //   const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';
-  //   if (true) {
-  //     fetch(`https://api.univolenitsolutions.com/v1/automobile/get/compare/carsvariants/for/65538448b78add9eaa02d417`,
-  //      {
-  //       method: 'POST',
-  //       headers: {
-  //         'X-API-Key': apiKey,
-  //         'Content-Type': 'application/json'
-  //       },
-  //       body: JSON.stringify(dats) 
-  //     })
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       console.log("hey")
-  //       if (data  && data.data && data.data.cars) {
-  //         setCompareVariants(data.data.cars);
-  //       }
-  //     })
-  //     .catch(error => {
-  //       console.error('Error fetching car models: ', error);
-  //     })
-  //     .finally(() => setCarbrandsId(''))
-  //   }
-  // });
-  
-  // useEffect(() => {
-  //   const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';
-  //   if (carmodalsId) {
-  //     fetch(`https://api.univolenitsolutions.com/v1/automobile/from/carmodel/${carmodalsId}/for/65538448b78add9eaa02d417`,
-  //      {
-  //       method: 'GET',
-  //       headers: {
-  //         'X-API-Key': apiKey,
-  //         'Content-Type': 'application/json'
-  //       }
-  //     })
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       if (data && data.data && data.data.carVariantList) {
-  //         setCarvariants(data.data.carVariantList);
-  //       }
-  //     })
-  //     .catch(error => {
-  //       console.error('Error fetching car models: ', error);
-  //     })
-  //     .finally(() => setCarbrandsId(''))
-  //   }
-  // }, [carmodalsId]);
-
-  //   useEffect(() => {
-  //     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';
-  //     if (carmodalsId) {
-  //       fetch(`https://api.univolenitsolutions.com/v1/automobile/carvariants/from/carmodel/${carmodalsId}/for/65538448b78add9eaa02d417`,
-  //        {
-  //         method: 'GET',
-  //         headers: {
-  //           'X-API-Key': apiKey,
-  //           'Content-Type': 'application/json'
-  //         }
-  //       })
-  //       .then(response => response.json())
-  //       .then(data => {
-  //         if (data && data.data && data.data.carVariantList) {
-  //           setCarvariants(data.data.carVariantList);
-  //         }
-  //       })
-  //       .catch(error => {
-  //         console.error('Error fetching car models: ', error);
-  //       })
-  //       .finally(() => setCarbrandsId(''))
-  //     }
-  //   }, [carmodalsId]);
-  
-  //   useEffect(() => {
-  //     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';
-  //     if (carbrandsId) {
-  //       fetch(`https://api.univolenitsolutions.com/v1/automobile/get/carmodels/${carbrandsId}/for/65538448b78add9eaa02d417`,
-  //        {
-  //         method: 'GET',
-  //         headers: {
-  //           'X-API-Key': apiKey,
-  //           'Content-Type': 'application/json'
-  //         }
-  //       })
-  //       .then(response => response.json())
-  //       .then(data => {
-  //         if (data && data.data && data.data.carModelsList) {
-  //           setCarmodals(data.data.carModelsList);
-  //         }
-  //       })
-  //       .catch(error => {
-  //         console.error('Error fetching car models: ', error);
-  //       })
-  //     }
-  //   }, [carbrandsId]);
-  // useEffect(() => {
-  //   const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carbrands/for/65538448b78add9eaa02d417';
-  //   const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
-
-  //   fetch(apiUrl, {
-  //     method: 'GET',
-  //     headers: {
-  //       'X-API-Key': apiKey,
-  //       'Content-Type': 'application/json'
-  //     }
-  //   })
-  //   .then(response => response.json())
-  //   .then(data => {
-  //     if (data && data.data && data.data.carBrandsList) {
-  //       setCarbrands(data.data.carBrandsList);
-  //       //console.log(data.data.carBrandsList)
-  //     }
-  //   })
-  //   .catch(error => {
-  //     console.error('Error fetching data: ', error);
-  //   })
-  //   //.finally(() => setIsBrandsLoading(false));
-  // }, []);
-  
-  // const [showTable, setShowTable] = useState(false);
-  // const [selectedVariants, setSelectedVariants] = useState(Array.from({ length: 3 }, () => null));
-  // const [selectedModels, setSelectedModels] = useState(Array.from({ length: 3 }, () => null));
-  // const [selectedBrands, setSelectedBrands] = useState(Array.from({ length: 3 }, () => null));
-  // const [images, setImages] = useState(Array.from({ length: 3 }, () => '')); // Initialize with empty strings
-
-
-  // // State for small model inside each div
-  // const [showSmallModel, setShowSmallModel] = useState(Array.from({ length: 3 }, () => false));
-
-  // const handleCompareClick = () => {
-  //   setShowTable(true);
-  // };
-
-  // const handlePlusIconClick = (index) => {
-  //   // Toggle the small model state for the specific div
-  //   const updatedShowSmallModel = [...showSmallModel];
-  //   updatedShowSmallModel[index] = !updatedShowSmallModel[index];
-  //   setShowSmallModel(updatedShowSmallModel);
-  // };
-
-  // const handleCloseSmallModel = (index) => {
-  //   // Close the small model for the specific div
-  //   const updatedShowSmallModel = [...showSmallModel];
-  //   updatedShowSmallModel[index] = false;
-  //   setShowSmallModel(updatedShowSmallModel);
-  // };
-  // const handleDeleteClick = (index) => {
-  //   const updatedImages = [...images];
-  //   updatedImages.splice(index, 1);
-  //   const updatedVariants = [...selectedVariants];
-  //   for(let i=index;i<2;i++){
-  //     updatedVariants[i]=updatedImages[i+1]
-  //   }
-  //   updatedVariants[index] = '';
-  //   setSelectedVariants(updatedVariants);
-  //   setImages(updatedImages);
-  // };
-  // const handleVariantChange = (event, index) => {
-  //   // Update the selected variant for the specific div
-  //   const updatedVariants = [...selectedVariants];
-  //   const valuesArray = event.target.value.split(',');
-  //   handleCloseSmallModel(index)
-  //   updatedVariants[index] = valuesArray[0];
-  //   console.log(valuesArray[1])
-  //   setSelectedVariants(updatedVariants);
-  //   const updatedImages = [...images];
-  //   updatedImages[index] = valuesArray[1];
-  //   setImages(updatedImages);
-
-  // };
-  // const handleBrandChange = (event, index) => {
-  //   // Update the selected variant for the specific div
-  //   const updatedBrands = [...selectedBrands];
-  //   updatedBrands[index] = event.target.value;
-  //   setCarbrandsId(event.target.value)
-  //   setSelectedBrands(updatedBrands);
-  // };
-  // const handleModelChange = (event, index) => {
-  //   // Update the selected model for the specific div
-  //   const updatedModels = [...selectedModels];
-  //   updatedModels[index] = event.target.value;
-  //   setCarmodalsId(event.target.value)
-  //   setSelectedModels(updatedModels);
-  // };
-
-
-  // const handleMakeSelect = (make) => {
-  //   setSelectedMake(make)
-  // }
-
-  // const handleMakeChange = (event) => {
-  //   setSelectedMake(event.target.value);
-  //   setSelectedModel('');
-  //   setSelectedVariant('');
-  // };
-
-  // const handleModelChange = (event) => {
-  //   setSelectedModel(event.target.value);
-  //   setSelectedVariant('');
-  // };
-
-  // const handleVariantChange = (event) => {
-  //   setSelectedVariant(event.target.value);
-  // };
-
-  // const [cards, setCards] = useState([]);
-  // const [activeCard, setActiveCard] = useState(0);
-
-  const defaultState = { make: '', model: '', variant: '', price: '', image: '', isEnabled: true, allFieldsSelected: false }
-
-  const [isEditCard, setIsEditCard] = useState(false)
-  const [prevCards, setPrevCards] = useState([
-    { make: '', model: '', variant: '', price: '', image: '', isEnabled: false, allFieldsSelected: false },
-    { make: '', model: '', variant: '', price: '', image: '', isEnabled: false, allFieldsSelected: false },
-    { make: '', model: '', variant: '', price: '', image: '', isEnabled: false, allFieldsSelected: false }
-  ])
-  const [cards, setCards] = useState([
-    { make: '', model: '', variant: '', price: '', image: '', isEnabled: true, allFieldsSelected: false },
-    { make: '', model: '', variant: '', price: '', image: '', isEnabled: false, allFieldsSelected: false },
-    { make: '', model: '', variant: '', price: '', image: '', isEnabled: false, allFieldsSelected: false }
-  ]);
+  };
 
   const handleAddCard = (index) => {
     if (index === 2) {
@@ -308,10 +806,11 @@ const CompareTable = () => {
     getCarImage(index)
   };
 
-  const handleVariantChange = (index, value) => {
+  const handleVariantChange = (index, value, id) => {
     const updatedCards = [...cards];
     updatedCards[index].variant = value;
     updatedCards[index].allFieldsSelected = true;
+    updatedCards[index].id = id
     setCards(updatedCards);
     setPrevCards(updatedCards)
     getCarPrice(index)
@@ -326,12 +825,6 @@ const CompareTable = () => {
     if (index < updatedCards.length - 1) {
       updatedCards[index + 1].isEnabled = true;
     }
-    setCards(updatedCards);
-  };
-
-  const handleRemoveCard = (index) => {
-    const updatedCards = [...cards];
-    updatedCards[index] = defaultState
     setCards(updatedCards);
   };
 
@@ -385,27 +878,185 @@ const CompareTable = () => {
     )
   }
 
-  const optionGroup = (index) => {
-    if(cards[index]?.make) {
-      const modelData = carDetails.find((make) => make.brandName === cards[index]?.make)?.models.find((model) => model.modelName === cards[index]?.model) 
-      return modelData[0]?.map(car => ({
-        value: car._id,
-        label: car.name,
-      }))
+  function convertKeysToLowercase(obj) {
+    const newObject = {};
+    Object.keys(obj).forEach(key => {
+        newObject[key.toLowerCase()] = obj[key];
+    });
+    return Object.keys(newObject);
+  }
+
+  function formatComparisonLabel (key) {
+    return key.replace(/\s/g, '').replace(/,/g, 'and').replace(/&/g, 'and')
+  }
+
+  function checkItemsInObject(carObject) {
+    const presentItems = [];
+    const carObjectkeys = convertKeysToLowercase(carObject)
+    for (const key of comparisonCards) {
+      const modifiedKey = formatComparisonLabel(key);
+      if (carObjectkeys.includes(modifiedKey.toLowerCase())) {
+        presentItems.push(key);
+      }
     }
-    else if(cards[index]?.make && cards[index]?.model) {
-      const variantData = carDetails.find((make) => make.brandName === cards[index]?.make)?.models.find((model) => model.modelName === cards[index]?.model).variants.find((variant) => variant.modelName === cards[index]?.name)
-      return variantData[0]?.map(car => ({
-        value: car._id,
-        label: car.name,
-      }))
+    return presentItems;
+  }
+
+  const renderTableHeaderIcon = (label) => {
+    console.log(label)
+    switch(label) {
+      case 'Basic Information': return <i class="fa-solid fa-grip-vertical" style={{marginRight:'10px'}}></i>
+      case 'Engine and Transmission': return <i class="fa-solid fa-feather-pointed" style={{marginRight:'10px'}}></i>
+      case 'Fuel & Performance': return <i class="fa-solid fa-gas-pump" style={{marginRight:'10px'}}></i>
+      case 'Suspension, Steering & Brakes': return <i class="fa-solid fa-dharmachakra" style={{marginRight:'10px'}}></i>
+      case 'Dimension & Capacity': return <i class="fa-solid fa-ruler-combined" style={{marginRight:'10px'}}></i>
+      case 'Interior': return <i class="fa-solid fa-feather-pointed" style={{marginRight:'10px'}}></i>
+      case 'Exterior': return <i class="fa-solid fa-car-side" style={{marginRight:'10px'}}></i>
+      case 'Comfort & Convinience': return <i class="fa-solid fa-user-shield" style={{marginRight:'10px'}}></i>
+      case 'Entertainment and Communication': return <i class="fa-solid fa-radio" style={{marginRight:'10px'}}></i>
+      case 'Safety': return <i class="fa-solid fa-user-shield" style={{marginRight:'10px'}}></i>
+      default:  return <></>
     }
-    else {
-      return carDetails?.map(car => ({
-        value: car.brandName,
-        label: car?.brandName,
-      }))
+  }
+  function comparisonCardDataMapper(label){
+    if(label) {
+      const key = formatComparisonLabel(label).toLowerCase();
+      const compareCarBasicInfo = mock[0]?.basicInformation;
+      const compareCarEngineAndTransmission = mock[0]?.engineAndTransmission;
+      const compareCarFuelAndPerformance = mock[0]?.fuelAndPerformance;
+      const compareCarSuspensionAndSteeringAndBrakes = mock[0]?.suspensionAndSteeringAndBrakes;
+      const compareCarDimensionAndCapacity = mock[0]?.dimensionAndCapacity;
+      const compareCarInterior = mock[0]?.interior;
+      const compareCarExterior = mock[0]?.exterior;
+      const compareCarSafety = mock[0]?.safety;
+      const compareCarComfortAndConvinience = mock[0]?.comfortAndConvinience
+      const compareCarEntertainmentAndCommunication = mock[0]?.entertainmentAndCommunication
+
+      return (
+        <Table striped hover className="compare-table">
+          <thead>
+              <tr>
+                <th className="compare-th th-font th-style">
+                  {renderTableHeaderIcon(label)}
+                  {label}
+                </th>
+                {mock.map((data) => {
+                  return (
+                    <th className="compare-th th-font">{data.name}</th>
+                  )
+                })}
+              </tr>
+          </thead>
+          <tbody>
+              {key === 'basicinformation' && Object.keys(compareCarBasicInfo).map((infoKey) => (
+                <tr key={infoKey}>
+                  <td className="compare-td td-font td-border">{infoKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</td>
+                  {mock.map((car) => (
+                    <td className="compare-td td-font" key={`${car._id}-${infoKey}`}>{car.basicInformation[infoKey] ? car.basicInformation[infoKey] : '-'}</td>
+                  ))}
+                </tr>
+              ))}
+  
+              {key === 'engineandtransmission' && Object.keys(compareCarEngineAndTransmission).map((infoKey) => (
+                <tr key={infoKey}>
+                  <td className="compare-td td-font td-border">{infoKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</td>
+                  {mock.map((car) => (
+                    <td className="compare-td td-font" key={`${car._id}-${infoKey}`}>{car.engineAndTransmission[infoKey] ? car.engineAndTransmission[infoKey]: '-'}</td>
+                  ))}
+                </tr>
+              ))}
+  
+              {key === 'fuelandperformance' && Object.keys(compareCarFuelAndPerformance).map((infoKey) => (
+                <tr key={infoKey}>
+                  <td className="compare-td td-font td-border">{infoKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</td>
+                  {mock.map((car) => (
+                    <td className="compare-td td-font" key={`${car._id}-${infoKey}`}>{car.fuelAndPerformance[infoKey] ? car.fuelAndPerformance[infoKey] : '-'}</td>
+                  ))}
+                </tr>
+              ))}
+  
+              {key === 'suspensionandsteeringandbrakes' && Object.keys(compareCarSuspensionAndSteeringAndBrakes).map((infoKey) => (
+                <tr key={infoKey}>
+                  <td className="compare-td td-font td-border">{infoKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</td>
+                  {mock.map((car) => (
+                    <td className="compare-td td-font" key={`${car._id}-${infoKey}`}>{car.suspensionAndSteeringAndBrakes[infoKey] ? car.suspensionAndSteeringAndBrakes[infoKey]: '-'}</td>
+                  ))}
+                </tr>
+              ))}
+  
+              {key === 'dimensionandcapacity' && Object.keys(compareCarDimensionAndCapacity).map((infoKey) => (
+                <tr key={infoKey}>
+                  <td className="compare-td td-font td-border">{infoKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</td>
+                  {mock.map((car) => (
+                    <td className="compare-td td-font" key={`${car._id}-${infoKey}`}>{car.dimensionAndCapacity[infoKey] ? car.dimensionAndCapacity[infoKey] : '-'}</td>
+                  ))}
+                </tr>
+              ))}
+  
+              {key === 'interior' && Object.keys(compareCarInterior).map((infoKey) => (
+                <tr key={infoKey}>
+                  <td className="compare-td td-font td-border">{infoKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</td>
+                  {mock.map((car) => (
+                    <td className="compare-td td-font" key={`${car._id}-${infoKey}`}>{car.interior[infoKey] ? car.interior[infoKey] : '-'}</td>
+                  ))}
+                </tr>
+              ))}
+  
+              {key === 'exterior' && Object.keys(compareCarExterior).map((infoKey) => (
+                <tr key={infoKey}>
+                  <td className="compare-td td-font td-border">{infoKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</td>
+                  {mock.map((car) => (
+                    <td className="compare-td td-font" key={`${car._id}-${infoKey}`}>{car.exterior[infoKey] ? car.exterior[infoKey] : '-'}</td>
+                  ))}
+                </tr>
+              ))}
+
+              {key === 'comfortandconvinience' && Object.keys(compareCarComfortAndConvinience).map((infoKey) => (
+                <tr key={infoKey}>
+                  <td className="compare-td td-font td-border">{infoKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</td>
+                  {mock.map((car) => (
+                    <td className="compare-td td-font" key={`${car._id}-${infoKey}`}>{car.comfortAndConvinience[infoKey] ? car.comfortAndConvinience[infoKey] : '-'}</td>
+                  ))}
+                </tr>
+              ))}
+
+              {key === 'safety' && Object.keys(compareCarSafety).map((infoKey) => (
+                  <tr key={infoKey}>
+                    <td className="compare-td td-font td-border">{infoKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</td>
+                    {mock.map((car) => (
+                      <td className="compare-td td-font" key={`${car._id}-${infoKey}`}>{car.safety[infoKey]}</td>
+                    ))}
+                  </tr>
+              ))}
+
+              {key === 'entertainmentandcommunication' && Object.keys(compareCarEntertainmentAndCommunication).map((infoKey) => (
+                <tr key={infoKey}>
+                  <td className="compare-td td-font td-border">{infoKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</td>
+                  {mock.map((car) => (
+                    <td className="compare-td td-font" key={`${car._id}-${infoKey}`}>{car.entertainmentAndCommunication[infoKey]}</td>
+                  ))}
+                </tr>
+              ))}
+          </tbody>
+        </Table>
+      )
     }
+
+  }
+
+  const renderComparison = () => {
+    let comparisonItemsPresent = []
+    for (const car of mock) {
+      comparisonItemsPresent = checkItemsInObject(car);
+    }
+    let count = 0;
+    return (
+      comparisonItemsPresent.map((val) => (
+         <div className="compare-card" style={{ width: '100%', height: 'auto', margin: '50px 0px'}}>
+          {comparisonCardDataMapper(val)}
+        </div>
+      ))
+    )
   }
 
   const renderCard = (card, index) => {
@@ -421,15 +1072,6 @@ const CompareTable = () => {
                 <option key={make.id} value={make.brandName}>{make.brandName}</option>
               ))}
             </select>
-            {/*
-              <Select
-                placeholder="Select Make..."
-                value={card.variant}
-                onChange={(e) => handleVariantChange(index, e.target.value)}
-                disabled={!card.isEnabled}
-                options={optionGroup(carDetails, index)}
-                className="select2-selection"
-              /> */}
           </div>}
           {card.make && !card.allFieldsSelected && (
             <div className="mb-3" style={{ padding: '0 20px', width: '100%'}}>
@@ -443,23 +1085,16 @@ const CompareTable = () => {
           )}
           {card.model && !card.allFieldsSelected && (
             <div className="mb-3" style={{ padding: '10px 20px 0', width: '100%'}}>
-              <select id={`variant-${index}`} className="form-select" value={card.variant} onChange={(e) => handleVariantChange(index, e.target.value)} disabled={!card.isEnabled}>
+              <select id={`variant-${index}`} className="form-select" value={card.variant} onChange={(e) => handleVariantChange(index, e.target.value, e.target.options[e.target.selectedIndex].id)} disabled={!card.isEnabled}>
                 <option value="">Select Variant</option>
                 {carDetails.find((make) => make.brandName === card.make)?.models.find((model) => model.modelName === card.model)?.variants.map((variant) => (
-                  <option key={variant.id} value={variant.name}>{variant.name}</option>
+                  <option key={variant.id} value={variant.name} id={variant.id}>{variant.name}</option>
                 ))}
               </select>
             </div>
           )}
           {card.allFieldsSelected && renderCarDetails(index)}
         </div>
-        {/* {index === 2 && <button className="btn btn-danger mt-3" 
-          style={{
-            "display": cards[index].isEnabled ? "block" : "none"
-          }}
-          onClick={() => handleRemoveCard(index)}
-        >
-          Remove Card</button>} */}
       </>
     )
   }
@@ -472,241 +1107,31 @@ const CompareTable = () => {
     );
   };
 
+  const renderLoading = () => {
+    return (
+      <Spinner className="d-flex" style={{marginLeft: 'auto', marginRight: 'auto'}} animation="border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    )
+  }
+
   return (
-    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
-        {cards.map((card, index) => renderCardPage(card, index))}
-    </div>
+    isLoading ?  renderLoading()
+    :
+    <>
+      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
+          {cards.map((card, index) => renderCardPage(card, index))}
+      </div>
+      <div style={{ width: "100%", display: "flex", alignItems: 'center', justifyContent: 'center'}}>
+        <button className="btn btn-thm ofr_btn1 btn-block mt40 mb20" style={{width: "200px"}} data-bs-toggle="modal" data-bs-target="#compareForm" onClick={handleOnCompareClick}>
+          <span className="flaticon-profit-report mr10 fz18 vam" />
+          Compare Cars
+        </button>
+      </div>
+      {isLoading ? renderLoading() : renderComparison()}
+    </>
   );
 
-  // return (
-  //   <div style={{ display: "flex", "marginTop": "20px" }} >
-  //     {cards.map((card, index) => (
-  //       <div key={index} className="card" style={{
-  //           width: "30%",
-  //           height: "auto",
-  //           maxHeight: "500px",
-  //           display: "flex",
-  //           alignItems: "center",
-  //           justifyContent: "center",
-  //           border: "1px solid #ccc",
-  //           marginRight: "10px",
-  //           borderRadius: "8px",
-  //           position: "relative",
-  //           cursor:"pointer" 
-  //         }}
-  //       >
-  //         <div className="card-body" style={{ width: "100%" }}>
-  //           <h5 className="card-title">Card {index + 1}</h5>
-  //           <div className="mb-2">
-  //             <label htmlFor={`make-${index}`} className="form-label">Select Make:</label>
-  //             <select id={`make-${index}`} className="form-select" value={card.make} onChange={(e) => handleMakeChange(index, e.target.value)} disabled={index !== activeCard}>
-  //               <option value="">Select Make</option>
-  //               {carDetails.map((make) => (
-  //                 <option key={make.id} value={make.brandName}>{make.brandName}</option>
-  //               ))}
-  //             </select>
-  //           </div>
-  //           {card.make && (
-  //             <div className="mb-2">
-  //               <label htmlFor={`model-${index}`} className="form-label">Select Model:</label>
-  //               <select id={`model-${index}`} className="form-select" value={card.model} onChange={(e) => handleModelChange(index, e.target.value)} disabled={index !== activeCard}>
-  //                 <option value="">Select Model</option>
-  //                 {carDetails.find((make) => make.brandName === card.make)?.models.map((model) => (
-  //                   <option key={model.modelId} value={model.modelName}>{model.modelName}</option>
-  //                 ))}
-  //               </select>
-  //             </div>
-  //           )}
-  //           {card.model && (
-  //             <div className="mb-2">
-  //               <label htmlFor={`variant-${index}`} className="form-label">Select Variant:</label>
-  //               <select id={`variant-${index}`} className="form-select" value={card.variant} onChange={(e) => handleVariantChange(index, e.target.value)} disabled={index !== activeCard}>
-  //                 <option value="">Select Variant</option>
-  //                 {carDetails.find((make) => make.brandName === card.make)?.models.find((model) => model.modelName === card.model)?.variants.map((variant) => (
-  //                   <option key={variant.id} value={variant.name}>{variant.name}</option>
-  //                 ))}
-  //               </select>
-  //             </div>
-  //           )}
-  //           {card.variant && (
-  //             <div>
-  //               <p>Price: {card.price}</p>
-  //               <img src={card.image} alt="Car" style={{ maxWidth: '100%' }} />
-  //             </div>
-  //           )}
-  //           <button className="btn btn-danger mt-3" onClick={() => handleRemoveCard(index)}>Remove Card</button>
-  //         </div>
-  //       </div>
-  //     ))}
-  //       {cards.length < 3 && <div 
-  //           style={{
-  //             width: "30%",
-  //             height: "300px",
-  //             display: "flex",
-  //             alignItems: "center",
-  //             justifyContent: "center",
-  //             border: "1px solid #ccc",
-  //             marginRight: "10px",
-  //             borderRadius: "8px",
-  //             position: "relative",
-  //             cursor:"pointer" 
-  //           }}
-  //         onClick={handleAddCard}>
-  //         Add Card</div>
-  //       }
-  //   </div>
-  // );
 };
-
-  // return (
-  //   <>
-  //    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "20px", position: 'relative' }}>
-  //       {Array.from({ length: 3 }, (_, index) => (
-  //         <div key={index} style={{ flex: "1", marginRight: "10px", position: 'relative' }}>
-  //           <div className="membership_header">
-  //             <div className="thumb"> 
-  //               <div
-  //                 style={{
-  //                   width: "100%",
-  //                   height: "247px",
-  //                   display: "flex",
-  //                   alignItems: "center",
-  //                   justifyContent: "center",
-  //                   border: "1px solid #ccc",
-  //                   borderRadius: "8px",
-  //                   position: "relative",
-  //                 }}
-  //               >
-  //                 {images[index] ? (
-  //                   <>
-  //                 <Image
-  //                   width={307}
-  //                   height={247}
-  //                   priority
-  //                   style={{ objectFit: "cover", borderRadius: "8px", marginBottom: "10px"}}
-  //                   className="img-fluid w100"
-  //                   src={images[index]}
-  //                   alt={`Image ${index}`}
-  //                 />
-  //                 <a className="dn-991" href="#" onClick={() => handleDeleteClick(index)}>
-  //                     <span className="flaticon-trash" />
-  //                   </a>
-  //                 </>
-                  
-  //               ) : (
-  //                 <span
-  //                   onClick={() => handlePlusIconClick(index)}
-  //                   style={{
-  //                     fontSize: "24px",
-  //                     color: "#333",
-  //                     cursor: "pointer",
-  //                     position: "absolute",
-  //                   }}
-  //                   //src={}
-  //                 >
-  //                   +
-  //                   </span>
-  //               )}
-  //               </div>
-  //               {showSmallModel[index] && (
-  //                   <div className="small-model d-flex flex-column align-items-center justify-content-center position-absolute top-0 start-0 end-0 bottom-0 bg-white p-4 border rounded" style={{  zIndex: 9999 }}>
-  //                   <button onClick={() => handleCloseSmallModel(index)} className="btn-close position-absolute top-0 end-0 pr-3 mr8 mt8 bg-transparent" aria-label="Close">   
-  //                   </button>
-  //                     <select id="make" value={selectedMake} onChange={handleMakeChange} style={{ width: '85%', padding: '10px', marginBottom: '4%',marginTop: '6%', fontSize: '16px',borderRadius: '10px' }}>
-  //                       <option value="">Select Make</option>
-  //                       {carDetails.map((make) => (
-  //                         <option key={make.id} value={make.brandName}>
-  //                           {make.brandName}
-  //                         </option>
-  //                       ))}
-  //                     </select>
-
-  //                     {selectedMake && (
-  //                         <select id="model" value={selectedModel} onChange={handleModelChange} style={{ width: '85%', padding: '10px', marginBottom: '4%',marginTop: '6%', fontSize: '16px',borderRadius: '10px' }}>
-  //                           <option value="">Select Model</option>
-  //                           {carDetails.find((make) => make.brandName === selectedMake).models.map((model) => (
-  //                             <option key={model.modelId} value={model.modelName}>
-  //                               {model.modelName}
-  //                             </option>
-  //                           ))}
-  //                         </select>
-  //                     )}
-
-  //                     {selectedModel && (
-  //                         <select id="variant" value={selectedVariant} onChange={handleVariantChange} style={{ width: '85%', padding: '10px', marginBottom: '4%',marginTop: '6%', fontSize: '16px',borderRadius: '10px' }}>
-  //                           <option value="">Select Variant</option>
-  //                           {carDetails
-  //                             .find((make) => make.brandName === selectedMake)
-  //                             .models.find((model) => model.modelName === selectedModel)
-  //                             .variants.map((variant) => (
-  //                               <option key={variant.id} value={variant.name}>
-  //                                 {variant.name}
-  //                               </option>
-  //                             ))}
-  //                         </select>
-  //                     )}
-  //                   {/* <select
-  //                     id={`brand${index}`}
-  //                     name="brand"
-  //                     value={selectedMake?.['brandName'] || ''}
-  //                     // onChange={(e) => handleMakeSelect(e, index)}
-  //                     style={{ width: '85%', padding: '10px', marginBottom: '4%',marginTop: '6%', fontSize: '16px',borderRadius: '10px' }}
-  //                   >
-  //                     {carDetails.map((make) => (
-  //                     <option key={make.brandName} value={make._id}  onSelect={() => handleMakeSelect(make)}>
-  //                       {make.brandName}
-  //                     </option>
-  //                     ))}
-  //                   </select>
-  //                   <select
-  //                     id={`model${index}`}
-  //                     name="model"
-  //                     value={selectedModels[index] || ''}
-  //                     onChange={(e) => handleModelChange(e, index)}
-  //                     disabled={!selectedBrands[index]}
-  //                     style={{ width: '85%', padding: '10px', marginBottom: '4%',marginTop: '6%', fontSize: '16px', borderRadius: '10px'}}
-
-  //                   >
-  //                    {carmodals.map((model) => (
-  //                     <option key={model.modelName} value={model._id}>
-  //                       {model.modelName}
-  //                     </option>
-  //                   ))}
-  //                   </select>
-  //                   <select
-  //                     id={`variant${index}`}
-  //                     name="variant"
-  //                     value={selectedVariants[index] || ''}
-  //                     onChange={(e) => handleVariantChange(e, index)}
-  //                     disabled={!selectedModels[index]}
-  //                     style={{ width: '85%', padding: '10px', marginBottom: '4%',marginTop: '6%', fontSize: '16px',borderRadius: '10px' }}
-  //                   >
-  //                     {carvariants.map((vars) => (
-  //                     <option key={vars.name} value={[vars._id,vars.carModel.media.url]}>
-  //                       {vars.name}
-  //                     </option>
-  //                   ))}
-  //                   </select> */}
-                
-  //                 </div>
-  //               )}
-  //             </div>
-  //           </div>
-  //         </div>
-  //       ))}
-  //     </div>
-
-  //     <div className="text-center">
-  //       <button
-  //         className="btn btn-primary "
-  //         style={{ width: "300px", backgroundColor: "#F5C34B", color: "black" }}
-  //         onClick={handleCompareClick}
-  //       >
-  //         Compare
-  //       </button>
-  //     </div>
-  //   </>
-
-  // );
 
 export default CompareTable;

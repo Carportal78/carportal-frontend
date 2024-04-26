@@ -21,3 +21,48 @@
     font-size: 24px;
     color: #333;
 }
+
+table {
+    margin-bottom: 0rem !important;
+    --bs-table-striped-bg: #F7F7F7 !important
+}
+
+.compare-th {
+    padding: 17px !important;
+    border-bottom: none !important;
+    text-align: center;
+}
+
+.compare-td {
+    padding: 17px !important;
+    border-bottom: none !important;
+    text-align: center;
+}
+
+.th-font {
+    font-size: 13px !important;
+    font-weight: 600 !important;
+}
+
+.td-font {
+    font-size: 12px !important;
+    font-family: "Nunito", Arial, sans-serif ;
+}
+
+.td-border {
+    border-right: 2px solid rgb(206 206 206 / 50%) !important;
+    color:rgba(36,39,44,.5) !important;
+    text-align: left;
+}
+
+.compare-card {
+    background: #fff;
+    border-radius: 20px; 
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    padding: 0;
+}
+
+.th-style {
+    width: 200px;
+    text-align: left;
+}
