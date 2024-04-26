@@ -940,9 +940,9 @@ const CompareTable = () => {
                   {renderTableHeaderIcon(label)}
                   {label}
                 </th>
-                {mock.map((data) => {
+                {mock.map((data, index) => {
                   return (
-                    <th className="compare-th th-font">{data.name}</th>
+                    <th className="compare-th th-font" key={index}>{data.name}</th>
                   )
                 })}
               </tr>
@@ -1051,8 +1051,8 @@ const CompareTable = () => {
     }
     let count = 0;
     return (
-      comparisonItemsPresent.map((val) => (
-         <div className="compare-card" style={{ width: '100%', height: 'auto', margin: '50px 0px'}}>
+      comparisonItemsPresent.map((val, index) => (
+         <div className="compare-card" style={{ width: '100%', height: 'auto', margin: '50px 0px'}} key={index}>
           {comparisonCardDataMapper(val)}
         </div>
       ))
