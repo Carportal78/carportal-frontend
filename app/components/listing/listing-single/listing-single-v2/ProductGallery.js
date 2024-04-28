@@ -12,6 +12,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useRouter } from "next/navigation";
 import { useAtom } from "jotai";
 import { selectCarBrandAtom, selectCarModelAtom, selectCarVariantAtom } from "../../../atoms/categoriesAtoms";
+import ImageColorCounter from "../../../..//components/pages/modelspage/imagecolorCount.js";
 
 function OffCanvasExample({ name, ...props }) {
   const [show, setShow] = useState(false);
@@ -175,6 +176,7 @@ export default function ProductGallery({ carModelDetails, carVariantsList }) {
                 </SwiperSlide>
               ))}
             </Swiper>
+            <ImageColorCounter />
           </Col>
 
           <Col xs={12} md={4} className="order-md-3">

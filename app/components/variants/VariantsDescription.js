@@ -22,8 +22,8 @@ const VariantsDescription = ({ carModelDetails, carVariantsList, name }) => {
             <div className={`row mt-3 ${isExpanded ? '' : 'text-clamp'}`}>
                 {carModelDetails?.description}
             </div>
-            <Button variant="link" onClick={() => setIsExpanded(!isExpanded)} className="text-left p-0">
-                {isExpanded ? "Collapse" : "Read More"} {/* Toggle text based on state */}
+            <Button variant="link" onClick={() => setIsExpanded(!isExpanded)} className="text-left p-0" style={{fontSize: '12px'}}>
+                {isExpanded ? "Read Less" : "Read More"} {/* Toggle text based on state */}
             </Button>
             <style jsx>{`
         .text-clamp {

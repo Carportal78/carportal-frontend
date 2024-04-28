@@ -82,7 +82,7 @@ export default function VariantProductGallery({ carModelDetails, carVariantsList
     label: variant.name, // The name of the variant to be displayed
   }));
 
-  function handleSelectGroup(selectedGroup) {
+  function handleSelectGroup(selectedGroup) { 
     const modelId = carModelDetails?._id;
     const variantId = selectedGroup.value;
     router.push(`/variantDetails/${carModelDetails?.modelName?.split(' ')?.join('-')?.toLowerCase()}/${modelId}/variant/${variantId}`);

@@ -22,6 +22,7 @@ import BannerWidget from "../../../../../components/common/BannerWidget";
 import { selectCarModelAtom, selectCarBrandAtom, selectCarVariantAtom } from "../../../../../components/atoms/categoriesAtoms";
 import { useAtom } from 'jotai';
 import VariantsDescription from "../../../../../components/variants/VariantsDescription";
+import ModelsOverview from "../../../../../components/pages/modelspage/ModelsOverview.js";
 
 const metadata = {
   title: "Car Models || Carportal - Automotive & Car Dealer",
@@ -168,7 +169,10 @@ const ModelDetails = () => {
               <ProductGallery carModelDetails={carModelDetails} />
               {/* End Car Gallery */}
               <div className="d-flex flex-wrap gap-4">
-              <div className= "col-lg-8 col-xl-8" >   
+              <div className= "col-lg-8 col-xl-8" >
+              <div className="listing_single_description">
+                <ModelsOverview carModelDetails={carModelDetails} carVariantsList={carVariantsList} />
+              </div>
               <div className="listing_single_description">
                 <VariantsDescription carModelDetails={carModelDetails} carVariantsList={carVariantsList} name={carModelDetails?.modelName } />
               </div>
@@ -375,6 +379,17 @@ const ModelDetails = () => {
         <LoginSignupModal />
       </div>
       {/* End Modal */}
+
+      {/* <div
+        className="sign_up_modal modal fade"
+        id="imagesViewDialog" 
+        data-backdrop="static"
+        data-keyboard=""
+        tabIndex={-1}
+        aria-hidden="true"
+      >
+        <ImagesViewDialog carModelDetails={carModelDetails} carVariantsList={carVariantsList} />
+      </div> */}
 
 
       {/* Modal */}
