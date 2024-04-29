@@ -66,25 +66,6 @@ function OffCanvasExampleCompare({ name, ...props }) {
   );
 }
 
-const optionGroup = [
-  {
-    label: "Picnic",
-    options: [
-      { label: "Mustard", value: "Mustard" },
-      { label: "Ketchup", value: "Ketchup" },
-      { label: "Relish", value: "Relish" }
-    ]
-  },
-  {
-    label: "Camping",
-    options: [
-      { label: "Tent", value: "Tent" },
-      { label: "Flashlight", value: "Flashlight" },
-      { label: "Toilet Paper", value: "Toilet Paper" }
-    ]
-  }
-];
-
 export default function ProductGallery({ carModelDetails, carVariantsList }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [isOpen, setOpen] = useState(false);
@@ -205,7 +186,7 @@ export default function ProductGallery({ carModelDetails, carVariantsList }) {
             </div>
             <div className="offer_btns mt-5">
               <div className="text-end">
-                <button className="btn btn-thm ofr_btn1 btn-block mt0 mb20" onClick={handleContactDealer} data-bs-toggle="modal" data-bs-target="#contactDealerForm">
+              <button className="btn btn-thm ofr_btn1 btn-block mt0 mb20" onClick={handleContactDealer} data-bs-toggle="modal" data-bs-target="#contactDealerForm">
                   <span className="flaticon-profit-report mr10 fz18 vam" />
                   Contact Dealer
                 </button>

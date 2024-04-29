@@ -1,9 +1,4 @@
 import React, { useEffect, useState } from "react";
-import ContactDealer from "./ContactDealer";
-import SignupForm from "./SignupForm";
-import Link from "next/link";
-import { useAtom } from "jotai";
-import { selectCarBrandAtom, selectCarModelAtom, selectCarVariantAtom } from "../../atoms/categoriesAtoms";
 
 const ImagesViewDialog = ({ carModelDetails, carVariantsList }) => { 
 
@@ -49,7 +44,7 @@ const ImagesViewDialog = ({ carModelDetails, carVariantsList }) => {
                       aria-controls={1}
                       aria-selected={true}
                     >
-                      Contact Dealer
+                      Images
                     </a>
                   </li>
               </ul>
@@ -71,7 +66,7 @@ const ImagesViewDialog = ({ carModelDetails, carVariantsList }) => {
                 {!hideHeader && <p>
                     For Query? Please fill following details to contact a dealer for <strong style={{color: 'blue'}}>{carModelDetails?.modelName}</strong>.
                   </p>}
-                  <ContactDealer carModelDetails={carModelDetails} carVariantsList={carVariantsList} onCLickHideHeader={handleHeaderHide} />
+                  {/* <ContactDealer carModelDetails={carModelDetails} carVariantsList={carVariantsList} onCLickHideHeader={handleHeaderHide} /> */}
                 </div>
                 </div>
               </div>

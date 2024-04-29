@@ -23,6 +23,7 @@ import { selectCarModelAtom, selectCarBrandAtom, selectCarVariantAtom } from "..
 import { useAtom } from 'jotai';
 import VariantsDescription from "../../../../../components/variants/VariantsDescription";
 import ModelsOverview from "../../../../../components/pages/modelspage/ModelsOverview.js";
+import ImagesViewDialog from "../../../../../components/pages/modelspage/ImagesViewDialog.js";
 
 const metadata = {
   title: "Car Models || Carportal - Automotive & Car Dealer",
@@ -380,7 +381,7 @@ const ModelDetails = () => {
       </div>
       {/* End Modal */}
 
-      {/* <div
+      <div
         className="sign_up_modal modal fade"
         id="imagesViewDialog" 
         data-backdrop="static"
@@ -389,9 +390,7 @@ const ModelDetails = () => {
         aria-hidden="true"
       >
         <ImagesViewDialog carModelDetails={carModelDetails} carVariantsList={carVariantsList} />
-      </div> */}
-
-
+      </div>
       {/* Modal */}
       <div
         className="sign_up_modal modal fade"

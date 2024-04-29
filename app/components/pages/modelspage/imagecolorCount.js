@@ -24,7 +24,7 @@ const ImageColorCounter = () => {
             placement="top"
             overlay={renderImageTooltip}
           >
-            <Button variant="link" className="p-0">
+            <Button variant="link" className="p-0" data-bs-toggle="modal" data-bs-target="#imagesViewDialog">
               <Camera /> +{imageCount} images
             </Button>
           </OverlayTrigger>
