@@ -125,27 +125,26 @@ function OffCanvasExampleCompare({ carVariantsList, name, relatedCars, carModelD
   );
 }
 
-export default function ProductGallery({ carModelDetails, carVariantsList }) {
-const optionGroup = [
-  {
-    label: "Picnic",
-    options: [
-      { label: "Mustard", value: "Mustard" },
-      { label: "Ketchup", value: "Ketchup" },
-      { label: "Relish", value: "Relish" }
-    ]
-  },
-  {
-    label: "Camping",
-    options: [
-      { label: "Tent", value: "Tent" },
-      { label: "Flashlight", value: "Flashlight" },
-      { label: "Toilet Paper", value: "Toilet Paper" }
-    ]
-  }
-];
-
 export default function ProductGallery({ carModelDetails, carVariantsList, relatedCars }) {
+  const optionGroup = [
+    {
+      label: "Picnic",
+      options: [
+        { label: "Mustard", value: "Mustard" },
+        { label: "Ketchup", value: "Ketchup" },
+        { label: "Relish", value: "Relish" }
+      ]
+    },
+    {
+      label: "Camping",
+      options: [
+        { label: "Tent", value: "Tent" },
+        { label: "Flashlight", value: "Flashlight" },
+        { label: "Toilet Paper", value: "Toilet Paper" }
+      ]
+    }
+  ];
+
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [isOpen, setOpen] = useState(false);
   const [videoId, setVideoId] = useState("");
