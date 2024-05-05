@@ -125,9 +125,7 @@ function OffCanvasExampleCompare({ carVariantsList, name, relatedCars, carModelD
   );
 }
 
-<<<<<<< Updated upstream
 export default function ProductGallery({ carModelDetails, carVariantsList }) {
-=======
 const optionGroup = [
   {
     label: "Picnic",
@@ -148,7 +146,6 @@ const optionGroup = [
 ];
 
 export default function ProductGallery({ carModelDetails, carVariantsList, relatedCars }) {
->>>>>>> Stashed changes
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [isOpen, setOpen] = useState(false);
   const [videoId, setVideoId] = useState("");
