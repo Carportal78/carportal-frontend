@@ -48,7 +48,6 @@ const ModelDetails = () => {
 
   useEffect(() => {
     const modelDetails = JSON.parse(localStorage.getItem('model-details'));
-    console.log('modelDetails ', modelDetails);
     if(modelDetails) {
     setModelId(modelDetails?._id);
     }
@@ -166,8 +165,8 @@ const ModelDetails = () => {
           
 
           <div className="row">
-            <div className="col-lg-8 col-xl-12">
-              <ProductGallery carModelDetails={carModelDetails} />
+            <div className="col-lg-8 col-xl-12"> 
+              <ProductGallery carModelDetails={carModelDetails} carVariantsList={carVariantsList} relatedCars={relatedCars} />
               {/* End Car Gallery */}
               <div className="d-flex flex-wrap gap-4">
               <div className= "col-lg-8 col-xl-8" >

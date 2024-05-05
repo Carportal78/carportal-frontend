@@ -1,0 +1,40 @@
+.card {
+    width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.card-detail {
+    display: flex;
+    flex-direction: row;
+}
+
+.compare-btn {
+    margin: 0px 20px 20px 20px;
+}
+
+.compare1, .compare2 {
+    width: 50%;
+}
+
+.compare-card-details {
+    padding: 10px;
+}
+
+.compare-card-make {
+    font-size: 11px;
+    margin-bottom: 0px;
+}
+
+.compare-card-model {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 0px;
+}
+
+.compare-card-price {
+    font-size: 14px;
+}

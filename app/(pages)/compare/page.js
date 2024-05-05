@@ -10,7 +10,7 @@ export const metadata = {
   title: "Compare || Carportal - Automotive & Car Dealer",
 };
 
-const AboutUs = () => {
+const Compare = () => {
   return (
     <div className="wrapper">
       <div
@@ -93,4 +93,4 @@ const AboutUs = () => {
   );
 };
 
-export default AboutUs;
+export default Compare;

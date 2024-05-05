@@ -5,23 +5,26 @@ import "./styles.scss"
 import { Table } from "react-bootstrap";
 import { Spinner } from "react-bootstrap";
 import { Button } from 'react-bootstrap';
+import { useAtom } from "jotai";
+import { selectSugestedCompareData } from "../../atoms/categoriesAtoms";
 
 const CompareTable = () => {
+  const [suggestedCompareData] = useAtom(selectSugestedCompareData);
   const [showAll, setShowAll] = useState(false);
   const [carDetails, setCarDetails] = useState([]);
   const defaultState = { id:'', make: '', model: '', variant: '', price: '', image: '', isEnabled: true, allFieldsSelected: false }
   const [compareData, setCompareData] = useState([])
   const [isEditCard, setIsEditCard] = useState(false);
   const [isLoading, setIsLoading] = useState(false)
-  const [isCompareLoading, setIsCompareLoading] = useState(false)
-  const [prevCards, setPrevCards] = useState([
+  const [isCompareLoading, setIsCompareLoading] = useState(false);
+  const [prevCards, setPrevCards] = useState( [
     { id: '', make: '', model: '', variant: '', price: '', image: '', isEnabled: false, allFieldsSelected: false },
     { id: '', make: '', model: '', variant: '', price: '', image: '', isEnabled: false, allFieldsSelected: false },
     { id: '', make: '', model: '', variant: '', price: '', image: '', isEnabled: false, allFieldsSelected: false }
   ])
-  const [cards, setCards] = useState([
+  const [cards, setCards] = useState(suggestedCompareData?.length ? [...suggestedCompareData, ...prevCards.slice(0, 3 - suggestedCompareData.length)] : [
     { id: '', make: '', model: '', variant: '', price: '', image: '', isEnabled: true, allFieldsSelected: false },
-    { id: '', make: '', model: '', variant: '', price: '', image: '', isEnabled: false, allFieldsSelected: false },
+    { id: '', make: '', model: '', variant: 'Renault Kiger RXE', price: '', image: '', isEnabled: false, allFieldsSelected: false },
     { id: '', make: '', model: '', variant: '', price: '', image: '', isEnabled: false, allFieldsSelected: false }
   ]);
 

@@ -13,3 +13,5 @@ export const selectCarDealersListAtom = atom([]);
 
 export const selectCityAtom = atom(1);
 export const selectBrandAtom = atom('');
+
+export const selectSugestedCompareData =atom([]);
