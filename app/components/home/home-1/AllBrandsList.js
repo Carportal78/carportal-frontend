@@ -46,7 +46,7 @@ function AllBrandsList() {
         <Row className="g-3">
 
           {webdisplayedBrands?.map((brand) => (
-            <Col xs={6} md={4} lg={2} className="d-flex align-items-stretch pointer" key={brand?._id} onClick={() => router.push(`listings?brand=${brand.brandName}`)}>
+            <Col xs={6} md={4} lg={2} className="d-flex align-items-stretch pointer" key={brand?._id} onClick={() => router.push(`cars?brand=${brand.brandName}`)}>
               <div style={{
                 width: '100%',
                 backgroundColor: "#fff",
@@ -98,7 +98,7 @@ function AllBrandsList() {
               </div>
             </Col>
             // <Col xs={4} sm={4} md={3} lg={2} xl={1} className="d-flex align-items-center justify-content-center" key={brand._id}>
-            //   <Link href={`listings?brand=${brand.brandName}`} passHref className='d-block text-decoration-none'>
+            //   <Link href={`cars?brand=${brand.brandName}`} passHref className='d-block text-decoration-none'>
             //     <div className="p-3 p-md-0 d-flex flex-column align-items-center text-center">
             //       <Image
             //         width={150}
@@ -141,7 +141,7 @@ function AllBrandsList() {
           {displayedBrands?.map((brand) => (
             <Col xs={4} sm={4} md={3} lg={2} xl={1} className="d-flex align-items-center justify-content-center" key={brand._id}>
               {/* Use Link for navigation, wrapping the entire card */}
-              <Link href={`listings?brand=${brand.brandName}`} passHref className='d-block text-decoration-none'>
+              <Link href={`cars?brand=${brand.brandName}`} passHref className='d-block text-decoration-none'>
                 <div className="p-3 p-md-0 d-flex flex-column align-items-center text-center"> {/* Add padding */}
                   <Image
                     width={150} // You may need to adjust this depending on your layout

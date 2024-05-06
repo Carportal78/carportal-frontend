@@ -172,7 +172,7 @@ function FindCarChoice() {
         <Row className="mt-3">
           {budgetButtons.map((buttonType) => (
             <Col xs={6} sm={3} md={2} lg={2} xl={2} key={buttonType.title}> {/* Responsive grid setup */}
-              <Link href={`listings?budget=${buttonType.route}`}>
+              <Link href={`cars?budget=${buttonType.route}`}>
                 <Button variant="outline-secondary" size="md" className={`mb-2 ${styles.budgetCarButton} w-100`}>
                   {buttonType.title}
                 </Button>
@@ -186,7 +186,7 @@ function FindCarChoice() {
         <Row className="mt-3">
           {fuelTypeData?.map((bodyType) => (
             <Col xs={3} sm={3} md={2} lg={2} xl={1} key={bodyType.title} className="mb-2">
-              <Link href={`listings?fuelType=${bodyType.route}`}>
+              <Link href={`cars?fuelType=${bodyType.route}`}>
                 <div className={`bodyTypeItem ${styles.bodyTypeItem} d-flex flex-column align-items-center text-center`}>
                   <Image
                     width={150}
@@ -213,7 +213,7 @@ function FindCarChoice() {
         <Row className="mt-3">
           {transmissionTypeData?.map((bodyType) => (
             <Col xs={3} sm={3} md={2} lg={1} xl={1} className="mb-2 text-center" key={bodyType.title}>
-              <Link href={`listings?transmissionType=${bodyType.route}`}>
+              <Link href={`cars?transmissionType=${bodyType.route}`}>
                 <div className="d-inline-block text-center"> {/* Ensure link is block-level for spacing, centered content */}
                   <Image
                     width={150}
@@ -240,7 +240,7 @@ function FindCarChoice() {
         <Row className="g-4 flex-wrap mt-3"> {/* Adjusted gap for closer packing */}
           {bodyTypeData?.map((bodyType) => (
             <Col xs={4} sm={3} md={2} lg={2} xl={1} key={bodyType.title} className="mb-2 text-center">
-              <Link href={`listings?bodyType=${bodyType.route}`}>
+              <Link href={`cars?bodyType=${bodyType.route}`}>
                 <div className="d-inline-block text-center">
                   <div className="position-relative" style={{ width: '100%', height: 58 }}>
                     <Image
@@ -269,7 +269,7 @@ function FindCarChoice() {
           <Row className="mt-3">
             {seatingCapacityButtons.map((buttonType) => (
               <Col xs={6} sm={2} md={2} lg={2} xl={2} key={buttonType.title}>
-                <Link href={`listings?seatingCapacity=${buttonType.route}`}>
+                <Link href={`cars?seatingCapacity=${buttonType.route}`}>
                   <Button variant="outline-secondary" size="md" className={`mb-2 ${styles.budgetCarButton} w-100`}>
                     {buttonType.title}
                   </Button>

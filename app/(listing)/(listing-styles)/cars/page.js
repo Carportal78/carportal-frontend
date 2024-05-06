@@ -14,7 +14,7 @@ import {filteredCarData} from "../../../components/atoms/categoriesAtoms"
 import { useAtom } from 'jotai';
 
 const metadata = {
-  title: "Listings || Carportal - Automotive & Car Dealer",
+  title: "Cars || Carportal - Automotive & Car Dealer",
 };
 
 const ListingV3 = () => {
