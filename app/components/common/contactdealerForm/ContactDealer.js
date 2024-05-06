@@ -82,13 +82,13 @@ const ContactDealer = ({ carModelDetails, carVariantsList, onCLickHideHeader }) 
   });
 
   useEffect(() => {
-    const stateOptions = Object.keys(statesCitiesList).map(key => ({ value: key, label: key }));
+    const stateOptions = Object.keys(statesCitiesList)?.map(key => ({ value: key, label: key }));
     setStates(stateOptions);
   }, []);
 
   const handleSelectState = (selectedOption) => {
     setSelectedState(selectedOption);
-    const cityOptions = statesCitiesList[selectedOption.value].map(city => ({ value: city.id, label: city.city }));
+    const cityOptions = statesCitiesList[selectedOption.value]?.map(city => ({ value: city.id, label: city.city }));
     setCities(cityOptions);
     setIsCityDisabled(false);
     formik.setFieldValue('state', selectedOption.value);

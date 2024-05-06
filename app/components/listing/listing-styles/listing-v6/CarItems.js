@@ -86,7 +86,7 @@ const CarItems = ({ carModelsList }) => {
                   </div>
                   <div className="listign_review">
                     <ul className="mb0">
-                      {[...Array(5)].map((_, index) => (
+                      {[...Array(5)]?.map((_, index) => (
                         <li key={index} className="list-inline-item">
                           <a href="#">
                             <i className="fa fa-star" />

@@ -32,7 +32,7 @@ const CommentBox = () => {
           <h5 className="fz16 mb30">Write a review</h5>
           <div className="sspd_review mb30">
             <ul>
-              {[...Array(5)].map((_, index) => (
+              {[...Array(5)]?.map((_, index) => (
                 <li className="list-inline-item" key={index}>
                   <a href="#">
                     <i className="fa fa-star" />

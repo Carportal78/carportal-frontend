@@ -170,7 +170,7 @@ function FindCarChoice() {
     >
       <Tab eventKey="budget" title="Budget">
         <Row className="mt-3">
-          {budgetButtons.map((buttonType) => (
+          {budgetButtons?.map((buttonType) => (
             <Col xs={6} sm={3} md={2} lg={2} xl={2} key={buttonType.title}> {/* Responsive grid setup */}
               <Link href={`cars?budget=${buttonType.route}`}>
                 <Button variant="outline-secondary" size="md" className={`mb-2 ${styles.budgetCarButton} w-100`}>
@@ -267,7 +267,7 @@ function FindCarChoice() {
         title="Seating Capacity"
       >
           <Row className="mt-3">
-            {seatingCapacityButtons.map((buttonType) => (
+            {seatingCapacityButtons?.map((buttonType) => (
               <Col xs={6} sm={2} md={2} lg={2} xl={2} key={buttonType.title}>
                 <Link href={`cars?seatingCapacity=${buttonType.route}`}>
                   <Button variant="outline-secondary" size="md" className={`mb-2 ${styles.budgetCarButton} w-100`}>

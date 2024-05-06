@@ -92,7 +92,7 @@ const Products = () => {
               <div className="review">
                 <ul className="mb0">
                   {/* Rating stars */}
-                  {[...Array(5)].map((_, index) => (
+                  {[...Array(5)]?.map((_, index) => (
                     <li className="list-inline-item" key={index}>
                       <a href="#">
                         <i className="fa fa-star" />

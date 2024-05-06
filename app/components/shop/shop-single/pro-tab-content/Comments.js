@@ -52,7 +52,7 @@ const Comments = () => {
                 {comment.date}
                 <div className="sspd_review float-end">
                   <ul className="mb0 pl15">
-                    {[...Array(comment.rating)].map((_, index) => (
+                    {[...Array(comment.rating)]?.map((_, index) => (
                       <li className="list-inline-item" key={index}>
                         <a href="#">
                           <i className="fa fa-star" />

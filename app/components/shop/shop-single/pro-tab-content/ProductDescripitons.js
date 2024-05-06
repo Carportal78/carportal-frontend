@@ -184,7 +184,7 @@ const ProductDescripitons = ({ carModelDetails, carVariantsList }) => {
             <Tab eventKey="all" title="All">
               {renderAccordion(() => true)}
             </Tab>
-            {uniqueFuelTypes.map((fuelType) => (
+            {uniqueFuelTypes?.map((fuelType) => (
           <Tab eventKey={fuelType} title={fuelType} key={fuelType}>
             {renderAccordion(variant => variant.fuelAndPerformance.fuelType === fuelType)}
           </Tab>

@@ -23,7 +23,7 @@ const RecentlyViewed = ({ cars }) => {
 
   return (
     <>
-      {cars?.slice(0,4).map((car, index) => (
+      {cars?.slice(0,4)?.map((car, index) => (
         <div onClick={() => handleCarDetailsRoute(car)} className="d-flex mb20 pointer" key={index}>
           <div className="flex-shrink-0" key={car?._id}>
             <Image

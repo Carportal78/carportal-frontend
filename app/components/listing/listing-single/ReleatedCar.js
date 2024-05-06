@@ -58,7 +58,7 @@ const ReleatedCar = ({ relatedCars }) => {
           },
         }}
       >
-        {relatedCars?.slice(0, 6).map((listing) => (
+        {relatedCars?.slice(0, 6)?.map((listing) => (
           <SwiperSlide key={listing._id}>
             <div className="item" onClick={() => handleCarDetailsRoute(listing)}>
               <div className="car-listing">

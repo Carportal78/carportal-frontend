@@ -42,7 +42,7 @@ function OffCanvasExample({ name, ...props  }) {
 }
 
 const handleOnCompareClick = (carsList, router, setSuggestedCompareData, carVariantsList) => {
-  const extractedData = carsList.map(item => ({
+  const extractedData = carsList?.map(item => ({
     id: '',
     make: item.carBrand.brandName || '',
     model: item.modelName || '',

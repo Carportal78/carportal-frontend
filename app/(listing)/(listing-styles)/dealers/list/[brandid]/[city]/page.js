@@ -133,7 +133,7 @@ const Dealers = () => {
 
   const getCityName = (cityData) => {
     const loadedCityOptions = Object.keys(statesCitiesList)?.flatMap(state => (
-      statesCitiesList[state].map(city => ({
+      statesCitiesList[state]?.map(city => ({
         value: city.id.toString(),
         label: city.city
       }))

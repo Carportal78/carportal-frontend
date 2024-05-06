@@ -78,7 +78,7 @@ const RelatedProducts = () => {
           },
         }}
       >
-        {products.map((product) => (
+        {products?.map((product) => (
           <SwiperSlide key={product.id}>
             <div className="item">
               <div className="shop_item">
@@ -97,7 +97,7 @@ const RelatedProducts = () => {
                   <div className="review">
                     <ul className="mb0">
                       {/* Rating stars */}
-                      {[...Array(5)].map((_, index) => (
+                      {[...Array(5)]?.map((_, index) => (
                         <li className="list-inline-item" key={index}>
                           <a href="#">
                             <i className="fa fa-star" />
