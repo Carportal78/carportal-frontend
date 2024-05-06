@@ -121,7 +121,7 @@ function AllBrandsList() {
               {showAll ? 'Show Less' : 'Show More'}
             </Button> */}
                 <div className="text-center">
-                  <div className="more_listing" onClick={() => setShowAll(!showAll)}>
+                  <div className="more_listing pointer" onClick={() => setShowAll(!showAll)}>
                     {showAll ? 'View Less Brands' : 'View More Brands'}
                     {showAll ? <span className="icon">
                       <span className="fas fa-minus" />
@@ -164,7 +164,7 @@ function AllBrandsList() {
               {showAll ? 'Show Less' : 'Show More'}
             </Button> */}
               <div className="text-center">
-                <div className="more_listing" onClick={() => setShowAll(!showAll)}>
+                <div className="more_listing pointer" onClick={() => setShowAll(!showAll)}>
                   {showAll ? 'View Less Brands' : 'View More Brands'}
                   {showAll ? <span className="icon">
                     <span className="fas fa-minus" />
