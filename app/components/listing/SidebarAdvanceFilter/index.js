@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RangeSlider from "./RangeSlider";
 import SearchBox from "./SearchBox";
 import SelectFilter from "./SelectFilter";
@@ -8,9 +8,18 @@ import Link from "next/link";
 const SidebarAdvnaceFilter = ({ carModelsList, carBrandsList, onSearchClick }) => {
     const [selectedFilters, setSelectedFilters] = useState({ brand: '', bodyType: '', fuelType: [],
     transmissionType: [] });
+    const [isFilterChanged, setIsFilterChanges] = useState(false)
+
+    useEffect(() => {
+      if(isFilterChanged) {
+        onSearchClick(selectedFilters);
+        setIsFilterChanges(false)
+      }
+    }, [selectedFilters])
   
     const handleFilterChange = (filterType, value) => {
       setSelectedFilters(prev => ({ ...prev, [filterType]: value }));
+      setIsFilterChanges(true)
     };
 
     const handleCheckboxChange = (filterType, value) => {
@@ -22,6 +31,7 @@ const SidebarAdvnaceFilter = ({ carModelsList, carBrandsList, onSearchClick }) =
   
         return { ...prev, [filterType]: updatedArray };
       });
+      setIsFilterChanges(true)
     };
 
     const handleResetFilter = () => {
@@ -61,9 +71,9 @@ const SidebarAdvnaceFilter = ({ carModelsList, carBrandsList, onSearchClick }) =
             </li> */}
             {/* End milage */}
 
-            <li>
+            {/* <li>
               <h5 className="subtitle">Price</h5>
-            </li>
+            </li> */}
             {/* <li>
               <RangeSlider />
             </li> */}
@@ -211,13 +221,13 @@ const SidebarAdvnaceFilter = ({ carModelsList, carBrandsList, onSearchClick }) =
                 </div>
               </div>
             </li>
-            <li>
+            {/* <li>
               <div className="search_option_button">
                 <button type="submit" className="btn btn-block btn-thm" onClick={handleSearchButton}>
                   <span className="flaticon-magnifiying-glass mr10" /> Search
                 </button>
               </div>
-            </li>
+            </li> */}
             <li className="text-center">
               <Link className="reset-filter" href="" onClick={handleResetFilter}>
                 Reset Filter

@@ -19,7 +19,8 @@ const ListingV3 = () => {
 
   const [isCarModelsLoading, setIsCarModelsLoading] = useState(true);
   const [carBrandsList, setCarBrandsList] = useState([]);
-  const [carModelsList, setCarModelsList] = useState([]);
+  const [carModelsList, setCarModelsList] = useState([])
+  const [filteredData, setFilteredData] = useState([])
   const [brandFilter, setBrandFilter] = useState(null);
   const [bodyTypeFilter, setBodyTypeFilter] = useState(null);
   const [budgetFilter, setBudgetFilter] = useState(null);
@@ -102,6 +103,7 @@ const ListingV3 = () => {
     .then(data => {
       if (data && data.data && data.data.carModelsList) {
         setCarModelsList(data.data.carModelsList);
+        setFilteredData(data.data.carModelsList)
       }
       setIsCarModelsLoading(false);
     })
@@ -126,6 +128,7 @@ const ListingV3 = () => {
     .then(data => {
       if (data && data.data && data.data.carModelsList) {
         setCarModelsList(data.data.carModelsList);
+        setFilteredData(data.data.carModelsList)
       }
       setIsCarModelsLoading(false);
     })
@@ -134,7 +137,7 @@ const ListingV3 = () => {
       setIsCarModelsLoading(false);
     });
   }, []);
-  
+
 
   const handleSearchHandler = (newFilterValue) => {
     setBrandFilter(newFilterValue.brand);
@@ -145,66 +148,64 @@ const ListingV3 = () => {
     setSeatingCapacityFilter(newFilterValue.seatingCapacity);
   }
 
-  const getFilteredCarModels = () => {
-    if (!brandFilter && !bodyTypeFilter && !fuelTypeFilter && !budgetFilter && !seatingCapacityFilter) {
-      return carModelsList; // Return all models if no filters are applied
-    }
-  
-    let filteredResults = new Set();
-  
-    if (brandFilter) {
-      carModelsList.forEach(model => {
-        if (model?.carBrand?.brandName === brandFilter) {
-          filteredResults.add(model);
-        }
-      });
-    }
+  useEffect(() => {
+    // Filter car models data when filters change
+    const getFilteredCarModels = () => {
+      if (!brandFilter && !bodyTypeFilter && !fuelTypeFilter && !budgetFilter && !seatingCapacityFilter) {
+        return carModelsList; // Return all models if no filters are applied
+      }
+    
+      let filteredResults = [...carModelsList];
+    
+      if (brandFilter) {
+        filteredResults = filteredResults.filter(model => model?.carBrand?.brandName?.toLowerCase() === brandFilter?.toLowerCase());
+      }
+    
+      if (budgetFilter) {
+        filteredResults = filteredResults.filter(model => model?.budget?.toLowerCase() === budgetFilter?.toLowerCase());
+      }
 
-    if (budgetFilter) {
-      carModelsList.forEach(model => {
-        if (model?.budget === budgetFilter) {
-          filteredResults.add(model);
-        }
-      });
-    }
-  
-    if (bodyTypeFilter) {
-      carModelsList.forEach(model => {
-        if (model?.bodyType === bodyTypeFilter) {
-          filteredResults.add(model);
-        }
-      });
-    }
-  
-    if (fuelTypeFilter) {
-      carModelsList.forEach(model => {
-        if (model?.fuelType.includes(fuelTypeFilter)) {
-          filteredResults.add(model);
-        }
-      });
-    }
-  
-    if (transmissionTypeFilter) {
-      carModelsList.forEach(model => {
-        if (model?.transmissionType?.includes(transmissionTypeFilter)) {
-          filteredResults.add(model);
-        }
-      });
-    }
+      if (bodyTypeFilter) {
+        filteredResults = filteredResults.filter(model => model?.bodyType?.toLowerCase() === bodyTypeFilter?.toLowerCase());
+      }
 
-    if (seatingCapacityFilter) {
-      carModelsList.forEach(model => {
-        if (model?.seatingCapacity === seatingCapacityFilter) {
-          filteredResults.add(model);
-        }
-      });
-    }
-  
-    return Array.from(filteredResults); // Convert Set to Array
-  };
-  
-  
-  const filteredCarModels = getFilteredCarModels();
+      if (fuelTypeFilter.length) {
+        let fuelData = []
+        filteredResults.filter(model => {
+          if (model.fuelType.some(item => fuelTypeFilter.includes(item))) {
+            fuelData.push(model);
+          }
+        });
+
+        filteredResults = fuelData;
+      }
+
+      if (transmissionTypeFilter.length) {
+        let transmissionData = []
+        filteredResults.filter(model => {
+          if (model.transmissionType.some(item => transmissionTypeFilter.includes(item))) {
+            transmissionData.push(model);
+          }
+        });
+        filteredResults = transmissionData;
+      }
+
+      if (seatingCapacityFilter) {
+        filteredResults = filteredResults.filter(model => model?.seatingCapacity?.toLowerCase() === seatingCapacityFilter?.toLowerCase());
+      }
+
+      setFilteredData(filteredResults);
+    };
+
+    getFilteredCarModels();
+  }, [
+    brandFilter,
+    bodyTypeFilter,
+    budgetFilter,
+    fuelTypeFilter,
+    transmissionTypeFilter,
+    seatingCapacityFilter,
+  ]);
 
   return (
     <div className="wrapper">
@@ -258,7 +259,7 @@ const ListingV3 = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-4 col-xl-3 dn-md">
-              <SidebarAdvnaceFilter carModelsList={carModelsList} carBrandsList={carBrandsList} onSearchClick={handleSearchHandler} />
+              <SidebarAdvnaceFilter carModelsList={filteredData} carBrandsList={carBrandsList} onSearchClick={handleSearchHandler} />
             </div>
             {/* End .col-lg-4 */} 
 
@@ -267,7 +268,7 @@ const ListingV3 = () => {
               {isCarModelsLoading ? (<Spinner className="d-flex" style={{marginLeft: 'auto', marginRight: 'auto'}} animation="border" role="status">
                      <span className="visually-hidden">Loading...</span>
                      </Spinner>) : (<div className="row">
-                    <CarItems carModelsList={filteredCarModels} />
+                    <CarItems carModelsList={filteredData} />
                   </div>)}
               
               {/* End .row */}
@@ -291,7 +292,7 @@ const ListingV3 = () => {
           >
             <i className="fa-light fa-circle-xmark"></i>
           </div>
-          <SidebarAdvnaceFilter carModelsList={carModelsList} carBrandsList={carBrandsList} onSearchClick={handleSearchHandler} />
+          <SidebarAdvnaceFilter carModelsList={filteredData} carBrandsList={carBrandsList} onSearchClick={handleSearchHandler} />
         </div>
       </section>
       {/* Listing Grid View */}

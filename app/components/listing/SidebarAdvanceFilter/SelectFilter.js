@@ -5,7 +5,7 @@ const SelectFilter = ({ carBrandsList, onFilterChange, selectedFilters }) => {
       options: carBrandsList?.map(brand => brand?.brandName),
     },
     {
-      label: "Body Type",
+      label: "Select Body Type",
       options: ["Convertible", "Coupe", "Hatchback", "Sedan", "SUV", "Compact-Suv", "Compact-Sedan", "Station-Wegon", "MuV", "Luxury", "Minivan", "Truck"],
     },
     // {
