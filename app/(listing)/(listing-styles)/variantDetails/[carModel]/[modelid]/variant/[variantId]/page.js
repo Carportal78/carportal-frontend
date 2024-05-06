@@ -395,7 +395,7 @@ const ModelDetails = () => {
 
             <div className="col-sm-6">
               <div className="text-center text-md-end mb30-520">
-                <Link href={`/listings?brand=${carModelDetails?.carBrand?.brandName}`} className="more_listing">
+                <Link href={`/cars?brand=${carModelDetails?.carBrand?.brandName}`} className="more_listing">
                   Show All Cars
                   <span className="icon">
                     <span className="fas fa-plus" />
@@ -435,7 +435,7 @@ const ModelDetails = () => {
 
             <div className="col-sm-6">
               <div className="text-center text-md-end mb30-520">
-                <Link href={`/listings?bodyType=${carModelDetails?.bodyType}`} className="more_listing">
+                <Link href={`/cars?bodyType=${carModelDetails?.bodyType}`} className="more_listing">
                   Show All Cars
                   <span className="icon">
                     <span className="fas fa-plus" />

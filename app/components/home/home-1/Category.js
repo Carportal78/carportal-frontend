@@ -39,7 +39,7 @@ const Category = () => {
           data-aos="fade-up"
           data-aos-delay={category.delay}
         >
-          <Link href={`/listings?bodyType=${encodeURIComponent(category.title)}`}>
+          <Link href={`/cars?bodyType=${encodeURIComponent(category.title)}`}>
           <div className="category_item">
             <div className="thumb">
               <Image

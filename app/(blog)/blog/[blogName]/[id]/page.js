@@ -144,7 +144,7 @@ const BlogDynamicSingle = () => {
 
             <div className="col-sm-6">
               <div className="text-center text-md-end mb30-520">
-                <Link href={`/listings?brand=${relatedCars?.[0]?.carBrand?.brandName}`} className="more_listing">
+                <Link href={`/cars?brand=${relatedCars?.[0]?.carBrand?.brandName}`} className="more_listing">
                   Show All Cars
                   <span className="icon">
                     <span className="fas fa-plus" />

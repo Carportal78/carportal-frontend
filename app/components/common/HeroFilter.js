@@ -88,7 +88,7 @@ const HeroFilter = () => {
     const brandName = formatUrlPart(selectedModelName?.carBrand?.brandName);
     const modelName = formatUrlPart(selectedModelName?.modelName);
     localStorage.setItem('model-details', JSON.stringify(selectedModelName));
-    router.push(`cars/${brandName}/${modelName}`);
+    router.push(`car/${brandName}/${modelName}`);
   }
 
 

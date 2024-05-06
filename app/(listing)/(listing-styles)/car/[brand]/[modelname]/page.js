@@ -1,27 +1,27 @@
 "use client"
-import Footer from "../../../../../components/common/Footer";
-import DefaultHeader from "../../../../../components/common/DefaultHeader";
-import HeaderSidebar from "../../../../../components/common/HeaderSidebar";
-import HeaderTop from "../../../../../components/common/HeaderTop";
-import MobileMenu from "../../../../../components/common/MobileMenu";
-import ContactDealerForm from "../../../../../components/common/contactdealerForm/ContactDealerForm";
-import ShareForm from "../../../../../components/common/contactdealerForm/ShareForm";
-import VariantListForm from "../../../../../components/common/contactdealerForm/VariantListForm";
-import LoginSignupModal from "../../../../../components/common/login-signup";
-import BreadCrumb from "../../../../../components/listing/listing-single/BreadCrumb";
-import ProductGallery from "../../../../../components/listing/listing-single/listing-single-v2/ProductGallery";
-import Overview from "../../../../../components/listing/listing-single/Overview";
-import Descriptions from "../../../../../components/listing/listing-single/Descriptions";
+import Footer from "../../../../../components/common/Footer.js";
+import DefaultHeader from "../../../../../components/common/DefaultHeader.js";
+import HeaderSidebar from "../../../../../components/common/HeaderSidebar.js";
+import HeaderTop from "../../../../../components/common/HeaderTop.js";
+import MobileMenu from "../../../../../components/common/MobileMenu.js";
+import ContactDealerForm from "../../../../../components/common/contactdealerForm/ContactDealerForm.js";
+import ShareForm from "../../../../../components/common/contactdealerForm/ShareForm.js";
+import VariantListForm from "../../../../../components/common/contactdealerForm/VariantListForm.js";
+import LoginSignupModal from "../../../../../components/common/login-signup/index.js";
+import BreadCrumb from "../../../../../components/listing/listing-single/BreadCrumb.js";
+import ProductGallery from "../../../../../components/listing/listing-single/listing-single-v2/ProductGallery.js";
+import Overview from "../../../../../components/listing/listing-single/Overview.js";
+import Descriptions from "../../../../../components/listing/listing-single/Descriptions.js";
 import Link from "next/link";
-import ReleatedCar from "../../../../../components/listing/listing-single/ReleatedCar";
+import ReleatedCar from "../../../../../components/listing/listing-single/ReleatedCar.js";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import VariantsList from "../../../../../components/listing/listing-single/Variants";
-import RecentlyViewed from "../../../../../components/listing/sidebar/RecentlyViewed";
-import BannerWidget from "../../../../../components/common/BannerWidget";
-import { selectCarModelAtom, selectCarBrandAtom, selectCarVariantAtom } from "../../../../../components/atoms/categoriesAtoms";
+import VariantsList from "../../../../../components/listing/listing-single/Variants.js";
+import RecentlyViewed from "../../../../../components/listing/sidebar/RecentlyViewed.js";
+import BannerWidget from "../../../../../components/common/BannerWidget.js";
+import { selectCarModelAtom, selectCarBrandAtom, selectCarVariantAtom } from "../../../../../components/atoms/categoriesAtoms.js";
 import { useAtom } from 'jotai';
-import VariantsDescription from "../../../../../components/variants/VariantsDescription";
+import VariantsDescription from "../../../../../components/variants/VariantsDescription.js";
 import ModelsOverview from "../../../../../components/pages/modelspage/ModelsOverview.js";
 import ImagesViewDialog from "../../../../../components/pages/modelspage/ImagesViewDialog.js";
 
@@ -295,7 +295,7 @@ const ModelDetails = () => {
 
             <div className="col-sm-6">
               <div className="text-center text-md-end mb30-520">
-                <Link href={`/listings?brand=${carModelDetails?.carBrand?.brandName}`} className="more_listing">
+                <Link href={`/cars?brand=${carModelDetails?.carBrand?.brandName}`} className="more_listing">
                   Show All Cars
                   <span className="icon">
                     <span className="fas fa-plus" />
@@ -335,7 +335,7 @@ const ModelDetails = () => {
 
             <div className="col-sm-6">
               <div className="text-center text-md-end mb30-520">
-                <Link href={`/listings?bodyType=${carModelDetails?.bodyType}`} className="more_listing">
+                <Link href={`/cars?bodyType=${carModelDetails?.bodyType}`} className="more_listing">
                   Show All Cars
                   <span className="icon">
                     <span className="fas fa-plus" />

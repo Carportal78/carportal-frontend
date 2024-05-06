@@ -26,7 +26,7 @@ const FeaturedFilterListing = ({ collection }) => {
         const brandName = formatUrlPart(listing?.carBrand?.brandName);
         const modelName = formatUrlPart(listing?.modelName);
         localStorage.setItem('model-details', JSON.stringify(listing));
-        router.push(`cars/${brandName}/${modelName}`);
+        router.push(`car/${brandName}/${modelName}`);
       }
 
   return (
