@@ -115,7 +115,7 @@ function OffCanvasExampleCompare({ carVariantsList, name, relatedCars, carModelD
           <Offcanvas.Title><h4 className="mt10">Compare any 2 cars</h4></Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          {renderCompareCarsList.map((car, index) => {
+          {renderCompareCarsList?.map((car, index) => {
             const compareData = [carModelDetails, car]
             return renderCardCompare(compareData, index, router, setSuggestedCompareData, carVariantsList)
           })}

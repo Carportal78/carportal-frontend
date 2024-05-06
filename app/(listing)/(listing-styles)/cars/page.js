@@ -27,6 +27,7 @@ const ListingV3 = () => {
   const [brandFilter, setBrandFilter] = useState(null);
   const [bodyTypeFilter, setBodyTypeFilter] = useState(null);
   const [budgetFilter, setBudgetFilter] = useState(null);
+  const [priceFilter, setPriceFilter] = useState(null);
   // const [priceRange, setPriceRangeFilter] = useState({min: 100000, max: 1000000});
   const [fuelTypeFilter, setFuelTypeFilter] = useState(null);
   const [transmissionTypeFilter, setTransmissionTypeFilter] = useState(null);
@@ -151,6 +152,7 @@ const ListingV3 = () => {
     setTransmissionTypeFilter(newFilterValue.transmissionType);
     setBudgetFilter(newFilterValue.budget);
     setSeatingCapacityFilter(newFilterValue.seatingCapacity);
+    setPriceFilter(newFilterValue.price)
   }
 
   useEffect(() => {
@@ -165,7 +167,16 @@ const ListingV3 = () => {
       if (brandFilter) {
         filteredResults = filteredResults.filter(model => model?.carBrand?.brandName?.toLowerCase() === brandFilter?.toLowerCase());
       }
-    
+
+      if (priceFilter) {
+        filteredResults = filteredResults.filter(model => {
+          if(priceFilter.includes('31')) {
+            return priceFilter.every(item => model?.priceRange?.minPrice >= parseInt(item, 10)) && (model?.priceRange.maxPriceType === 'Lakhs' || model?.priceRange.maxPriceType === 'Crores')
+          }
+          else return priceFilter.every(item => model?.priceRange?.minPrice <= parseInt(item, 10)) && model?.priceRange.maxPriceType === 'Lakhs'
+        })
+      }
+
       if (budgetFilter) {
         filteredResults = filteredResults.filter(model => model?.budget?.toLowerCase() === budgetFilter?.toLowerCase());
       }
@@ -211,6 +222,7 @@ const ListingV3 = () => {
     fuelTypeFilter,
     transmissionTypeFilter,
     seatingCapacityFilter,
+    priceFilter
   ]);
 
   return (

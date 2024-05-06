@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const SidebarAdvnaceFilter = ({ carModelsList, carBrandsList, onSearchClick }) => {
     const [selectedFilters, setSelectedFilters] = useState({ brand: '', bodyType: '', fuelType: [],
-    transmissionType: [] });
+    transmissionType: [], price: [] });
     const [isFilterChanged, setIsFilterChanges] = useState(false)
 
     useEffect(() => {
@@ -221,6 +221,143 @@ const SidebarAdvnaceFilter = ({ carModelsList, carBrandsList, onSearchClick }) =
                 </div>
               </div>
             </li>
+
+            <li>
+              <h5 className="subtitle">Price</h5>
+              <div className="ui_kit_checkbox">
+                <div className="form-check mb20">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    defaultValue
+                    id="flexCheckUnder5Lakh"
+                    checked={selectedFilters.price.includes('5')}
+                    onChange={() => handleCheckboxChange('price', '5')}
+                  />
+                  <label className="form-check-label" htmlFor="flexCheckUnder5Lakh">
+                    Under 5 Lakh ({carModelsList?.reduce((acc, model) => { 
+                      if(model?.priceRange.minPrice <= 5 && model?.priceRange.maxPriceType == 'Lakhs') {
+                        return acc + 1;
+                      } else {
+                        return acc;
+                      }}, 0)})
+                  </label>
+                </div>
+                <div className="form-check mb20">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    defaultValue
+                    id="flexCheckUnder10Lakh"
+                    checked={selectedFilters.price.includes('10')}
+                    onChange={() => handleCheckboxChange('price', '10')}
+                  />
+                  <label className="form-check-label" htmlFor="flexCheckUnder10Lakh">
+                    Under 10 Lakh ({carModelsList?.reduce((acc, model) => { 
+                      if(model?.priceRange.minPrice <= 10 && model?.priceRange.maxPriceType == 'Lakhs') {
+                        return acc + 1;
+                      } else {
+                        return acc;
+                      }}, 0)})
+                  </label>
+                </div>
+                <div className="form-check mb20">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    defaultValue
+                    id="flexCheckUnder15Lakh"
+                    checked={selectedFilters.price.includes('15')}
+                    onChange={() => handleCheckboxChange('price', '15')}
+                  />
+                  <label
+                    className="form-check-label"
+                    htmlFor="flexCheckUnder15Lakh"
+                  >
+                    Under 15 Lakh ({carModelsList?.reduce((acc, model) => { 
+                      if(model?.priceRange.minPrice <= 15 && model?.priceRange.maxPriceType == 'Lakhs') {
+                        return acc + 1;
+                      } else {
+                        return acc;
+                      }}, 0)})
+                  </label>
+                </div>
+                <div className="form-check mb20">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    defaultValue
+                    id="flexCheckUnder20Lakh"
+                    checked={selectedFilters.price.includes('20')}
+                    onChange={() => handleCheckboxChange('price', '20')}
+                  />
+                  <label className="form-check-label" htmlFor="flexCheckUnder20Lakh">
+                      Under 20 Lakh ({carModelsList?.reduce((acc, model) => { 
+                      if(model?.priceRange.minPrice <= 20 && model?.priceRange.maxPriceType == 'Lakhs') {
+                        return acc + 1;
+                      } else {
+                        return acc;
+                      }}, 0)})
+                  </label>
+                </div>
+                <div className="form-check mb20">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    defaultValue
+                    id="flexCheckUnder25Lakh"
+                    checked={selectedFilters.price.includes('25')}
+                    onChange={() => handleCheckboxChange('price', '25')}
+                  />
+                  <label className="form-check-label" htmlFor="flexCheckHybrid">
+                    Under 25 Lakh ({carModelsList?.reduce((acc, model) => { 
+                      if(model?.priceRange.minPrice <= 25 && model?.priceRange.maxPriceType == 'Lakhs') {
+                        return acc + 1;
+                      } else {
+                        return acc;
+                      }}, 0)})
+                  </label>
+                </div>
+                <div className="form-check mb20">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    defaultValue
+                    id="flexCheckHybrid"
+                    checked={selectedFilters.price.includes('30')}
+                    onChange={() => handleCheckboxChange('price', '30')}
+                  />
+                  <label className="form-check-label" htmlFor="flexCheckUnder30Lakh">
+                    Under 30 Lakh ({carModelsList?.reduce((acc, model) => { 
+                      if(model?.priceRange.minPrice <= 30 && model?.priceRange.maxPriceType == 'Lakhs') {
+                        return acc + 1;
+                      } else {
+                        return acc;
+                      }}, 0)})
+                  </label>
+                </div>
+
+                <div className="form-check mb30">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    defaultValue
+                    id="flexCheckHybrid"
+                    checked={selectedFilters.price > 30}
+                    onChange={() => handleCheckboxChange('price', '31')}
+                  />
+                  <label className="form-check-label" htmlFor="flexCheckAbove30Lakh">
+                    Above 30 Lakh ({carModelsList?.reduce((acc, model) => { 
+                      if(model?.priceRange.minPrice > 30 && (model?.priceRange.maxPriceType == 'Lakhs' || model?.priceRange.maxPriceType == 'Crores')) {
+                        return acc + 1;
+                      } else {
+                        return acc;
+                      }}, 0)})
+                  </label>
+                </div>
+              </div>
+            </li>
+
             {/* <li>
               <div className="search_option_button">
                 <button type="submit" className="btn btn-block btn-thm" onClick={handleSearchButton}>
