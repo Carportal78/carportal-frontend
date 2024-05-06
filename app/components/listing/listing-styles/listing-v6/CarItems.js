@@ -7,13 +7,13 @@ import { useState } from "react";
 const CarItems = ({ carModelsList }) => {
   const router = useRouter();
   const itemsPerPage = 10;
-  const [visibleItems, setVisibleItems] = useState(carModelsList.length < itemsPerPage ? carModelsList.length : itemsPerPage);
+  const [visibleItems, setVisibleItems] = useState(carModelsList?.length < itemsPerPage ? carModelsList?.length : itemsPerPage);
 
   const showMoreItems = (event) => {
     event.preventDefault();
     setVisibleItems(prevVisibleItems => {
       const nextVisibleItems = prevVisibleItems + itemsPerPage;
-      return nextVisibleItems > carModelsList.length ? carModelsList.length : nextVisibleItems;
+      return nextVisibleItems > carModelsList?.length ? carModelsList?.length : nextVisibleItems;
     });
   };
 
@@ -129,11 +129,11 @@ const CarItems = ({ carModelsList }) => {
 
       ))}
 
-      {visibleItems < carModelsList.length && (
+      {visibleItems < carModelsList?.length && (
         <div className="col-lg-12">
           <div className="mbp_pagination mt20">
             <div className="new_line_pagination text-center">
-              <p>Showing {visibleItems} of {carModelsList.length} Results</p>
+              <p>Showing {visibleItems} of {carModelsList?.length} Results</p>
               <div className="pagination_line" />
               <a className="pagi_btn" href="#" onClick={showMoreItems}>
                 Show More

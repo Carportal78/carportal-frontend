@@ -36,7 +36,7 @@ const CartItems = () => {
     setCartItems(updatedCartItems);
   };
 
-  if (cartItems.length === 0) {
+  if (cartItems?.length === 0) {
     return <div className="p-5 h4">No items available</div>;
   }
 

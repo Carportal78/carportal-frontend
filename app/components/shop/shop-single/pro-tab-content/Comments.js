@@ -68,7 +68,7 @@ const Comments = () => {
             </div>
           </div>
           <p className="mt15 mb30">{comment.review}</p>
-          {comment.id !== commentsData.length && <hr />}
+          {comment.id !== commentsData?.length && <hr />}
           {/* Add <br> if not the last item */}
         </div>
       ))}

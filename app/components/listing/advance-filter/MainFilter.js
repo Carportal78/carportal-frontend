@@ -11,7 +11,7 @@ const MainFilter = () => {
   // Fetch car brands on component mount
   useEffect(() => {
     const getBrandsList = localStorage.getItem('carBrandsList');
-    if (getBrandsList && getBrandsList.length > 0) {
+    if (getBrandsList && getBrandsList?.length > 0) {
       setCarBrands(JSON.parse(getBrandsList));
       setIsBrandsLoading(false);
       return;

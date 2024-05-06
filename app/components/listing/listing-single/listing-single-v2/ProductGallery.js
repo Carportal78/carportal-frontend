@@ -100,7 +100,7 @@ function OffCanvasExampleCompare({ carVariantsList, name, relatedCars, carModelD
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const renderCompareCarsList = relatedCars.length > 10 ? relatedCars.slice(0,10) : relatedCars
+  const renderCompareCarsList = relatedCars?.length > 10 ? relatedCars.slice(0,10) : relatedCars
 
   return (
     <>

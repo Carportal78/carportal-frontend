@@ -46,7 +46,7 @@ const Features = () => {
               ))}
             </ul>
           </div>
-          {index < featureCategories.length - 1 && <hr />}
+          {index < featureCategories?.length - 1 && <hr />}
         </div>
       ))}
     </>

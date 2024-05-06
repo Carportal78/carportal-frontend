@@ -72,7 +72,7 @@ function AllBrandsList() {
             </Col>
           ))}
 
-          {carBrands.length > 6 && (
+          {carBrands?.length > 6 && (
             <Row className="mt-3">
               <Col className="text-center">
                 {/* <Button variant="primary" onClick={() => setShowAll(!showAll)}>
@@ -115,7 +115,7 @@ function AllBrandsList() {
             </Col>
           ))}
         </Row>
-        {carBrands.length > 6 && (
+        {carBrands?.length > 6 && (
           <Row className="mt-3">
             <Col className="text-center">
               {/* <Button variant="primary" onClick={() => setShowAll(!showAll)}>

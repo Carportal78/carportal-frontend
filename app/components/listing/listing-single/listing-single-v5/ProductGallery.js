@@ -99,7 +99,7 @@ const ProductGallery = () => {
                               alt={image.alt}
                             />
                           </div>
-                          {index === images.length - 1 && (
+                          {index === images?.length - 1 && (
                             <div className="overlay popup-img pe-none">
                               <span className="flaticon-photo-camera"></span>
                               <h5 className="title">Show All Photo</h5>

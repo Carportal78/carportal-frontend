@@ -39,7 +39,7 @@ export default function DealersPageDescription({ carModelDetails, carVariantsLis
     }, []);
 
     useEffect(() => {
-        if (cityData !== null && cityOptions.length > 0) {
+        if (cityData !== null && cityOptions?.length > 0) {
             const matchingCity = cityOptions?.find(option => option.value === cityData?.toString());
             setSelectedCity(matchingCity || null);
         }
