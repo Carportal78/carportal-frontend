@@ -107,7 +107,7 @@ const ListingV3 = () => {
       if (data && data.data && data.data.carModelsList) {
         setCarModelsList(data.data.carModelsList);
         setFilteredData(data.data.carModelsList)
-        setSelectCarModelData(data.data.carModelsList.length)
+        setSelectCarModelData(data.data.carModelsList?.length)
       }
       setIsCarModelsLoading(false);
     })
@@ -133,7 +133,7 @@ const ListingV3 = () => {
       if (data && data.data && data.data.carModelsList) {
         setCarModelsList(data.data.carModelsList);
         setFilteredData(data.data.carModelsList)
-        setSelectCarModelData(data.data.carModelsList.length)
+        setSelectCarModelData(data.data.carModelsList?.length)
       }
       setIsCarModelsLoading(false);
     })
@@ -200,7 +200,7 @@ const ListingV3 = () => {
       }
 
       setFilteredData(filteredResults);
-      setSelectCarModelData(filteredResults.length)
+      setSelectCarModelData(filteredResults?.length)
     };
 
     getFilteredCarModels();
