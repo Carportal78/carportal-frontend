@@ -174,7 +174,7 @@ const ListingV3 = () => {
         filteredResults = filteredResults.filter(model => model?.bodyType?.toLowerCase() === bodyTypeFilter?.toLowerCase());
       }
 
-      if (fuelTypeFilter.length) {
+      if (fuelTypeFilter?.length) {
         let fuelData = []
         filteredResults.filter(model => {
           if (model.fuelType.some(item => fuelTypeFilter.includes(item))) {
@@ -185,7 +185,7 @@ const ListingV3 = () => {
         filteredResults = fuelData;
       }
 
-      if (transmissionTypeFilter.length) {
+      if (transmissionTypeFilter?.length) {
         let transmissionData = []
         filteredResults.filter(model => {
           if (model.transmissionType.some(item => transmissionTypeFilter.includes(item))) {
