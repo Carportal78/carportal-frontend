@@ -41,7 +41,7 @@ const CompareTable = () => {
     "Entertainment and Communication"]
 
   const idsArray = cards
-  ?.filter(car => car.id !== "") // Filter out objects with empty id
+  ?.filter(car => car.id !== "")
   ?.map(car => car.id); 
   
   useEffect(() => {

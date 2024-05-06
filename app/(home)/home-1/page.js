@@ -125,16 +125,6 @@ const Home_1 = () => {
       <Hero />
       {/* End Hero */}
 
-      {/* Car Category */}
-      {/* <section className="car-category mobile_space bgc-f9  pb10">
-        <div className="container">
-          <div className="row">
-            <Category />
-          </div>
-        </div>
-      </section> */}
-      {/* End Car Cartegory */}
-
       {/* All brands List */}
       <section className="featured-product all-brands-mobile-view">
         <div className="container">

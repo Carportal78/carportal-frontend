@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image";
 import { useAtom } from 'jotai';
 import {filteredCarData} from "../atoms/categoriesAtoms"
