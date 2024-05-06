@@ -75,32 +75,6 @@ const ListingType = () => {
     });
   }, []);
 
-  // useEffect(() => {
-  //   const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carmodels/for/65538448b78add9eaa02d417';
-  //   const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
-  //   setIsCarModelsLoading(true);
-  //   fetch(apiUrl, {
-  //     method: 'GET',
-  //     headers: {
-  //       'X-API-Key': apiKey,
-  //       'Content-Type': 'application/json'
-  //     }
-  //   })
-  //   .then(response => response.json())
-  //   .then(data => {
-  //     if (data && data.data && data.data.carModelsList) {
-  //       setCarModelsList(data.data.carModelsList);
-  //     }
-  //     setIsCarModelsLoading(false);
-  //   })
-  //   .catch(error => {
-  //     console.error('Error fetching data: ', error);
-  //     setCarModelsList([]);
-  //     setIsCarModelsLoading(false);
-  //   });
-  // }, []);
-  
-
   const handleSearchHandler = (newFilterValue) => {
     setBrandFilter(newFilterValue.brand);
   setBodyTypeFilter(newFilterValue.bodyType);
@@ -114,7 +88,7 @@ const ListingType = () => {
     }
     let filteredResults = new Set();
     if (brandFilter) {
-      carModelsList.forEach(model => {
+      carModelsList?.forEach(model => {
         if (model?.brand === brandFilter) {
           filteredResults.add(model);
         }
@@ -122,14 +96,14 @@ const ListingType = () => {
     }
   
     if (bodyTypeFilter) {
-      carModelsList.forEach(model => {
+      carModelsList?.forEach(model => {
         if (model?.bodyType === bodyTypeFilter) {
           filteredResults.add(model);
         }
       });
     }
   
-    if (fuelTypeFilter.length) {
+    if (fuelTypeFilter?.length) {
       carModelsList.forEach(model => {
         if (fuelTypeFilter.includes(model?.fuelType)) {
           filteredResults.add(model);
@@ -137,7 +111,7 @@ const ListingType = () => {
       });
     }
   
-    if (transmissionTypeFilter.length) {
+    if (transmissionTypeFilter?.length) {
       carModelsList.forEach(model => {
         if (transmissionTypeFilter.includes(model?.transmissionType)) {
           filteredResults.add(model);
