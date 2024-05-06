@@ -110,10 +110,13 @@ const Dealers = () => {
     }
   }, [brandData, cityData])
 
-  // const handleBrandClick = (brand) => {
-  //   alert(brand?._id)
-  //   router.push(`/dealer/${brand?._id}`) 
-  // }
+  function handleSearchDealer(brandData, brandName, cityName) {
+    setBrandData(cityData);
+    setCityData(brandData);
+    console.log('cityData', cityData, brandData);
+    localStorage.setItem('dealer-type', JSON.stringify({ brand: brandData, city: cityData }))
+    router.push(`/dealers/list/${brandName}/${cityName}`);
+  }
 
   return (
     <div className="wrapper">
@@ -215,7 +218,7 @@ const Dealers = () => {
             {isBrandLoading ? <Spinner className="d-flex" style={{ marginLeft: 'auto', marginRight: 'auto' }} animation="border" role="status">
               <span className="visually-hidden">Loading...</span>
             </Spinner> : carBrandsList?.map(brand => (
-              <Col xs={6} md={4} lg={2} className="d-flex align-items-stretch pointer" key={brand?._id} onClick={() => router.push(`/dealers/${brand?._id}`)}>
+              <Col xs={6} md={4} lg={2} className="d-flex align-items-stretch pointer" key={brand?._id} onClick={() => handleSearchDealer(brand, brand?.brandName, 1)}>
                 <div style={{
                   width: '100%',
                   backgroundColor: "#fff",

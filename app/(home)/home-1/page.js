@@ -206,7 +206,7 @@ const Home_1 = () => {
             <div className="row mt20">
               <div className="col-lg-12">
                 <div className="text-center">
-                  <Link href="/page-list-v1" className="more_listing">
+                  <Link href="/cars" className="more_listing">
                     Show All Cars{" "}
                     <span className="icon">
                       <span className="fas fa-plus" />

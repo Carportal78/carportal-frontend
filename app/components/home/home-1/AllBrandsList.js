@@ -71,48 +71,6 @@ function AllBrandsList() {
               </div>
             </Col>
           ))}
-{/* 
-          {carBrands?.map((brand) => (
-            <Col xs={6} md={4} lg={2} className="d-flex align-items-stretch pointer" key={brand?._id} onClick={() => router.push(`/dealers/${brand?._id}`)}>
-              <div style={{
-                width: '100%',
-                backgroundColor: "#fff",
-                border: "1px solid #eaeaea",
-                borderRadius: "8px",
-                marginBottom: "30px",
-                padding: "30px",
-                boxShadow: "0px 2px 12px rgba(36,40,44,.08)"
-              }}>
-                <Card.Body>
-                  <Image
-                    width={120}
-                    height={58}
-                    src={brand.media.url || '/default-image.png'}
-                    alt={brand.brandName}
-                    className="d-flex"
-                    style={{ marginLeft: 'auto', marginRight: 'auto' }}
-                    layout='responsive'
-                  />
-                  <span className="d-flex justify-content-center font-600">{brand.brandName}</span>
-                </Card.Body>
-              </div>
-            </Col>
-            // <Col xs={4} sm={4} md={3} lg={2} xl={1} className="d-flex align-items-center justify-content-center" key={brand._id}>
-            //   <Link href={`cars?brand=${brand.brandName}`} passHref className='d-block text-decoration-none'>
-            //     <div className="p-3 p-md-0 d-flex flex-column align-items-center text-center">
-            //       <Image
-            //         width={150}
-            //         height={58}
-            //         src={brand.media.url || '/default-image.png'}
-            //         alt={brand.brandName}
-            //         className={styles.bodyTypeImage}
-            //         layout='responsive'
-            //       />
-            //       <span className={styles.bodyTypeTitle}>{brand.brandName}</span>
-            //     </div>
-            //   </Link>
-            // </Col>
-          ))} */}
 
           {carBrands.length > 6 && (
             <Row className="mt-3">
