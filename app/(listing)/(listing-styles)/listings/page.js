@@ -10,6 +10,8 @@ import SidebarAdvnaceFilter from "../../../components/listing/SidebarAdvanceFilt
 import ListGridFilter2 from "../../../components/listing/ListGridFilter2"; 
 import { useEffect, useState } from "react";
 import { Spinner } from "react-bootstrap";
+import {filteredCarData} from "../../../components/atoms/categoriesAtoms"
+import { useAtom } from 'jotai';
 
 const metadata = {
   title: "Listings || Carportal - Automotive & Car Dealer",
@@ -21,6 +23,7 @@ const ListingV3 = () => {
   const [carBrandsList, setCarBrandsList] = useState([]);
   const [carModelsList, setCarModelsList] = useState([])
   const [filteredData, setFilteredData] = useState([])
+  const [, setSelectCarModelData] = useAtom(filteredCarData);
   const [brandFilter, setBrandFilter] = useState(null);
   const [bodyTypeFilter, setBodyTypeFilter] = useState(null);
   const [budgetFilter, setBudgetFilter] = useState(null);
@@ -104,6 +107,7 @@ const ListingV3 = () => {
       if (data && data.data && data.data.carModelsList) {
         setCarModelsList(data.data.carModelsList);
         setFilteredData(data.data.carModelsList)
+        setSelectCarModelData(data.data.carModelsList.length)
       }
       setIsCarModelsLoading(false);
     })
@@ -129,6 +133,7 @@ const ListingV3 = () => {
       if (data && data.data && data.data.carModelsList) {
         setCarModelsList(data.data.carModelsList);
         setFilteredData(data.data.carModelsList)
+        setSelectCarModelData(data.data.carModelsList.length)
       }
       setIsCarModelsLoading(false);
     })
@@ -195,6 +200,7 @@ const ListingV3 = () => {
       }
 
       setFilteredData(filteredResults);
+      setSelectCarModelData(filteredResults.length)
     };
 
     getFilteredCarModels();

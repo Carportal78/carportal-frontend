@@ -228,11 +228,19 @@ const SidebarAdvnaceFilter = ({ carModelsList, carBrandsList, onSearchClick }) =
                 </button>
               </div>
             </li> */}
-            <li className="text-center">
+
+            <li>
+              <div className="search_option_button">
+                <button type="submit" className="btn btn-block btn-thm" onClick={handleResetFilter}>
+                  <span/> Reset Filter
+                </button>
+              </div>
+            </li>
+            {/* <li className="text-center">
               <Link className="reset-filter" href="" onClick={handleResetFilter}>
                 Reset Filter
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

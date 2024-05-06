@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { useAtom } from 'jotai';
+import {filteredCarData} from "../atoms/categoriesAtoms"
 
 const ListGridFilter2 = ({ carModelsList }) => {
   const options = [
@@ -9,6 +11,8 @@ const ListGridFilter2 = ({ carModelsList }) => {
     "Old Review",
   ];
 
+  const [filterCount] = useAtom(filteredCarData); 
+
   const selectOptions = options?.map((option, index) => (
     <option key={index}>{option}</option>
   ));
@@ -18,7 +22,7 @@ const ListGridFilter2 = ({ carModelsList }) => {
       <div className="col-md-4">
         <div className="page_control_shorting left_area tac-sm mb30-767 mt15">
           <p>
-            We found <span className="heading-color fw600">{carModelsList?.length ?? 0}</span> Cars
+            We found <span className="heading-color fw600">{filterCount}</span> Cars
             available for you
           </p>
         </div>
