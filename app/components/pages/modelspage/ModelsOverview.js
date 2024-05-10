@@ -89,7 +89,7 @@ const ModelsOverview = ({ carModelDetails, carVariantsList, carVariant }) => {
                     width={100}
                     height={40}
                     style={{ objectFit: "cover" }}
-                    src='/images/variant/fuel.svg'
+                    src='/images/variant/body-type.svg'
                     layout="responsive"
                     alt={carModelDetails?.bodyType}
                   />
