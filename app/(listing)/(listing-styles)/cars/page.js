@@ -156,65 +156,66 @@ const ListingV3 = () => {
   }
 
   useEffect(() => {
-    // Filter car models data when filters change
-    const getFilteredCarModels = () => {
-      if (!brandFilter && !bodyTypeFilter && !fuelTypeFilter && !budgetFilter && !seatingCapacityFilter) {
-        return carModelsList; // Return all models if no filters are applied
-      }
-    
-      let filteredResults = [...carModelsList];
-    
-      if (brandFilter) {
-        filteredResults = filteredResults.filter(model => model?.carBrand?.brandName?.toLowerCase() === brandFilter?.toLowerCase());
-      }
+    if(carModelsList.length > 0) {
+      const getFilteredCarModels = () => {
+        if (!brandFilter && !bodyTypeFilter && !fuelTypeFilter && !budgetFilter && !seatingCapacityFilter) {
+          return carModelsList; // Return all models if no filters are applied
+        }
 
-      if (priceFilter) {
-        filteredResults = filteredResults.filter(model => {
-          if(priceFilter.includes('31')) {
-            return priceFilter.every(item => model?.priceRange?.minPrice >= parseInt(item, 10)) && (model?.priceRange.maxPriceType === 'Lakhs' || model?.priceRange.maxPriceType === 'Crores')
-          }
-          else return priceFilter.every(item => model?.priceRange?.minPrice <= parseInt(item, 10)) && model?.priceRange.maxPriceType === 'Lakhs'
-        })
-      }
-
-      if (budgetFilter) {
-        filteredResults = filteredResults.filter(model => model?.budget?.toLowerCase() === budgetFilter?.toLowerCase());
-      }
-
-      if (bodyTypeFilter) {
-        filteredResults = filteredResults.filter(model => model?.bodyType?.toLowerCase() === bodyTypeFilter?.toLowerCase());
-      }
-
-      if (fuelTypeFilter?.length) {
-        let fuelData = []
-        filteredResults.filter(model => {
-          if (model.fuelType.some(item => fuelTypeFilter.includes(item))) {
-            fuelData.push(model);
-          }
-        });
-
-        filteredResults = fuelData;
-      }
-
-      if (transmissionTypeFilter?.length) {
-        let transmissionData = []
-        filteredResults.filter(model => {
-          if (model.transmissionType.some(item => transmissionTypeFilter.includes(item))) {
-            transmissionData.push(model);
-          }
-        });
-        filteredResults = transmissionData;
-      }
-
-      if (seatingCapacityFilter) {
-        filteredResults = filteredResults.filter(model => model?.seatingCapacity?.toLowerCase() === seatingCapacityFilter?.toLowerCase());
-      }
-
-      setFilteredData(filteredResults);
-      setSelectCarModelData(filteredResults?.length)
-    };
-
-    getFilteredCarModels();
+        let filteredResults = [...carModelsList];
+      
+        if (brandFilter) {
+          filteredResults = filteredResults.filter(model => model?.carBrand?.brandName?.toLowerCase() === brandFilter?.toLowerCase());
+        }
+  
+        if (priceFilter) {
+          filteredResults = filteredResults.filter(model => {
+            if(priceFilter.includes('31')) {
+              return priceFilter.every(item => model?.priceRange?.minPrice >= parseInt(item, 10)) && (model?.priceRange.maxPriceType === 'Lakhs' || model?.priceRange.maxPriceType === 'Crores')
+            }
+            else return priceFilter.every(item => model?.priceRange?.minPrice <= parseInt(item, 10)) && model?.priceRange.maxPriceType === 'Lakhs'
+          })
+        }
+  
+        if (budgetFilter) {
+          filteredResults = filteredResults.filter(model => model?.budget?.toLowerCase() === budgetFilter?.toLowerCase());
+        }
+  
+        if (bodyTypeFilter) {
+          filteredResults = filteredResults.filter(model => model?.bodyType?.toLowerCase() === bodyTypeFilter?.toLowerCase());
+        }
+  
+        if (fuelTypeFilter?.length) {
+          let fuelData = []
+          filteredResults.filter(model => {
+            if (model.fuelType.some(item => fuelTypeFilter.includes(item))) {
+              fuelData.push(model);
+            }
+          });
+  
+          filteredResults = fuelData;
+        }
+  
+        if (transmissionTypeFilter?.length) {
+          let transmissionData = []
+          filteredResults.filter(model => {
+            if (model.transmissionType.some(item => transmissionTypeFilter.includes(item))) {
+              transmissionData.push(model);
+            }
+          });
+          filteredResults = transmissionData;
+        }
+  
+        if (seatingCapacityFilter) {
+          filteredResults = filteredResults.filter(model => model?.seatingCapacity?.toLowerCase() === seatingCapacityFilter?.toLowerCase());
+        }
+  
+        setFilteredData(filteredResults);
+        setSelectCarModelData(filteredResults?.length)
+      };
+  
+      getFilteredCarModels();
+    }
   }, [
     brandFilter,
     bodyTypeFilter,
@@ -222,7 +223,8 @@ const ListingV3 = () => {
     fuelTypeFilter,
     transmissionTypeFilter,
     seatingCapacityFilter,
-    priceFilter
+    priceFilter,
+    carModelsList
   ]);
 
   return (
@@ -286,7 +288,7 @@ const ListingV3 = () => {
               {isCarModelsLoading ? (<Spinner className="d-flex" style={{marginLeft: 'auto', marginRight: 'auto'}} animation="border" role="status">
                      <span className="visually-hidden">Loading...</span>
                      </Spinner>) : (<div className="row">
-                    <CarItems carModelsList={filteredData} />
+                    <CarItems carModelsList={filteredData} /> 
                   </div>)}
               
               {/* End .row */}

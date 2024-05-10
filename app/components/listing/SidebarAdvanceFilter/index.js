@@ -1,14 +1,64 @@
 "use client"
 import { useEffect, useState } from "react";
-import RangeSlider from "./RangeSlider";
-import SearchBox from "./SearchBox";
 import SelectFilter from "./SelectFilter";
-import Link from "next/link";
+import { useAtom } from "jotai";
+import { carFilters } from "../../../components/atoms/categoriesAtoms"
 
 const SidebarAdvnaceFilter = ({ carModelsList, carBrandsList, onSearchClick }) => {
-    const [selectedFilters, setSelectedFilters] = useState({ brand: '', bodyType: '', fuelType: [],
-    transmissionType: [], price: [] });
-    const [isFilterChanged, setIsFilterChanges] = useState(false)
+    const [selectedFilters, setSelectedFilters] = useAtom(carFilters);
+    const [isFilterChanged, setIsFilterChanges] = useState(false);
+    const queryParams = new URLSearchParams(window.location.search);
+    const bodyType = queryParams.get('bodyType');
+    const brandType = queryParams.get('brand');
+    const budget = queryParams.get('budget');
+    const fuelType = queryParams.get('fuelType');
+    const transmissionType = queryParams.get('transmissionType');
+
+    useEffect(() => {
+      const filters = selectedFilters
+      
+      if (bodyType) {
+        filters.bodyType = bodyType
+        setSelectedFilters(filters);
+      }
+  
+      
+      if(brandType) {
+        filters.brand = brandType
+        setSelectedFilters(filters);
+      }
+  
+      const priceNum = parseInt(budget?.match(/\d+/)[0]);
+      if(budget && !selectedFilters.price.includes(priceNum.toString())) {
+        filters.price.push(priceNum.toString())
+        setSelectedFilters(filters);
+      }
+  
+      
+      if(fuelType) {
+        filters.fuelType.push(fuelType)
+        setSelectedFilters(filters);
+      }
+  
+      
+      if(transmissionType) {
+        filters.transmissionType.push(transmissionType)
+        setSelectedFilters(filters);
+      }
+  
+      // const seatingCapacity = queryParams.get('seatingCapacity');
+      // if(seatingCapacity) {
+      //   filters.price = seatingCapacity
+      //   setSeatingCapacityFilter(filters);
+      // }
+      // onSearchClick(selectedFilters);
+    }, [bodyType, fuelType, budget, transmissionType, brandType ]);
+
+    // useEffect(() => {
+    //   if(selectedFilters?.price?.length > 0 && carModelsList.length) {
+    //     onSearchClick(selectedFilters);
+    //   }
+    // },[])
 
     useEffect(() => {
       if(isFilterChanged) {
@@ -25,13 +75,12 @@ const SidebarAdvnaceFilter = ({ carModelsList, carBrandsList, onSearchClick }) =
     const handleCheckboxChange = (filterType, value) => {
       setSelectedFilters(prev => {
         // Toggle value in the array
-        const updatedArray = prev[filterType].includes(value)
+        const updatedArray = prev[filterType]?.includes(value)
           ? prev[filterType].filter(item => item !== value) // Remove if exists
           : [...prev[filterType], value]; // Add if doesn't exist
-  
+    
         return { ...prev, [filterType]: updatedArray };
       });
-      setIsFilterChanges(true)
     };
 
     const handleResetFilter = () => {
@@ -88,7 +137,7 @@ const SidebarAdvnaceFilter = ({ carModelsList, carBrandsList, onSearchClick }) =
                     type="checkbox"
                     defaultValue
                     id="flexCheckPetrol"
-                    checked={selectedFilters.fuelType.includes('Petrol')}
+                    checked={selectedFilters?.fuelType?.includes('Petrol')}
                     onChange={() => handleCheckboxChange('fuelType', 'Petrol')}
                   />
                   <label className="form-check-label" htmlFor="flexCheckPetrol">
@@ -106,7 +155,7 @@ const SidebarAdvnaceFilter = ({ carModelsList, carBrandsList, onSearchClick }) =
                     type="checkbox"
                     defaultValue
                     id="flexCheckDiesel"
-                    checked={selectedFilters.fuelType.includes('Diesel')}
+                    checked={selectedFilters?.fuelType?.includes('Diesel')}
                     onChange={() => handleCheckboxChange('fuelType', 'Diesel')}
                   />
                   <label className="form-check-label" htmlFor="flexCheckDiesel">
@@ -124,7 +173,7 @@ const SidebarAdvnaceFilter = ({ carModelsList, carBrandsList, onSearchClick }) =
                     type="checkbox"
                     defaultValue
                     id="flexCheckElectric"
-                    checked={selectedFilters.fuelType.includes('Electric')}
+                    checked={selectedFilters?.fuelType?.includes('Electric')}
                     onChange={() => handleCheckboxChange('fuelType', 'Electric')}
                   />
                   <label
@@ -145,7 +194,7 @@ const SidebarAdvnaceFilter = ({ carModelsList, carBrandsList, onSearchClick }) =
                     type="checkbox"
                     defaultValue
                     id="flexCheckHybrid"
-                    checked={selectedFilters.fuelType.includes('Hybrid')}
+                    checked={selectedFilters?.fuelType?.includes('Hybrid')}
                     onChange={() => handleCheckboxChange('fuelType', 'Hybrid')}
                   />
                   <label className="form-check-label" htmlFor="flexCheckHybrid">
@@ -163,7 +212,7 @@ const SidebarAdvnaceFilter = ({ carModelsList, carBrandsList, onSearchClick }) =
                     type="checkbox"
                     defaultValue
                     id="flexCheckHybrid"
-                    checked={selectedFilters.fuelType.includes('CNG')}
+                    checked={selectedFilters?.fuelType?.includes('CNG')}
                     onChange={() => handleCheckboxChange('fuelType', 'CNG')}
                   />
                   <label className="form-check-label" htmlFor="flexCheckHybrid">
@@ -186,7 +235,7 @@ const SidebarAdvnaceFilter = ({ carModelsList, carBrandsList, onSearchClick }) =
                     type="checkbox"
                     defaultValue
                     id="flexCheckAutometic"
-                    checked={selectedFilters.transmissionType.includes('Automatic')}
+                    checked={selectedFilters?.transmissionType?.includes('Automatic')}
                     onChange={() => handleCheckboxChange('transmissionType', 'Automatic')}
                   />
                   <label
@@ -207,7 +256,7 @@ const SidebarAdvnaceFilter = ({ carModelsList, carBrandsList, onSearchClick }) =
                     type="checkbox"
                     defaultValue
                     id="flexCheckManual"
-                    checked={selectedFilters.transmissionType.includes('Manual')}
+                    checked={selectedFilters?.transmissionType?.includes('Manual')}
                     onChange={() => handleCheckboxChange('transmissionType', 'Manual')}
                   />
                   <label className="form-check-label" htmlFor="flexCheckManual">
@@ -231,7 +280,7 @@ const SidebarAdvnaceFilter = ({ carModelsList, carBrandsList, onSearchClick }) =
                     type="checkbox"
                     defaultValue
                     id="flexCheckUnder5Lakh"
-                    checked={selectedFilters.price.includes('5')}
+                    checked={selectedFilters?.price?.includes('5')}
                     onChange={() => handleCheckboxChange('price', '5')}
                   />
                   <label className="form-check-label" htmlFor="flexCheckUnder5Lakh">
@@ -249,7 +298,7 @@ const SidebarAdvnaceFilter = ({ carModelsList, carBrandsList, onSearchClick }) =
                     type="checkbox"
                     defaultValue
                     id="flexCheckUnder10Lakh"
-                    checked={selectedFilters.price.includes('10')}
+                    checked={selectedFilters?.price?.includes('10')}
                     onChange={() => handleCheckboxChange('price', '10')}
                   />
                   <label className="form-check-label" htmlFor="flexCheckUnder10Lakh">
@@ -267,7 +316,7 @@ const SidebarAdvnaceFilter = ({ carModelsList, carBrandsList, onSearchClick }) =
                     type="checkbox"
                     defaultValue
                     id="flexCheckUnder15Lakh"
-                    checked={selectedFilters.price.includes('15')}
+                    checked={selectedFilters?.price?.includes('15')}
                     onChange={() => handleCheckboxChange('price', '15')}
                   />
                   <label
@@ -288,7 +337,7 @@ const SidebarAdvnaceFilter = ({ carModelsList, carBrandsList, onSearchClick }) =
                     type="checkbox"
                     defaultValue
                     id="flexCheckUnder20Lakh"
-                    checked={selectedFilters.price.includes('20')}
+                    checked={selectedFilters?.price?.includes('20')}
                     onChange={() => handleCheckboxChange('price', '20')}
                   />
                   <label className="form-check-label" htmlFor="flexCheckUnder20Lakh">
@@ -306,7 +355,7 @@ const SidebarAdvnaceFilter = ({ carModelsList, carBrandsList, onSearchClick }) =
                     type="checkbox"
                     defaultValue
                     id="flexCheckUnder25Lakh"
-                    checked={selectedFilters.price.includes('25')}
+                    checked={selectedFilters?.price?.includes('25')}
                     onChange={() => handleCheckboxChange('price', '25')}
                   />
                   <label className="form-check-label" htmlFor="flexCheckHybrid">
@@ -324,7 +373,7 @@ const SidebarAdvnaceFilter = ({ carModelsList, carBrandsList, onSearchClick }) =
                     type="checkbox"
                     defaultValue
                     id="flexCheckHybrid"
-                    checked={selectedFilters.price.includes('30')}
+                    checked={selectedFilters?.price?.includes('30')}
                     onChange={() => handleCheckboxChange('price', '30')}
                   />
                   <label className="form-check-label" htmlFor="flexCheckUnder30Lakh">
@@ -343,7 +392,7 @@ const SidebarAdvnaceFilter = ({ carModelsList, carBrandsList, onSearchClick }) =
                     type="checkbox"
                     defaultValue
                     id="flexCheckHybrid"
-                    checked={selectedFilters.price > 30}
+                    checked={selectedFilters?.price > 30}
                     onChange={() => handleCheckboxChange('price', '31')}
                   />
                   <label className="form-check-label" htmlFor="flexCheckAbove30Lakh">

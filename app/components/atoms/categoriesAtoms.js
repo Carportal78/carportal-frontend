@@ -19,3 +19,8 @@ export const selectOnRoadPriceModelAtom = atom('');
 export const selectSugestedCompareData =atom([]);
 
 export const filteredCarData =atom([]);
+
+export const carFilters = atom(
+    { brand: '', bodyType: '', fuelType: [],
+    transmissionType: [], price: [] }
+)
