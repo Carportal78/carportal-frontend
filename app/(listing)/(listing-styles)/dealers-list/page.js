@@ -118,7 +118,6 @@ const Dealers = () => {
   function handleSearchDealer(brandName, cityName) {
     setBrandData(cityData);
     setCityData(brandData);
-    console.log('cityData', cityData, brandData);
     localStorage.setItem('dealer-type', JSON.stringify({ brand: brandData, city: cityData }))
     router.push(`/dealers/list/${brandName}/${cityName}`);
 }

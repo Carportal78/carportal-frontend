@@ -91,7 +91,6 @@ export default function VariantProductGallery({ carModelDetails, carVariantsList
 
   function handleRedirectToDealersPage() {
     onDealerClick(carModelDetails?.carBrand?._id);
-    // router.push(`/dealers/${carModelDetails?.carBrand?._id}`);
   }
 
   return (
