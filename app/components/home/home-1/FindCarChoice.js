@@ -61,17 +61,17 @@ const seatingCapacityButtons = [
 const bodyTypeData = [
   {
     title: "SUV",
-    imgSrc: "/images/bodytype/suv.svg",
+    imgSrc: "/images/bodytype/car-suv.avif",
     route: "SUV",
   },
   {
     title: "Sedan",
-    imgSrc: "/images/bodytype/sedan.svg",
+    imgSrc: "/images/bodytype/car-sedan.avif",
     route: "Sedan",
   },
   {
     title: "Hatchback",
-    imgSrc: "/images/bodytype/hatchback.svg",
+    imgSrc: "/images/bodytype/car-hatchback.avif",
     route: "Hatchback",
   },
   {
@@ -86,17 +86,17 @@ const bodyTypeData = [
   },
   {
     title: "MUV",
-    imgSrc: "/images/bodytype/muv.svg",
+    imgSrc: "/images/bodytype/car-muv.avif",
     route: "MuV",
   },
   {
     title: "Convertible",
-    imgSrc: "/images/bodytype/convertible.svg",
+    imgSrc: "/images/bodytype/car-convertible.avif",
     route: "Convertible",
   },
   {
     title: "Coupe",
-    imgSrc: "/images/bodytype/coupe.svg",
+    imgSrc: "/images/bodytype/car-coupe.avif",
     route: "Coupe",
   },
   {
@@ -114,33 +114,32 @@ const bodyTypeData = [
     imgSrc: "/images/bodytype/truck.svg",
     route: "Truck",
   },
-  // ... Add other car types similarly ...
 ];
 
 const fuelTypeData = [
   {
     title: "Petrol",
-    imgSrc: "/images/fueltype/petrol.svg",
+    imgSrc: "/images/fueltype/fuel-petrol.avif",
     route: "Petrol",
   },
   {
     title: "Diesel",
-    imgSrc: "/images/fueltype/diesel.svg",
+    imgSrc: "/images/fueltype/fuel-diesel.avif",
     route: "Diesel",
   },
   {
     title: "CNG",
-    imgSrc: "/images/fueltype/cng.svg",
+    imgSrc: "/images/fueltype/fuel-cng.avif",
     route: "CNG",
   },
   {
     title: "Electric",
-    imgSrc: "/images/fueltype/electric.svg",
+    imgSrc: "/images/fueltype/fuel-electric.avif",
     route: "Electric",
   },
   {
     title: "Hybrid",
-    imgSrc: "/images/fueltype/hybrid.svg",
+    imgSrc: "/images/fueltype/fuel-hybrid.avif",
     route: "Hybrid",
   }
 ];
@@ -148,7 +147,7 @@ const fuelTypeData = [
 const transmissionTypeData = [
   {
     title: "Automatic",
-    imgSrc: "/images/transmissiontype/automatic.svg",
+    imgSrc: "/images/transmissiontype/automatic.svg", 
     route: "Automatic",
   },
   {

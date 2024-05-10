@@ -45,8 +45,6 @@ const Dealers = () => {
       setBrandData(data?.brand);
     }
     }
-
-    console.log("localStorage ", JSON.parse(localStorage.getItem('dealer-type')));
   }, [brandData, cityData]);
 
   useEffect(() => {

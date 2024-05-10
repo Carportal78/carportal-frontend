@@ -64,7 +64,7 @@ function OffCanvasExampleCompare({ name, ...props }) {
   );
 }
 
-export default function VariantProductGallery({ carModelDetails, carVariantsList, carVariant, onDealerClick }) {
+export default function VariantProductGallery({ carModelDetails, carVariantsList, carVariant, onDealerClick, onGetOnRoadPriceCLick }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [isOpen, setOpen] = useState(false);
   const [videoId, setVideoId] = useState("");
@@ -91,6 +91,10 @@ export default function VariantProductGallery({ carModelDetails, carVariantsList
 
   function handleRedirectToDealersPage() {
     onDealerClick(carModelDetails?.carBrand?._id);
+  }
+
+  function handleRedirectToGetOnroadPage() {
+    onGetOnRoadPriceCLick(carModelDetails?._id);
   }
 
   return (
@@ -191,7 +195,7 @@ export default function VariantProductGallery({ carModelDetails, carVariantsList
             </div>
             <div className="d-flex flex-column flex-md-row mt-2">
               <h4 className="mr10">₹ {carModelDetails?.priceRange?.minPrice} {carModelDetails?.priceRange?.minPriceType}*</h4>
-              <Link href={`/onroadprice/${carModelDetails?._id}`} className="tdu mt-md-0 color-black">Get On Road Price</Link>
+              <a onClick={handleRedirectToGetOnroadPage} className="tdu mt-md-0 color-black pointer">Get On Road Price</a>
             </div>
             <div><span style={{ fontSize: '12px' }}>*Ex-showroom price in</span> <span data-bs-toggle="modal" data-bs-target="#exShowroomPriceForm" style={{ color: 'blue', textDecoration: 'underline', cursor: 'pointer' }}>{carVariant?.pricingDetails?.city}</span></div>
             <div className="offer_btns mt-5">

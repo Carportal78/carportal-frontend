@@ -1,22 +1,36 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // import required modules
-import { FreeMode, Navigation, Thumbs } from "swiper";
-import Image from "next/image";
-import Overview from "../../listing/listing-single/Overview";
 import { Table } from "react-bootstrap";
 import Link from "next/link";
+import ExShowroomPriceForm from "../../common/contactdealerForm/ExShowroomPriceForm";
+import statesCitiesList from '../../../../public/jsondata/state-and-city.json';
+import { selectCityAtom } from "../../atoms/categoriesAtoms";
+import { useAtom } from "jotai";
 
 export default function OnRoadPriceDescription({ carModelDetails, carVariantsList }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null); 
   const [isOpen, setOpen] = useState(false);
   const [videoId, setVideoId] = useState("");
+  const [cityData] = useAtom(selectCityAtom);
+  const [cityOptions, setCityOptions] = useState([]);
 
   const openModal = (id) => {
     setVideoId(id);
     setOpen(true);
   };
+
+  // Populate city options
+  useEffect(() => {
+    const loadedCityOptions = Object.keys(statesCitiesList)?.flatMap(state => (
+      statesCitiesList[state].map(city => ({
+        value: city.id.toString(),
+        label: city.city
+      }))
+    ));
+    setCityOptions(loadedCityOptions);
+  }, []);
 
   return (
     <>
@@ -25,10 +39,10 @@ export default function OnRoadPriceDescription({ carModelDetails, carVariantsLis
         id="nav-overview"
         role="tabpanel"
         aria-labelledby="nav-overview-tab"
-      >
+      > 
         <div className="opening_hour_widgets p30 bdr_none pl0 pr0">
           <div className="wrapper">
-            <h3>On Road Price of {carModelDetails?.modelName} in Jaipur</h3>
+            <h3>On Road Price of {carModelDetails?.modelName} in <span data-bs-toggle="modal" data-bs-target="#onRoadPriceForm" style={{ color: 'blue', textDecoration: 'underline', cursor: 'pointer' }}>{cityOptions?.find(option => option.value == cityData)?.label}<i class="fa-solid fa-pen-to-square" style={{fontSize: '15px'}}></i></span></h3> 
             <p>
               {carModelDetails?.modelName} price in New Delhi start at ₹ {carModelDetails?.priceRange?.minPrice} {carModelDetails?.priceRange?.minPriceType}. The
               lowest price model is {carVariantsList?.[0]?.basicInformation?.onRoadPrice} and the most priced

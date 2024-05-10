@@ -1,18 +1,21 @@
 'use client';
-import Footer from "../../../../components/common/Footer";
-import DefaultHeader from "../../../../components/common/DefaultHeader";
-import HeaderSidebar from "../../../../components/common/HeaderSidebar";
-import HeaderTop from "../../../../components/common/HeaderTop";
-import MobileMenu from "../../../../components/common/MobileMenu";
-import LoginSignupModal from "../../../../components/common/login-signup";
-import BreadCrumb from "../../../../components/listing/listing-single/BreadCrumb";
+import Footer from "../../../../../components/common/Footer";
+import DefaultHeader from "../../../../../components/common/DefaultHeader";
+import HeaderSidebar from "../../../../../components/common/HeaderSidebar";
+import HeaderTop from "../../../../../components/common/HeaderTop";
+import MobileMenu from "../../../../../components/common/MobileMenu";
+import LoginSignupModal from "../../../../../components/common/login-signup";
+import BreadCrumb from "../../../../../components/listing/listing-single/BreadCrumb";
 import Link from "next/link";
-import ReleatedCar from "../../../../components/listing/listing-single/ReleatedCar";
-import OnRoadPriceDescription from "../../../../components/onroadpricedescription/onroadprice/OnRoadPriceDescription";
-import ProductDescripitons from "../../../../components/shop/shop-single/pro-tab-content/ProductDescripitons";
+import ReleatedCar from "../../../../../components/listing/listing-single/ReleatedCar";
+import OnRoadPriceDescription from "../../../../../components/onroadpricedescription/onroadprice/OnRoadPriceDescription";
+import ProductDescripitons from "../../../../../components/shop/shop-single/pro-tab-content/ProductDescripitons";
 import { Card } from "react-bootstrap";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useAtom } from "jotai";
+import { selectBrandAtom, selectCityAtom, selectOnRoadPriceModelAtom } from "../../../../../components/atoms/categoriesAtoms";
+import OnRoadPriceForm from "../../../../../components/common/contactdealerForm/OnRoadPriceForm";
 
 const metadata = {
   title: "OnRoad Price || Carportal - Automotive & Car Dealer",
@@ -25,30 +28,50 @@ const OnRoadPrice = () => {
   const [carModelDetails, setCarModelDetails] = useState({});
   const [carVariantsList, setCarVariantsList] = useState([]);
   const [carModelsList, setCarModelsList] = useState([]);
-  const [cityCode, setCityCode] = useState(1);
-  
-  useEffect(() => {
-    const apiUrl = `https://api.univolenitsolutions.com/v1/automobile/get/carmodel/${modelId}/citycode/${cityCode}/for/65538448b78add9eaa02d417`;
-    const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
+  const [cityData, setCityData] = useAtom(selectCityAtom);
+  const [brandData, setBrandData] = useAtom(selectBrandAtom);
+  const [onRoadPriceModelId, setOnRoadPriceModelAtom] = useAtom(selectOnRoadPriceModelAtom);
+  const router = useRouter();
 
-    fetch(apiUrl, {
-      method: 'GET',
-      headers: {
-        'X-API-Key': apiKey,
-        'Content-Type': 'application/json'
+  useEffect(() => {
+    if(!onRoadPriceModelId || !cityData) {
+    const data = JSON?.parse(localStorage?.getItem('onroadPriceFor'));
+    if(data) {
+      setCityData(data?.city);
+      setBrandData(data?.brand);
+      setOnRoadPriceModelAtom(data?.model);
+    }
+    }
+  }, [onRoadPriceModelId, cityData]);
+
+  useEffect(() => {
+    try {
+      if (onRoadPriceModelId && cityData) {
+        const apiUrl = `https://api.univolenitsolutions.com/v1/automobile/get/carmodel/${onRoadPriceModelId}/citycode/${cityData}/for/65538448b78add9eaa02d417`;
+        const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
+
+        fetch(apiUrl, {
+          method: 'GET',
+          headers: {
+            'X-API-Key': apiKey,
+            'Content-Type': 'application/json'
+          }
+        })
+          .then(response => response.json())
+          .then(data => {
+            if (data && data.data && data.data) {
+              setCarModelDetails(data.data.carModel);
+              setCarVariantsList(data.data.carVariantList);
+            }
+          })
+          .catch(error => {
+            console.error('Error fetching data: ', error);
+          });
       }
-    })
-      .then(response => response.json())
-      .then(data => {
-        if (data && data.data && data.data) {
-          setCarModelDetails(data.data.carModel);
-          setCarVariantsList(data.data.carVariantList);
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching data: ', error);
-      });
-  }, [modelId]);
+    } catch (error) {
+      console.log("error ", error);
+    }
+  }, [onRoadPriceModelId, cityData]);
 
   useEffect(() => {
     const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carmodels/for/65538448b78add9eaa02d417';
@@ -70,6 +93,13 @@ const OnRoadPrice = () => {
         setCarModelsList([]);
       });
   }, []);
+  
+  const handleCityCodeChange = (cityCode) => {
+    console.log("cityCode ", cityCode);
+    setCityData(cityCode?.value);
+    localStorage.setItem('onroadPriceFor', JSON.stringify({ brand: brandData, model: onRoadPriceModelId , city: cityCode?.value }));
+    router.push(`/onroadprice/${carModelDetails?.modelName?.split(' ').join('-')}/${cityCode?.label}`);
+  }
 
   return (
     <div className="wrapper">
@@ -118,7 +148,7 @@ const OnRoadPrice = () => {
                   </p> */}
                 </div>
               </div>
-            </div> 
+            </div>
           </div>
 
           <div className="row listing_single_description">
@@ -129,7 +159,7 @@ const OnRoadPrice = () => {
 
           <Card className="row">
             <div className="col-lg-12 col-xl-12">
-              <ProductDescripitons carModelDetails={carModelDetails} carVariantsList={carVariantsList} />
+              <ProductDescripitons carModelDetails={carModelDetails} carVariantsList={carVariantsList}  />
             </div>
           </Card>
         </div>
@@ -191,6 +221,18 @@ const OnRoadPrice = () => {
         aria-hidden="true"
       >
         <LoginSignupModal />
+      </div>
+
+
+      <div
+        className="sign_up_modal modal fade"
+        id="onRoadPriceForm"
+        data-backdrop="static"
+        data-keyboard=""
+        tabIndex={-1}
+        aria-hidden="true"
+      >
+        <OnRoadPriceForm carModelDetails={carModelDetails} cityCodeChange={handleCityCodeChange} />
       </div>
       {/* End Modal */}
     </div>

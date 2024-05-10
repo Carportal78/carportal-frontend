@@ -18,7 +18,7 @@ import { useParams, useRouter } from "next/navigation";
 import VariantsList from "../../../../../../../components/listing/listing-single/Variants";
 import RecentlyViewed from "../../../../../../../components/listing/sidebar/RecentlyViewed";
 import BannerWidget from "../../../../../../../components/common/BannerWidget";
-import { selectCarModelAtom, selectCarBrandAtom, selectCarVariantAtom, selectCityAtom, selectBrandAtom } from "../../../../../../../components/atoms/categoriesAtoms";
+import { selectCarModelAtom, selectCarBrandAtom, selectCarVariantAtom, selectCityAtom, selectBrandAtom, selectOnRoadPriceModelAtom } from "../../../../../../../components/atoms/categoriesAtoms";
 import { useAtom } from 'jotai';
 import VariantsOverview from "../../../../../../../components/variants/VariantsOverview";
 import VariantsDescription from "../../../../../../../components/variants/VariantsDescription";
@@ -50,11 +50,13 @@ const ModelDetails = () => {
   const [, setCityData] = useAtom(selectCityAtom);
   const [cityCode, setCityCode] = useState(1);
   const [, setBrandData] = useAtom(selectBrandAtom);
+  const [, setOnRoadPriceModelAtom] = useAtom(selectOnRoadPriceModelAtom);
   const router = useRouter();
   const [cityOptions, setCityOptions] = useState([]);
 
   const handleCityCodeChange = (data) => {
     setCityCode(data.value);
+    setCityData(data.value);
   }
 
   useEffect(() => {
@@ -165,7 +167,7 @@ const ModelDetails = () => {
     setCityOptions(loadedCityOptions);
   }, []);
 
-  function capitalizeFirstLetter(string) {
+  function capitalizeFirstLetter(string) { 
     if (!string) return string;
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
@@ -176,6 +178,15 @@ const ModelDetails = () => {
     localStorage.setItem('dealer-type', JSON.stringify({ brand: brandId, city: cityCode }))
     const matchingCity = cityOptions?.find(option => option.value == cityCode);
     router.push(`/dealers/list/${carModelDetails?.carBrand?.brandName}/${matchingCity?.label}`);
+  }
+
+  const handleGetOnRoadPriceCLick = (brandId) => {
+    setCityData(cityCode);
+    setBrandData(carModelDetails?.carBrand?.brandId);
+    setOnRoadPriceModelAtom(carModelDetails?._id);
+    localStorage.setItem('onroadPriceFor', JSON.stringify({ brand: brandId, model: carModelDetails?._id, city: cityCode }));
+    const matchingCity = cityOptions?.find(option => option.value == cityCode);
+    router.push(`/onroadprice/${carModelDetails?.modelName?.split(' ').join('-')}/${matchingCity?.label}`);
   }
 
   return (
@@ -218,7 +229,7 @@ const ModelDetails = () => {
 
           <div className="row">
             <div className="col-lg-8 col-xl-12">
-              <VariantProductGallary carModelDetails={carModelDetails} carVariantsList={carVariantsList} carVariant={carVariant} onDealerClick={handleDealerCLick} />
+              <VariantProductGallary carModelDetails={carModelDetails} carVariantsList={carVariantsList} carVariant={carVariant} onDealerClick={handleDealerCLick} onGetOnRoadPriceCLick={handleGetOnRoadPriceCLick} />
               {/* End Car Gallery */}
               <div className="d-flex flex-wrap gap-4">
                 <div className="col-lg-8 col-xl-8">

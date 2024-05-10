@@ -1,22 +1,38 @@
 "use client";
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Accordion, Button, Col, DropdownDivider, OverlayTrigger, Row, Tab, Tabs, Tooltip } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ContactDealerForm from '../../../common/contactdealerForm/ContactDealerForm';
 import styles from './productDescription.module.css';
+import { useAtom } from 'jotai';
+import { selectCityAtom } from '../../../atoms/categoriesAtoms';
+import statesCitiesList from '../../../../../public/jsondata/state-and-city.json';
 
 
 const ProductDescripitons = ({ carModelDetails, carVariantsList }) => {
 
   const [key, setKey] = useState('all');
+  const [cityData, setCityData] = useAtom(selectCityAtom);
+  const [cityOptions, setCityOptions] = useState([]);
 
   const uniqueFuelTypes = [...new Set(carVariantsList?.flatMap(variant => variant.fuelAndPerformance.fuelType))];
 
   const handleViewVariantHandler = (variant) => {
     router.push(`/listing-single-v3/${variant?._id}`)
   }
+
+  // Populate city options
+  useEffect(() => {
+    const loadedCityOptions = Object.keys(statesCitiesList)?.flatMap(state => (
+      statesCitiesList[state].map(city => ({
+        value: city.id.toString(),
+        label: city.city
+      }))
+    ));
+    setCityOptions(loadedCityOptions);
+  }, []);
 
   const calculateTotalPrice = (variant) => {
     const exShowroomPrice = Number(variant?.pricingDetails?.exShowroomPrice) || 0;
@@ -173,7 +189,7 @@ const ProductDescripitons = ({ carModelDetails, carVariantsList }) => {
         </Card>
         <div className="col-lg-8 col-xl-8 col">
           <div className='mt10'>
-            <h2>{carModelDetails?.modelName} On Road Price in Jaipur</h2>
+            <h2>{carModelDetails?.modelName} On Road Price in <span data-bs-toggle="modal" data-bs-target="#onRoadPriceForm" style={{ color: 'blue', textDecoration: 'underline', cursor: 'pointer' }}>{cityOptions?.find(option => option.value == cityData)?.label}<i class="fa-solid fa-pen-to-square" style={{fontSize: '15px'}}></i></span></h2>
           </div>
           <Tabs
             id="controlled-tab-example"
@@ -189,23 +205,7 @@ const ProductDescripitons = ({ carModelDetails, carVariantsList }) => {
             {renderAccordion(variant => variant.fuelAndPerformance.fuelType === fuelType)}
           </Tab>
         ))}
-            {/* {carVariantsList?.map(variant => variant?.carModel?.fuelType?.map(type => {
-              return <Tab eventKey={type} title={type} key={variant?._id}>
-                {renderAccordion(variant => {
-                  return variant?.fuelAndPerformance.fuelType === type
-
-                })}
-              </Tab>
-            }))} */}
-
-            {/* <Tab eventKey="petrol" title="Petrol">
-          {renderAccordion(variant => variant?.fuelAndPerformance?.fuelType === 'Petrol')}
-        </Tab>
-        <Tab eventKey="automatic" title="Automatic">
-          {renderAccordion(variant => variant?.fuelAndPerformance?.fuelType === 'Automatic')}
-        </Tab> */}
           </Tabs>
-
         </div>
       </div>
 
