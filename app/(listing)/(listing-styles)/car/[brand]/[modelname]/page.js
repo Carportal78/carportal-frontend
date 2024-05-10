@@ -15,15 +15,16 @@ import Descriptions from "../../../../../components/listing/listing-single/Descr
 import Link from "next/link";
 import ReleatedCar from "../../../../../components/listing/listing-single/ReleatedCar.js";
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import VariantsList from "../../../../../components/listing/listing-single/Variants.js";
 import RecentlyViewed from "../../../../../components/listing/sidebar/RecentlyViewed.js";
 import BannerWidget from "../../../../../components/common/BannerWidget.js";
-import { selectCarModelAtom, selectCarBrandAtom, selectCarVariantAtom } from "../../../../../components/atoms/categoriesAtoms.js";
+import { selectCarModelAtom, selectCarBrandAtom, selectCarVariantAtom, selectCityAtom, selectBrandAtom, selectOnRoadPriceModelAtom } from "../../../../../components/atoms/categoriesAtoms.js";
 import { useAtom } from 'jotai';
 import VariantsDescription from "../../../../../components/variants/VariantsDescription.js";
 import ModelsOverview from "../../../../../components/pages/modelspage/ModelsOverview.js";
 import ImagesViewDialog from "../../../../../components/pages/modelspage/ImagesViewDialog.js";
+import statesCitiesList from '../../../../../../public/jsondata/state-and-city.json';
 
 const metadata = {
   title: "Car Models || Carportal - Automotive & Car Dealer",
@@ -45,6 +46,11 @@ const ModelDetails = () => {
   const [selectCarVariantData, setSelectCarVariantData] = useAtom(selectCarVariantAtom);
   const [cityCode, setCityCode] = useState(1);
   const [modelid, setModelId] = useState('');
+  const [, setCityData] = useAtom(selectCityAtom);
+  const [, setBrandData] = useAtom(selectBrandAtom);
+  const [, setOnRoadPriceModelAtom] = useAtom(selectOnRoadPriceModelAtom);
+  const router = useRouter();
+  const [cityOptions, setCityOptions] = useState([]);
 
   useEffect(() => {
     const modelDetails = JSON.parse(localStorage.getItem('model-details'));
@@ -95,6 +101,17 @@ const ModelDetails = () => {
     });
   },[modelid])
 
+  // Populate city options
+  useEffect(() => {
+    const loadedCityOptions = Object.keys(statesCitiesList)?.flatMap(state => (
+      statesCitiesList[state].map(city => ({
+        value: city.id.toString(),
+        label: city.city
+      }))
+    ));
+    setCityOptions(loadedCityOptions);
+  }, []);
+
     // Fetch car models based on selected brand
     useEffect(() => {
         const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';
@@ -124,6 +141,15 @@ const ModelDetails = () => {
     function capitalizeFirstLetter(string) {
       if (!string) return string;
       return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    const handleGetOnRoadPriceCLick = (brandId) => {
+      setCityData(cityCode);
+      setBrandData(carModelDetails?.carBrand?.brandId);
+      setOnRoadPriceModelAtom(carModelDetails?._id);
+      localStorage.setItem('onroadPriceFor', JSON.stringify({ brand: brandId, model: carModelDetails?._id, city: cityCode }));
+      const matchingCity = cityOptions?.find(option => option.value == cityCode);
+      router.push(`/onroadprice/${carModelDetails?.modelName?.split(' ').join('-')}/${matchingCity?.label}`);
     }
 
   return (
@@ -166,7 +192,7 @@ const ModelDetails = () => {
 
           <div className="row">
             <div className="col-lg-8 col-xl-12"> 
-              <ProductGallery carModelDetails={carModelDetails} carVariantsList={carVariantsList} relatedCars={relatedCars} />
+              <ProductGallery carModelDetails={carModelDetails} carVariantsList={carVariantsList} relatedCars={relatedCars} onGetOnRoadPriceCLick={handleGetOnRoadPriceCLick} />
               {/* End Car Gallery */}
               <div className="d-flex flex-wrap gap-4">
               <div className= "col-lg-8 col-xl-8" >

@@ -125,7 +125,7 @@ function OffCanvasExampleCompare({ carVariantsList, name, relatedCars, carModelD
   );
 }
 
-export default function ProductGallery({ carModelDetails, carVariantsList, relatedCars }) {
+export default function ProductGallery({ carModelDetails, carVariantsList, relatedCars, onGetOnRoadPriceCLick }) {
   const optionGroup = [
     {
       label: "Picnic",
@@ -172,6 +172,10 @@ export default function ProductGallery({ carModelDetails, carVariantsList, relat
     setSelectCarBrandData(carModelDetails?.carBrand);
     setSelectCarModelData(carModelDetails);
     setSelectCarVariantData({});
+  }
+
+  function handleRedirectToGetOnroadPage() {
+    onGetOnRoadPriceCLick(carModelDetails?._id);
   }
 
   return (
@@ -249,8 +253,9 @@ export default function ProductGallery({ carModelDetails, carVariantsList, relat
             </div>
             <div className="d-flex flex-column flex-md-row mt-0">
               <h4 className="mr10">₹ {carModelDetails?.priceRange?.minPrice} {carModelDetails?.priceRange?.minPriceType} - ₹ {carModelDetails?.priceRange?.maxPrice} {carModelDetails?.priceRange?.maxPriceType}*</h4>
-              <Link href={`/onroadprice/${carModelDetails?._id}`} className="tdu color-black mt-md-0 c">Get On Road Price</Link>
-            </div>
+              <a onClick={handleRedirectToGetOnroadPage} className="tdu mt-md-0 color-black pointer">Get On Road Price</a>
+            </div> 
+            {/* <div><span style={{ fontSize: '12px' }}>*Ex-showroom price in</span> <span data-bs-toggle="modal" data-bs-target="#exShowroomPriceForm" style={{ color: 'blue', textDecoration: 'underline', cursor: 'pointer' }}>{carVariant?.pricingDetails?.city}</span></div> */}
             <div className="d-flex">
               <strong>Body Type:</strong> <span className="ml5">{carModelDetails?.bodyType?.replace('-', ' ')}</span>
             </div>
