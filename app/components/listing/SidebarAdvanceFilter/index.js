@@ -7,22 +7,21 @@ import { carFilters } from "../../../components/atoms/categoriesAtoms"
 const SidebarAdvnaceFilter = ({ carModelsList, carBrandsList, onSearchClick }) => {
     const [selectedFilters, setSelectedFilters] = useAtom(carFilters);
     const [isFilterChanged, setIsFilterChanges] = useState(false);
-    const queryParams = new URLSearchParams(window.location.search);
-    const bodyType = queryParams.get('bodyType');
-    const brandType = queryParams.get('brand');
-    const budget = queryParams.get('budget');
-    const fuelType = queryParams.get('fuelType');
-    const transmissionType = queryParams.get('transmissionType');
 
     useEffect(() => {
+      const queryParams = new URLSearchParams(window.location.search);
+      const bodyType = queryParams?.get('bodyType');
+      const brandType = queryParams?.get('brand');
+      const budget = queryParams?.get('budget');
+      const fuelType = queryParams?.get('fuelType');
+      const transmissionType = queryParams?.get('transmissionType');
       const filters = selectedFilters
       
       if (bodyType) {
-        filters.bodyType = bodyType
+        filters.bodyType = bodyType;
         setSelectedFilters(filters);
       }
   
-      
       if(brandType) {
         filters.brand = brandType
         setSelectedFilters(filters);
@@ -45,20 +44,7 @@ const SidebarAdvnaceFilter = ({ carModelsList, carBrandsList, onSearchClick }) =
         filters.transmissionType.push(transmissionType)
         setSelectedFilters(filters);
       }
-  
-      // const seatingCapacity = queryParams.get('seatingCapacity');
-      // if(seatingCapacity) {
-      //   filters.price = seatingCapacity
-      //   setSeatingCapacityFilter(filters);
-      // }
-      // onSearchClick(selectedFilters);
-    }, [bodyType, fuelType, budget, transmissionType, brandType ]);
-
-    // useEffect(() => {
-    //   if(selectedFilters?.price?.length > 0 && carModelsList.length) {
-    //     onSearchClick(selectedFilters);
-    //   }
-    // },[])
+    }, []);
 
     useEffect(() => {
       if(isFilterChanged) {

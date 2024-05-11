@@ -125,7 +125,7 @@ function OffCanvasExampleCompare({ carVariantsList, name, relatedCars, carModelD
   );
 }
 
-export default function ProductGallery({ carModelDetails, carVariantsList, relatedCars, onGetOnRoadPriceCLick }) {
+export default function ProductGallery({ carModelDetails, carVariantsList, relatedCars, onDealerClick, onGetOnRoadPriceCLick }) {
   const optionGroup = [
     {
       label: "Picnic",
@@ -165,7 +165,7 @@ export default function ProductGallery({ carModelDetails, carVariantsList, relat
   }
 
   function handleRedirectToDealersPage() {
-    router.push(`/dealers/${carModelDetails?.carBrand?._id}`); 
+    onDealerClick(carModelDetails?.carBrand?._id);
   }
 
   function handleContactDealer() {

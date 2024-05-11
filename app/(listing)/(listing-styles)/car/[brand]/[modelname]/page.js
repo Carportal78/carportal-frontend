@@ -36,11 +36,11 @@ const ModelDetails = () => {
 
   const [carModelDetails, setCarModelDetails] = useState({});
 
-  const [relatedCars,setRelatedCars] = useState([]);
+  const [relatedCars, setRelatedCars] = useState([]);
 
   const [carModelsList, setCarModelsList] = useState([]);
   const [carVariantsList, setCarVariantsList] = useState([]);
-  const [isModelsLoading,setIsModelsLoading] = useState(false);
+  const [isModelsLoading, setIsModelsLoading] = useState(false);
   const [selectCarModelData, setSelectCarModelData] = useAtom(selectCarModelAtom);
   const [selectCarBrandData, setSelectCarBrandData] = useAtom(selectCarBrandAtom);
   const [selectCarVariantData, setSelectCarVariantData] = useAtom(selectCarVariantAtom);
@@ -54,52 +54,56 @@ const ModelDetails = () => {
 
   useEffect(() => {
     const modelDetails = JSON.parse(localStorage.getItem('model-details'));
-    if(modelDetails) {
-    setModelId(modelDetails?._id);
+    if (modelDetails) {
+      setModelId(modelDetails?._id);
     }
   }, [brand, modelName])
 
   useEffect(() => {
-    const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';  
-    const relatedCars = fetch(`https://api.univolenitsolutions.com/v1/automobile/get/carmodels/bodyType/${carModelDetails?.bodyType}/for/65538448b78add9eaa02d417`, {
-    headers: {
-        'x-api-key': apiKey
-      }
-    }).then(response => response.json());
-    relatedCars.then(cars => {
-      if(cars?.data?.carModelsList) {
-        // const carsList = cars?.data?.carModelsList?.filter(car => car._id !== carModelsList._id);
-        // console.log('carsList ', carsList);
-        // setRelatedCars(carsList);
-        setRelatedCars(cars?.data?.carModelsList);
-      }
-    });
-  }, [carModelDetails]);
+    const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';
+    if (carModelDetails?.bodyType) {
+      const relatedCars = fetch(`https://api.univolenitsolutions.com/v1/automobile/get/carmodels/bodyType/${carModelDetails?.bodyType}/for/65538448b78add9eaa02d417`, {
+        headers: {
+          'x-api-key': apiKey
+        }
+      }).then(response => response.json());
+      relatedCars.then(cars => {
+        if (cars?.data?.carModelsList) {
+          // const carsList = cars?.data?.carModelsList?.filter(car => car._id !== carModelsList._id);
+          // console.log('carsList ', carsList);
+          // setRelatedCars(carsList);
+          setRelatedCars(cars?.data?.carModelsList);
+        }
+      });
+    }
+  }, [carModelDetails]); 
 
   useEffect(() => {
-    const apiUrl = `https://api.univolenitsolutions.com/v1/automobile/get/carmodel/${modelid}/citycode/${cityCode}/for/65538448b78add9eaa02d417`;
-    const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
+    if (modelid) {
+      const apiUrl = `https://api.univolenitsolutions.com/v1/automobile/get/carmodel/${modelid}/citycode/${cityCode}/for/65538448b78add9eaa02d417`;
+      const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
 
-    fetch(apiUrl, {
-      method: 'GET',
-      headers: {
-        'X-API-Key': apiKey,
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data && data.data && data.data) {
-        setCarModelDetails(data.data.carModel);
-        setCarVariantsList(data.data.carVariantList);
-        setSelectCarModelData(data.data.carModel);
-        setSelectCarVariantData(data.data.carVariantsList);
-      }
-    })
-    .catch(error => {
-      console.error('Error fetching data: ', error);
-    });
-  },[modelid])
+      fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+          'X-API-Key': apiKey,
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data && data.data && data.data) {
+            setCarModelDetails(data.data.carModel);
+            setCarVariantsList(data.data.carVariantList);
+            setSelectCarModelData(data.data.carModel);
+            setSelectCarVariantData(data.data.carVariantsList);
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching data: ', error);
+        });
+    }
+  }, [modelid])
 
   // Populate city options
   useEffect(() => {
@@ -112,19 +116,20 @@ const ModelDetails = () => {
     setCityOptions(loadedCityOptions);
   }, []);
 
-    // Fetch car models based on selected brand
-    useEffect(() => {
-        const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';
-        setIsModelsLoading(true);
-        // Replace this URL with the appropriate one for fetching models
-        fetch(`https://api.univolenitsolutions.com/v1/automobile/get/carmodels/${carModelDetails?.carBrand?._id}/for/65538448b78add9eaa02d417`, {
-          method: 'GET',
-          headers: {
-            'X-API-Key': apiKey,
-            'Content-Type': 'application/json'
-            // Include any necessary headers
-          }
-        })
+  // Fetch car models based on selected brand
+  useEffect(() => {
+    if (carModelDetails?.carBrand?._id) {
+      const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';
+      setIsModelsLoading(true);
+      // Replace this URL with the appropriate one for fetching models
+      fetch(`https://api.univolenitsolutions.com/v1/automobile/get/carmodels/${carModelDetails?.carBrand?._id}/for/65538448b78add9eaa02d417`, {
+        method: 'GET',
+        headers: {
+          'X-API-Key': apiKey,
+          'Content-Type': 'application/json'
+          // Include any necessary headers
+        }
+      })
         .then(response => response.json())
         .then(data => {
           if (data && data.data && data.data.carModelsList) {
@@ -135,22 +140,22 @@ const ModelDetails = () => {
           console.error('Error fetching car models: ', error);
         })
         .finally(() => setIsModelsLoading(false));
-    
-    }, [carModelDetails]);
-
-    function capitalizeFirstLetter(string) {
-      if (!string) return string;
-      return string.charAt(0).toUpperCase() + string.slice(1);
     }
+  }, [carModelDetails]);
 
-    const handleGetOnRoadPriceCLick = (brandId) => {
-      setCityData(cityCode);
-      setBrandData(carModelDetails?.carBrand?.brandId);
-      setOnRoadPriceModelAtom(carModelDetails?._id);
-      localStorage.setItem('onroadPriceFor', JSON.stringify({ brand: brandId, model: carModelDetails?._id, city: cityCode }));
-      const matchingCity = cityOptions?.find(option => option.value == cityCode);
-      router.push(`/onroadprice/${carModelDetails?.modelName?.split(' ').join('-')}/${matchingCity?.label}`);
-    }
+  function capitalizeFirstLetter(string) {
+    if (!string) return string;
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  const handleGetOnRoadPriceCLick = (brandId) => {
+    setCityData(cityCode);
+    setBrandData(carModelDetails?.carBrand?.brandId);
+    setOnRoadPriceModelAtom(carModelDetails?._id);
+    localStorage.setItem('onroadPriceFor', JSON.stringify({ brand: brandId, model: carModelDetails?._id, city: cityCode }));
+    const matchingCity = cityOptions?.find(option => option.value == cityCode);
+    router.push(`/onroadprice/${carModelDetails?.modelName?.split(' ').join('-')}/${matchingCity?.label}`);
+  }
 
   return (
     <div className="wrapper">
@@ -188,26 +193,26 @@ const ModelDetails = () => {
           </div>
           {/* End .row bradcrumb */}
           {/* End .row */}
-          
+
 
           <div className="row">
-            <div className="col-lg-8 col-xl-12"> 
+            <div className="col-lg-8 col-xl-12">
               <ProductGallery carModelDetails={carModelDetails} carVariantsList={carVariantsList} relatedCars={relatedCars} onGetOnRoadPriceCLick={handleGetOnRoadPriceCLick} />
               {/* End Car Gallery */}
               <div className="d-flex flex-wrap gap-4">
-              <div className= "col-lg-8 col-xl-8" >
-              <div className="listing_single_description">
-                <ModelsOverview carModelDetails={carModelDetails} carVariantsList={carVariantsList} />
-              </div>
-              <div className="listing_single_description">
-                <VariantsDescription carModelDetails={carModelDetails} carVariantsList={carVariantsList} name={carModelDetails?.modelName } />
-              </div>
-              <div className="listing_single_description" style={{backgroundColor: "rgb(255, 255, 255)", border: "1px solid rgb(234, 234, 234)", borderRadius: "8px", position: "relative", paddingLeft: "20px", paddingTop: "20px"}}>
-                {/* Key Specs of Hyundia Creta  */}
-              <div className="popular_listing_sliders single_page6_tabs row pr15">
-                {/* Nav tabs */}
-                <div className="nav nav-tabs col-lg-12" role="tablist">
-                  {/* <button
+                <div className="col-lg-8 col-xl-8" >
+                  <div className="listing_single_description">
+                    <ModelsOverview carModelDetails={carModelDetails} carVariantsList={carVariantsList} />
+                  </div>
+                  <div className="listing_single_description">
+                    <VariantsDescription carModelDetails={carModelDetails} carVariantsList={carVariantsList} name={carModelDetails?.modelName} />
+                  </div>
+                  <div className="listing_single_description" style={{ backgroundColor: "rgb(255, 255, 255)", border: "1px solid rgb(234, 234, 234)", borderRadius: "8px", position: "relative", paddingLeft: "20px", paddingTop: "20px" }}>
+                    {/* Key Specs of Hyundia Creta  */}
+                    <div className="popular_listing_sliders single_page6_tabs row pr15">
+                      {/* Nav tabs */}
+                      <div className="nav nav-tabs col-lg-12" role="tablist">
+                        {/* <button
                     className="nav-link"
                     id="nav-description-tab"
                     data-bs-toggle="tab"
@@ -218,90 +223,90 @@ const ModelDetails = () => {
                   >
                     Description
                   </button> */}
-                  <button
-                    className="nav-link active"
-                    id="nav-overview-tab"
-                    data-bs-toggle="tab"
-                    data-bs-target="#nav-overview"
-                    role="tab"
-                    aria-controls="nav-overview"
-                    aria-selected="false"
-                  >
-                    Overview
-                  </button>
-                  <button
-                    className="nav-link"
-                    id="nav-variants-tab"
-                    data-bs-toggle="tab"
-                    data-bs-target="#nav-variants"
-                    role="tab"
-                    aria-controls="nav-variants"
-                    aria-selected="false"
-                  >
-                    Variants
-                  </button>
-                </div>
-                {/* Tab panes */}
-                <div className="tab-content col-lg-12" id="nav-tabContent">
-                  <div
-                    className="tab-pane fade"
-                    id="nav-description"
-                    role="tabpanel"
-                    aria-labelledby="nav-description-tab"
-                  >
-                    <div className="listing_single_description bdr_none pl0 pr0">
-                      <h4 className="mb30">
-                        Description{" "}
-                      </h4>
-                      <Descriptions carModelDetails={carModelDetails} />
-                    </div>
-                    {/* End car descriptions */}
-                  </div>
-                  {/* End description tabcontent */}
+                        <button
+                          className="nav-link active"
+                          id="nav-overview-tab"
+                          data-bs-toggle="tab"
+                          data-bs-target="#nav-overview"
+                          role="tab"
+                          aria-controls="nav-overview"
+                          aria-selected="false"
+                        >
+                          Overview
+                        </button>
+                        <button
+                          className="nav-link"
+                          id="nav-variants-tab"
+                          data-bs-toggle="tab"
+                          data-bs-target="#nav-variants"
+                          role="tab"
+                          aria-controls="nav-variants"
+                          aria-selected="false"
+                        >
+                          Variants
+                        </button>
+                      </div>
+                      {/* Tab panes */}
+                      <div className="tab-content col-lg-12" id="nav-tabContent">
+                        <div
+                          className="tab-pane fade"
+                          id="nav-description"
+                          role="tabpanel"
+                          aria-labelledby="nav-description-tab"
+                        >
+                          <div className="listing_single_description bdr_none pl0 pr0">
+                            <h4 className="mb30">
+                              Description{" "}
+                            </h4>
+                            <Descriptions carModelDetails={carModelDetails} />
+                          </div>
+                          {/* End car descriptions */}
+                        </div>
+                        {/* End description tabcontent */}
 
-                  <div
-                    className="tab-pane fade show active"
-                    id="nav-overview"
-                    role="tabpanel"
-                    aria-labelledby="nav-overview-tab"
-                  >
-                    <div className="opening_hour_widgets p30 bdr_none pl0 pr0">
-                      <div className="wrapper">
-                        <h4 className="title">Overview</h4>
-                        <Overview carModelDetails={carModelDetails} />
+                        <div
+                          className="tab-pane fade show active"
+                          id="nav-overview"
+                          role="tabpanel"
+                          aria-labelledby="nav-overview-tab"
+                        >
+                          <div className="opening_hour_widgets p30 bdr_none pl0 pr0">
+                            <div className="wrapper">
+                              <h4 className="title">Overview</h4>
+                              <Overview carModelDetails={carModelDetails} />
+                            </div>
+                          </div>
+                          {/* End opening_hour_widgets */}
+                        </div>
+                        {/* End overview tabcontent */}
+
+                        <div
+                          className="tab-pane fade"
+                          id="nav-variants"
+                          role="tabpanel"
+                          aria-labelledby="nav-variants-tab"
+                        >
+                          <div className="user_profile_service bdr_none pl0 pr0">
+                            <VariantsList carModelDetails={carModelDetails} variants={carVariantsList} />
+                            {/* <Features /> */}
+                            <hr />
+                          </div>
+                        </div>
+
                       </div>
                     </div>
-                    {/* End opening_hour_widgets */}
-                  </div>
-                  {/* End overview tabcontent */}
 
-                  <div
-                    className="tab-pane fade"
-                    id="nav-variants"
-                    role="tabpanel"
-                    aria-labelledby="nav-variants-tab"
-                  >
-                    <div className="user_profile_service bdr_none pl0 pr0">
-                      <VariantsList carModelDetails={carModelDetails} variants={carVariantsList} />
-                      {/* <Features /> */}
-                      <hr />
-                    </div>
                   </div>
-             
                 </div>
-              </div>
-       
-          </div>
-              </div>
-              <div className="sidebar_recent_viewed_widgets">
-                <h4 className="title">Top Viewed Cars</h4>
-                <RecentlyViewed cars={carModelsList} /> 
-                <BannerWidget />
-              </div>
+                <div className="sidebar_recent_viewed_widgets">
+                  <h4 className="title">Top Viewed Cars</h4>
+                  <RecentlyViewed cars={carModelsList} />
+                  <BannerWidget />
+                </div>
               </div>
             </div>
 
-       
+
           </div>
           {/* End .row */}
         </div>
@@ -309,7 +314,7 @@ const ModelDetails = () => {
       </section>
       {/* End Agent Single Grid View */}
 
-      {carModelsList?.length>0 ? <section className="car-for-rent bb1 pb-2" >
+      {carModelsList?.length > 0 ? <section className="car-for-rent bb1 pb-2" >
         <div className="container">
           <div className="row">
             <div className="col-sm-6">
@@ -349,7 +354,7 @@ const ModelDetails = () => {
       </section> : ' '};
 
       {/* Car For Rent */}
-      {relatedCars?.length>0 ? <section className="car-for-rent bb1 pt-2" >
+      {relatedCars?.length > 0 ? <section className="car-for-rent bb1 pt-2" >
         <div className="container">
           <div className="row">
             <div className="col-sm-6">
@@ -408,7 +413,7 @@ const ModelDetails = () => {
 
       <div
         className="sign_up_modal modal fade"
-        id="imagesViewDialog" 
+        id="imagesViewDialog"
         data-backdrop="static"
         data-keyboard=""
         tabIndex={-1}

@@ -1,3 +1,4 @@
+"use client"
 import Footer from "../../../../components/common/Footer";
 import DefaultHeader from "../../../../components/common/DefaultHeader";
 import HeaderSidebar from "../../../../components/common/HeaderSidebar";
@@ -8,8 +9,9 @@ import CarItems from "../../../../components/listing/listing-styles/listing-v6/C
 import SidebarAdvnaceFilter from "../../../../components/listing/SidebarAdvanceFilter";
 import ListGridFilter2 from "../../../../components/listing/ListGridFilter2";
 
-export const metadata = {
-  title: "Listing || Carportal - Automotive & Car Dealer",
+const metadata = {
+  title:
+    "Car Blog || Carportal - Automotive & Car Dealer",
 };
 
 const ListingV3 = () => {
@@ -24,7 +26,6 @@ const ListingV3 = () => {
         <HeaderSidebar />
       </div>
       {/* Sidebar Panel End */}
-
       {/* header top */}
       <HeaderTop />
       {/* End header top */}
@@ -32,11 +33,9 @@ const ListingV3 = () => {
       {/* Main Header Nav */}
       <DefaultHeader />
       {/* End Main Header Nav */}
-
       {/* Main Header Nav For Mobile */}
       <MobileMenu />
       {/* End Main Header Nav For Mobile */}
-
       {/* Inner Page Breadcrumb */}
       <section className="inner_page_breadcrumb">
         <div className="container">

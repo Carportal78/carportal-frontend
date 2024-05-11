@@ -90,7 +90,7 @@ export default function VariantProductGallery({ carModelDetails, carVariantsList
   }
 
   function handleRedirectToDealersPage() {
-    onDealerClick(carModelDetails?.carBrand?._id);
+    onDealerClick(carModelDetails?.carBrand?._id);  
   }
 
   function handleRedirectToGetOnroadPage() {
