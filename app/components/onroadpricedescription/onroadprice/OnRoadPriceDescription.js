@@ -70,7 +70,7 @@ export default function OnRoadPriceDescription({ carModelDetails, carVariantsLis
                 {`${variant?.name} ${variant.carModel?.modelName}`}
               </Link>
             </td>
-            <td>₹ {`${Number(variant?.basicInformation?.onRoadPrice).toLocaleString('en-IN')}`}</td>
+            <td>₹ {`${Number(variant?.pricingDetails?.exShowroomPrice).toLocaleString('en-IN')}*`}</td>
           </tr>
         ))}
       </tbody>

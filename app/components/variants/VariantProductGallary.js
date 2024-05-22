@@ -82,7 +82,7 @@ export default function VariantProductGallery({ carModelDetails, carVariantsList
     label: variant.name, // The name of the variant to be displayed
   }));
 
-  function handleSelectGroup(selectedGroup) { 
+  function handleSelectGroup(selectedGroup) {  
     const modelId = carModelDetails?._id;
     const variantId = selectedGroup.value;
     router.push(`/variantDetails/${carModelDetails?.modelName?.split(' ')?.join('-')?.toLowerCase()}/${modelId}/variant/${variantId}`);
@@ -96,6 +96,19 @@ export default function VariantProductGallery({ carModelDetails, carVariantsList
   function handleRedirectToGetOnroadPage() {
     onGetOnRoadPriceCLick(carModelDetails?._id);
   }
+
+  const formatPrice = (price) => {
+    if (price >= 10000000) {
+      return (price / 10000000)?.toFixed(2) + ' crore';
+    } else if (price >= 100000) {
+      return (price / 100000)?.toFixed(2) + ' lakh';
+    } else if (price >= 1000) {
+      return (price / 1000)?.toFixed(2) + ' thousand';
+    } else {
+      return price?.toFixed(2);
+    }
+  };
+  
 
   return (
     <>
@@ -194,7 +207,7 @@ export default function VariantProductGallery({ carModelDetails, carVariantsList
               />
             </div>
             <div className="d-flex flex-column flex-md-row mt-2">
-              <h4 className="mr10">₹ {carModelDetails?.priceRange?.minPrice} {carModelDetails?.priceRange?.minPriceType}*</h4>
+              <h4 className="mr10">₹ {formatPrice(carVariant?.pricingDetails?.exShowroomPrice)}*</h4>
               <a onClick={handleRedirectToGetOnroadPage} className="tdu mt-md-0 color-black pointer">Get On Road Price</a>
             </div>
             <div><span style={{ fontSize: '12px' }}>*Ex-showroom price in</span> <span data-bs-toggle="modal" data-bs-target="#exShowroomPriceForm" style={{ color: 'blue', textDecoration: 'underline', cursor: 'pointer' }}>{carVariant?.pricingDetails?.city}</span></div>
