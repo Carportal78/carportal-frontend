@@ -125,7 +125,7 @@ function OffCanvasExampleCompare({ carVariantsList, name, relatedCars, carModelD
   );
 }
 
-export default function ProductGallery({ carModelDetails, carVariantsList, relatedCars, onDealerClick, onGetOnRoadPriceCLick }) {
+export default function ProductGallery({ carModelDetails, carVariantsList, relatedCars, onDealerClick, onGetOnRoadPriceCLick, imgCount }) {
   const optionGroup = [
     {
       label: "Picnic",
@@ -240,7 +240,7 @@ export default function ProductGallery({ carModelDetails, carVariantsList, relat
                 </SwiperSlide>
               ))}
             </Swiper>
-            <ImageColorCounter />
+            <ImageColorCounter totalImgCount= {imgCount} colorImgCount = {carModelDetails?.imagesByColor?.length || 0}  carModelDetails={carModelDetails} />
           </Col>
 
           <Col xs={12} md={4} className="order-md-3">

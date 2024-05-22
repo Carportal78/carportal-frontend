@@ -1,19 +1,100 @@
 import React, { useEffect, useState } from "react";
+import { Accordion, DropdownDivider, Tab, Tabs } from 'react-bootstrap';
+import { FreeMode, Navigation, Thumbs } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper-bundle.css";
+import "react-modal-video/scss/modal-video.scss";
+import Image from "next/image";
 
-const ImagesViewDialog = ({ carModelDetails, carVariantsList }) => { 
+const ImagesViewDialog = ({ carModelDetails, carVariantsList, activeGalleryTab }) => {
+  const [key, setKey] = useState(activeGalleryTab);
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
-  const [hideHeader, setHideHeader] = useState(false);
+  function combineCarAttributes(carModelDetails){
+    if(carModelDetails) {
+            // Destructure the parts of carModelDetails that you are interested in
+            const {
+              exterior = [],
+              interior = [],
+              keyFeatures = [],
+              imagesByColor = [],
+              media = []
+            } = carModelDetails;
+            // Concatenate the arrays directly to form a single array of objects
+            const combinedAttributes = [
+                ...exterior,
+                ...interior,
+                ...keyFeatures,
+                ...imagesByColor,
+                ...media
+            ].map(item => {
+                // Assuming all items are structured with 'image', 'featureType', 'featureDescription', and '_id'
+                return {
+                    image: item.image,
+                    featureType: item.featureType,
+                    featureDescription: item.featureDescription,
+                    _id: item._id,
+                    url: item.url,
+                    altText: item.altText
+                };
+            });
 
-  const handleHeaderHide = () => {
-    setHideHeader(true);
+            return combinedAttributes;
+    }
+    else return []
   }
 
-  useEffect(() => {
-    setHideHeader(false);
-  }, [])
-  
+  const imagesForAll = () => {
+    return combineCarAttributes(carModelDetails);
+  }
+
+  function renderCarGallery(images) {
+
+    if (!carModelDetails) return <div>Loading...</div>;  // Make sure carModelDetails is loaded
+
+    if (!images || !images.length) {
+      return <div>No images available</div>;
+    }
+
+    if (images && images?.length) {
+      return (
+        <div className="row">
+           <div className="col-md-12 order-md-1 order-1 large-thumb-user_profile">
+            <Swiper
+              style={{
+                "--swiper-navigation-color": "#fff",
+                "--swiper-pagination-color": "#fff",
+              }}
+              spaceBetween={10}
+              navigation={true}
+              thumbs={{ swiper: thumbsSwiper }}
+              modules={[FreeMode, Navigation, Thumbs]}
+              className="mySwiper2 sps_content single_product_grid user_profile"
+            >
+              {images?.map((slide, index) => (
+                <SwiperSlide key={index}>
+                  <div className="item">
+                    <Image
+                      width={100}
+                      height={100}
+                      style={{ objectFit: "cover" }}
+                      priority
+                      className="w-50 h-50"
+                      src={slide?.image?.url || slide?.url }
+                      alt={slide?.image?.altText || slide?.altText}
+                    />
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div> 
+        </div>
+      )
+    }
+  }
+
   return (
-    <div className="modal-dialog modal-dialog-centered">
+    <div className="modal-dialog modal-dialog-centered modal-lg" style={{ overflow: 'scroll' }}>
       <div className="modal-content">
         <div className="modal-header">
           <button
@@ -23,57 +104,38 @@ const ImagesViewDialog = ({ carModelDetails, carVariantsList }) => {
             aria-label="Close"
           />
         </div>
-        {/* End Modal close button */}
 
-        <div className="modal-body container p60">
-          {!hideHeader &&
-          <div className="row">
-            <div className="col-lg-12">
-              <ul
-                className="sign_up_tab nav nav-tabs"
-                id="myTab"
-                role="tablist"
+        <div className="modal-body container p20">
+          <div className="col-lg-12" style={{ fontSize: '20px', fontWeight: 600, color: "rgba(36, 39, 44, .7)", textTransform: 'uppercase' }}>
+            {carModelDetails?.modelName} Images
+          </div>
+          {carModelDetails &&
+            <div className="row p10 mt10" id="myTabContent">
+              <Tabs
+                id="car-gallery"
+                activeKey={key}
+                onSelect={(k) => setKey(k)}
+                className="mb-3"
               >
-                  <li className="nav-item">
-                    <a
-                      className={`nav-link active`}
-                      id={`1-tab`}
-                      data-bs-toggle="tab"
-                      href={`#1`}
-                      role="tab"
-                      aria-controls={1}
-                      aria-selected={true}
-                    >
-                      Images
-                    </a>
-                  </li>
-              </ul>
+                <Tab eventKey="all" title="ALL">
+                  {renderCarGallery(imagesForAll())}
+                </Tab>
+                <Tab eventKey="keyFeatures" title="KEY FEATURES">
+                  {renderCarGallery(carModelDetails?.keyFeatures)}
+                </Tab>
+                <Tab eventKey="exterior" title="EXTERIOR">
+                  {renderCarGallery(carModelDetails?.exterior)}
+                </Tab>
+                <Tab eventKey="interior" title="INTERIOR">
+                  {renderCarGallery(carModelDetails?.interior)}
+                </Tab>
+                <Tab eventKey="imagesByColor" title="IMAGES BY COLOR">
+                  {renderCarGallery(carModelDetails?.imagesByColor)}
+                </Tab>
+              </Tabs>
             </div>
-          </div>
-}
-          {/* End .row */}
-
-          <div className="tab-content container p0" id="myTabContent">
-              <div
-                className={`row mt30 tab-pane fade show active`}
-                id={1}
-                role="tabpanel"
-                aria-labelledby={`1-tab`}
-                key={1}
-              >
-                <div className="col-lg-12">
-                <div className="login_form">
-                {!hideHeader && <p>
-                    For Query? Please fill following details to contact a dealer for <strong style={{color: 'blue'}}>{carModelDetails?.modelName}</strong>.
-                  </p>}
-                  {/* <ContactDealer carModelDetails={carModelDetails} carVariantsList={carVariantsList} onCLickHideHeader={handleHeaderHide} /> */}
-                </div>
-                </div>
-              </div>
-          </div>
-          {/* End tab-content */}
+          }
         </div>
-        {/* End modal-body */}
       </div>
     </div>
   );

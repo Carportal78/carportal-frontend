@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import ModalVideo from "react-modal-video";
@@ -11,6 +11,7 @@ import { Container, Row, Col, Button, FormLabel } from 'react-bootstrap';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Select from "react-select";
 import { useRouter } from "next/navigation";
+import ImageColorCounter from "../../components/pages/modelspage/imagecolorCount";
 
 function OffCanvasExample({ name, ...props }) {
   const [show, setShow] = useState(false);
@@ -64,7 +65,7 @@ function OffCanvasExampleCompare({ name, ...props }) {
   );
 }
 
-export default function VariantProductGallery({ carModelDetails, carVariantsList, carVariant, onDealerClick, onGetOnRoadPriceCLick }) {
+export default function VariantProductGallery({ carModelDetails, carVariantsList, carVariant, onDealerClick, onGetOnRoadPriceCLick, imgCount }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [isOpen, setOpen] = useState(false);
   const [videoId, setVideoId] = useState("");
@@ -171,6 +172,7 @@ export default function VariantProductGallery({ carModelDetails, carVariantsList
                   {/* </div> */}
                 </SwiperSlide>
               ))}
+              <ImageColorCounter totalImgCount= {imgCount} colorImgCount = {carModelDetails?.imagesByColor?.length || 0}  carModelDetails={carModelDetails} />
             </Swiper>
           </Col>
 

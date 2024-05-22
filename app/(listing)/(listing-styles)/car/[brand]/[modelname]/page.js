@@ -33,10 +33,11 @@ const metadata = {
 const ModelDetails = () => {
 
   const { brand, modelName } = useParams();
-
+  const [activeGalleryTab, setActiveGalleryTab] = useState('all')
   const [carModelDetails, setCarModelDetails] = useState({});
 
   const [relatedCars, setRelatedCars] = useState([]);
+  const [totalImgCount, setTotalImgCount] = useState(0);
 
   const [carModelsList, setCarModelsList] = useState([]);
   const [carVariantsList, setCarVariantsList] = useState([]);
@@ -83,27 +84,28 @@ const ModelDetails = () => {
       const apiUrl = `https://api.univolenitsolutions.com/v1/automobile/get/carmodel/${modelid}/citycode/${cityCode}/for/65538448b78add9eaa02d417`;
       const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
 
-      fetch(apiUrl, {
-        method: 'GET',
-        headers: {
-          'X-API-Key': apiKey,
-          'Content-Type': 'application/json'
-        }
-      })
-        .then(response => response.json())
-        .then(data => {
-          if (data && data.data && data.data) {
-            setCarModelDetails(data.data.carModel);
-            setCarVariantsList(data.data.carVariantList);
-            setSelectCarModelData(data.data.carModel);
-            setSelectCarVariantData(data.data.carVariantsList);
-          }
-        })
-        .catch(error => {
-          console.error('Error fetching data: ', error);
-        });
-    }
-  }, [modelid])
+    fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'X-API-Key': apiKey,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data && data.data && data.data) {
+        setCarModelDetails(data.data.carModel);
+        getImgCount(data.data.carModel)
+        setCarVariantsList(data.data.carVariantList);
+        setSelectCarModelData(data.data.carModel);
+        setSelectCarVariantData(data.data.carVariantsList);
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching data: ', error);
+    });
+  }
+  },[modelid])
 
   // Populate city options
   useEffect(() => {
@@ -196,8 +198,8 @@ const ModelDetails = () => {
 
 
           <div className="row">
-            <div className="col-lg-8 col-xl-12">
-              <ProductGallery carModelDetails={carModelDetails} carVariantsList={carVariantsList} relatedCars={relatedCars} onGetOnRoadPriceCLick={handleGetOnRoadPriceCLick} />
+            <div className="col-lg-8 col-xl-12"> 
+              <ProductGallery carModelDetails={carModelDetails} carVariantsList={carVariantsList} relatedCars={relatedCars} onGetOnRoadPriceCLick={handleGetOnRoadPriceCLick} setActiveGalleryTab={setActiveGalleryTab} imgCount={totalImgCount}/>
               {/* End Car Gallery */}
               <div className="d-flex flex-wrap gap-4">
                 <div className="col-lg-8 col-xl-8" >
@@ -419,7 +421,18 @@ const ModelDetails = () => {
         tabIndex={-1}
         aria-hidden="true"
       >
-        <ImagesViewDialog carModelDetails={carModelDetails} carVariantsList={carVariantsList} />
+        <ImagesViewDialog carModelDetails={carModelDetails} carVariantsList={carVariantsList} activeGalleryTab={activeGalleryTab} />
+      </div>
+
+      <div
+        className="sign_up_modal modal fade"
+        id="imagesViewColorDialog" 
+        data-backdrop="static"
+        data-keyboard=""
+        tabIndex={-1}
+        aria-hidden="true"
+      >
+        <ImagesViewDialog carModelDetails={carModelDetails} carVariantsList={carVariantsList} activeGalleryTab="imagesByColor" />
       </div>
       {/* Modal */}
       <div

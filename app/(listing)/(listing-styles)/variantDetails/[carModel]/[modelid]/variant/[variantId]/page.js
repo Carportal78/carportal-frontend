@@ -27,6 +27,7 @@ import VerticalTab from "../../../../../../../components/variants/varianttab/Ver
 import VariantProductGallary from "../../../../../../../components/variants/VariantProductGallary";
 import BreadCrumb from "../../../../../../../components/listing/listing-single/BreadCrumb";
 import statesCitiesList from '../../../../../../../../public/jsondata/state-and-city.json';
+import ImagesViewDialog from "../../../../../../../components/pages/modelspage/ImagesViewDialog";
 
 const metadata = {
   title: "Car Models || Carportal - Automotive & Car Dealer",
@@ -39,7 +40,8 @@ const ModelDetails = () => {
   const [carModelDetails, setCarModelDetails] = useState({});
 
   const [relatedCars, setRelatedCars] = useState([]);
-
+  const [totalImgCount, setTotalImgCount] = useState(0);
+  const [activeGalleryTab, setActiveGalleryTab] = useState('all')
   const [carModelsList, setCarModelsList] = useState([]);
   const [carVariantsList, setCarVariantsList] = useState([]);
   const [carVariant, setCarVariant] = useState({});
@@ -53,6 +55,19 @@ const ModelDetails = () => {
   const [, setOnRoadPriceModelAtom] = useAtom(selectOnRoadPriceModelAtom);
   const router = useRouter();
   const [cityOptions, setCityOptions] = useState([]);
+
+  const getImgCount = (data) => {
+    const {
+      exterior = [],
+      interior = [],
+      keyFeatures = [],
+      imagesByColor = [],
+      media = []
+  } = data;
+
+    const totalCount = exterior.length + interior.length + keyFeatures.length + imagesByColor.length + media.length;
+    setTotalImgCount(totalCount);
+  }
 
   const handleCityCodeChange = (data) => {
     setCityCode(data.value);
@@ -93,6 +108,7 @@ const ModelDetails = () => {
       .then(data => {
         if (data && data.data && data.data) {
           setCarModelDetails(data.data.carModel);
+          getImgCount(data.data.carModel)
           setCarVariantsList(data.data.carVariantList);
           setSelectCarModelData(data.data.carModel);
           setSelectCarVariantData(data.data.carVariantsList);
@@ -229,7 +245,7 @@ const ModelDetails = () => {
 
           <div className="row">
             <div className="col-lg-8 col-xl-12">
-              <VariantProductGallary carModelDetails={carModelDetails} carVariantsList={carVariantsList} carVariant={carVariant} onDealerClick={handleDealerCLick} onGetOnRoadPriceCLick={handleGetOnRoadPriceCLick} />
+              <VariantProductGallary carModelDetails={carModelDetails} carVariantsList={carVariantsList} carVariant={carVariant} onDealerClick={handleDealerCLick} onGetOnRoadPriceCLick={handleGetOnRoadPriceCLick} imgCount= {totalImgCount} />
               {/* End Car Gallery */}
               <div className="d-flex flex-wrap gap-4">
                 <div className="col-lg-8 col-xl-8">
@@ -443,7 +459,28 @@ const ModelDetails = () => {
         </div>
         {/* End .container */}
       </section> : ' '};
+      <div
+        className="sign_up_modal modal fade"
+        id="imagesViewDialog" 
+        data-backdrop="static"
+        data-keyboard=""
+        tabIndex={-1}
+        aria-hidden="true"
+      >
+        <ImagesViewDialog carModelDetails={carModelDetails} carVariantsList={carVariantsList} activeGalleryTab={activeGalleryTab} />
+      </div>
 
+      <div
+        className="sign_up_modal modal fade"
+        id="imagesViewColorDialog" 
+        data-backdrop="static"
+        data-keyboard=""
+        tabIndex={-1}
+        aria-hidden="true"
+      >
+        <ImagesViewDialog carModelDetails={carModelDetails} carVariantsList={carVariantsList} activeGalleryTab="imagesByColor" />
+      </div>
+  
       {/* Car For Rent */}
       {relatedCars?.length > 0 ? <section className="car-for-rent bb1 pt-2" >
         <div className="container">
