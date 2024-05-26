@@ -45,6 +45,11 @@ const CompareTable = () => {
   ?.map(car => car.id); 
   
   useEffect(() => {
+    const data = localStorage?.getItem('compare-data');
+    if(data) {
+      setCarDetails(JSON.parse(data))
+    }
+     else {
       const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';
       if (true) {
         setIsLoading(true)
@@ -61,6 +66,7 @@ const CompareTable = () => {
           setIsLoading(false)
           if (data  && data?.data) {
             setCarDetails(data?.data);
+            localStorage.setItem('compare-data', JSON.stringify(data?.data)); 
           }
         })
         .catch(error => {
@@ -68,6 +74,7 @@ const CompareTable = () => {
           console.error('Error fetching car details: ', error);
         })
       }
+     }
   },[]);
 
   const handleOnCompareClick = () => {

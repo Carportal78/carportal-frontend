@@ -57,7 +57,7 @@ const ImagesViewDialog = ({ carModelDetails, carVariantsList, activeGalleryTab }
     return (
       <div className="gallery-imagesByColor">
       {colorsObj.map((col, index) => (
-        <div className="gallery-colors" style={{ backgroundColor: col?.colorCode }}></div>
+        <div key={`color-${col?.colorCode}-index`} className="gallery-colors" style={{ backgroundColor: col?.colorCode }}></div>
       ))}
       </div>
     )

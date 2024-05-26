@@ -6,6 +6,9 @@ import EngineAndTransmisssions from "./EngineAndTransmission";
 import FuelAndPerformace from "./FuelAndPerformance";
 import SuspensionAndSteeringAndBrakes from "./SuspensionAndSteeringAndBrakes";
 import DimensionAndCapacity from "./DimensionAndCapacity";
+import ComfortAndConvinience from "./ComfortAndConvinience";
+import Safety from "./Safety";
+import EntertainmentAndCommunication from "./EntertainmentAndCommunication";
 import Interior from "./Interior";
 import Exterior from "./Exterior";
 
@@ -65,9 +68,7 @@ function VerticalTab({ carModelDetails, carVariant }) {
                   <DimensionAndCapacity carVariant={carVariant} />
               )}
               {tabId === "5" && (
-                <p>
-                  Settings content goes here. Trust fund seitan letterpress, keytar raw denim keffiyeh etsy.
-                </p>
+                <ComfortAndConvinience carVariant={carVariant} />
               )}
               {tabId === "6" && (
                 <Interior carVariant={carVariant} />
@@ -76,14 +77,10 @@ function VerticalTab({ carModelDetails, carVariant }) {
                 <Exterior carVariant={carVariant} />
               )}
               {tabId === "8" && (
-                <p>
-                  Settings content goes here. Trust fund seitan letterpress, keytar raw denim keffiyeh etsy.
-                </p>
+                <Safety carVariant={carVariant} />
               )}
-              {tabId === "" && (
-                <p>
-                  Settings content goes here. Trust fund seitan letterpress, keytar raw denim keffiyeh etsy.
-                </p>
+              {tabId === "9" && (
+                <EntertainmentAndCommunication carVariant={carVariant} />
               )}
             </TabPane>
           ))}

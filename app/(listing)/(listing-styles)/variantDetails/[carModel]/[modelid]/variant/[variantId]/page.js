@@ -108,7 +108,7 @@ const ModelDetails = () => {
       .then(data => {
         if (data && data.data && data.data) {
           setCarModelDetails(data.data.carModel);
-          getImgCount(data.data.carModel)
+          getImgCount(data?.data?.carModel)
           setCarVariantsList(data.data.carVariantList);
           setSelectCarModelData(data.data.carModel);
           setSelectCarVariantData(data.data.carVariantsList);

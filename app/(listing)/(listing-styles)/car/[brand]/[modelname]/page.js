@@ -145,6 +145,19 @@ const ModelDetails = () => {
     }
   }, [carModelDetails]);
 
+  const getImgCount = (data) => {
+    const {
+      exterior = [],
+      interior = [],
+      keyFeatures = [],
+      imagesByColor = [],
+      media = []
+  } = data;
+
+    const totalCount = exterior.length + interior.length + keyFeatures.length + imagesByColor.length + media.length;
+    setTotalImgCount(totalCount);
+  }
+
   function capitalizeFirstLetter(string) {
     if (!string) return string;
     return string.charAt(0).toUpperCase() + string.slice(1);

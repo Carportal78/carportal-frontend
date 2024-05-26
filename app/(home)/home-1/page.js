@@ -52,6 +52,32 @@ const Home_1 = () => {
   }, []);
 
   useEffect(() => {
+    const data = localStorage?.getItem('compare-data');
+    if(!data) {
+      const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';
+      if (true) {
+        fetch(`https://api.univolenitsolutions.com/v1/automobile/get/carinfo/for/65538448b78add9eaa02d417`,
+        {
+          method: 'GET',
+          headers: {
+            'X-API-Key': apiKey,
+            'Content-Type': 'application/json'
+          }
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data  && data?.data) {
+            localStorage.setItem('compare-data', JSON.stringify(data?.data));
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching car details: ', error);
+        })
+      }
+    }
+  },[]);
+
+  useEffect(() => {
     const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carCollections/for/65538448b78add9eaa02d417';
     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
 
