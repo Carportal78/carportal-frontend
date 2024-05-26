@@ -9,6 +9,11 @@ import Image from "next/image";
 const ImagesViewDialog = ({ carModelDetails, carVariantsList, activeGalleryTab }) => {
   const [key, setKey] = useState(activeGalleryTab);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [filteredImages, setFilteredImages] = useState([]);
+
+  useEffect(() => {
+    setFilteredImages(imagesForAll());
+  }, [carModelDetails]);
 
   function combineCarAttributes(carModelDetails){
     if(carModelDetails) {
@@ -48,6 +53,16 @@ const ImagesViewDialog = ({ carModelDetails, carVariantsList, activeGalleryTab }
     return combineCarAttributes(carModelDetails);
   }
 
+  const getColorCodes = () => {
+    return (
+      <div className="gallery-imagesByColor">
+      {colorsObj.map((col, index) => (
+        <div className="gallery-colors" style={{ backgroundColor: col?.colorCode }}></div>
+      ))}
+      </div>
+    )
+  }
+
   function renderCarGallery(images) {
 
     if (!carModelDetails) return <div>Loading...</div>;  // Make sure carModelDetails is loaded
@@ -73,7 +88,7 @@ const ImagesViewDialog = ({ carModelDetails, carVariantsList, activeGalleryTab }
             >
               {images?.map((slide, index) => (
                 <SwiperSlide key={index}>
-                  <div className="item">
+                  <div className="item imgDialog">
                     <Image
                       width={100}
                       height={100}
@@ -83,7 +98,10 @@ const ImagesViewDialog = ({ carModelDetails, carVariantsList, activeGalleryTab }
                       src={slide?.image?.url || slide?.url }
                       alt={slide?.image?.altText || slide?.altText}
                     />
+                  <div className="overlay-text" style={{ fontSize: '16px',fontWeight: '600', margin: '10px'}}>{slide?.featureType}</div>
                   </div>
+                  <div style={{ fontSize: '16px', fontWeight: '500', margin: '10px', textAlign: 'left'}}>{slide?.featureDescription}</div>
+                  {/* {showColorCodes && getColorCodes()} */}
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -142,4 +160,3 @@ const ImagesViewDialog = ({ carModelDetails, carVariantsList, activeGalleryTab }
 };
 
 export default ImagesViewDialog;
-8

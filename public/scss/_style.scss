@@ -24075,3 +24075,52 @@ input.quantity-num[type="number"]::-webkit-outer-spin-button {
   border-radius: 8px;
   overflow: hidden;
 }
+
+.imgDialog {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+
+.imgDialog img {
+  width: 750px !important;
+  height: 400px !important;
+
+  @media screen and (max-width: 768px) {
+    width: 300px !important;
+    height: 200px !important;
+  }
+}
+
+.overlay-text {
+  position: absolute;
+  top: 87%;
+  left: 2%;
+  text-align: center;
+
+  @media screen and (max-width: 768px) {
+    top: 80%;
+    left: 5%;
+  }
+}
+
+.swiper-button-prev, .swiper-button-next {
+  color: black !important
+}
+
+.swiper-button-disabled {
+  display: none !important;
+}
+
+.gallery-imagesByColor {
+  display: flex;
+  justify-content: center;
+}
+
+.gallery-colors {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin: 7px;
+}
