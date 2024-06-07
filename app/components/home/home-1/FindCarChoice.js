@@ -41,6 +41,10 @@ const budgetButtons = [
 
 const seatingCapacityButtons = [
   {
+    title: "4 Seater",
+    route: "4_seater",
+  },
+  {
     title: "5 Seater",
     route: "5_seater",
   },

@@ -63,7 +63,7 @@ const HeaderTop = () => {
                     </a>
                   </li>
                 ))}
-                <li className="list-inline-item">
+                {/* <li className="list-inline-item">
                   <a
                     href="#"
                     data-bs-toggle="modal"
@@ -80,7 +80,7 @@ const HeaderTop = () => {
                   >
                     Register
                   </a>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>
