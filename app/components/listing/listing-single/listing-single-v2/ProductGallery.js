@@ -20,8 +20,8 @@ function OffCanvasExample({ carVariantsList, name, relatedCars, carModelDetails,
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const currentCarDetails = compareCars.find(car => car?.models?.modelId === carModelDetails?._id)
-  const filterCurrentCarInCompareCar = compareCars.filter(car => car?.models?.modelId !== currentCarDetails?.models?.modelId)
+  const currentCarDetails = compareCars?.find(car => car?.models?.modelId === carModelDetails?._id)
+  const filterCurrentCarInCompareCar = compareCars?.filter(car => car?.models?.modelId !== currentCarDetails?.models?.modelId)
   const renderCompareCarsList = filterCurrentCarInCompareCar?.length > 10 ? filterCurrentCarInCompareCar.slice(0,10) : filterCurrentCarInCompareCar;
 
   return (
