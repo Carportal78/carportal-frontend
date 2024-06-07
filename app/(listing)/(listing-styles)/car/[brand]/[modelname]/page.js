@@ -37,6 +37,7 @@ const ModelDetails = () => {
   const [carModelDetails, setCarModelDetails] = useState({});
 
   const [relatedCars, setRelatedCars] = useState([]);
+  const [compareCars, setCompareCars] = useState([]);
   const [totalImgCount, setTotalImgCount] = useState(0);
 
   const [carModelsList, setCarModelsList] = useState([]);
@@ -78,6 +79,23 @@ const ModelDetails = () => {
       });
     }
   }, [carModelDetails]); 
+
+  useEffect(() => {
+    const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';
+    if (carModelDetails?.bodyType) {
+      const relatedCars = fetch(`https://api.univolenitsolutions.com/v1/automobile/get/carmodels/budget/${carModelDetails?.budget}/bodyType/${carModelDetails?.bodyType}/for/65538448b78add9eaa02d417`, {
+        headers: {
+          'x-api-key': apiKey
+        }
+      }).then(response => response.json());
+      relatedCars.then(cars => {
+        if (cars?.data) {
+          setCompareCars(cars?.data);
+        }
+      });
+    }
+  }, [carModelDetails]); 
+
 
   useEffect(() => {
     if (modelid) {
@@ -212,7 +230,7 @@ const ModelDetails = () => {
 
           <div className="row">
             <div className="col-lg-8 col-xl-12"> 
-              <ProductGallery carModelDetails={carModelDetails} carVariantsList={carVariantsList} relatedCars={relatedCars} onGetOnRoadPriceCLick={handleGetOnRoadPriceCLick} setActiveGalleryTab={setActiveGalleryTab} imgCount={totalImgCount}/>
+              <ProductGallery carModelDetails={carModelDetails} carVariantsList={carVariantsList} relatedCars={relatedCars} compareCars={compareCars} onGetOnRoadPriceCLick={handleGetOnRoadPriceCLick} setActiveGalleryTab={setActiveGalleryTab} imgCount={totalImgCount}/>
               {/* End Car Gallery */}
               <div className="d-flex flex-wrap gap-4">
                 <div className="col-lg-8 col-xl-8" >

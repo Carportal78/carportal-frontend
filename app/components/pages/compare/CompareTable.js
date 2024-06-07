@@ -24,7 +24,7 @@ const CompareTable = () => {
   ])
   const [cards, setCards] = useState(suggestedCompareData?.length ? [...suggestedCompareData, ...prevCards.slice(0, 3 - suggestedCompareData.length)] : [
     { id: '', make: '', model: '', variant: '', price: '', image: '', isEnabled: true, allFieldsSelected: false },
-    { id: '', make: '', model: '', variant: 'Renault Kiger RXE', price: '', image: '', isEnabled: false, allFieldsSelected: false },
+    { id: '', make: '', model: '', variant: '', price: '', image: '', isEnabled: false, allFieldsSelected: false },
     { id: '', make: '', model: '', variant: '', price: '', image: '', isEnabled: false, allFieldsSelected: false }
   ]);
 
@@ -106,6 +106,19 @@ const CompareTable = () => {
       })
     }
   };
+
+  useEffect(() => {
+    if(suggestedCompareData.length > 0) {
+      function checkNonEmptyIds(arr) {
+        return arr.filter(obj => obj.id !== '').length >= 2;
+      }
+      const check = checkNonEmptyIds(suggestedCompareData)
+      console.log(check)
+      if(check) {
+        handleOnCompareClick()
+      }
+    }
+  }, [])
 
   const handleAddCard = (index) => {
     if (index === 2) {
@@ -196,7 +209,6 @@ const CompareTable = () => {
   }
 
   const renderCarDetails = (index) => {
-    console.log('cqrds data ', cards[index]);
     return (
       <div key={`car-details-${index}`}>
         <img src={cards[index]?.image} style={{ position: 'relative' }} />
@@ -305,7 +317,7 @@ const CompareTable = () => {
               </tr>
           </thead>
           <tbody>
-              {key === 'basicinformation' && Object.keys(compareCarBasicInfo)?.map((infoKey, index) => (
+              {key === 'basicinformation' && compareCarBasicInfo && Object.keys(compareCarBasicInfo)?.map((infoKey, index) => (
                 <tr key={`infoKey-${index}`}>
                   <td className="compare-td td-font td-border">{infoKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</td>
                   {compareData?.map((car, index) => (
@@ -314,7 +326,7 @@ const CompareTable = () => {
                 </tr>
               ))}
   
-              {key === 'engineandtransmission' && Object.keys(compareCarEngineAndTransmission)?.map((infoKey, index) => (
+              {key === 'engineandtransmission' && compareCarEngineAndTransmission && Object.keys(compareCarEngineAndTransmission)?.map((infoKey, index) => (
                 <tr key={`infoKey-${index}`}>
                   <td className="compare-td td-font td-border">{infoKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</td>
                   {compareData?.map((car, index) => (
@@ -323,7 +335,7 @@ const CompareTable = () => {
                 </tr>
               ))}
   
-              {key === 'fuelandperformance' && Object.keys(compareCarFuelAndPerformance)?.map((infoKey, index) => (
+              {key === 'fuelandperformance' && compareCarFuelAndPerformance && Object.keys(compareCarFuelAndPerformance)?.map((infoKey, index) => (
                 <tr key={`infoKey-${index}`}>
                   <td className="compare-td td-font td-border">{infoKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</td>
                   {compareData?.map((car, index) => (
@@ -332,7 +344,7 @@ const CompareTable = () => {
                 </tr>
               ))}
   
-              {key === 'suspensionandsteeringandbrakes' && Object.keys(compareCarSuspensionAndSteeringAndBrakes)?.map((infoKey, index) => (
+              {key === 'suspensionandsteeringandbrakes' && compareCarSuspensionAndSteeringAndBrakes && Object.keys(compareCarSuspensionAndSteeringAndBrakes)?.map((infoKey, index) => (
                 <tr key={`infoKey-${index}`}>
                   <td className="compare-td td-font td-border">{infoKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</td>
                   {compareData?.map((car, index) => (
@@ -341,7 +353,7 @@ const CompareTable = () => {
                 </tr>
               ))}
   
-              {key === 'dimensionandcapacity' && Object.keys(compareCarDimensionAndCapacity)?.map((infoKey, index) => (
+              {key === 'dimensionandcapacity' && compareCarDimensionAndCapacity && Object.keys(compareCarDimensionAndCapacity)?.map((infoKey, index) => (
                 <tr key={`infoKey-${index}`}>
                   <td className="compare-td td-font td-border">{infoKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</td>
                   {compareData?.map((car, index) => (
@@ -350,7 +362,7 @@ const CompareTable = () => {
                 </tr>
               ))}
   
-              {key === 'interior' && Object.keys(compareCarInterior)?.map((infoKey, index) => (
+              {key === 'interior' && compareCarInterior && Object?.keys(compareCarInterior)?.map((infoKey, index) => (
                 <tr key={`infoKey-${index}`}>
                   <td className="compare-td td-font td-border">{infoKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</td>
                   {compareData?.map((car, index) => (
@@ -359,7 +371,7 @@ const CompareTable = () => {
                 </tr>
               ))}
   
-              {key === 'exterior' && Object.keys(compareCarExterior)?.map((infoKey, index) => (
+              {key === 'exterior' && compareCarExterior && Object?.keys(compareCarExterior)?.map((infoKey, index) => (
                 <tr key={`infoKey-${index}`}>
                   <td className="compare-td td-font td-border">{infoKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</td>
                   {compareData?.map((car, index) => (
@@ -368,7 +380,7 @@ const CompareTable = () => {
                 </tr>
               ))}
 
-              {key === 'comfortandconvinience' && Object.keys(compareCarComfortAndConvinience)?.map((infoKey, index) => (
+              {key === 'comfortandconvinience' && compareCarComfortAndConvinience && Object?.keys(compareCarComfortAndConvinience)?.map((infoKey, index) => (
                 <tr key={`infoKey-${index}`}>
                   <td className="compare-td td-font td-border">{infoKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</td>
                   {compareData?.map((car, index) => (
@@ -377,7 +389,7 @@ const CompareTable = () => {
                 </tr>
               ))}
 
-              {key === 'safety' && Object.keys(compareCarSafety)?.map((infoKey, index) => (
+              {key === 'safety' && compareCarSafety && Object?.keys(compareCarSafety)?.map((infoKey, index) => (
                   <tr key={`infoKey-${index}`}>
                     <td className="compare-td td-font td-border">{infoKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</td>
                     {compareData?.map((car, index) => (
@@ -386,7 +398,7 @@ const CompareTable = () => {
                   </tr>
               ))}
 
-              {key === 'entertainmentandcommunication' && Object.keys(compareCarEntertainmentAndCommunication)?.map((infoKey, index) => (
+              {key === 'entertainmentandcommunication' && compareCarEntertainmentAndCommunication && Object?.keys(compareCarEntertainmentAndCommunication)?.map((infoKey, index) => (
                 <tr key={`infoKey-${index}`}>
                   <td className="compare-td td-font td-border">{infoKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</td>
                   {compareData?.map((car, index) => (

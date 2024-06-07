@@ -1,4 +1,4 @@
-.card {
+.car-model-compare-card {
     width: 100%;
     height: auto;
     border: 1px solid #ccc;
@@ -7,34 +7,55 @@
     margin-bottom: 20px;
 }
 
+.card-detail{
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.car-model-compare{
+    width: 50%;
+    height: auto;
+}
+
+.versus {
+    position: absolute;
+    left: 47%;
+    top: 17%;
+    background: black;
+    border-radius: 50%;
+    width: 20px;
+    height: 19px;
+    color: white;
+    text-align: center;
+    font-size: 9px;
+    padding: 3px;
+}
+
 .card-detail {
     display: flex;
     flex-direction: row;
 }
 
 .compare-btn {
-    margin: 0px 20px 20px 20px;
+    width: 90%;
+    margin: 5px 17px 17px;
 }
 
-.compare1, .compare2 {
-    width: 50%;
-}
-
-.compare-card-details {
+.car-model-compare-card-details {
     padding: 10px;
 }
 
-.compare-card-make {
+.car-model-compare-card-make {
     font-size: 11px;
     margin-bottom: 0px;
 }
 
-.compare-card-model {
+.car-model-compare-card-model {
     font-size: 13px;
     font-weight: 600;
     margin-bottom: 0px;
 }
 
-.compare-card-price {
+.car-model-compare-card-price {
     font-size: 14px;
 }

@@ -16,25 +16,35 @@ import ImageColorCounter from "../../../..//components/pages/modelspage/imagecol
 import "./styles.scss"
 import { Button } from "react-bootstrap";
 
-function OffCanvasExample({ name, ...props  }) {
+function OffCanvasExample({ carVariantsList, name, relatedCars, carModelDetails, compareCars, router, setSuggestedCompareData, ...props  }) {
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const currentCarDetails = compareCars.find(car => car?.models?.modelId === carModelDetails?._id)
+  const filterCurrentCarInCompareCar = compareCars.filter(car => car?.models?.modelId !== currentCarDetails?.models?.modelId)
+  const renderCompareCarsList = filterCurrentCarInCompareCar?.length > 10 ? filterCurrentCarInCompareCar.slice(0,10) : filterCurrentCarInCompareCar;
 
   return (
     <>
-      <a variant="primary" onClick={handleShow} className="me-2" style={{ textDecoration: 'underline', cursor: 'pointer' }}>
+     <div onClick={handleShow}>
+     <p className="me-2" style={{ textDecoration: 'underline', cursor: 'pointer' }}>
         {name}
-      </a>
-
+      </p>
+      </div>
       <Offcanvas show={show} onHide={handleClose} {...props}>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title><h4 className="mt10">Compare any 2 cars</h4></Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          Some text as placeholder. In real life you can have the elements you
-          have chosen. Like, text, images, lists, etc.
+          {renderCompareCarsList?.map((car, index) => {
+            if(currentCarDetails?.models?.modelId !== car?.models?.modelId) {
+              const compareData = [currentCarDetails, car]
+              return <div style={{ position: 'relative'}}>
+              {renderCardCompare(compareData, index, router, setSuggestedCompareData, carVariantsList)}
+              <div className="versus">vs</div>
+              </div>
+            }
+          })}
         </Offcanvas.Body>
       </Offcanvas>
     </>
@@ -43,12 +53,12 @@ function OffCanvasExample({ name, ...props  }) {
 
 const handleOnCompareClick = (carsList, router, setSuggestedCompareData, carVariantsList) => {
   const extractedData = carsList?.map(item => ({
-    id: '',
-    make: item.carBrand.brandName || '',
-    model: item.modelName || '',
-    variant: '',
-    price: '',
-    image: item?.media?.[0].url,
+    id: item?.models?.variants?.[0]?.id || '',
+    make: item?.brandName || '',
+    model: item?.models?.modelName || '',
+    variant: item?.models?.variants?.[0]?.name || '',
+    price: item?.models?.variants?.[0]?.pricingDetails?.exShowroomPrice,
+    image: item?.models?.modelImage?.[0].url,
     isEnabled: true,
     allFieldsSelected: true
   }));
@@ -59,14 +69,14 @@ const handleOnCompareClick = (carsList, router, setSuggestedCompareData, carVari
 
 const compareCard = (img, make, model, price) => {
   return (
-    <div className="compare-card">
+    <>
       <img src={img} />
-      <div className="compare-card-details">
-        <p className="compare-card-make">{make}</p>
-        <p className="compare-card-model">{model}</p>
-        <p className="compare-card-price">{price}</p>
+      <div className="car-model-compare-card-details">
+        <p className="car-model-compare-card-make">{make}</p>
+        <p className="car-model-compare-card-model">{model}</p>
+        <p className="car-model-compare-card-price">{price}</p>
       </div>
-    </div>
+    </>
   )
 }
 
@@ -76,15 +86,13 @@ const formatPrice = (listing) => {
 
 const renderCardCompare = (carsList, index, router, setSuggestedCompareData, carVariantsList) => {
     return (
-    <div className="card">
+    <div className="car-model-compare-card">
       <div key={index} className="card-detail">
-        <div className="compare1">
-          {compareCard(carsList[0]?.media?.[0]?.url, carsList[0]?.carBrand?.brandName, carsList[0]?.modelName, formatPrice(carsList[0]?.priceRange))}
-        </div>
-  
-        <div className="compare2">
-          {compareCard(carsList[1]?.media?.[1]?.url, carsList[1]?.carBrand?.brandName, carsList[1]?.modelName, formatPrice(carsList[1]?.priceRange))}
-        </div>
+        {carsList.map((car, index) => (
+            <div key={car?.id} className='car-model-compare'>
+              {compareCard(car?.models?.modelImage?.[0]?.url, car?.brandName, car?.models?.modelName, formatPrice(car?.models?.priceRange))}
+            </div>
+        ))}
       </div>
       <Button variant="outline-secondary" className="compare-btn" onClick={() => handleOnCompareClick(carsList, router, setSuggestedCompareData, carVariantsList)}>
         <span className="flaticon-profit-report mr10 fz18 vam" />
@@ -94,12 +102,13 @@ const renderCardCompare = (carsList, index, router, setSuggestedCompareData, car
     )
 }
 
-function OffCanvasExampleCompare({ carVariantsList, name, relatedCars, carModelDetails, router, setSuggestedCompareData, ...props }) {
+function OffCanvasExampleCompare({ carVariantsList, name, relatedCars, carModelDetails, compareCars, router, setSuggestedCompareData, ...props }) {
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const renderCompareCarsList = relatedCars?.length > 10 ? relatedCars.slice(0,10) : relatedCars
+  const currentCarDetails = compareCars.find(car => car?.models?.modelId === carModelDetails?._id)
+  const filterCurrentCarInCompareCar = compareCars.filter(car => car?.models?.modelId !== currentCarDetails?.models?.modelId)
+  const renderCompareCarsList = filterCurrentCarInCompareCar?.length > 10 ? filterCurrentCarInCompareCar.slice(0,10) : filterCurrentCarInCompareCar;
 
   return (
     <>
@@ -115,8 +124,13 @@ function OffCanvasExampleCompare({ carVariantsList, name, relatedCars, carModelD
         </Offcanvas.Header>
         <Offcanvas.Body>
           {renderCompareCarsList?.map((car, index) => {
-            const compareData = [carModelDetails, car]
-            return renderCardCompare(compareData, index, router, setSuggestedCompareData, carVariantsList)
+            if(currentCarDetails?.models?.modelId !== car?.models?.modelId) {
+              const compareData = [currentCarDetails, car]
+              return <div style={{ position: 'relative'}}>
+              {renderCardCompare(compareData, index, router, setSuggestedCompareData, carVariantsList)}
+              <div className="versus">vs</div>
+              </div>
+            }
           })}
         </Offcanvas.Body>
       </Offcanvas>
@@ -124,7 +138,7 @@ function OffCanvasExampleCompare({ carVariantsList, name, relatedCars, carModelD
   );
 }
 
-export default function ProductGallery({ carModelDetails, carVariantsList, relatedCars, onDealerClick, onGetOnRoadPriceCLick, imgCount }) {
+export default function ProductGallery({ carModelDetails, carVariantsList, relatedCars, compareCars, onDealerClick, onGetOnRoadPriceCLick, imgCount }) {
   const optionGroup = [
     {
       label: "Picnic",
@@ -248,7 +262,7 @@ export default function ProductGallery({ carModelDetails, carVariantsList, relat
               {/* <a className="fz12 tdu color-blue" href="#">
                 Compare
               </a> */}
-              <OffCanvasExample key={1} placement={'end'} name={'Compare'} />
+              <OffCanvasExample key={1} placement={'end'} name={'Compare'} carVariantsList={carVariantsList} relatedCars={relatedCars} compareCars={compareCars} carModelDetails={carModelDetails} router={router} setSuggestedCompareData={setSuggestedCompareData} />
             </div>
             <div className="d-flex flex-column flex-md-row mt-0">
               <h4 className="mr10">₹ {carModelDetails?.priceRange?.minPrice} {carModelDetails?.priceRange?.minPriceType} - ₹ {carModelDetails?.priceRange?.maxPrice} {carModelDetails?.priceRange?.maxPriceType}*</h4>
@@ -278,7 +292,7 @@ export default function ProductGallery({ carModelDetails, carVariantsList, relat
 
             <div className="d-flex align-items-center mt-3 justify-content-center gap-5">
               <div className="me-3" style={{cursor: 'pointer'}} >
-                <OffCanvasExampleCompare key={1} placement={'end'} name={'Compare'} carVariantsList={carVariantsList} relatedCars={relatedCars} carModelDetails={carModelDetails} router={router} setSuggestedCompareData={setSuggestedCompareData} />
+                <OffCanvasExampleCompare key={1} placement={'end'} name={'Compare'} carVariantsList={carVariantsList} relatedCars={relatedCars} compareCars={compareCars} carModelDetails={carModelDetails} router={router} setSuggestedCompareData={setSuggestedCompareData} />
               </div>
               <div className="me-3" style={{cursor: 'pointer'}} data-bs-toggle="modal" data-bs-target="#variantListForm">
                 <Image width={30} height={30} src="/images/modeldetails/Variants.svg" alt="Image 2" className="ml10" fluid />
