@@ -56,7 +56,7 @@ function VerticalTab({ carModelDetails, carVariant }) {
           {["1", "2", "3", "4", "5", "6", "7", "8", "9"].map((tabId) => (
             <TabPane key={tabId} className={classnames("text-muted mt-md-0", { active: isTabActive(tabId) })} active={isTabActive(tabId)}>
               {tabId === "1" && (
-                  <EngineAndTransmisssions carVariant={carVariant} />
+                  <EngineAndTransmisssions carVariant={carVariant} /> 
               )}
               {tabId === "2" && (
                   <FuelAndPerformace carVariant={carVariant} />

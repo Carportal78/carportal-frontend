@@ -12,23 +12,23 @@ function FuelAndPerformace({ carVariant }) {
                     <Table bordered hover responsive>
                         <tbody>
                             <tr>
-                                <td>fuelType</td>
+                                <td>Fuel Type</td>
                                 <td>{carVariant?.fuelAndPerformance?.fuelType}</td>
                             </tr>
                             <tr>
-                                <td>mileageCity</td>
+                                <td>City Mileage</td>
                                 <td>{carVariant?.fuelAndPerformance?.mileageCity}</td>
                             </tr>
                             <tr>
-                                <td>mileageArai</td>
+                                <td>Arai Mileage</td>
                                 <td>{carVariant?.fuelAndPerformance?.mileageArai}</td>
                             </tr>
                             <tr>
-                                <td>fuelTankCapacity</td>
+                                <td>Fuel Tank Capacity</td>
                                 <td>{carVariant?.fuelAndPerformance?.fuelTankCapacity}</td>
                             </tr>
                             <tr>
-                                <td>emissionNormCompliance</td>
+                                <td>Emission Norm Compliance</td>
                                 <td>{carVariant?.fuelAndPerformance?.emissionNormCompliance}</td>
                             </tr>
                         </tbody>

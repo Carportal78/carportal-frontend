@@ -1,8 +1,5 @@
 "use client"
 import { Accordion, Button, ListGroup, OverlayTrigger, Tab, Tabs, Tooltip, Container, Row, Col } from "react-bootstrap";
-
-import ProductDescripitons from "../../shop/shop-single/pro-tab-content/ProductDescripitons";
-// import VariantDescripition from "../../shop/shop-single/pro-tab-content/VariantDescripition";
 import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";

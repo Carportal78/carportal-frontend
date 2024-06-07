@@ -21,51 +21,51 @@ function EngineAndTransmisssions({ carVariant }) {
                                 <td>{carVariant?.engineAndTransmission?.displacement}</td>
                             </tr>
                             <tr>
-                                <td>MaxTorque</td>
+                                <td>Max Torque (nm@rpm)</td>
                                 <td className="text-wrap">{carVariant?.engineAndTransmission?.maxTorque.replace('@', ' ')}</td>
                             </tr>
                             <tr>
-                                <td>noOfCylinders</td>
+                                <td>Number of Cylinders</td>
                                 <td>{carVariant?.engineAndTransmission?.noOfCylinders}</td>
                             </tr>
                             <tr>
-                                <td>maxPower</td>
+                                <td>Max Power (bhp@rpm)</td>
                                 <td>{carVariant?.engineAndTransmission?.maxPower?.replace('@', ' ')}</td>
                             </tr>
                             <tr>
-                                <td>valuePerCylinder</td>
+                                <td>Value Per Cylinder</td>
                                 <td>{carVariant?.engineAndTransmission?.valuePerCylinder}</td>
                             </tr>
                             <tr>
-                                <td>fuelSupplySystem</td>
+                                <td>Fuel Supply System</td>
                                 <td>{carVariant?.engineAndTransmission?.fuelSupplySystem}</td>
                             </tr>
                             <tr>
-                                <td>compressionRatio</td>
+                                <td>Compression Rati</td>
                                 <td>{carVariant?.engineAndTransmission?.compressionRatio}</td>
                             </tr>
                             <tr>
-                                <td>turboCharge</td>
+                                <td>Turbo Charge</td>
                                 <td>{carVariant?.engineAndTransmission?.turboCharge}</td>
                             </tr>
                             <tr>
-                                <td>transmissionType</td>
+                                <td>Transmission Type</td>
                                 <td>{carVariant?.engineAndTransmission?.transmissionType}</td>
                             </tr>
                             <tr>
-                                <td>gearBox</td>
+                                <td>Gear Box</td>
                                 <td>{carVariant?.engineAndTransmission?.gearBox}</td>
                             </tr>
                             <tr>
-                                <td>mildHybrid</td>
+                                <td>Mild Hybrid</td>
                                 <td>{carVariant?.engineAndTransmission?.mildHybrid}</td>
                             </tr>
                             <tr>
-                                <td>driverType</td>
+                                <td>Driver Type</td>
                                 <td>{carVariant?.engineAndTransmission?.driverType}</td>
                             </tr>
                             <tr>
-                                <td>cluchType</td>
+                                <td>Clutch Type</td>
                                 <td>{carVariant?.engineAndTransmission?.cluchType}</td>
                             </tr>
                         </tbody>

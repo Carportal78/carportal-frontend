@@ -1,115 +1,77 @@
-import React, { useState } from "react";
-import { Col, Nav, NavItem, NavLink, Row, TabPane, Table } from "react-bootstrap";
-import classnames from "classnames";
+import React from "react";
+import { Table } from "react-bootstrap";
 import './VerticalTab.css';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 
+const Safety = ({ carVariant }) => {
+  const safetyFields = [
+    { label: "Anti-Lock Braking System", key: "antiLockBrakingSystem" },
+    { label: "Brake Assist", key: "brakeAssist" },
+    { label: "Central Locking", key: "centralLocking" },
+    { label: "Power Door Locks", key: "powerDoorLocks" },
+    { label: "Child Safety Locks", key: "childSafetyLocks" },
+    { label: "Anti-Theft Alarm", key: "antiTheftAlarm" },
+    { label: "Number of Airbags", key: "noOfAirbags" },
+    { label: "Driver Airbag", key: "driverAirbag" },
+    { label: "Passenger Airbag", key: "passengerAirbag" },
+    { label: "Side Airbag Front", key: "sideAirbagFront" },
+    { label: "Day/Night Rear View Mirror", key: "dayNightRearViewMirror" },
+    { label: "Passenger Side Rear View Mirror", key: "passengerSideRearViewMirror" },
+    { label: "Halogen Headlamps", key: "halogenHeadlamps" },
+    { label: "Rear Seat Belts", key: "rearSeatBelts" },
+    { label: "Seat Belt Warning", key: "seatBeltWarning" },
+    { label: "Door Ajar Warning", key: "doorAjarWarning" },
+    { label: "Traction Control", key: "tractionControl" },
+    { label: "Adjustable Seats", key: "adjustableSeats" },
+    { label: "Tyre Pressure Monitor", key: "tyrePressureMonitor" },
+    { label: "Engine Immobilizer", key: "engineImmobilizer" },
+    { label: "Crash Sensor", key: "crashSensor" },
+    { label: "Engine Check Warning", key: "engineCheckWarning" },
+    { label: "EBD", key: "ebd" },
+    { label: "Electronic Stability Control", key: "electronicStabilityControl" },
+    { label: "Advanced Safety Features", key: "advanceSafetyFeatures" },
+    { label: "Rear Camera", key: "rearCamera" },
+    { label: "Speed Alert", key: "speedAlert" },
+    { label: "Speed Sensing Auto Door Lock", key: "speedSensingAutoDoorLock" },
+    { label: "ISO Fix Child Seat Mounts", key: "isofixChildSeatMounts" },
+    { label: "Pretensioners and Force Limiter Seatbelts", key: "pretensionersAndForceLimiterSeatbelts" },
+    { label: "Geo-Fence Alert", key: "geoFenceAlert" },
+    { label: "Hill Assist", key: "hillAssist" },
+    { label: "Impact Sensing Auto Door Unlock", key: "impactSensingAutoDoorUnlock" },
+    { label: "Electronic Brakeforce Distribution", key: "electronicBrakeforceDistribution" },
+    { label: "Global NCAP Safety Rating", key: "globalNCAPSafetyRating" },
+    { label: "Global NCAP Child Safety Rating", key: "globalNCAPChildSafetyRating" },
+    { label: "Additional Features", key: "additionalFeatures" },
+  ];
 
-function Safety({ carVariant }) {
+  const renderFieldValue = (value) => {
+    if (typeof value === "boolean") {
+      return value ? (
+        <FontAwesomeIcon icon={faCheck} style={{ color: 'green' }} />
+      ) : (
+        <FontAwesomeIcon icon={faTimes} style={{ color: 'red' }} />
+      );
+    }
+    return value || "N/A";
+  };
 
-    return (
-        <>
-            <div>
-                <div className="d-flex flex-column flex-grow-1">
-                    <Table bordered hover responsive>
-                        <tbody>
-                            <tr>
-                                <td>AntiLock Braking System</td>
-                                <td>{carVariant?.safety?.antiLockBrakingSystem}</td>
-                            </tr>
-                            <tr>
-                                <td>Central Locking</td>
-                                <td>{carVariant?.safety?.centralLocking}</td>
-                            </tr>
-                            <tr>
-                                <td>Power Door Locks</td>
-                                <td>{carVariant?.safety?.powerDoorLocks}</td>
-                            </tr>
-                            <tr>
-                                <td>Anti Theft Alarm</td>
-                                <td>{carVariant?.safety?.antiTheftAlarm}</td>
-                            </tr>
-                            <tr>
-                                <td>No of Airbags</td>
-                                <td>{carVariant?.safety?.noOfAirbags}</td>
-                            </tr>
-                            <tr>
-                                <td>Driver Airbag</td>
-                                <td>{carVariant?.safety?.driverAirbag}</td>
-                            </tr>
-                            <tr>
-                                <td>Passenger Airbag</td>
-                                <td>{carVariant?.safety?.passengerAirbag}</td>
-                            </tr>
-                            <tr>
-                                <td>Side Airbag Front</td>
-                                <td>{carVariant?.safety?.sideAirbagFront}</td>
-                            </tr>
-                            <tr>
-                                <td>Day Night Rear View Mirror</td>
-                                <td>{carVariant?.safety?.dayNightRearViewMirror}</td>
-                            </tr>
-                            <tr>
-                                <td>Passenger Side Rear View Mirror</td>
-                                <td>{carVariant?.safety?.passengerSideRearViewMirror}</td>
-                            </tr>
-                            <tr>
-                                <td>Halogen Head Lamps</td>
-                                <td>{carVariant?.safety?.halogenHeadlamps}</td>
-                            </tr>
-                            <tr>
-                                <td>Rear Seat Belts</td>
-                                <td>{carVariant?.safety?.rearSeatBelts}</td>
-                            </tr>
-                            <tr>
-                                <td>Seat Belt Warning</td>
-                                <td>{carVariant?.safety?.seatBeltWarning}</td>
-                            </tr>
-                            <tr>
-                                <td>Tyre Pressure Monitor</td>
-                                <td>{carVariant?.safety?.tyrePressureMonitor}</td>
-                            </tr>
-                            <tr>
-                                <td>Engine Immobilizer</td>
-                                <td>{carVariant?.safety?.engineImmobilizer}</td>
-                            </tr>
-                            <tr>
-                                <td>Crash Sensor</td>
-                                <td>{carVariant?.safety?.crashSensor}</td>
-                            </tr>
-                            <tr>
-                                <td>EBD</td>
-                                <td>{carVariant?.safety?.ebd}</td>
-                            </tr>
-                            <tr>
-                                <td>Electronic Stability Control</td>
-                                <td>{carVariant?.safety?.electronicStabilityControl}</td>
-                            </tr>
-                            <tr>
-                                <td>Rear Camera</td>
-                                <td>{carVariant?.safety?.rearCamera}</td>
-                            </tr>
-                            <tr>
-                                <td>Speed Alert</td>
-                                <td>{carVariant?.safety?.speedAlert}</td>
-                            </tr>
-                            <tr>
-                                <td>Speed Sensing AutoDoor Lock</td>
-                                <td>{carVariant?.safety?.speedSensingAutoDoorLock}</td>
-                            </tr>
-                            <tr>
-                                <td>Pretensioners And Force Limiter Seatbelts</td>
-                                <td>{carVariant?.safety?.pretensionersAndForceLimiterSeatbelts}</td>
-                            </tr>
-                            <tr>
-                                <td>Hill Assist</td>
-                                <td>{carVariant?.safety?.hillAssist}</td>
-                            </tr>
-                        </tbody>
-                    </Table>
-                </div>
-            </div>
-        </>
-    );
-}
+  return (
+    <div>
+      <div className="d-flex flex-column flex-grow-1">
+        <Table bordered hover responsive>
+          <tbody>
+            {safetyFields.map((field) => (
+              <tr key={field.key}>
+                <td>{field.label}</td>
+                <td>{renderFieldValue(carVariant?.safety?.[field.key])}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div>
+    </div>
+  );
+};
 
 export default Safety;

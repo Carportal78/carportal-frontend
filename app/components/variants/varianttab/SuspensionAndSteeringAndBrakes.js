@@ -28,7 +28,7 @@ function SuspensionAndSteeringAndBrakes({ carVariant }) {
                                 <td>{carVariant?.suspensionAndSteeringAndBrakes?.steeringColumn}</td>
                             </tr>
                             <tr>
-                                <td>Turning Radius</td>
+                                <td>Turning Radius (Metres)</td>
                                 <td>{carVariant?.suspensionAndSteeringAndBrakes?.turningRadius}</td>
                             </tr>
                             <tr>

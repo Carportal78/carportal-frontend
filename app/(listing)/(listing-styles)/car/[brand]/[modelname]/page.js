@@ -23,6 +23,7 @@ import { selectCarModelAtom, selectCarBrandAtom, selectCarVariantAtom, selectCit
 import { useAtom } from 'jotai';
 import VariantsDescription from "../../../../../components/variants/VariantsDescription.js";
 import ModelsOverview from "../../../../../components/pages/modelspage/ModelsOverview.js";
+import KeyFeatures from "../../../../../components/pages/modelspage/KeyFeatures.js";
 import ImagesViewDialog from "../../../../../components/pages/modelspage/ImagesViewDialog.js";
 import statesCitiesList from '../../../../../../public/jsondata/state-and-city.json';
 
@@ -240,6 +241,10 @@ const ModelDetails = () => {
                   <div className="listing_single_description">
                     <VariantsDescription carModelDetails={carModelDetails} carVariantsList={carVariantsList} name={carModelDetails?.modelName} />
                   </div>
+                  { carModelDetails?.keyFeatures && <div className="listing_single_description" style={{ overflow: 'auto' }}>
+                    <KeyFeatures features={carModelDetails?.keyFeatures} modelName={carModelDetails?.modelName} /> 
+                  </div> }
+
                   <div className="listing_single_description" style={{ backgroundColor: "rgb(255, 255, 255)", border: "1px solid rgb(234, 234, 234)", borderRadius: "8px", position: "relative", paddingLeft: "20px", paddingTop: "20px" }}>
                     {/* Key Specs of Hyundia Creta  */}
                     <div className="popular_listing_sliders single_page6_tabs row pr15">

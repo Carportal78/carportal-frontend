@@ -1,70 +1,59 @@
-import React, { useState } from "react";
-import { Col, Nav, NavItem, NavLink, Row, TabPane, Table } from "react-bootstrap";
-import classnames from "classnames";
+import React from "react";
+import { Table } from "react-bootstrap";
 import './VerticalTab.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 
-function EntertainmentAndCommunication({ carVariant }) {
+const EntertainmentAndCommunication = ({ carVariant }) => {
+  const entertainmentFields = [
+    { label: "Radio", key: "radio" },
+    { label: "Speaker Front", key: "speakerFront" },
+    { label: "Speaker Rear", key: "speakerRear" },
+    { label: "Integrated 2DIN Audio", key: "integrated2DINAudio" },
+    { label: "Wireless Phone Charging", key: "wirelessPhoneCharging" },
+    { label: "Bluetooth Connectivity", key: "bluetoothConnectivity" },
+    { label: "WiFi Connectivity", key: "wifiConnectivity" },
+    { label: "Touch Screen", key: "touchScreen" },
+    { label: "Touch Screen Size", key: "touchScreenSize" },
+    { label: "Connectivity", key: "connectivity" },
+    { label: "Android Auto", key: "androidAuto" },
+    { label: "Apple CarPlay", key: "appleCarPlay" },
+    { label: "Number of Speakers", key: "noOfSpeakers" },
+    { label: "Additional Features", key: "additionalFeatures" },
+    { label: "USB Ports", key: "usbPorts" },
+    { label: "Inbuilt Apps", key: "inbuiltApps" },
+    { label: "Tweeter", key: "tweeter" },
+    { label: "Sub Woofer", key: "subWoofer" },
+    { label: "Rear Touch Screen Size", key: "rearTouchScreenSize" },
+  ];
 
-    return (
-        <>
-            <div>
-                <div className="d-flex flex-column flex-grow-1">
-                    <Table bordered hover responsive>
-                        <tbody>
-                            <tr>
-                                <td>Length (mm)</td>
-                                <td>{carVariant?.entertainmentAndCommunication?.length}</td>
-                            </tr>
-                            <tr>
-                                <td>Width (mm)</td>
-                                <td>{carVariant?.entertainmentAndCommunication?.width}</td>
-                            </tr>
-                            <tr>
-                                <td>Height (mm)</td>
-                                <td>{carVariant?.entertainmentAndCommunication?.height}</td>
-                            </tr>
-                            <tr>
-                                <td>Ground Clearance Unladen</td>
-                                <td>{carVariant?.entertainmentAndCommunication?.groundClearanceUnladen}</td>
-                            </tr>
-                            <tr>
-                                <td>Wheel Base (mm)</td>
-                                <td>{carVariant?.entertainmentAndCommunication?.wheelBase}</td>
-                            </tr>
-                            <tr>
-                                <td>Front Tread</td>
-                                <td>{carVariant?.entertainmentAndCommunication?.frontTread}</td>
-                            </tr>
-                            <tr>
-                                <td>Rear Tread</td>
-                                <td>{carVariant?.entertainmentAndCommunication?.rearTread}</td>
-                            </tr>
-                            <tr>
-                                <td>Kerb Weight</td>
-                                <td>{carVariant?.entertainmentAndCommunication?.kerbWeight}</td>
-                            </tr>
-                            <tr>
-                                <td>Gross Weight</td>
-                                <td>{carVariant?.entertainmentAndCommunication?.grossWeight}</td>
-                            </tr>
-                            <tr>
-                                <td>Seating Capacity</td>
-                                <td>{carVariant?.entertainmentAndCommunication?.seatingCapacity}</td>
-                            </tr>
-                            <tr>
-                                <td>Boot Space</td>
-                                <td>{carVariant?.entertainmentAndCommunication?.bootSpace}</td>
-                            </tr>
-                            <tr>
-                                <td>No Of Doors</td>
-                                <td>{carVariant?.entertainmentAndCommunication?.noOfDoors}</td>
-                            </tr>
-                        </tbody>
-                    </Table>
-                </div>
-            </div>
-        </>
-    );
-}
+  const renderFieldValue = (value) => {
+    if (typeof value === "boolean") {
+        return value ? (
+            <FontAwesomeIcon icon={faCheck} style={{ color: 'green' }} />
+          ) : (
+            <FontAwesomeIcon icon={faTimes} style={{ color: 'red' }} />
+          );
+    }
+    return value || "N/A";
+  };
+
+  return (
+    <div>
+      <div className="d-flex flex-column flex-grow-1">
+        <Table bordered hover responsive>
+          <tbody>
+            {entertainmentFields.map((field) => (
+              <tr key={field.key}>
+                <td>{field.label}</td>
+                <td>{renderFieldValue(carVariant?.entertainmentAndCommunication?.[field.key])}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div>
+    </div>
+  );
+};
 
 export default EntertainmentAndCommunication;

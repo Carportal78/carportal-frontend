@@ -24,7 +24,7 @@ function DimensionAndCapacity({ carVariant }) {
                                 <td>{carVariant?.dimensionAndCapacity?.height}</td>
                             </tr>
                             <tr>
-                                <td>Ground Clearance Unladen</td>
+                                <td>Ground Clearance Unladen (mm)</td>
                                 <td>{carVariant?.dimensionAndCapacity?.groundClearanceUnladen}</td>
                             </tr>
                             <tr>
@@ -32,19 +32,19 @@ function DimensionAndCapacity({ carVariant }) {
                                 <td>{carVariant?.dimensionAndCapacity?.wheelBase}</td>
                             </tr>
                             <tr>
-                                <td>Front Tread</td>
+                                <td>Front Tread (mm)</td>
                                 <td>{carVariant?.dimensionAndCapacity?.frontTread}</td>
                             </tr>
                             <tr>
-                                <td>Rear Tread</td>
+                                <td>Rear Tread (mm)</td>
                                 <td>{carVariant?.dimensionAndCapacity?.rearTread}</td>
                             </tr>
                             <tr>
-                                <td>Kerb Weight</td>
+                                <td>Kerb Weight (kg)</td>
                                 <td>{carVariant?.dimensionAndCapacity?.kerbWeight}</td>
                             </tr>
                             <tr>
-                                <td>Gross Weight</td>
+                                <td>Gross Weight (kg)</td>
                                 <td>{carVariant?.dimensionAndCapacity?.grossWeight}</td>
                             </tr>
                             <tr>
@@ -52,11 +52,11 @@ function DimensionAndCapacity({ carVariant }) {
                                 <td>{carVariant?.dimensionAndCapacity?.seatingCapacity}</td>
                             </tr>
                             <tr>
-                                <td>Boot Space</td>
+                                <td>Boot Space (Litres)</td>
                                 <td>{carVariant?.dimensionAndCapacity?.bootSpace}</td>
                             </tr>
                             <tr>
-                                <td>No Of Doors</td>
+                                <td>Number Of Doors</td>
                                 <td>{carVariant?.dimensionAndCapacity?.noOfDoors}</td>
                             </tr>
                         </tbody>
