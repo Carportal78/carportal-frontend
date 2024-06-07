@@ -128,7 +128,7 @@ const CompareTable = () => {
   const getCarPrice = (index) => {
     const cardData = cards[index]
     if(cardData.make && cardData.model) {
-      const modelPrice = carDetails.find((make) => make.brandName === cardData.make)?.models.find((model) => model.modelName === cardData.model).variants.find((variant) => variant.modelName === cardData.name)?.pricingDetails?.exShowroomPrice
+      const modelPrice = carDetails.find((make) => make.brandName === cardData.make)?.models.find((model) => model.modelName === cardData.model).variants.find((variant) => variant.name === cardData.variant)?.pricingDetails?.exShowroomPrice
       const updatedCards = [...cards];
       updatedCards[index].price = modelPrice;
       setCards(updatedCards);
@@ -196,6 +196,7 @@ const CompareTable = () => {
   }
 
   const renderCarDetails = (index) => {
+    console.log('cqrds data ', cards[index]);
     return (
       <div key={`car-details-${index}`}>
         <img src={cards[index]?.image} style={{ position: 'relative' }} />

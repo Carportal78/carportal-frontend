@@ -47,7 +47,6 @@ const handleOnCompareClick = (carsList, router, setSuggestedCompareData, carVari
     make: item.carBrand.brandName || '',
     model: item.modelName || '',
     variant: '',
-    // variant: carVariantsList?.[0].name,
     price: '',
     image: item?.media?.[0].url,
     isEnabled: true,
