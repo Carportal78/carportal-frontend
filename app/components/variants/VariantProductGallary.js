@@ -12,6 +12,9 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import Select from "react-select";
 import { useRouter } from "next/navigation";
 import ImageColorCounter from "../../components/pages/modelspage/imagecolorCount";
+import { useAtom } from "jotai";
+import { selectSugestedCompareData } from "../atoms/categoriesAtoms";
+import "./styles.scss"
 
 function OffCanvasExample({ name, ...props }) {
   const [show, setShow] = useState(false);
@@ -38,11 +41,80 @@ function OffCanvasExample({ name, ...props }) {
   );
 }
 
-function OffCanvasExampleCompare({ name, ...props }) {
+const formatPrice = (listing) => {
+  return `₹ ${listing?.minPrice} ${listing?.minPriceType} - ₹ ${listing?.maxPrice} ${listing?.maxPriceType} *`
+}
+
+const handleOnCompareClick = (carsList, router, setSuggestedCompareData) => {
+  const extractedData = carsList?.map(item => ({
+    id: item?.models?.variants?.[0]?.id || '',
+    make: item?.brandName || '',
+    model: item?.models?.modelName || '',
+    variant: item?.models?.variants?.[0]?.name || '',
+    price: item?.models?.variants?.[0]?.pricingDetails?.exShowroomPrice,
+    image: item?.models?.modelImage?.[0].url,
+    isEnabled: true,
+    allFieldsSelected: true
+  }));
+
+  setSuggestedCompareData(extractedData);
+  router.push(`/compare`);
+}
+
+const compareCard = (img, make, model, price) => {
+  return (
+    <>
+      <img src={img} />
+      <div className="car-model-compare-card-details">
+        <p className="car-model-compare-card-make">{make}</p>
+        <p className="car-model-compare-card-model">{model}</p>
+        <p className="car-model-compare-card-price">{price}</p>
+      </div>
+    </>
+  )
+}
+
+const renderCardCompare = (carsList, index, router, setSuggestedCompareData, carVariant) => {
+  return (
+  <div className="car-model-compare-card">
+    <div key={index} className="card-detail">
+      {carsList.map((car, index) => (
+          <div key={car?.id} className='car-model-compare'>
+            {compareCard(car?.models?.modelImage?.[0]?.url, car?.brandName, car?.models?.modelName, formatPrice(car?.models?.priceRange))}
+          </div>
+      ))}
+    </div>
+    <Button variant="outline-secondary" className="compare-btn" onClick={() => handleOnCompareClick(carsList, router, setSuggestedCompareData)}>
+      <span className="flaticon-profit-report mr10 fz18 vam" />
+      Compare Cars
+    </Button>
+  </div>
+  )
+}
+
+function getMatchingObjectById(data, searchId) {
+  let result = null;
+  
+  data.forEach(brand => {
+      brand.models.variants.forEach(variant => {
+          if (variant.id === searchId) {
+              result = brand;
+          }
+      });
+  });
+  
+  return result;
+}
+
+
+function OffCanvasExampleCompare({ name, router, carVariant, compareCars,setSuggestedCompareData, ...props }) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const currentCarDetails = getMatchingObjectById(compareCars, carVariant?._id)
+  const filterCurrentCarInCompareCar = compareCars.filter(car => car?.models?.modelId !== currentCarDetails?.models?.modelId)
+  const renderCompareCarsList = filterCurrentCarInCompareCar?.length > 10 ? filterCurrentCarInCompareCar.slice(0,10) : filterCurrentCarInCompareCar;
 
   return (
     <>
@@ -57,20 +129,28 @@ function OffCanvasExampleCompare({ name, ...props }) {
           <Offcanvas.Title><h4 className="mt10">Compare any 2 cars</h4></Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          Some text as placeholder. In real life you can have the elements you
-          have chosen. Like, text, images, lists, etc.
+          {renderCompareCarsList?.map((car, index) => {
+              if(currentCarDetails?.models?.modelId !== car?.models?.modelId) {
+                const compareData = [currentCarDetails, car]
+                return <div style={{ position: 'relative'}}>
+                {renderCardCompare(compareData, index, router, setSuggestedCompareData, carVariant)}
+                <div className="versus">vs</div>
+                </div>
+              }
+          })}
         </Offcanvas.Body>
       </Offcanvas>
     </>
   );
 }
 
-export default function VariantProductGallery({ carModelDetails, carVariantsList, carVariant, onDealerClick, onGetOnRoadPriceCLick, imgCount }) {
+export default function VariantProductGallery({ carModelDetails, carVariantsList, carVariant, compareCars, onDealerClick, onGetOnRoadPriceCLick, imgCount }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [isOpen, setOpen] = useState(false);
   const [videoId, setVideoId] = useState("");
   const [selectedGroup, setselectedGroup] = useState(null);
   const router = useRouter();
+  const [, setSuggestedCompareData] = useAtom(selectSugestedCompareData);
 
   const openModal = (id) => {
     setVideoId(id);
@@ -224,7 +304,7 @@ export default function VariantProductGallery({ carModelDetails, carVariantsList
 
             <div className="d-flex align-items-center mt-3 justify-content-center gap-5">
               <div className="me-3" style={{ cursor: 'pointer' }} >
-                <OffCanvasExampleCompare key={1} placement={'end'} name={'Compare'} />
+                <OffCanvasExampleCompare key={1} placement={'end'} name={'Compare'} carVariant={carVariant} compareCars={compareCars} router={router} setSuggestedCompareData={setSuggestedCompareData}/>
               </div>
               <div className="me-3" style={{ cursor: 'pointer' }} data-bs-toggle="modal" data-bs-target="#variantListForm">
                 <Image width={30} height={30} src="/images/modeldetails/Variants.svg" alt="Image 2" className="ml10" fluid />
