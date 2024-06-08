@@ -191,6 +191,14 @@ const ModelDetails = () => {
     router.push(`/onroadprice/${carModelDetails?.modelName?.split(' ').join('-')}/${matchingCity?.label}`);
   }
 
+  const handleDealerCLick = (brandId) => {
+    setCityData(cityCode);
+    setBrandData(carModelDetails?.carBrand?.brandId);
+    localStorage.setItem('dealer-type', JSON.stringify({ brand: brandId, city: cityCode }))
+    const matchingCity = cityOptions?.find(option => option.value == cityCode);
+    router.push(`/dealers/list/${carModelDetails?.carBrand?.brandName}/${matchingCity?.label}`);
+  }
+
   return (
     <div className="wrapper">
       <div
@@ -231,7 +239,7 @@ const ModelDetails = () => {
 
           <div className="row">
             <div className="col-lg-8 col-xl-12"> 
-              <ProductGallery carModelDetails={carModelDetails} carVariantsList={carVariantsList} relatedCars={relatedCars} compareCars={compareCars} onGetOnRoadPriceCLick={handleGetOnRoadPriceCLick} setActiveGalleryTab={setActiveGalleryTab} imgCount={totalImgCount}/>
+              <ProductGallery carModelDetails={carModelDetails} carVariantsList={carVariantsList} relatedCars={relatedCars} compareCars={compareCars} onDealerClick={handleDealerCLick} onGetOnRoadPriceCLick={handleGetOnRoadPriceCLick} setActiveGalleryTab={setActiveGalleryTab} imgCount={totalImgCount}/>
               {/* End Car Gallery */}
               <div className="d-flex flex-wrap gap-4">
                 <div className="col-lg-8 col-xl-8" >
