@@ -180,7 +180,7 @@ const OnRoadPrice = () => {
 
             <div className="col-sm-6">
               <div className="text-center text-md-end mb30-520">
-                <Link href="/page-list-v1" className="more_listing">
+                <Link href="/cars" className="more_listing">
                   Show All Cars
                   <span className="icon">
                     <span className="fas fa-plus" />
