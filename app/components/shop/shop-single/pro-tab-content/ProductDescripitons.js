@@ -9,6 +9,7 @@ import styles from './productDescription.module.css';
 import { useAtom } from 'jotai';
 import { selectCityAtom } from '../../../atoms/categoriesAtoms';
 import statesCitiesList from '../../../../../public/jsondata/state-and-city.json';
+import { useRouter } from 'next/navigation';
 
 
 const ProductDescripitons = ({ carModelDetails, carVariantsList }) => {
@@ -16,11 +17,13 @@ const ProductDescripitons = ({ carModelDetails, carVariantsList }) => {
   const [key, setKey] = useState('all');
   const [cityData, setCityData] = useAtom(selectCityAtom);
   const [cityOptions, setCityOptions] = useState([]);
+  const router = useRouter();
 
   const uniqueFuelTypes = [...new Set(carVariantsList?.flatMap(variant => variant.fuelAndPerformance.fuelType))];
 
   const handleViewVariantHandler = (variant) => {
-    router.push(`/listing-single-v3/${variant?._id}`)
+    console.log("ssadadsas");
+    router.push(`/variantDetails/${variant?.carModel?.modelName?.split(' ')?.join('-')?.toLowerCase()}/${variant?.carModel?._id}/variant/${variant?._id}`); 
   }
 
   // Populate city options

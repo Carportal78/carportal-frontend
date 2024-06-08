@@ -50,7 +50,7 @@ const Testimonial = ({ testimonials }) => {
                 </h4>
               </div>
               <div className="details">
-                <div className="icon">
+                <div className="icon">  
                   <span className="fa fa-quote-left" />
                 </div>
                 <p>{testimonial.description}</p>

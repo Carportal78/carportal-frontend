@@ -66,8 +66,8 @@ export default function OnRoadPriceDescription({ carModelDetails, carVariantsLis
           <tr key={index}>
             <td>{index + 1}</td>
             <td>
-              <Link className="tdu color-blue ml10" href={`/${variant?.name}/${variant?._id}`}>
-                {`${variant?.name} ${variant.carModel?.modelName}`}
+              <Link className="tdu color-blue ml10" href={`/variantDetails/${variant?.carModel?.modelName?.split(' ')?.join('-')?.toLowerCase()}/${variant?.carModel?._id}/variant/${variant?._id}}`}>
+                {`${variant?.name} ${variant.carModel?.modelName}`} 
               </Link>
             </td>
             <td>₹ {`${Number(variant?.pricingDetails?.exShowroomPrice).toLocaleString('en-IN')}*`}</td>
