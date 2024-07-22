@@ -38,7 +38,7 @@ const Contact = () => {
       {/* End Main Header Nav For Mobile */}
 
       {/* <!-- Our Contact --> */}
-      <section className="our-contact p0 mt0 mt70-992">
+      {/* <section className="our-contact p0 mt0 mt70-992">
         <div className="container-fluid p0">
           <div className="row">
             <div className="col-lg-12">
@@ -48,7 +48,7 @@ const Contact = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
       {/* <!-- End Our Contact --> */}
 
       {/* Our Contact */}
