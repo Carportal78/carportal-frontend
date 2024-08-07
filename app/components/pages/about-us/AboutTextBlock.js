@@ -30,7 +30,7 @@ const AboutTextBlock = () => {
           <div className="about_content">
             <h2 className="title display-4 font-weight-bold mb-4" style={{ fontFamily: "'Roboto', sans-serif" }}>Welcome To CarPortal</h2>
             <p className="mb4" style={{ fontFamily: "'Open Sans', sans-serif", fontSize: "1.1rem", lineHeight: "1.6" }}>
-              Welcome to CarPortal.co.in, India's premier automotive portal that empowers you to make informed car-buying decisions. Our mission is to provide a comprehensive and immersive experience, helping you find the perfect car that suits your needs.
+              {`Welcome to CarPortal.co.in, India's premier automotive portal that empowers you to make informed car-buying decisions. Our mission is to provide a comprehensive and immersive experience, helping you find the perfect car that suits your needs.`}
             </p>
             <p className="mb4" style={{ fontFamily: "'Open Sans', sans-serif", fontSize: "1.1rem", lineHeight: "1.6" }}>
               Our platform offers:

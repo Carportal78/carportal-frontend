@@ -26,7 +26,7 @@ const TABS = [
         <p className="mb25">
           - You must be at least 18 years old to use our website.<br />
           - You agree to use our website only for lawful purposes.<br />
-          - You agree not to disrupt, modify, or interfere with our website's functionality.
+          {`- You agree not to disrupt, modify, or interfere with our website's functionality.`}
         </p>
         <strong>3. Content and Accuracy</strong>
         <p className="mb25">
