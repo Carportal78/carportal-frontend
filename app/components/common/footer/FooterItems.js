@@ -12,19 +12,17 @@ const FooterItems = () => {
             <Accordion.Body>
               {/* Using <Link> without nested <a> for Next.js 12+ */}
               <p><Link href="/about-us">About</Link></p>
-              <p><Link href="/about-us">Career with us</Link></p>
-              <p><Link href="/about-us">Terms & Conditions</Link></p>
-              <p><Link href="/about-us">Privacy Policy</Link></p>
-              <p><Link href="/about-us">Corporate Policies</Link></p>
-              <p><Link href="/about-us">Investors</Link></p>
-              <p><Link href="/about-us">FAQs</Link></p>
+              {/* <p><Link href="/about-us">Career with us</Link></p> */}
+              <p><Link href="/terms-conditions">Terms & Conditions</Link></p>
+              <p><Link href="/privacy-policy">Privacy Policy</Link></p>
+              <p><Link href="/faq">FAQs</Link></p>
             </Accordion.Body>
           </Accordion.Item>
           <Accordion.Item eventKey="1">
             <Accordion.Header>Connect With Us</Accordion.Header>
             <Accordion.Body>
-              <p><Link href="/about-us">Feedback</Link></p>
-              <p><Link href="/about-us">Contact Us</Link></p>
+            <p><Link href="/about-us" style={{ color: 'white' }}>Feedback</Link></p>
+            <p><Link href="/contact-us" style={{ color: 'white' }}>Contact Us</Link></p>
             </Accordion.Body>
           </Accordion.Item>
 
@@ -44,12 +42,10 @@ const FooterItems = () => {
           <div className="footer_about_widget">
             <h5 className="title">About Carportal</h5>
             <p><Link href="/about-us" style={{ color: 'white' }}>About</Link></p>
-            <p><Link href="/about-us" style={{ color: 'white' }}>Career with us</Link></p>
-            <p><Link href="/about-us" style={{ color: 'white' }}>Terms & Conditions</Link></p>
-            <p><Link href="/about-us" style={{ color: 'white' }}>Privacy Policy</Link></p>
-            <p><Link href="/about-us" style={{ color: 'white' }}>Corporate Policies</Link></p>
-            <p><Link href="/about-us" style={{ color: 'white' }}>Investors</Link></p>
-            <p><Link href="/about-us" style={{ color: 'white' }}>FAQs</Link></p>
+            {/* <p><Link href="/about-us" style={{ color: 'white' }}>Career with us</Link></p> */}
+            <p><Link href="/terms-conditions" style={{ color: 'white' }}>Terms & Conditions</Link></p>
+            <p><Link href="/privacy-policy" style={{ color: 'white' }}>Privacy Policy</Link></p>
+            <p><Link href="/faq" style={{ color: 'white' }}>FAQs</Link></p>
           </div>
         </div>
         {/* End .col */}
@@ -58,8 +54,7 @@ const FooterItems = () => {
           <div className="footer_contact_widget">
             <h5 className="title">CONNECT WITH US</h5>
             <p><Link href="/about-us" style={{ color: 'white' }}>Feedback</Link></p>
-            <p><Link href="/about-us" style={{ color: 'white' }}>Contact Us</Link></p>
-            <p><Link href="/about-us" style={{ color: 'white' }}>Advertise with us</Link></p>
+            <p><Link href="/contact-us" style={{ color: 'white' }}>Contact Us</Link></p>
           </div>
         </div>
 

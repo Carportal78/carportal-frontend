@@ -42,11 +42,11 @@ const Faq = () => {
           <div className="row">
             <div className="col-xl-12">
               <div className="breadcrumb_content style2">
-                <h2 className="breadcrumb_title">Faq</h2>
-                <p className="subtitle">Faq</p>
+                <h2 className="breadcrumb_title">FAQ</h2>
+                <p className="subtitle">Frequently Asked Questions</p>
                 <ol className="breadcrumb">
                   <li className="breadcrumb-item">
-                    <a href="#">Home</a>
+                    <a href="/">Home</a>
                   </li>
                   <li className="breadcrumb-item active" aria-current="page">
                     Faq

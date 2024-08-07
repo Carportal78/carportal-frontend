@@ -1,25 +1,35 @@
-const FaqQuestion = () => {
+const FaqQuestion = () => { 
   const faqItems = [
     {
-      question: "How do I use this theme?",
+      question: "What is CarPortal.co.in?",
       answer:
-        "Mauris nulla lorem, interdum varius orci vitae, bibendum sagittis tellus. Nulla elementum dolor dui, vel condimentum erat vestibulum molestie. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sit amet risus lacus. Suspendisse pellentesque tempus enim ac hendrerit. Morbi cursus sapien eu nisl viverra mattis. Integer vestibulum enim dolor, sit amet maximus urna imperdiet ut.",
+        "CarPortal.co.in is an online automotive portal that helps users buy vehicles by providing comprehensive information, resources, and services.",
     },
     {
-      question: "Are You looking for a new car?",
+      question: "How do I access CarPortal.co.in?",
       answer:
-        "Mauris nulla lorem, interdum varius orci vitae, bibendum sagittis tellus. Nulla elementum dolor dui, vel condimentum erat vestibulum molestie. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sit amet risus lacus. Suspendisse pellentesque tempus enim ac hendrerit. Morbi cursus sapien eu nisl viverra mattis. Integer vestibulum enim dolor, sit amet maximus urna imperdiet ut.",
+        "Simply visit our website at CarPortal.co.in and explore our features, including searching for new cars and there reviews, and accessing dealer information.",
     },
     {
-      question: "Maintain your car to stay safe on the road",
+      question: "How is CarPortal.co.in content organized?",
       answer:
-        "Mauris nulla lorem, interdum varius orci vitae, bibendum sagittis tellus. Nulla elementum dolor dui, vel condimentum erat vestibulum molestie. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sit amet risus lacus. Suspendisse pellentesque tempus enim ac hendrerit. Morbi cursus sapien eu nisl viverra mattis. Integer vestibulum enim dolor, sit amet maximus urna imperdiet ut.",
+        "Our content is categorized into sections such as New Cars, Dealer Directory, Car Reviews, and Up coming Car News.",
     },
     {
-      question: "We know how to handle a wide range of car services.",
+      question: "What kind of topics can be found on CarPortal.co.in?",
       answer:
-        "Mauris nulla lorem, interdum varius orci vitae, bibendum sagittis tellus. Nulla elementum dolor dui, vel condimentum erat vestibulum molestie. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sit amet risus lacus. Suspendisse pellentesque tempus enim ac hendrerit. Morbi cursus sapien eu nisl viverra mattis. Integer vestibulum enim dolor, sit amet maximus urna imperdiet ut.",
+        "Our portal features detailed car specifications, reviews, news, photos, videos, and more, covering various aspects of the automotive industry.",
     },
+    {
+      question: "How frequently is CarPortal.co.in updated?",
+      answer:
+        "We update our content regularly to ensure users have access to the latest information and resources.",
+    },
+    {
+      question: "Why do we do what we do?",
+      answer:
+        "We are passionate about cars and aim to share that passion with our users, making car buying and ownership a seamless and enjoyable experience.",
+    }
   ];
 
   return (

@@ -5,13 +5,14 @@ import HeaderTop from "../../components/common/HeaderTop";
 import MobileMenu from "../../components/common/MobileMenu";
 import LoginSignupModal from "../../components/common/login-signup";
 import Terms from "../../components/pages/tersm-conditions/Terms";
+import PrivatePolicy from "../../components/pages/privacy-policy/PrivatePolicy";
 
 export const metadata = {
   title:
-    "Terms & Conditions || Carportal - Automotive & Car Dealer",
+    "Privacy Policy || Carportal - Automotive & Car Dealer",
 };
 
-const TermsConditions = () => {
+const PrivacyPolicy = () => {
   return (
     <div className="wrapper">
       <div
@@ -42,13 +43,13 @@ const TermsConditions = () => {
           <div className="row">
             <div className="col-xl-12">
               <div className="breadcrumb_content">
-                <h2 className="breadcrumb_title">Terms and Condition</h2>
+                <h2 className="breadcrumb_title">Privacy Policy</h2>
                 <ol className="breadcrumb fn-sm">
                   <li className="breadcrumb-item">
                     <a href="#">Home</a>
                   </li>
                   <li className="breadcrumb-item active" aria-current="page">
-                    <a href="#">Terms and Condition</a>
+                    <a href="#">Privacy Policy</a>
                   </li>
                 </ol>
               </div>
@@ -62,7 +63,7 @@ const TermsConditions = () => {
       <section className="our-terms pb90">
         <div className="container">
           <div className="row">
-            <Terms />
+            <PrivatePolicy />
           </div> 
         </div>
       </section>
@@ -89,4 +90,4 @@ const TermsConditions = () => {
   );
 };
 
-export default TermsConditions;
+export default PrivacyPolicy;

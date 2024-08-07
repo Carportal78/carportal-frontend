@@ -6,9 +6,7 @@ import HeaderTop from "../../components/common/HeaderTop";
 import MobileMenu from "../../components/common/MobileMenu";
 import AboutTextBlock from "../../components/pages/about-us/AboutTextBlock";
 import WhyChoose from "../../components/common/WhyChoose";
-import Team from "../../components/common/Team";
-import Testimonial from "../../components/common/Testimonial";
-import Partner from "../../components/common/Partner";
+import OurValues from "../../components/common/OurValues";
 import LoginSignupModal from "../../components/common/login-signup";
 
 const metadata = {
@@ -67,72 +65,28 @@ const AboutUs = () => {
       <section className="about-section pb130">
         <div className="container">
           <div className="row">
-            <AboutTextBlock />
+            <AboutTextBlock /> 
           </div>
         </div>
       </section>
-      {/* End About Text Content */}
 
-      {/* Why Chose Us */}
       <section className="why-chose pb90 pt0-md">
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-8">
               <div className="main-title text-center">
-                <h2>Why Choose Us?</h2>
+                <h2>Our Values</h2>
               </div>
             </div>
           </div>
           <div className="row">
-            <WhyChoose />
+             <OurValues />
           </div>
         </div>
       </section>
-      {/* End Why Chose Us */}
-
+      {/* End About Text Content */}
       {/* End Our Team */}
-
-      {/* Testimonials  */}
-      <section className="our-testimonials-home1 pt120 pb120">
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-lg-8">
-              <div className="main-title text-center">
-                <h2>Testimonials</h2>
-              </div>
-            </div>
-          </div>
-          {/* <div className="row">
-            <div className="col-lg-12">
-              <div className="testimonial_slider_home1">
-                <Testimonial />
-              </div>
-            </div>
-          </div> */}
-        </div>
-      </section>
       {/* End Testimonials  */}
-
-      {/* Our Partners */}
-      <section className="our-partner pb100">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-6 offset-lg-3">
-              <div className="main-title text-center">
-                <h2>Popular Makes</h2>
-              </div>
-            </div>
-          </div>
-          {/* End .row */}
-
-          <div className="partner_divider">
-            <div className="row">
-              {/* <Partner /> */}
-            </div>
-            {/* End .row */}
-          </div>
-        </div>
-      </section>
       {/* End  Our Partners */}
 
       {/* Our Footer */}

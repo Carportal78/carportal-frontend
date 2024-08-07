@@ -3,7 +3,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { useState } from "react";
 
 const tabList = [
-  "Terms and Conditions",
+  "Privacy Policy",
   // "Our Terms",
   // "Conditions",
   // "your Privacy",
@@ -11,55 +11,60 @@ const tabList = [
 ];
 const TABS = [
   {
-    title: "Welcome Text",
+    title: "Privacy Policy",
     content: (
       <div className="grids mb60">
-        <h4 className="title">Terms and Conditions</h4>
+        <h4 className="title">Privacy Policy</h4>
         <p className="mb25">
-          Welcome to CarPortal.co.in! By using our website and services, you agree to be bound by the following terms and conditions.
+          At CarPortal.co.in, we respect your privacy and are committed to protecting your personal information. This privacy policy explains how we collect, use, and share your information.
         </p>
-        <strong>1. Introduction</strong>
+        <strong>1. Information We Collect</strong>
         <p className="mb25">
-          CarPortal.co.in is an online automotive portal that provides information, resources, and services related to buying vehicles.
+          - Personal Information: name, email, phone number, location, and other details provided by you<br />
+          - Usage Information: browsing history, search queries, and interactions with our website<br />
+          - Device Information: IP address, browser type, and device details
+
         </p>
-        <strong>2. Use of Website</strong>
+        <strong>2. Use of Information</strong>
         <p className="mb25">
-          - You must be at least 18 years old to use our website.<br />
-          - You agree to use our website only for lawful purposes.<br />
-          - You agree not to disrupt, modify, or interfere with our website's functionality.
+          - To provide and improve our services<br />
+          - To respond to your inquiries and requests<br />
+          - To send newsletters, updates, and promotional materials<br />
+          - To analyze and enhance user experience<br />
+          - To comply with legal obligations
+
         </p>
-        <strong>3. Content and Accuracy</strong>
+        <strong>3. Sharing of Information</strong>
         <p className="mb25">
-          - We strive to provide accurate and reliable information, but we make no warranties or guarantees.<br />
-          - You agree to verify information through independent sources before making decisions.
+          - We may share your information with:<br/>
+          - Authorized dealers and manufacturers<br/>
+          - Service providers and partners<br/>
+          - Law enforcement agencies (if required)
+
         </p>
-        <strong>4. User-Generated Content</strong>
+        <strong>4. Data Security</strong>
         <p className="mb25">
-          - You are responsible for any content you upload or submit to our website.<br />
-          - You grant us a non-exclusive license to use, reproduce, and distribute your content.
+        - We implement reasonable security measures to protect your information<br/>
+        - We use encryption and secure servers to safeguard your data
         </p>
-        <strong>5. Intellectual Property</strong>
+        <strong>5. User Rights</strong>
         <p className="mb25">
-          - Our website and its content are protected by intellectual property laws.<br />
-          - You agree not to reproduce, modify, or distribute our content without permission.
+        - You have the right to access, correct, or delete your personal information<br/>
+        - You can opt-out of promotional communications
         </p>
-        <strong>6. Limitation of Liability</strong>
+        <strong>6. Cookies and Tracking</strong>
         <p className="mb25">
-          - We are not liable for any damages or losses arising from your use of our website or services.<br />
-          - Our liability is limited to the maximum extent permitted by law.
+        - We use cookies to enhance user experience and track usage patterns<br/>
+        - You can disable cookies in your browser settings
         </p>
-        <strong>7. Governing Law</strong>
+        <strong>7. Changes to Privacy Policy</strong>
         <p className="mb25">
-          - These terms and conditions are governed by Indian law.<br />
-          - Any disputes will be resolved through arbitration in accordance with Indian law.
+        - We reserve the right to update this privacy policy at any time<br/>
+        - Your continued use of our website constitutes acceptance of the updated policy
         </p>
-        <strong>8. Changes to Terms</strong>
+        <strong>8. Contact Us</strong>
         <p className="mb25">
-          - We reserve the right to modify or update these terms and conditions at any time.<br />
-          - Your continued use of our website and services constitutes acceptance of the updated terms.
-        </p>
-        <p className="mb0">
-        By using CarPortal.co.in, you acknowledge that you have read, understood, and agree to be bound by these terms and conditions."
+        - If you have any questions or concerns, please contact us at:  <strong>info@carportal.co.in</strong>
         </p>
       </div>
     ),
@@ -186,7 +191,7 @@ const TABS = [
   },
 ];
 
-const Terms = () => {
+const PrivatePolicy = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const handleTabClick = (index) => {
@@ -225,4 +230,4 @@ const Terms = () => {
   );
 };
 
-export default Terms;
+export default PrivatePolicy;
