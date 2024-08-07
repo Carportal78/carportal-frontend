@@ -59,7 +59,7 @@ const TABS = [
           - Your continued use of our website and services constitutes acceptance of the updated terms.
         </p>
         <p className="mb0">
-        By using CarPortal.co.in, you acknowledge that you have read, understood, and agree to be bound by these terms and conditions."
+        By using CarPortal.co.in, you acknowledge that you have read, understood, and agree to be bound by these terms and conditions.
         </p>
       </div>
     ),
