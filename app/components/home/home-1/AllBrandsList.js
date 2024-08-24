@@ -60,7 +60,7 @@ function AllBrandsList() {
                   <Image
                     width={120}
                     height={58}
-                    src={brand.media.url || '/default-image.png'}
+                    src={brand?.media?.url || '/default-image.png'}
                     alt={brand.brandName}
                     className="d-flex"
                     style={{ marginLeft: 'auto', marginRight: 'auto' }}
@@ -104,7 +104,7 @@ function AllBrandsList() {
                   <Image
                     width={150} // You may need to adjust this depending on your layout
                     height={58} // You may need to adjust this depending on your layout
-                    src={brand.media.url || '/default-image.png'} // Fallback image if URL is missing
+                    src={brand?.media?.url || '/default-image.png'} // Fallback image if URL is missing
                     alt={brand.brandName}
                     className={styles.bodyTypeImage}
                     layout='responsive'

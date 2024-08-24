@@ -1,7 +1,20 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-      domains: ['res.cloudinary.com'], // Add 'res.cloudinary.com' to the list of allowed image domains
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: 'res.cloudinary.com',
+          port: '',
+          pathname: '/**',
+        },
+        {
+          protocol: 'https',
+          hostname: 'carportal-images.s3.ap-south-1.amazonaws.com',
+          port: '',
+          pathname: '/**',
+        }
+      ],
     },
     // ... any other existing configuration
   };
