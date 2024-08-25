@@ -22,7 +22,7 @@ const Blog = () => {
   useEffect(() => {
     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';
       setIsBlogsLoading(true);
-      fetch(`https://api.univolenitsolutions.com/v1/automobile/get/carblog/submitted/all/for/65538448b78add9eaa02d417`,
+      fetch(`https://api.univolenitsolutions.com/v1/automobile/get/carblog/submitted/all/for/66cac994eeca9633c29171e2`,
        {
         method: 'GET',
         headers: {

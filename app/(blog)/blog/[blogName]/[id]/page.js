@@ -29,7 +29,7 @@ const BlogDynamicSingle = () => {
 
   useEffect(() => {
     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';  
-    const relatedCars = fetch(`https://api.univolenitsolutions.com/v1/automobile/get/carmodels/${blog.carBrand?._id}/for/65538448b78add9eaa02d417`, {
+    const relatedCars = fetch(`https://api.univolenitsolutions.com/v1/automobile/get/carmodels/${blog.carBrand?._id}/for/66cac994eeca9633c29171e2`, {
     headers: {
         'x-api-key': apiKey
       }

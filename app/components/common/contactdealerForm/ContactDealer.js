@@ -114,7 +114,7 @@ const ContactDealer = ({ carModelDetails, carVariantsList, onCLickHideHeader }) 
 
   const saveUserDetails = async () => {
     // Example API endpoint for saving user details
-    const saveDetailsUrl = 'https://api.univolenitsolutions.com/v1/carcustomer/add/customer/for/65538448b78add9eaa02d417';
+    const saveDetailsUrl = 'https://api.univolenitsolutions.com/v1/carcustomer/add/customer/for/66cac994eeca9633c29171e2';
     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';
 
     try {
@@ -156,7 +156,7 @@ const ContactDealer = ({ carModelDetails, carVariantsList, onCLickHideHeader }) 
 
   const verifyOtp = async () => {
     // Example API endpoint for OTP verification
-    const otpVerifyUrl = 'https://api.univolenitsolutions.com/v1/carcustomer/api/verify-otp/for/65538448b78add9eaa02d417';
+    const otpVerifyUrl = 'https://api.univolenitsolutions.com/v1/carcustomer/api/verify-otp/for/66cac994eeca9633c29171e2';
     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';
 
     try {
@@ -188,7 +188,7 @@ const ContactDealer = ({ carModelDetails, carVariantsList, onCLickHideHeader }) 
   };
 
   const sendOtp = async () => {
-    const otpVerifyUrl = 'https://api.univolenitsolutions.com/v1/carcustomer/api/send-otp/for/65538448b78add9eaa02d417';
+    const otpVerifyUrl = 'https://api.univolenitsolutions.com/v1/carcustomer/api/send-otp/for/66cac994eeca9633c29171e2';
     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';
     try {
       const response = await fetch(otpVerifyUrl, {

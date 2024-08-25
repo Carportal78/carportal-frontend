@@ -47,7 +47,7 @@ const OnRoadPrice = () => {
   useEffect(() => {
     try {
       if (onRoadPriceModelId && cityData) {
-        const apiUrl = `https://api.univolenitsolutions.com/v1/automobile/get/carmodel/${onRoadPriceModelId}/citycode/${cityData}/for/65538448b78add9eaa02d417`;
+        const apiUrl = `https://api.univolenitsolutions.com/v1/automobile/get/carmodel/${onRoadPriceModelId}/citycode/${cityData}/for/66cac994eeca9633c29171e2`;
         const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
 
         fetch(apiUrl, {
@@ -74,7 +74,7 @@ const OnRoadPrice = () => {
   }, [onRoadPriceModelId, cityData]);
 
   useEffect(() => {
-    const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carmodels/for/65538448b78add9eaa02d417';
+    const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carmodels/for/66cac994eeca9633c29171e2';
     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
     fetch(apiUrl, {
       method: 'GET',

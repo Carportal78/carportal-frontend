@@ -78,7 +78,7 @@ const ModelDetails = () => {
   useEffect(() => {
     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';
     if (carModelDetails?.bodyType) {
-      const relatedCars = fetch(`https://api.univolenitsolutions.com/v1/automobile/get/carmodels/budget/${carModelDetails?.budget}/bodyType/${carModelDetails?.bodyType}/for/65538448b78add9eaa02d417`, {
+      const relatedCars = fetch(`https://api.univolenitsolutions.com/v1/automobile/get/carmodels/budget/${carModelDetails?.budget}/bodyType/${carModelDetails?.bodyType}/for/66cac994eeca9633c29171e2`, {
         headers: {
           'x-api-key': apiKey
         }
@@ -95,7 +95,7 @@ const ModelDetails = () => {
     // alert('modelId ', modelid);
 
     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';
-    const relatedCars = fetch(`https://api.univolenitsolutions.com/v1/automobile/get/carmodels/bodyType/${carModelDetails?.bodyType}/for/65538448b78add9eaa02d417`, {
+    const relatedCars = fetch(`https://api.univolenitsolutions.com/v1/automobile/get/carmodels/bodyType/${carModelDetails?.bodyType}/for/66cac994eeca9633c29171e2`, {
       headers: {
         'x-api-key': apiKey
       }
@@ -111,7 +111,7 @@ const ModelDetails = () => {
   }, [carModelDetails]);
 
   useEffect(() => {
-    const apiUrl = `https://api.univolenitsolutions.com/v1/automobile/get/carmodel/${modelid}/citycode/${cityCode}/for/65538448b78add9eaa02d417`;
+    const apiUrl = `https://api.univolenitsolutions.com/v1/automobile/get/carmodel/${modelid}/citycode/${cityCode}/for/66cac994eeca9633c29171e2`;
     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
 
     fetch(apiUrl, {
@@ -144,7 +144,7 @@ const ModelDetails = () => {
     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';
     setIsModelsLoading(true);
     // Replace this URL with the appropriate one for fetching models
-    fetch(`https://api.univolenitsolutions.com/v1/automobile/get/carmodels/${carModelDetails?.carBrand?._id}/for/65538448b78add9eaa02d417`, {
+    fetch(`https://api.univolenitsolutions.com/v1/automobile/get/carmodels/${carModelDetails?.carBrand?._id}/for/66cac994eeca9633c29171e2`, {
       method: 'GET',
       headers: {
         'X-API-Key': apiKey,
@@ -168,7 +168,7 @@ const ModelDetails = () => {
     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';
     setIsModelsLoading(true);
     // Replace this URL with the appropriate one for fetching models
-    fetch(`https://api.univolenitsolutions.com/v1/automobile/get/carmodels/${carModelDetails?.carBrand?._id}/for/65538448b78add9eaa02d417`, {
+    fetch(`https://api.univolenitsolutions.com/v1/automobile/get/carmodels/${carModelDetails?.carBrand?._id}/for/66cac994eeca9633c29171e2`, {
       method: 'GET',
       headers: {
         'X-API-Key': apiKey,

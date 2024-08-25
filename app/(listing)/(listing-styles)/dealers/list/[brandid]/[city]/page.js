@@ -48,7 +48,7 @@ const Dealers = () => {
   }, [brandData, cityData]);
 
   useEffect(() => {
-    const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carbrands/for/65538448b78add9eaa02d417';
+    const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carbrands/for/66cac994eeca9633c29171e2';
     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
 
     fetch(apiUrl, {
@@ -72,7 +72,7 @@ const Dealers = () => {
   }, [brandData]);
 
   useEffect(() => {
-    const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carmodels/for/65538448b78add9eaa02d417';
+    const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carmodels/for/66cac994eeca9633c29171e2';
     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
     fetch(apiUrl, {
       method: 'GET',
@@ -94,7 +94,7 @@ const Dealers = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    const apiUrl = `https://api.univolenitsolutions.com/v1/cardealer/get/dealer/brand/${brandData}/cityCode/${cityData}/for/website/65538448b78add9eaa02d417`;
+    const apiUrl = `https://api.univolenitsolutions.com/v1/cardealer/get/dealer/brand/${brandData}/cityCode/${cityData}/for/website/66cac994eeca9633c29171e2`;
     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
     fetch(apiUrl, {
       method: 'GET',

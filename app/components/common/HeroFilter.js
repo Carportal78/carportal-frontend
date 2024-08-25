@@ -15,7 +15,7 @@ const HeroFilter = () => {
 
   useEffect(() => {
     setIsBrandsLoading(true);
-    const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carbrands/for/65538448b78add9eaa02d417';
+    const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carbrands/for/66cac994eeca9633c29171e2';
     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
 
     fetch(apiUrl, {
@@ -42,7 +42,7 @@ const HeroFilter = () => {
     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';
     if (selectedBrandId) {
       setIsModelsLoading(true);
-      fetch(`https://api.univolenitsolutions.com/v1/automobile/get/carmodels/${selectedBrandId}/for/65538448b78add9eaa02d417`,
+      fetch(`https://api.univolenitsolutions.com/v1/automobile/get/carmodels/${selectedBrandId}/for/66cac994eeca9633c29171e2`,
         {
           method: 'GET',
           headers: {

@@ -53,7 +53,7 @@ const CompareTable = () => {
       const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';
       if (true) {
         setIsLoading(true)
-        fetch(`https://api.univolenitsolutions.com/v1/automobile/get/carinfo/for/65538448b78add9eaa02d417`,
+        fetch(`https://api.univolenitsolutions.com/v1/automobile/get/carinfo/for/66cac994eeca9633c29171e2`,
         {
           method: 'GET',
           headers: {
@@ -84,7 +84,7 @@ const CompareTable = () => {
     }
     if (true) {
       setIsCompareLoading(true)
-      fetch(`https://api.univolenitsolutions.com/v1/automobile/get/compare/carsvariants/for/65538448b78add9eaa02d417`,
+      fetch(`https://api.univolenitsolutions.com/v1/automobile/get/compare/carsvariants/for/66cac994eeca9633c29171e2`,
        {
         method: 'POST',
         headers: {
