@@ -25,7 +25,7 @@ const Home_1 = () => {
   const [banner, setBanner] = useState([]);
 
   useEffect(() => {
-    const apiUrl = 'http://localhost:3005/v1/carbanner/get/banner/image/for/66cac994eeca9633c29171e2';
+    const apiUrl = 'https://api.univolenitsolutions.com/v1/carbanner/get/banner/image/for/66cac994eeca9633c29171e2';
     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
 
     fetch(apiUrl, {
