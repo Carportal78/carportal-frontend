@@ -9,7 +9,7 @@ const BlogGrid = ({ blogs }) => {
     e.preventDefault();
     if (typeof window !== 'undefined') {
       localStorage.setItem('selectedBlogPost', JSON.stringify(post));
-      window.location.href = `/blog/${post.carBrand.brandName}/${post.urlslug}`;
+      window.location.href = `/blog/${post.carBrand.brandName}/${post.urlSlug}`;
     }
   };
 
@@ -23,7 +23,7 @@ const BlogGrid = ({ blogs }) => {
           data-aos="fade-up"
           data-aos-delay="100"
         >
-          <Link href={`/blog/${post.carBrand.brandName}/${post._id}`} onClick={(e) => handleReadMoreClick(post, e)}>
+          <Link href={`/blog/${post.carBrand.brandName}/${post?.urlSlug}`} onClick={(e) => handleReadMoreClick(post, e)}>
             <div className="for_blog">
               <div className="thumb">
                 <div className="tag">
@@ -34,7 +34,7 @@ const BlogGrid = ({ blogs }) => {
                   height={254}
                   style={{ objectFit: "cover" }}
                   className="img-whp"
-                  src={post?.media?.url}
+                  src={post?.mainImage?.url}
                   alt={post?.media?.altText}
                 />
               </div>
@@ -43,19 +43,19 @@ const BlogGrid = ({ blogs }) => {
                   <div className="bp_meta">
                     <ul>
                       <li className="list-inline-item">
-                        <Link href={`/blog/${post.carBrand.brandName}/${post._id}`}>
+                        <Link href={`/blog/${post.carBrand.brandName}/${post?.urlSlug}`}>
                           <span className="flaticon-user" />
                           {post?.carBrand?.brandName}
                         </Link>
                       </li>
                       <li className="list-inline-item">
-                        <Link href={`/blog/${post.carBrand.brandName}/${post._id}`}>
+                        <Link href={`/blog/${post.carBrand.brandName}/${post?.urlSlug}`}>
                           <span className="flaticon-chat" />
                           {post?.carModel?.modelName} Model
                         </Link>
                       </li>
                       <li className="list-inline-item">
-                        <Link href={`/blog/${post.carBrand.brandName}/${post._id}`}>
+                        <Link href={`/blog/${post.carBrand.brandName}/${post?.urlSlug}`}>
                           <span className="flaticon-calendar-1" />
                           {post?.carModel?.year}
                         </Link>
@@ -63,10 +63,10 @@ const BlogGrid = ({ blogs }) => {
                     </ul>
                   </div>
                   <h4 className="title">
-                    <Link href={`/blog/${post.carBrand.brandName}/${post._id}`}>{post?.blogName}</Link>
+                    <Link href={`/blog/${post.carBrand.brandName}/${post.urlSlug}`}>{post?.blogName}</Link>
                   </h4>
                   <Link
-                    href={`/blog/${post.carBrand.brandName}/${post._id}`}
+                    href={`/blog/${post.carBrand.brandName}/${post.urlSlug}`}
                     onClick={(e) => handleReadMoreClick(post, e)}
                     className="more_listing"
                   >
