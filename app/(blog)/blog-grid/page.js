@@ -8,6 +8,7 @@ async function fetchBlogs() {
     headers: {
       'X-API-Key': apiKey,
       'Content-Type': 'application/json',
+      'Cache-Control': 'no-cache',
     },
   });
 
