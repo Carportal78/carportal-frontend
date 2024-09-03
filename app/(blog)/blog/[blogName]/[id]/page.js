@@ -8,7 +8,7 @@ const metadata = {
 
 async function fetchBlogData(slug) {
   const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';  // Replace with your actual API key
-  const res = await fetch(`http://localhost:3005/v1/carblog/get/blog/${slug}/for/66cac994eeca9633c29171e2`, {
+  const res = await fetch(`https://api.univolenitsolutions.com/v1/carblog/get/blog/${slug}/for/66cac994eeca9633c29171e2`, {
     headers: {
       'x-api-key': apiKey,
     },
