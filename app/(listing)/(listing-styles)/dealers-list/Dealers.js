@@ -1,98 +1,91 @@
 'use client';
-import Footer from "../../../../../../components/common/Footer";
-import DefaultHeader from "../../../../../../components/common/DefaultHeader";
-import HeaderSidebar from "../../../../../../components/common/HeaderSidebar";
-import HeaderTop from "../../../../../../components/common/HeaderTop";
-import MobileMenu from "../../../../../../components/common/MobileMenu";
-import LoginSignupModal from "../../../../../../components/common/login-signup";
+import Footer from "../../../components/common/Footer";
+import DefaultHeader from "../../../components/common/DefaultHeader";
+import HeaderSidebar from "../../../components/common/HeaderSidebar";
+import HeaderTop from "../../../components/common/HeaderTop";
+import MobileMenu from "../../../components/common/MobileMenu";
+import LoginSignupModal from "../../../components/common/login-signup";
 import Link from "next/link";
-import ReleatedCar from "../../../../../../components/listing/listing-single/ReleatedCar";
-import DealersPageDescription from "../../../../../../components/dealers/DealersPageDescription";
+import ReleatedCar from "../../../components/listing/listing-single/ReleatedCar";
+import DealersPageDescription from "../../../components/dealers/DealersPageDescription";
 import { Card, Col, Image, Row, Spinner } from "react-bootstrap";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { selectBrandAtom, selectCarDealerAtom, selectCityAtom } from "../../../../../../components/atoms/categoriesAtoms";
+import { selectBrandAtom, selectCarDealerAtom, selectCityAtom } from "../../../components/atoms/categoriesAtoms";
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { useAtom } from "jotai";
 import { useRouter } from "next/navigation";
-import statesCitiesList from '../../../../../../../public/jsondata/state-and-city.json';
 
 const metadata = {
-  title: "OnRoad Price || Carportal - Automotive & Car Dealer",
+  title: "Dealers List || Carportal - Automotive & Car Dealer",
 };
 
-const Dealers = () => {
+const Dealers = ({ carBrandsList, carModelsList}) => {
 
-  const [carBrandsList, setCarBrandsList] = useState([]);
+  // const [carBrandsList, setCarBrandsList] = useState([]);
   const [carModelDetails, setCarModelDetails] = useState({});
   const [carVariantsList, setCarVariantsList] = useState([]);
-  const [carModelsList, setCarModelsList] = useState([]);
+  // const [carModelsList, setCarModelsList] = useState([]);
   const [carBrand, setCarBrand] = useState({});
   const [selectCarVariantData, setSelectCarVariantData] = useAtom(selectCarDealerAtom);
   // Fetch cityData from Jotai state
-  const [cityData, setCityData] = useAtom(selectCityAtom);
-  const [brandData, setBrandData] = useAtom(selectBrandAtom);
+  const [cityData] = useAtom(selectCityAtom);
+  const [brandData] = useAtom(selectBrandAtom);
   const [carDealers, setCarDealers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [cityLabel, setCityLabel] = useState('Delhi');
+  const [isBrandLoading, setIsBrandLoading] = useState(false);
   const router = useRouter();
 
-  useEffect(() => {
-    if(!brandData || !cityData) {
-    const data = JSON?.parse(localStorage?.getItem('dealer-type'));
-    if(data) {
-      setCityData(data?.city);
-      setBrandData(data?.brand);
-    }
-    }
-  }, [brandData, cityData]);
+  // useEffect(() => {
+  //   setIsBrandLoading(true);
+  //   const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carbrands/for/66cac994eeca9633c29171e2';
+  //   const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
+
+  //   fetch(apiUrl, {
+  //     method: 'GET',
+  //     headers: {
+  //       'X-API-Key': apiKey,
+  //       'Content-Type': 'application/json'
+  //     }
+  //   })
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       if (data && data.data && data.data.carBrandsList) {
+  //         setIsBrandLoading(false);
+  //         setCarBrandsList(data.data.carBrandsList);
+  //         setCarBrand(data.data.carBrandsList.find(brand => brand._id.toString() === brandData?.toString()));
+  //         localStorage.setItem('carBrandsList', JSON.stringify(data.data.carBrandsList));
+  //       }
+  //     })
+  //     .catch(error => {
+  //       setIsBrandLoading(false);
+  //       console.error('Error fetching data: ', error);
+  //     })
+  // }, [brandData]);
+
+  // useEffect(() => {
+  //   const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carmodels/for/66cac994eeca9633c29171e2';
+  //   const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
+  //   fetch(apiUrl, {
+  //     method: 'GET',
+  //     headers: {
+  //       'X-API-Key': apiKey,
+  //       'Content-Type': 'application/json'
+  //     }
+  //   })
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       if (data && data.data && data.data.carModelsList) {
+  //         setCarModelsList(data.data.carModelsList);
+  //       }
+  //     })
+  //     .catch(error => {
+  //       setCarModelsList([]);
+  //     });
+  // }, []);
 
   useEffect(() => {
-    const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carbrands/for/66cac994eeca9633c29171e2';
-    const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
-
-    fetch(apiUrl, {
-      method: 'GET',
-      headers: {
-        'X-API-Key': apiKey,
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(response => response.json())
-      .then(data => {
-        if (data && data.data && data.data.carBrandsList) {
-          setCarBrandsList(data.data.carBrandsList);
-          setCarBrand(data.data.carBrandsList.find(brand => brand._id.toString() === brandData?.toString()));
-          localStorage.setItem('carBrandsList', JSON.stringify(data.data.carBrandsList));
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching data: ', error);
-      })
-  }, [brandData]);
-
-  useEffect(() => {
-    const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carmodels/for/66cac994eeca9633c29171e2';
-    const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
-    fetch(apiUrl, {
-      method: 'GET',
-      headers: {
-        'X-API-Key': apiKey,
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(response => response.json())
-      .then(data => {
-        if (data && data.data && data.data.carModelsList) {
-          setCarModelsList(data.data.carModelsList);
-        }
-      })
-      .catch(error => {
-        setCarModelsList([]);
-      });
-  }, []);
-
-  useEffect(() => {
+    if(brandData && cityData) {
     setIsLoading(true);
     const apiUrl = `https://api.univolenitsolutions.com/v1/cardealer/get/dealer/brand/${brandData}/cityCode/${cityData}/for/website/66cac994eeca9633c29171e2`;
     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
@@ -114,37 +107,20 @@ const Dealers = () => {
         setCarDealers([]);
         setIsLoading(false);
       });
+    }
   }, [brandData, cityData])
-
-  function handleSearchDealer(brandName, cityName) {
-    setBrandData(cityData);
-    setCityData(brandData);
-    console.log('cityData', cityData, brandData);
-    localStorage.setItem('dealer-type', JSON.stringify({ brand: brandData, city: cityData }))
-    router.push(`/dealers/list/${brandName}/${cityName}`);
-}
 
   // const handleBrandClick = (brand) => {
   //   alert(brand?._id)
   //   router.push(`/dealer/${brand?._id}`) 
   // }
 
-  const getCityName = (cityData) => {
-    const loadedCityOptions = Object.keys(statesCitiesList)?.flatMap(state => (
-      statesCitiesList[state]?.map(city => ({
-        value: city.id.toString(),
-        label: city.city
-      }))
-    ));
-
-    if (cityData !== null && loadedCityOptions.length > 0) {
-      const matchingCity = loadedCityOptions?.find(option => option.value === cityData?.toString());
-      // setCityLabel(matchingCity?.label);
-      return matchingCity?.label;
-    }
-
-    return 'Delhi';
-  }
+  function handleSearchDealer(brandName, cityName) {
+    setBrandData(cityData);
+    setCityData(brandData);
+    localStorage.setItem('dealer-type', JSON.stringify({ brand: brandData, city: cityData }))
+    router.push(`/dealers/list/${brandName}/${cityName}`);
+}
 
   return (
     <div className="wrapper">
@@ -189,13 +165,13 @@ const Dealers = () => {
             </div>
           </div>
 
-          {carDealers?.length > 0 && <p className="col-lg-12 col-xl-12 mb-3" style={{ fontSize: '1.5em', fontWeight: "600", color: '#24272c' }}>
-            {carDealers?.length} {carBrand?.brandName} Car Dealers in {getCityName(cityData)}
-          </p>}
+          {carDealers?.length > 0 && (<p className="col-lg-12 col-xl-12 mb-3" style={{ fontSize: '1.5em', fontWeight: "600", color: '#24272c' }}>
+            {carDealers?.length} {carBrand?.brandName} Car Dealers in {cityData}
+          </p>) }
           <Row className="g-3">
             {isLoading ? <Spinner className="d-flex" style={{ marginLeft: 'auto', marginRight: 'auto' }} animation="border" role="status">
               <span className="visually-hidden">Loading...</span>
-            </Spinner> : carDealers?.length > 0 ? carDealers?.map(dealer => (
+            </Spinner> : carDealers?.map(dealer => (
               <Col xs={12} md={4} lg={4} className="d-flex align-items-stretch" key={dealer?._id}>
                 <div style={{
                   width: '100%',
@@ -236,21 +212,23 @@ const Dealers = () => {
                   </Card.Body>
                 </div>
               </Col>
-            )) : <p>No Records Found</p>}
+            ))}
           </Row>
 
           <p className="col-lg-12 col-xl-12 mb-3" style={{ fontSize: '1.5em', fontWeight: "600", color: '#24272c' }}>
             Other Brand Dealers to Explore
           </p>
           <Row className="g-3">
-            {isLoading ? <Spinner className="d-flex" style={{ marginLeft: 'auto', marginRight: 'auto' }} animation="border" role="status">
+            {isBrandLoading ? <Spinner className="d-flex" style={{ marginLeft: 'auto', marginRight: 'auto' }} animation="border" role="status">
               <span className="visually-hidden">Loading...</span>
-            </Spinner> : carBrandsList?.map(brand => (
-              <Col xs={6} md={4} lg={2} className="d-flex align-items-stretch pointer" key={brand?._id} onClick={() => handleSearchDealer(brand?.brandName, cityLabel)}>
+            </Spinner> : (carBrandsList?.map(brand => (
+              <Col xs={6} md={4} lg={2} className="d-flex align-items-stretch pointer" key={brand?._id} onClick={() => handleSearchDealer}>
+                
                 <div style={{
+                  width: '100%',
                   backgroundColor: "#fff",
                   border: "1px solid #eaeaea",
-                  borderRadius: "8px",
+                  borderRadius: "8px", 
                   marginBottom: "30px",
                   padding: "30px",
                   boxShadow: "0px 2px 12px rgba(36,40,44,.08)"
@@ -269,7 +247,8 @@ const Dealers = () => {
                   </Card.Body>
                 </div>
               </Col>
-            ))}
+            )))
+            }
           </Row>
 
           {/* End .row */}
