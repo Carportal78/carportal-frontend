@@ -121,7 +121,7 @@ const CarNewsPage = ({ blogData }) => {
             </p>
 
             <div className="position-relative mb-4">
-              <Image src={mainArticle.mainImage} alt={mainArticle.title} fluid rounded />
+              <Image src={mainArticle.mainImage} alt={mainArticle.title} rounded style={{ width: '100%' }} />
               {/* <Button variant="light" className="position-absolute bottom-0 start-0 m-3 d-flex align-items-center">
                 <Camera size={18} className="me-2" />
                 View Gallery
