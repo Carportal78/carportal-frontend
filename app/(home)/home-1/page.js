@@ -1,20 +1,14 @@
 "use client";
-import CarIntro from "../../components/home/home-1/CarIntro";
-import Category from "../../components/home/home-1/Category";
 import PopularListings from "../../components/home/home-1/PopularListings";
-import WhyChoose from "../../components/common/WhyChoose";
 import LoginSignupModal from "../../components/common/login-signup";
 import HeaderTop from "../../components/home/home-1/HeaderTop";
 import HeaderSidebar from "../../components/common/HeaderSidebar";
 import Header from "../../components/home/home-1/Header";
 import MobileMenu from "../../components/common/MobileMenu";
 import Link from "next/link";
-import FeaturedFilterListing from "../../components/home/home-1/FeaturedFilterListing";
 import Hero from "../../components/home/home-1/Hero";
 import Footer from "../../components/common/Footer";
 import Testimonial from "../../components/common/Testimonial";
-import Partner from "../../components/common/Partner";
-import Counter from "../../components/home/home-1/Counter";
 import FindCarChoice from "../../components/home/home-1/FindCarChoice";
 import AllBrandsList from "../../components/home/home-1/AllBrandsList";
 import { useEffect, useState } from "react";
@@ -28,6 +22,30 @@ const Home_1 = () => {
 
   const [collections, setCollections] = useState([]);
   const [testimonials, setTestimonials] = useState([]);
+  const [banner, setBanner] = useState([]);
+
+  useEffect(() => {
+    const apiUrl = 'http://localhost:3005/v1/carbanner/get/banner/image/for/66cac994eeca9633c29171e2';
+    const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
+
+    fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'X-API-Key': apiKey,
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+
+        if (data && data.data && data.data.carBanner) {
+          setBanner(data.data.carBanner);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching data: ', error);
+      });
+  }, []);
 
   useEffect(() => {
     const apiUrl = 'https://api.univolenitsolutions.com/v1/testimonial/get/submitted/all/for/66cac994eeca9633c29171e2';
@@ -148,7 +166,7 @@ const Home_1 = () => {
       {/* End Main Header Nav For Mobile */}
 
       {/* Hero */}
-      <Hero />
+      <Hero banner={banner} />
       {/* End Hero */}
 
       {/* All brands List */}
