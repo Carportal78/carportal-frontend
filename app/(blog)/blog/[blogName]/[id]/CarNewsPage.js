@@ -117,20 +117,20 @@ const CarNewsPage = ({ blogData }) => {
           <Col lg={8}>
             <h1 className="mb-3">{mainArticle.title}</h1>
             <p className="text-muted">
-              Modified on {new Date(mainArticle.modifiedDate).toLocaleString()} • {mainArticle.views.toLocaleString()} Views
+              Modified on {new Date(mainArticle.modifiedDate).toLocaleString()}
             </p>
 
             <div className="position-relative mb-4">
               <Image src={mainArticle.mainImage} alt={mainArticle.title} fluid rounded />
-              <Button variant="light" className="position-absolute bottom-0 start-0 m-3 d-flex align-items-center">
+              {/* <Button variant="light" className="position-absolute bottom-0 start-0 m-3 d-flex align-items-center">
                 <Camera size={18} className="me-2" />
                 View Gallery
-              </Button>
+              </Button> */}
             </div>
 
             <div>
               <p>{mainArticle.content}</p>
-              {mainArticle.sections.map((section, index) => (
+              {mainArticle?.sections?.map((section, index) => (
                 <div key={index}>
                   {console.log('section ', section)}
                   <h2 className="mt-4 mb-3">{section.title}</h2>

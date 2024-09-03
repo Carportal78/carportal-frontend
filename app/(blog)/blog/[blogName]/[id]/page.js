@@ -26,7 +26,7 @@ const Page = async ({ params }) => {
   const blogData = await fetchBlogData(id);
   console.log("blogData ", blogData)
   return (<>
-  <CarNewsPage blogData={blogData.data.carBlog} />
+  <CarNewsPage blogData={blogData?.data?.carBlog} />
   </>);
 
 };

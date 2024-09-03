@@ -40,6 +40,15 @@ const BlogGrid = ({ blogs }) => {
               </div>
               <div className="details">
                 <div className="wrapper"> 
+                <div className="bp_meta">
+                    <ul>
+                      <h3 className="list-inline-item">
+                        <Link href={`/blog/${post.carBrand.brandName}/${post?.urlSlug}`}>
+                          {post?.title}
+                        </Link>
+                      </h3>
+                    </ul>
+                  </div>
                   <div className="bp_meta">
                     <ul>
                       <li className="list-inline-item">
@@ -51,7 +60,7 @@ const BlogGrid = ({ blogs }) => {
                       <li className="list-inline-item">
                         <Link href={`/blog/${post.carBrand.brandName}/${post?.urlSlug}`}>
                           <span className="flaticon-chat" />
-                          {post?.carModel?.modelName} Model
+                          {post?.carModel?.modelName}
                         </Link>
                       </li>
                       <li className="list-inline-item">
