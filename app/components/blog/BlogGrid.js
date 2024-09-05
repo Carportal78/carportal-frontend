@@ -21,7 +21,6 @@ const BlogGrid = ({ blogs }) => {
           key={post?._id}
           className="col-md-6 col-xl-4"
           data-aos="fade-up"
-          data-aos-delay="100"
         >
           <Link href={`/blog/${post.carBrand.brandName}/${post?.urlSlug}`} onClick={(e) => handleReadMoreClick(post, e)}>
             <div className="for_blog">

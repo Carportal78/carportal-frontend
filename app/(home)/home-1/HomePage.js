@@ -18,7 +18,7 @@ const metadata = {
   description: `Carportal - Automotive & Car Dealer. `,
 };
 
-const HomePage = ({ collections, testimonials, banner }) => {
+const HomePage = ({ collections, carBrands, testimonials, banner }) => {
 
   useEffect(() => {
     const data = localStorage?.getItem('compare-data');
@@ -90,8 +90,8 @@ const HomePage = ({ collections, testimonials, banner }) => {
           {/* End .row */}
 
           <div className="row">
-            <div className="col-lg-12" data-aos-delay="100" data-aos="fade-up">
-              <AllBrandsList />
+            <div className="col-lg-12">
+              <AllBrandsList carBrands={carBrands} />
             </div>
           </div>
           {/* End .row */}
@@ -113,7 +113,7 @@ const HomePage = ({ collections, testimonials, banner }) => {
           {/* End .row */}
 
           <div className="row">
-            <div className="col-lg-12" data-aos-delay="100" data-aos="fade-up">
+            <div className="col-lg-12">
               <FindCarChoice />
             </div>
           </div>
@@ -138,7 +138,7 @@ const HomePage = ({ collections, testimonials, banner }) => {
             {/* End .row */}
 
             <div className="row">
-              <div className="col-lg-12" data-aos-delay="100" data-aos="fade-up">
+              <div className="col-lg-12">
                 <PopularListings collection={collection} />
                 {/* <FeaturedFilterListing collection={collection} /> */}
               </div>
@@ -175,7 +175,7 @@ const HomePage = ({ collections, testimonials, banner }) => {
           {/* End .row */}
 
           <div className="row">
-            <div className="col-lg-12" data-aos-delay="100" data-aos="fade-up">
+            <div className="col-lg-12">
               <Testimonial testimonials={testimonials} />
               {/* <FeaturedFilterListing collection={collection} /> */}
             </div>

@@ -9,8 +9,7 @@ const Blog = () => {
         <div
           key={post.id}
           className="col-md-6 col-xl-4"
-          data-aos="fade-up"
-          data-aos-delay="100"
+          data-aos="fade-up"          
         >
           <div className="for_blog">
             <div className="thumb">

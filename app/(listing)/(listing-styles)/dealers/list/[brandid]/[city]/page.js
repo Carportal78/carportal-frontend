@@ -308,7 +308,6 @@ const Dealers = () => {
           <div className="col-lg-12">
             <div
               className="home1_popular_listing home3_style"
-              data-aos-delay="100"
             >
               <div className="listing_item_4grid_slider nav_none">
                 <ReleatedCar bodyType={carModelDetails?.bodyType} carModelDetails={carModelDetails} relatedCars={carModelsList} />

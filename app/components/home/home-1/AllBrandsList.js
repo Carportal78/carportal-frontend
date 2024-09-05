@@ -10,35 +10,13 @@ import { Navigation } from "swiper";
 import "swiper/swiper-bundle.css";
 import { useRouter } from 'next/navigation';
 
-function AllBrandsList() {
-  const [carBrands, setCarBrands] = useState([]);
+
+function AllBrandsList({ carBrands }) {
   const [showAll, setShowAll] = useState(false);
   const router = useRouter();
 
   const displayedBrands = showAll ? carBrands : carBrands.slice(0, 6);
   const webdisplayedBrands = showAll ? carBrands : carBrands.slice(0, 12);
-
-  useEffect(() => {
-    const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carbrands/for/66cac994eeca9633c29171e2';
-    const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
-
-    fetch(apiUrl, {
-      method: 'GET',
-      headers: {
-        'X-API-Key': apiKey,
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(response => response.json())
-      .then(data => {
-        if (data && data.data && data.data.carBrandsList) {
-          setCarBrands(data.data.carBrandsList);
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching data: ', error);
-      });
-  }, []);
 
   return (
     <>

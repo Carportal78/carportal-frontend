@@ -6,6 +6,8 @@ export default async function Home() {
   // Fetch the banner data
   const banner = await fetchData('https://api.univolenitsolutions.com/v1/carbanner/get/banner/image/for/66cac994eeca9633c29171e2');
 
+  const carBrands = await fetchData('https://api.univolenitsolutions.com/v1/automobile/get/carbrands/for/66cac994eeca9633c29171e2');
+
   // Fetch the testimonials data
   const testimonials = await fetchData('https://api.univolenitsolutions.com/v1/testimonial/get/submitted/all/for/66cac994eeca9633c29171e2');
 
@@ -15,6 +17,7 @@ export default async function Home() {
   return (
     <HomePage 
       banner={banner?.carBanner} 
+      carBrands= {carBrands?.carBrandsList}
       testimonials={testimonials?.testimonialsList} 
       collections={collections?.carCollectionsList} 
     />
@@ -32,7 +35,7 @@ async function fetchData(apiUrl) {
     headers: {
       'X-API-Key': apiKey,
       'Content-Type': 'application/json',
-      'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0',
+      // 'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0',
     },
     next: { revalidate: 10 }, // Ensure Vercel does not cache this fetch
   });
