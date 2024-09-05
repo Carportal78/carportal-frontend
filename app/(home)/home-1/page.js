@@ -1,6 +1,6 @@
 import HomePage from './HomePage';
 
-export const revalidate = 60;
+export const revalidate = 10; // Revalidate every 10 seconds
 
 export default async function Home() {
   // Fetch the banner data
@@ -12,37 +12,28 @@ export default async function Home() {
   // Fetch car collections data
   const collections = await fetchData('https://api.univolenitsolutions.com/v1/automobile/get/carCollections/for/66cac994eeca9633c29171e2');
 
-  // Fetch car compare data and store it in localStorage
-  if (typeof window !== 'undefined') {
-    const compareData = localStorage.getItem('compare-data');
-    if (!compareData) {
-      const carInfo = await fetchData('https://api.univolenitsolutions.com/v1/automobile/get/carinfo/for/66cac994eeca9633c29171e2');
-      if (carInfo && carInfo.data) {
-        localStorage.setItem('compare-data', JSON.stringify(carInfo.data));
-      }
-    }
-  }
-
   // Pass the fetched data as props to the HomePage component
   return (
-    <HomePage banner={banner?.carBanner} testimonials={testimonials?.testimonialsList} collections={collections?.carCollectionsList} />
+    <HomePage 
+      banner={banner?.carBanner} 
+      testimonials={testimonials?.testimonialsList} 
+      collections={collections?.carCollectionsList} 
+    />
   );
 }
 
-// Utility function to fetch data
+// Utility function to fetch data with no-cache headers
 async function fetchData(apiUrl) {
   const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';
   const timestamp = Date.now();
-  const urlWithTimestamp = `${apiUrl}${apiUrl.includes('?') ? '&' : '?'}t=${timestamp}`;
+  const urlWithTimestamp = `${apiUrl}${apiUrl.includes('?') ? '&' : '?'}t=${timestamp}`; // Add timestamp to bypass cache
   const res = await fetch(urlWithTimestamp, {
     method: 'GET',
     headers: {
       'X-API-Key': apiKey,
       'Content-Type': 'application/json',
-      'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0', // Force fresh data
-      'Pragma': 'no-cache', // HTTP 1.0 backward compatibility
-      'Expires': '0'
-    },
+      'Cache-Control': 'no-store', // Disable caching
+    }
   });
 
   if (!res.ok) {
@@ -51,4 +42,17 @@ async function fetchData(apiUrl) {
 
   const data = await res.json();
   return data?.data;
+}
+
+// Client-side code to store car compare data in localStorage
+if (typeof window !== 'undefined') {
+  window.addEventListener('load', async () => {
+    const compareData = localStorage.getItem('compare-data');
+    if (!compareData) {
+      const carInfo = await fetchData('https://api.univolenitsolutions.com/v1/automobile/get/carinfo/for/66cac994eeca9633c29171e2');
+      if (carInfo && carInfo.data) {
+        localStorage.setItem('compare-data', JSON.stringify(carInfo.data));
+      }
+    }
+  });
 }
