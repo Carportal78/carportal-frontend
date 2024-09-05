@@ -41,6 +41,7 @@ async function fetchData(apiUrl) {
       'Content-Type': 'application/json',
       'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0', // Force fresh data
       'Pragma': 'no-cache', // HTTP 1.0 backward compatibility
+      'Expires': '0'
     },
   });
 
