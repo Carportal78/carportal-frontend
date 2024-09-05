@@ -1,5 +1,7 @@
 import HomePage from './HomePage';
 
+export const revalidate = 0;
+
 export default async function Home() {
   // Fetch the banner data
   const banner = await fetchData('https://api.univolenitsolutions.com/v1/carbanner/get/banner/image/for/66cac994eeca9633c29171e2');
@@ -30,7 +32,9 @@ export default async function Home() {
 // Utility function to fetch data
 async function fetchData(apiUrl) {
   const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';
-  const res = await fetch(apiUrl, {
+  const timestamp = Date.now();
+  const urlWithTimestamp = `${apiUrl}${apiUrl.includes('?') ? '&' : '?'}t=${timestamp}`;
+  const res = await fetch(urlWithTimestamp, {
     method: 'GET',
     headers: {
       'X-API-Key': apiKey,
