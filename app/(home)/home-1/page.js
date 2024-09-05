@@ -12,7 +12,6 @@ export default async function Home() {
   // Fetch car collections data
   const collections = await fetchData('https://api.univolenitsolutions.com/v1/automobile/get/carCollections/for/66cac994eeca9633c29171e2');
 
-  // Pass the fetched data as props to the HomePage component
   return (
     <HomePage 
       banner={banner?.carBanner} 
