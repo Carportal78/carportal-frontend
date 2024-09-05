@@ -25,14 +25,16 @@ export default async function Home() {
 async function fetchData(apiUrl) {
   const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';
   const timestamp = Date.now();
-  const urlWithTimestamp = `${apiUrl}${apiUrl.includes('?') ? '&' : '?'}t=${timestamp}`; // Add timestamp to bypass cache
+  const urlWithTimestamp = `${apiUrl}${apiUrl.includes('?') ? '&' : '?'}t=${timestamp}`;
+
   const res = await fetch(urlWithTimestamp, {
     method: 'GET',
     headers: {
       'X-API-Key': apiKey,
       'Content-Type': 'application/json',
-      'Cache-Control': 'no-store', // Disable caching
-    }
+      'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0',
+    },
+    next: { revalidate: 10 }, // Ensure Vercel does not cache this fetch
   });
 
   if (!res.ok) {
@@ -42,6 +44,7 @@ async function fetchData(apiUrl) {
   const data = await res.json();
   return data?.data;
 }
+
 
 // Client-side code to store car compare data in localStorage
 if (typeof window !== 'undefined') {
