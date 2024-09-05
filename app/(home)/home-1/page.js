@@ -35,7 +35,7 @@ async function fetchData(apiUrl) {
     headers: {
       'X-API-Key': apiKey,
       'Content-Type': 'application/json',
-      'Cache-Control': 'no-cache',
+      'Cache-Control': 'no-cache must-revalidate, max-age=0',
     },
   });
 
