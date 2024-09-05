@@ -6,7 +6,7 @@ const Address = () => {
          Sector 63, Noida, U.P.(201301) India
       </>
     ),
-    subtitle: "012-04375431",
+    subtitle: "+91 9650774320",
     email: "info@carportal.com",
     socialIcons: [
       { iconClass: "fab fa-facebook-f", link: "https://www.facebook.com/carportal" },

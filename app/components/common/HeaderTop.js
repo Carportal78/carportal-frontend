@@ -21,7 +21,7 @@ const HeaderTop = () => {
   const contactData = [
     {
       icon: "flaticon-phone-call",
-      text: "012-04375431",
+      text: "+91 9650774320",
     },
     {
       icon: "flaticon-map",
