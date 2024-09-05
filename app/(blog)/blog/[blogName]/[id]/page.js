@@ -10,8 +10,11 @@ async function fetchBlogData(slug) {
   const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';  // Replace with your actual API key
   const res = await fetch(`https://api.univolenitsolutions.com/v1/carblog/get/blog/${slug}/for/66cac994eeca9633c29171e2`, {
     headers: {
-      'x-api-key': apiKey,
+      'X-API-Key': apiKey,
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0',
     },
+    next: { revalidate: 10 }, // Ensure Vercel does not cache this fetch
   });
 
   if (!res.ok) {

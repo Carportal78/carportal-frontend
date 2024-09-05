@@ -8,8 +8,9 @@ async function fetchBlogs() {
     headers: {
       'X-API-Key': apiKey,
       'Content-Type': 'application/json',
-      'Cache-Control': 'no-cache',
+      'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0',
     },
+    next: { revalidate: 10 }, // Ensure Vercel does not cache this fetch
   });
 
   if (!res.ok) {
