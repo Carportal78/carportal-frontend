@@ -21,7 +21,7 @@ const FooterItems = () => {
           <Accordion.Item eventKey="1">
             <Accordion.Header>Connect With Us</Accordion.Header>
             <Accordion.Body>
-            <p><Link href="/about-us" style={{ color: 'white' }}>Feedback</Link></p>
+            {/* <p><Link href="/about-us" style={{ color: 'white' }}>Feedback</Link></p> */}
             <p><Link href="/contact-us" style={{ color: 'white' }}>Contact Us</Link></p>
             </Accordion.Body>
           </Accordion.Item>
@@ -53,7 +53,7 @@ const FooterItems = () => {
         <div className="col-sm-6 col-md-4 col-lg-3 col-xl-3">
           <div className="footer_contact_widget">
             <h5 className="title">CONNECT WITH US</h5>
-            <p><Link href="/about-us" style={{ color: 'white' }}>Feedback</Link></p>
+            {/* <p><Link href="/about-us" style={{ color: 'white' }}>Feedback</Link></p> */}
             <p><Link href="/contact-us" style={{ color: 'white' }}>Contact Us</Link></p>
           </div>
         </div>
@@ -62,7 +62,7 @@ const FooterItems = () => {
           <div className="footer_contact_widget">
             <h5 className="title">NEED HELP</h5>
             <div className="footer_phone">+91 9650774320</div>
-            <p>info@carportal.com</p>
+            <p>shikeb@carportal.co.in</p>
           </div>
         </div>
         {/* End .col */}
