@@ -21,7 +21,7 @@ const DashboardHeaderTop = () => {
   const contactData = [
     {
       icon: "flaticon-phone-call",
-      text: "0120-4375431",
+      text: "+91 9650774320",
     },
     {
       icon: "flaticon-map",

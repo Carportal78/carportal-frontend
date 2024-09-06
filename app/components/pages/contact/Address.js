@@ -7,7 +7,7 @@ const Address = () => {
       </>
     ),
     subtitle: "+91 9650774320",
-    email: "info@carportal.com",
+    email: "shikeb@carportal.co.in",
     socialIcons: [
       { iconClass: "fab fa-facebook-f", link: "https://www.facebook.com/carportal" },
       { iconClass: "fab fa-twitter", link: "https://twitter.com/CarPortalindia" },
