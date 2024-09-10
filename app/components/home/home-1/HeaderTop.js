@@ -26,11 +26,7 @@ const HeaderTop = () => {
     {
       icon: "flaticon-map",
       text: " Sector 63, Noida, U.P.(201301) India",
-    },
-    {
-      icon: "flaticon-clock",
-      text: "Mon - Fri 8:00 - 18:00",
-    },
+    } 
   ];
 
   return (
