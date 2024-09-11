@@ -51,11 +51,7 @@ const MobileMenu = () => {
         {
             icon: "flaticon-phone-call",
             text: "+91 9650774320",
-        },
-        {
-            icon: "flaticon-clock",
-            text: "Mon - Fri 8:00 - 18:00",
-        },
+        }
     ];
 
     return (

@@ -80,7 +80,7 @@ const FooterItems = () => {
                     placeholder="Enter your email..."
                     required
                   />
-                  <button type="submit">GO</button>
+                  <button type="submit">GO</button> 
                 </div>
               </div>
             </form>

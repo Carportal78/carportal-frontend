@@ -26,11 +26,7 @@ const HeaderTop = () => {
     {
       icon: "flaticon-map",
       text: "47 Bakery Street, London, UK",
-    },
-    {
-      icon: "flaticon-clock",
-      text: "Mon - Fri 8:00 - 18:00",
-    },
+    }
   ];
 
   return (
