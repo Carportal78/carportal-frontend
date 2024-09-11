@@ -16,7 +16,7 @@ const Form = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
+    get(prevState => ({
       ...prevState,
       [name]: value
     }));
@@ -135,6 +135,9 @@ const Form = () => {
               type="submit" 
               className="btn btn-thm ofr_btn1 btn-block mt0 mb20"
               disabled={submitting}
+              style={{ color: 'white' }}
+              onMouseEnter={(e) => e.target.style.color = 'black'}
+              onMouseLeave={(e) => e.target.style.color = 'white'}
             >
               {submitting ? 'Submitting...' : 'Get In Touch'}
             </button>
