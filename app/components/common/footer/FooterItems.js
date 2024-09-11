@@ -80,7 +80,8 @@ const FooterItems = () => {
                     placeholder="Enter your email..."
                     required
                   />
-                  <button type="submit">GO</button> 
+                  <button style={{ color: 'white', background: 'darkgray' }}
+                  onMouseLeave={(e) => e.target.style.color = 'white'} type="submit">GO</button> 
                 </div>
               </div>
             </form>
