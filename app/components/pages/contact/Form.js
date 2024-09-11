@@ -16,7 +16,7 @@ const Form = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    get(prevState => ({
+    setFormData(prevState => ({
       ...prevState,
       [name]: value
     }));
