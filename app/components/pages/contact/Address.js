@@ -12,7 +12,7 @@ const Address = () => {
       { iconClass: "fab fa-facebook-f", link: "https://www.facebook.com/carportal" },
       { iconClass: "fab fa-twitter", link: "https://twitter.com/CarPortalindia" },
       { iconClass: "fab fa-instagram", link: "https://www.instagram.com/carportal.co.in" },
-      { iconClass: "fab fa-linkedin", link: "#" },
+      { iconClass: "fab fa-linkedin", link: "https://www.linkedin.com/company/carportal-india" },
     ],
   };
 

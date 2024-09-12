@@ -14,7 +14,7 @@ const DashboardHeaderTop = () => {
     },
     {
       icon: "fab fa-linkedin",
-      link: "#",
+      link: "https://www.linkedin.com/company/carportal-india",
     },
   ];
 

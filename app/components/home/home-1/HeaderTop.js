@@ -12,10 +12,10 @@ const HeaderTop = () => {
       icon: "fab fa-instagram",
       link: "https://www.instagram.com/carportal.co.in",
     },
-    // {
-    //   icon: "fab fa-linkedin",
-    //   link: "#",
-    // },
+    {
+      icon: "fab fa-linkedin",
+      link: "https://www.linkedin.com/company/carportal-india",
+    },
   ];
 
   const contactData = [
