@@ -257,6 +257,7 @@ const Dealers = () => {
                 }}>
                   <Card.Body>
                     <Image
+                      unoptimized
                       width={120}
                       height={100}
                       src={brand.media.url || '/default-image.png'}
