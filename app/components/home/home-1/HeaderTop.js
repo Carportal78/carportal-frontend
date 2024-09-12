@@ -54,7 +54,7 @@ const HeaderTop = () => {
               <ul className="m0">
                 {socialData?.map((social, index) => (
                   <li className="list-inline-item" key={index}>
-                    <a href={social.link}>
+                    <a href={social.link} target="_blank">
                       <span className={social.icon} />
                     </a>
                   </li>
