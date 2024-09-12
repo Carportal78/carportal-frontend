@@ -62,20 +62,20 @@ const seatingCapacityButtons = [
   },
 ];
 
-const bodyTypeData = [
+const bodyTypeData = [ 
   {
     title: "SUV",
-    imgSrc: "/images/bodytype/car-suv.avif",
+    imgSrc: "/images/bodytype/newbodytype/suv_clr.jpg",
     route: "SUV",
   },
   {
     title: "Sedan",
-    imgSrc: "/images/bodytype/car-sedan.avif",
+    imgSrc: "/images/bodytype/newbodytype/sedan_clr.jpg",
     route: "Sedan",
   },
   {
     title: "Hatchback",
-    imgSrc: "/images/bodytype/car-hatchback.avif",
+    imgSrc: "/images/bodytype/newbodytype/hatchback_clr.jpg",
     route: "Hatchback",
   },
   {
@@ -85,37 +85,37 @@ const bodyTypeData = [
   },
   {
     title: "Compact Sedan",
-    imgSrc: "/images/bodytype/compactsedan.svg",
+    imgSrc: "/images/bodytype/newbodytype/compactsedan_clr.jpg",
     route: "Compact-Sedan",
   },
   {
     title: "MUV",
-    imgSrc: "/images/bodytype/car-muv.avif",
+    imgSrc: "/images/bodytype/newbodytype/muv.jpg",
     route: "MuV",
   },
   {
     title: "Convertible",
-    imgSrc: "/images/bodytype/car-convertible.avif",
+    imgSrc: "/images/bodytype/newbodytype/convertible_clr.jpg",
     route: "Convertible",
   },
   {
     title: "Coupe",
-    imgSrc: "/images/bodytype/car-coupe.avif",
+    imgSrc: "/images/bodytype/newbodytype/coupe_clr.jpg",
     route: "Coupe",
   },
   {
     title: "Station Wegon",
-    imgSrc: "/images/bodytype/wagon.svg",
+    imgSrc: "/images/bodytype/newbodytype/wagon_clr.jpg",
     route: "Station-Wegon",
   },
   {
     title: "Minivan",
-    imgSrc: "/images/bodytype/van.svg",
+    imgSrc: "/images/bodytype/newbodytype/van_clr.jpg",
     route: "Minivan",
   },
   {
     title: "Truck",
-    imgSrc: "/images/bodytype/truck.svg",
+    imgSrc: "/images/bodytype/newbodytype/truck_clr-removebg-preview.png",
     route: "Truck",
   },
 ];
@@ -240,7 +240,7 @@ function FindCarChoice() {
         title="Body Type"
         className={`${styles.tabItem} ${key === "bodyType" ? styles.active : ""}`}
       >
-        <Row className="g-4 flex-wrap mt-3"> {/* Adjusted gap for closer packing */}
+        <Row className="gap-4 flex-wrap mt-3"> {/* Adjusted gap for closer packing */}
           {bodyTypeData?.map((bodyType) => (
             <Col xs={4} sm={3} md={2} lg={2} xl={1} key={bodyType.title} className="mb-2 text-center">
               <Link href={`cars?bodyType=${bodyType.route}`}>
