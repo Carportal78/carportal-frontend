@@ -12,18 +12,18 @@ const AboutTextBlock = () => {
               priority
               style={{ objectFit: "cover" }}
               className="thumb1 rounded"
-              src="/images/about/1.jpg"
-              alt="1.jpg"
+              src="/images/about/carportal-logo1.jpeg" 
+              alt="carportallogo"
             />
-            <Image
+            {/* <Image
               width={365}
               height={238}
               priority
               style={{ objectFit: "cover" }}
               className="img-fluid thumb2 rounded mt-4"
-              src="/images/about/2.jpg"
-              alt="2.jpg"
-            />
+              src="/images/about/carportal-logo1.jpeg"
+              alt="carportallogo1"
+            /> */}
           </div>
         </div>
         <div className="col-lg-5 offset-lg-1">
