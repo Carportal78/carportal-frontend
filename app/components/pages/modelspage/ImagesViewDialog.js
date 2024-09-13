@@ -88,7 +88,8 @@ const ImagesViewDialog = ({ carModelDetails, carVariantsList, activeGalleryTab }
             >
               {images?.map((slide, index) => (
                 <SwiperSlide key={index}>
-                  <div className="item imgDialog" style={{ position: 'relative', width: '100%', height: '400px' }}>
+                  <div style={{ position: 'relative', width: '100%', height: '0',
+    paddingTop: '56.25%', }}>
                     <Image
                       // width={100}
                       // height={100}
