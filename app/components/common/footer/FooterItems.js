@@ -1,8 +1,16 @@
 'use client'
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Accordion } from "react-bootstrap";
 
 const FooterItems = () => {
+
+  const router = useRouter();
+
+  const handleContactUs = () => {
+    router.push('/contact-us');
+  }
+
   return (
     <>
       <div className="row d-block d-md-none">
@@ -71,20 +79,20 @@ const FooterItems = () => {
         <div className="col-sm-6 col-md-6 col-lg-3 col-xl-3">
           <div className="footer_contact_widget">
             <h5 className="title">KEEP IN TOUCH</h5>
-            <form className="footer_mailchimp_form">
               <div className="wrapper">
                 <div className="col-auto">
-                  <input
+                  {/* <input
                     type="email"
                     className="form-control"
                     placeholder="Enter your email..."
                     required
-                  />
-                  <button style={{ color: 'white', background: 'darkgray' }}
-                  onMouseLeave={(e) => e.target.style.color = 'white'} type="submit">GO</button> 
+                  /> */}
+                  <button className="btn contact-btn ofr_btn1 btn-block mt0 mb20" onClick={handleContactUs} >
+                        <span className="flaticon-profit-report mr10 fz18 vam" />
+                        Contact Us
+                      </button>
                 </div>
               </div>
-            </form>
             <p>Get latest updates and offers.</p>
           </div>
         </div>

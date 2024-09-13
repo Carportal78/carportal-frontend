@@ -16157,6 +16157,24 @@ span.ui-slider-handle.ui-corner-all.ui-state-default:focus-visible,
   color: white;
 }
 
+.contact-btn {
+  background-color: #e6aa1b;
+  border: 1px solid var(--primary-color);
+  border-radius: 8px;
+  color: black;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.contact-btn:hover,
+.contact-btn:active,
+.contact-btn:focus {
+  background-color: #e6aa1b;
+  border-color: #e6aa1b;
+  color: black;
+}
+
 .btn-thm:hover,
 .btn-thm:active,
 .btn-thm:focus {
