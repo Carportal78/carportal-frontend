@@ -18,7 +18,6 @@ const BannerWidget = () => {
       <div className="details">
         <div className="wrapper">
           <div className="title_count">
-            20.597
             <span>
               <Image
                 width={60}
@@ -33,7 +32,7 @@ const BannerWidget = () => {
           <h4 className="title">Vehicle Available</h4>
           <p className="para">Find the right price, dealer and advice.</p>
           <p className="subtitle">CALL US NOW</p>
-          <a className="phone_number" href="#">
+          <a className="phone_number" style={{ color: 'white' }} href="#">
           +91 9650774320
           </a>
         </div>
