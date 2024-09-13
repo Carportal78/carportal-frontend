@@ -91,11 +91,6 @@ const ImagesViewDialog = ({ carModelDetails, carVariantsList, activeGalleryTab }
                   <div style={{ position: 'relative', width: '100%', height: '0',
     paddingTop: '56.25%', }}>
                     <Image
-                      // width={100}
-                      // height={100}
-                      // style={{ objectFit: "cover" }}
-                      // priority
-                      // className="w-50 h-50"
                       src={slide?.image?.url || slide?.url }
                       alt={slide?.image?.altText || slide?.altText}
                       fill
@@ -133,7 +128,7 @@ const ImagesViewDialog = ({ carModelDetails, carVariantsList, activeGalleryTab }
             {carModelDetails?.modelName} Images
           </div>
           {carModelDetails &&
-            <div className="row p10 mt10" id="myTabContent">
+            <div className="row pl-10 pt-10 mt10" id="myTabContent">
               <Tabs
                 id="car-gallery"
                 activeKey={key}
