@@ -88,19 +88,23 @@ const ImagesViewDialog = ({ carModelDetails, carVariantsList, activeGalleryTab }
             >
               {images?.map((slide, index) => (
                 <SwiperSlide key={index}>
-                  <div className="item imgDialog">
+                  <div className="item imgDialog" style={{ position: 'relative', width: '100%', height: '400px' }}>
                     <Image
-                      width={100}
-                      height={100}
-                      style={{ objectFit: "cover" }}
-                      priority
-                      className="w-50 h-50"
+                      // width={100}
+                      // height={100}
+                      // style={{ objectFit: "cover" }}
+                      // priority
+                      // className="w-50 h-50"
                       src={slide?.image?.url || slide?.url }
                       alt={slide?.image?.altText || slide?.altText}
+                      fill
+                      style={{ objectFit: 'cover' }}
+                      priority
+                      // priority
                     />
-                  <div className="overlay-text" style={{ fontSize: '16px',fontWeight: '600', margin: '10px'}}>{slide?.featureType}</div>
+                  <div className="overlay-text" style={{ fontSize: '16px',fontWeight: '600', margin: '10px', color: 'white'}}>{slide?.featureType}</div>
                   </div>
-                  <div style={{ fontSize: '16px', fontWeight: '500', margin: '10px', textAlign: 'left'}}>{slide?.featureDescription}</div>
+                  <div style={{ fontSize: '16px', fontWeight: '500', margin: '10px', textAlign: 'left', color: 'black'}}>{slide?.featureDescription}</div>
                   {/* {showColorCodes && getColorCodes()} */}
                 </SwiperSlide>
               ))}
