@@ -216,7 +216,7 @@ export default function ProductGallery({ carModelDetails, carVariantsList, relat
               {console.log("cartModelDetails ", carModelDetails)}
               {carModelDetails?.media?.map((slide, index) => (
                 <SwiperSlide key={index}>
-                  <Image
+                  <img
                     width={100}
                     height={75}
                     layout="responsive"
@@ -241,7 +241,7 @@ export default function ProductGallery({ carModelDetails, carVariantsList, relat
               {carModelDetails?.media?.map((slide, index) => (
                 <SwiperSlide key={index}>
                   {/* <div  className={styles["image-responsive-height"]}> */}
-                  <Image
+                  <img
                     width={701}
                     height={400}
                     layout="responsive"
