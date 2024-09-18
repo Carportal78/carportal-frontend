@@ -196,6 +196,7 @@ export default function ProductGallery({ carModelDetails, carVariantsList, relat
       <Container fluid style={{ backgroundColor: '#fff', border: '1px solid #eaeaea', borderRadius: '8px', position: 'relative', marginBottom: '10px', paddingTop: '20px' }}>
         <Row className="align-items-start">
           <Col xs={12} md={2} lg={2} xl={1} className="mb-4 mb-md-0">
+          <p>{carModelDetails?.media?.[0]?.url}</p>
             <Swiper
               onSwiper={setThumbsSwiper}
               spaceBetween={10}
@@ -212,6 +213,7 @@ export default function ProductGallery({ carModelDetails, carVariantsList, relat
                 },
               }}
             >
+              {console.log("cartModelDetails ", carModelDetails)}
               {carModelDetails?.media?.map((slide, index) => (
                 <SwiperSlide key={index}>
                   <Image

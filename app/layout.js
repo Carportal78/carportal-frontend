@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <Body cz-shortcut-listen="false">
+      <Body>
         {children}
         <ScrollToTop />
       </Body>
