@@ -213,10 +213,9 @@ export default function ProductGallery({ carModelDetails, carVariantsList, relat
                 },
               }}
             >
-              {console.log("cartModelDetails ", carModelDetails)}
               {carModelDetails?.media?.map((slide, index) => (
                 <SwiperSlide key={index}>
-                  <img
+                  <Image
                     width={100}
                     height={75}
                     layout="responsive"
@@ -224,6 +223,7 @@ export default function ProductGallery({ carModelDetails, carVariantsList, relat
                     src={slide?.url}
                     alt={slide?.altText}
                     style={{ borderRadius: '8px' }}
+                    unoptimized={true}
                   />
                 </SwiperSlide>
               ))}
@@ -241,12 +241,12 @@ export default function ProductGallery({ carModelDetails, carVariantsList, relat
               {carModelDetails?.media?.map((slide, index) => (
                 <SwiperSlide key={index}>
                   {/* <div  className={styles["image-responsive-height"]}> */}
-                  <img
+                  <Image
                     width={701}
                     height={400}
                     layout="responsive"
                     objectFit="cover"
-                    priority
+                    unoptimized={true}
                     src={slide?.url}
                     alt={slide?.altText}
                     style={{ borderRadius: '16px' }}
