@@ -27,11 +27,12 @@ const RecentlyViewed = ({ cars }) => {
         <div onClick={() => handleCarDetailsRoute(car)} className="d-flex mb20 pointer" key={index}>
           <div className="flex-shrink-0" key={car?._id}>
             <Image
-              width={90}
-              height={80}
+              width={80}
+              height={60}
               className="align-self-start mr-3"
               src={car?.media?.[0]?.url}
               alt={car?.modelName}
+              unoptimized={true}
             />
           </div>
           <div className="flex-grow-1 ms-3">
