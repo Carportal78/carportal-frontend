@@ -7,7 +7,7 @@ const KeyFeatures = ({ features, modelName }) => {
      <h4 className='mb-3'>Key Features of {modelName}</h4>
      <div className="container-fluid px-0">
   <div className="row flex-nowrap overflow-auto gap-2">
-    {[...features, ...features, ...features]?.map((feature, index) => (
+    {[...features]?.map((feature, index) => (
       <div key={index} className="col-6 col-md-4 col-lg-3 px-2 flex-shrink-0" style={{ maxWidth: '200px' }}>
         <div className="text-center">
           <div style={{ position: 'relative', width: '100%', height: '124px' }}>
