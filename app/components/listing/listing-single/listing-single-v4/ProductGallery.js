@@ -74,7 +74,7 @@ export default function ProductGallery() {
                   <Image
                     width={1296}
                     height={535}
-                    priority
+                    unoptimized
                     style={{ objectFit: "cover" }}
                     className="w-100 h-100"
                     src={slide.imageSrc}
@@ -109,7 +109,7 @@ export default function ProductGallery() {
                 <Image
                   width={163}
                   height={106}
-                  priority
+                  unoptimized
                   style={{ objectFit: "cover" }}
                   src={slide.imageSrc}
                   alt="thum car"

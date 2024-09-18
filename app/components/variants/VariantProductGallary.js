@@ -244,7 +244,7 @@ export default function VariantProductGallery({ carModelDetails, carVariantsList
                     height={400}
                     layout="responsive"
                     objectFit="cover"
-                    priority
+                    unoptimized
                     src={slide?.url}
                     alt={slide?.altText}
                     style={{ borderRadius: '16px' }}
