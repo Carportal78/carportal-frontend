@@ -10,7 +10,7 @@ const KeyFeatures = ({ features, modelName }) => {
     {[...features, ...features, ...features]?.map((feature, index) => (
       <div key={index} className="col-6 col-md-4 col-lg-3 px-2 flex-shrink-0" style={{ maxWidth: '200px' }}>
         <div className="text-center">
-          <div style={{ position: 'relative', width: '100%', height: '200px' }}>
+          <div style={{ position: 'relative', width: '100%', height: '124px' }}>
             <Image 
               src={feature?.image?.url} 
               alt={feature?.image?.altText} 
