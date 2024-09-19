@@ -222,6 +222,7 @@ export default function VariantProductGallery({ carModelDetails, carVariantsList
                     src={slide?.url}
                     alt={slide?.altText}
                     style={{ borderRadius: '8px' }}
+                    unoptimized
                   />
                 </SwiperSlide>
               ))}
