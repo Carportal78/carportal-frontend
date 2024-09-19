@@ -77,7 +77,7 @@ const MobileMenu = () => {
                             <Image
                                 width={120}
                                 height={30}
-                                priority
+                                unoptimized
                                 src="/images/carportal-logo-blue.png"
                                 alt="brand"
                             />
@@ -103,7 +103,7 @@ const MobileMenu = () => {
                             <Image
                                 width={140}
                                 height={35}
-                                priority
+                                unoptimized
                                 src="/images/carportal-logo-white.png"
                                 alt="brand"
                             />

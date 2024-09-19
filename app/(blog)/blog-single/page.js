@@ -76,7 +76,7 @@ const BlogDynamicSingle = () => {
                 <Image
                   width={1519}
                   height={475}
-                  priority
+                  unoptimized
                   style={{ objectFit: "cover" }}
                   className="img-whp"
                   src="/images/blog/bsp1.jpg"
