@@ -25,8 +25,8 @@ const VariantPrice = ({ carModelDetails, carVariantsList, carVariant }) => {
   return (
     <>
       <div className="d-flex justify-content-between">
-        <h4 style={{ wordBreak: 'break-word' }}>{carVariant?.name} {carVariant?.fuelAndPerformance?.fuelType} Price</h4>
-        <p>{carVariant?.fuelAndPerformance?.fuelType}</p>
+        <h4 style={{ wordBreak: 'break-word' }}>{carVariant?.name} {carVariant?.basicInformation?.fuelType} Price</h4>
+        <p>{carVariant?.basicInformation?.fuelType}</p>
       </div>
       <div className="row mt-3">
         <Col key={carVariant?.engineAndTransmission?.engineType} className="mb-2">

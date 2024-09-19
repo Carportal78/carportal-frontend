@@ -84,7 +84,7 @@ const VariantsOverview = ({ carModelDetails, carVariantsList, carVariant }) => {
                   <div style={{color: '#24272c', fontSize: '15px', wordBreak: 'break-word'}}>{carVariant?.fuelAndPerformance?.mileageCity}</div>
                 
             </Col>
-            <Col xs={3} sm={3} md={2} lg={3} xl={2} key={carVariant?.fuelAndPerformance?.fuelType} className="mb-2">
+            <Col xs={3} sm={3} md={2} lg={3} xl={2} key={carVariant?.basicInformation?.fuelType} className="mb-2">
             <div className={`bodyTypeItem d-flex flex-column align-items-center text-center`} style={{ maxWidth: '65px', alignSelf: 'center' }}> {/* Adjusted container size */}
                 <Image
                     width={100}
@@ -92,11 +92,11 @@ const VariantsOverview = ({ carModelDetails, carVariantsList, carVariant }) => {
                     style={{ objectFit: "cover" }}
                     src='/images/variant/fuel.svg'
                     layout="responsive"
-                    alt={carVariant?.fuelAndPerformance?.fuelType}
+                    alt={carVariant?.basicInformation?.fuelType}
                   />
                   </div>
                   <div style={{color: 'rgba(36,39,44,.5)', fontSize: '12px'}}>Fuel</div>
-                  <div style={{color: '#24272c', fontSize: '15px', wordBreak: 'break-word'}}>{carVariant?.fuelAndPerformance?.fuelType}</div>
+                  <div style={{color: '#24272c', fontSize: '15px', wordBreak: 'break-word'}}>{carVariant?.basicInformation?.fuelType}</div>
             </Col>
     </div>
     </>

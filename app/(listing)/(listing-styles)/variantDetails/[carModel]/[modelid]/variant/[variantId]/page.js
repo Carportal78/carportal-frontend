@@ -376,7 +376,7 @@ const ModelDetails = () => {
                           >
                             <div className="opening_hour_widgets p30 bdr_none pl0 pr0">
                               <div className="wrapper">
-                                <h4 className="title">{carVariant?.name} {carVariant?.fuelAndPerformance?.fuelType} Specifications & Features</h4>
+                                <h4 className="title">{carVariant?.name} {carVariant?.basicInformation?.fuelType} Specifications & Features</h4>
                                 <VerticalTab carModelDetails={carModelDetails} carVariant={carVariant} />
                               </div>
                             </div>

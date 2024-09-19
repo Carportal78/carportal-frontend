@@ -19,7 +19,7 @@ const ProductDescripitons = ({ carModelDetails, carVariantsList }) => {
   const [cityOptions, setCityOptions] = useState([]);
   const router = useRouter();
 
-  const uniqueFuelTypes = [...new Set(carVariantsList?.flatMap(variant => variant.fuelAndPerformance.fuelType))];
+  const uniqueFuelTypes = [...new Set(carVariantsList?.flatMap(variant => variant.basicInformation?.fuelType))];
 
   const handleViewVariantHandler = (variant) => {
     console.log("ssadadsas");
@@ -51,7 +51,7 @@ const ProductDescripitons = ({ carModelDetails, carVariantsList }) => {
 
   const renderVariantDetails = (variant) => (
     <>
-      <div>{variant?.carModel?.modelName} ({variant?.fuelAndPerformance?.fuelType})</div>
+      <div>{variant?.carModel?.modelName} ({variant?.basicInformation?.fuelType})</div>
       <div className='d-flex justify-content-between flex-column mt-2'>
         <div className="d-flex justify-content-between">
           <div>Ex-Showroom Price</div>
@@ -205,7 +205,7 @@ const ProductDescripitons = ({ carModelDetails, carVariantsList }) => {
             </Tab>
             {uniqueFuelTypes?.map((fuelType) => (
           <Tab eventKey={fuelType} title={fuelType} key={fuelType}>
-            {renderAccordion(variant => variant.fuelAndPerformance.fuelType === fuelType)}
+            {renderAccordion(variant => variant.basicInformation?.fuelType === fuelType)}
           </Tab>
         ))}
           </Tabs>

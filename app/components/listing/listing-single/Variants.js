@@ -38,7 +38,7 @@ const VariantsList = ({ carModelDetails, variants }) => {
     },
   ];
 
-  const uniqueFuelTypes = [...new Set(variants?.flatMap(variant => variant.fuelAndPerformance.fuelType))];
+  const uniqueFuelTypes = [...new Set(variants?.flatMap(variant => variant.basicInformation.fuelType))];
 
   const [key, setKey] = useState('all');
 
@@ -63,7 +63,7 @@ const VariantsList = ({ carModelDetails, variants }) => {
 
   const renderVariantDetails = (variant) => (
     <>
-      <div>{variant?.carModel?.modelName} ({variant?.fuelAndPerformance?.fuelType})</div>
+      <div>{variant?.carModel?.modelName} ({variant?.basicInformation?.fuelType})</div>
       <div className='d-flex justify-content-between flex-column mt-2'>
         <div className="d-flex justify-content-between">
           <div>Ex-Showroom Price</div>
@@ -174,7 +174,7 @@ const VariantsList = ({ carModelDetails, variants }) => {
         </Tab>
         {uniqueFuelTypes?.map((fuelType) => (
           <Tab eventKey={fuelType} title={fuelType} key={fuelType}>
-            {renderAccordion(variant => variant.fuelAndPerformance.fuelType === fuelType)}
+            {renderAccordion(variant => variant.basicInformation.fuelType === fuelType)}
           </Tab>
         ))}
       </Tabs>
