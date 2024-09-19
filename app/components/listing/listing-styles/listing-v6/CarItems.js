@@ -51,7 +51,7 @@ const CarItems = ({ carModelsList }) => {
                 <Image
                   layout="fill"
                   objectFit="cover"
-                  priority
+                  unoptimized
                   src={listing?.media?.[0]?.url ?? '/placeholder-image.png'}
                   alt={listing?.modelName}
                 />
