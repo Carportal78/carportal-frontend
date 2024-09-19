@@ -105,9 +105,12 @@ const HeroFilter = () => {
                   <h6 className="title">Brand</h6>
                   <select className="form-select" onChange={handleBrandChange} value={selectedBrandId}>
                     <option value="">{isBrandsLoading ? "Loading..." : "Select Brand"}</option>
-                    {carBrands?.map(brand => (
-                      <option key={brand._id} value={brand._id}>{brand.brandName}</option>
-                    ))}
+                    {carBrands
+                      ?.slice() // Create a shallow copy to avoid mutating the original array
+                      .sort((a, b) => a.brandName.localeCompare(b.brandName)) // Sort the array alphabetically by brandName
+                      .map(brand => (
+                        <option key={brand._id} value={brand._id}>{brand.brandName}</option>
+                      ))}
                   </select>
                 </div>
               </div>
@@ -117,11 +120,18 @@ const HeroFilter = () => {
               <div className="select-boxes">
                 <div className="car_brand">
                   <h6 className="title">Models</h6>
-                  <select className="form-select" onChange={handleModelChange} disabled={!selectedBrandId || isModelsLoading}>
+                  <select 
+                    className="form-select" 
+                    onChange={handleModelChange} 
+                    disabled={!selectedBrandId || isModelsLoading}
+                  >
                     <option value="">{isModelsLoading ? "Loading..." : "Select Models"}</option>
-                    {carModels?.map(model => (
-                      <option key={model._id} value={model._id}>{model.modelName}</option>
-                    ))}
+                    {carModels
+                      ?.slice() // Create a shallow copy to avoid mutating the original array
+                      .sort((a, b) => a.modelName.localeCompare(b.modelName)) // Sort the array alphabetically by modelName
+                      .map(model => (
+                        <option key={model._id} value={model._id}>{model.modelName}</option>
+                      ))}
                   </select>
                 </div>
               </div>
