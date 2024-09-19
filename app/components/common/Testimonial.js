@@ -37,19 +37,19 @@ const Testimonial = ({ testimonials }) => {
           <SwiperSlide key={testimonial._id}>
             <div className="testimonial_box">
               <div className="thumb">
-                <Image
+                {/* <Image
                   width={70}
                   height={70}
                   className="rounded-circle"
                   src={`/images/testimonial/1.png`}
                   alt={`${testimonial._id}.png`}
-                />
+                /> */}
                 <h4 className="title">
                   {testimonial.name} <br />
                   <small>{testimonial.state}</small>
                 </h4>
               </div>
-              <div className="details">
+              <div className="ml25">
                 <div className="icon">  
                   <span className="fa fa-quote-left" />
                 </div>
