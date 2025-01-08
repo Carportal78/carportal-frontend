@@ -12,7 +12,7 @@ import Testimonial from "../../components/common/Testimonial";
 import FindCarChoice from "../../components/home/home-1/FindCarChoice";
 import AllBrandsList from "../../components/home/home-1/AllBrandsList";
 import { useEffect, useState } from "react";
-
+import Script from 'next/script';
 const metadata = {
   title: "Home || Carportal - Automotive & Car Dealer",
   description: `Carportal - Automotive & Car Dealer. `,
@@ -47,7 +47,53 @@ const HomePage = ({ collections, carBrands, testimonials, banner }) => {
   },[]);
 
   return (
-    <div className="wrapper ovh">
+   <>
+
+
+   <head>
+
+   <title>CarPortal - Your Ultimate Destination for Cars</title>
+        <meta name="description" content="Find your dream car on Car Portal." />
+        <meta name="google-site-verification" content="8yVHGPhzzhebFg9xqz95RIy-HhWdwy5peCU1bL9iWnQ" />
+        <link rel="canonical" href="https://www.carportal.co.in" />
+
+        <meta name="description" content="Explore a wide range of cars, compare prices, and find the best deals on CarPortal." />
+
+
+<meta property="og:title" content="CarPortal - Your Ultimate Destination for Cars" /> 
+<meta property="og:description" content="Explore a wide range of cars, compare prices, and
+find the best deals on CarPortal." />
+<meta property="og:image"
+content="https://www.carportal.co.in/images/carportal-logo.jpg" />
+<meta property="og:url" content="https://www.carportal.co.in/" />
+<meta property="og:type" content="website" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="CarPortal - Your Ultimate Destination for Cars" />
+<meta name="twitter:description" content="Explore a wide range of cars, compare prices, and find the best deals on CarPortal." />
+<meta name="twitter:image" content="https://www.carportal.co.in/images/carportal-logo.jpg" />
+<meta name="twitter:url" content="https://www.carportal.co.in" />
+
+<meta name="robots" content="index, follow"></meta>
+
+
+        <script
+        src="https://www.googletagmanager.com/gtag/js?id=G-B0J2FY5KTN"
+        strategy="afterInteractive"
+      />
+      <script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-B0J2FY5KTN');
+        `}
+      </script>
+   </head>
+
+
+   
+   <div className="wrapper ovh">
       {/* Sidebar Panel Start */}
 
       <div
@@ -265,6 +311,7 @@ const HomePage = ({ collections, carBrands, testimonials, banner }) => {
       </div>
       {/* End Modal */}
     </div>
+   </>
     // End wrapper
   );
 };
