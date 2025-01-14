@@ -36,6 +36,17 @@ const FeaturedFilterListing = ({ collection }) => {
           <Col xs={12} sm={6} md={4} lg={3} key={listing._id} onClick={() => handleCarDetailsRoute(listing)}>
             <div className="car-listing" style={{ cursor: 'pointer' }}>
               <div className="thumb">
+                <>
+                                <Image
+                                  width={35}
+                                  height={35}
+                                  objectFit="cover"
+                                  unoptimized
+                                  src={'/images/carportallogo.png'}
+                                  alt={'carportsallogo'}
+                                  style={{ position: 'absolute', zIndex: 1, top: '15px', left: '15px'  }}
+                                />
+                                </>
                 <div style={{ position: 'relative', width: '100%', height: '200px', overflow: 'hidden' }}>
                   <Image
                   layout="fill" // Use fill layout to ensure the image covers the container

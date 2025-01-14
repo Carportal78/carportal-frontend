@@ -65,6 +65,17 @@ const ReleatedCar = ({ relatedCars }) => {
             <div className="item" onClick={() => handleCarDetailsRoute(listing)}>
               <div className="car-listing">
                 <div className="thumb" style={{ position: 'relative', width: '100%', height: '200px', overflow: 'hidden' }}>
+                  <>
+                                  <Image
+                                    width={35}
+                                    height={35}
+                                    objectFit="cover"
+                                    unoptimized
+                                    src={'/images/carportallogo.png'}
+                                    alt={'carportsallogo'}
+                                    style={{ position: 'absolute', zIndex: 1, top: '15px', left: '15px'  }}
+                                  />
+                                  </>
                   <Image
                     layout="fill"
                     objectFit="cover"
