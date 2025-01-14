@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { Battery, Fuel } from 'lucide-react';
 
 const CarItems = ({ carModelsList }) => {
   const router = useRouter();
@@ -42,11 +43,11 @@ const CarItems = ({ carModelsList }) => {
                     <div className="tag">FEATURED</div>
                   </>
                 ) : undefined}
-                {!listing.featured ? (
+                {/* {!listing.featured ? (
                   <>
                     <div className="tag blue">SPECIAL</div>
                   </>
-                ) : undefined}
+                ) : undefined} */}
 
                 <Image
                   layout="fill"
@@ -108,7 +109,6 @@ const CarItems = ({ carModelsList }) => {
                     <ul className="mb0">
                       <li className="list-inline-item">
                         <span className="flaticon-road-perspective me-2" />
-                        {console.log("listingdetails ", listing)}
                         {listing?.fuelType.includes('Electric')
                           ? `${listing?.range} km`
                           : `${listing?.mileage.split('_').join('-')} kmpl`
@@ -116,7 +116,7 @@ const CarItems = ({ carModelsList }) => {
                       </li>
                       <br />
                       <li className="list-inline-item">
-                        <span className="flaticon-gas-station me-2" />
+                      {listing?.fuelType.includes('Electric') ? <Battery className="inline-block me-2" size={16} /> : <span className="flaticon-gas-station me-2" /> }
                         {listing?.fuelType.includes('Electric')
                           ? `${listing?.batteryCapacity} kWh`
                           : listing?.fuelType.join(', ')
