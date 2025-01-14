@@ -38,16 +38,27 @@ const CarItems = ({ carModelsList }) => {
         <div className="col-sm-6 col-xl-4 pointer" key={listing._id} onClick={() => handleCarDetailsRoute(listing)}>
             <div className="car-listing">
               <div className="thumb" style={{ position: 'relative', width: '100%', height: '200px', overflow: 'hidden' }}>
-                {listing.featured ? (
+                {/* {listing.featured ? (
                   <>
                     <div className="tag">FEATURED</div>
                   </>
                 ) : undefined}
-                {/* {!listing.featured ? (
+                {!listing.featured ? (
                   <>
                     <div className="tag blue">SPECIAL</div>
                   </>
                 ) : undefined} */}
+                <>
+                <Image
+                  width={35}
+                  height={35}
+                  objectFit="cover"
+                  unoptimized
+                  src={'/images/carportallogo.png'}
+                  alt={'carportsallogo'}
+                  style={{ position: 'absolute', zIndex: 1, top: '15px', left: '15px'  }}
+                />
+                </>
 
                 <Image
                   layout="fill"
