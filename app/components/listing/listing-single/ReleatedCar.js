@@ -25,6 +25,8 @@ const ReleatedCar = ({ relatedCars }) => {
     router.push(`/car/${brandName}/${modelName}`);
   }
 
+  console.log('relatedCarsrelatedCars ', relatedCars);
+
 
   return (
     <>
@@ -118,17 +120,27 @@ const ReleatedCar = ({ relatedCars }) => {
                     <ul className="mb0">
                       <li className="list-inline-item">
                         <span className="flaticon-road-perspective me-2" />
-                        {listing?.mileage.split('_').join('-')} kmpl
+                        {console.log("listingdetails ", listing)}
+                        {listing?.fuelType.includes('Electric')
+                          ? `${listing?.range} km`
+                          : `${listing?.mileage.split('_').join('-')} kmpl`
+                        }
                       </li>
                       <br />
                       <li className="list-inline-item">
                         <span className="flaticon-gas-station me-2" />
-                        {listing?.fuelType.join(', ')}
+                        {listing?.fuelType.includes('Electric')
+                          ? `${listing?.batteryCapacity} kWh`
+                          : listing?.fuelType.join(', ')
+                        }
                       </li>
                       <br />
                       <li className="list-inline-item">
                         <span className="flaticon-gear me-2" />
-                        {listing?.transmissionType.join(', ')}
+                        {listing?.fuelType.includes('Electric')
+                          ? `${listing?.power} bhp`
+                          : listing?.transmissionType.join(', ')
+                        }
                       </li>
                     </ul>
                   </div>
