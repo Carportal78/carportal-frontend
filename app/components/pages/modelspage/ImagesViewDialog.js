@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useEffect, useState } from "react";
 import { Accordion, DropdownDivider, Tab, Tabs } from 'react-bootstrap';
 import { FreeMode, Navigation, Thumbs } from "swiper";
@@ -64,7 +66,6 @@ const ImagesViewDialog = ({ carModelDetails, carVariantsList, activeGalleryTab }
   }
 
   function renderCarGallery(images) {
-
     if (!carModelDetails) return <div>Loading...</div>;  // Make sure carModelDetails is loaded
 
     if (!images || !images.length) {
@@ -111,6 +112,66 @@ const ImagesViewDialog = ({ carModelDetails, carVariantsList, activeGalleryTab }
     }
   }
 
+  function renderCarImagesByColor(images) {
+
+    console.log("renderCarGalleryrenderCarGalleryrenderCarGallery ", images);
+
+    if (!carModelDetails) return <div>Loading...</div>;  // Make sure carModelDetails is loaded
+
+    if (!images || !images.length) {
+      return <div>No images available</div>;
+    }
+
+    if (images && images?.length) {
+      return (
+        <div className="row">
+           <div className="col-md-12 order-md-1 order-1 large-thumb-user_profile">
+            <Swiper
+              style={{
+                "--swiper-navigation-color": "#fff",
+                "--swiper-pagination-color": "#fff",
+              }}
+              spaceBetween={10}
+              navigation={true}
+              thumbs={{ swiper: thumbsSwiper }}
+              modules={[FreeMode, Navigation, Thumbs]}
+              className="mySwiper2 sps_content single_product_grid user_profile"
+            >
+              {images?.map((slide, index) => (
+                <SwiperSlide key={index}>
+                  <div style={{ position: 'relative', width: '100%', height: '0',
+    paddingTop: '56.25%', }}>
+                    <Image
+                      src={slide?.image?.url || slide?.url }
+                      alt={slide?.image?.altText || slide?.altText}
+                      fill
+                      style={{ objectFit: 'cover' }}
+                      unoptimized={true}
+                      // priority
+                    />
+                  </div>
+                  <div className="d-flex align-items-center justify-content-center gap-3">
+                    <div 
+                      style={{
+                        backgroundColor: slide?.colorCode,
+                        width: '20px',
+                        height: '20px',
+                        borderRadius: '50%'
+                      }}
+                    />
+                    <div className="fw-semibold">
+                      {slide?.colorDescription}
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div> 
+        </div>
+      )
+    }
+  }
+
   return (
     <div className="modal-dialog modal-dialog-centered modal-lg" style={{ overflow: 'scroll' }}>
       <div className="modal-content">
@@ -148,7 +209,7 @@ const ImagesViewDialog = ({ carModelDetails, carVariantsList, activeGalleryTab }
                   {renderCarGallery(carModelDetails?.interior)}
                 </Tab>
                 <Tab eventKey="imagesByColor" title="IMAGES BY COLOR">
-                  {renderCarGallery(carModelDetails?.imagesByColor)}
+                  {renderCarImagesByColor(carModelDetails?.imagesByColor)}
                 </Tab>
               </Tabs>
             </div>
