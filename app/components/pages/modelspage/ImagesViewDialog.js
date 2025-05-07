@@ -114,8 +114,6 @@ const ImagesViewDialog = ({ carModelDetails, carVariantsList, activeGalleryTab }
 
   function renderCarImagesByColor(images) {
 
-    console.log("renderCarGalleryrenderCarGalleryrenderCarGallery ", images);
-
     if (!carModelDetails) return <div>Loading...</div>;  // Make sure carModelDetails is loaded
 
     if (!images || !images.length) {
@@ -151,15 +149,15 @@ const ImagesViewDialog = ({ carModelDetails, carVariantsList, activeGalleryTab }
                     />
                   </div>
                   <div className="d-flex align-items-center justify-content-center gap-3">
-                    <div 
+                    {/* <div 
                       style={{
                         backgroundColor: slide?.colorCode,
                         width: '20px',
                         height: '20px',
                         borderRadius: '50%'
                       }}
-                    />
-                    <div className="fw-semibold">
+                    /> */}
+                    <div className="fw-bold">
                       {slide?.colorDescription}
                     </div>
                   </div>

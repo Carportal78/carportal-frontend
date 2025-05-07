@@ -46,7 +46,7 @@ const FooterItems = () => {
       </div>
 
       <div className="row d-none d-md-flex">
-        <div className="col-sm-6 col-md-4 col-lg-3 col-xl-3">
+        <div className="col-md-4">
           <div className="footer_about_widget">
             <h5 className="title">About Carportal</h5>
             <p><Link href="/about-us" style={{ color: 'white' }}>About</Link></p>
@@ -58,15 +58,7 @@ const FooterItems = () => {
         </div>
         {/* End .col */}
 
-        <div className="col-sm-6 col-md-4 col-lg-3 col-xl-3">
-          <div className="footer_contact_widget">
-            <h5 className="title">CONNECT WITH US</h5>
-            {/* <p><Link href="/about-us" style={{ color: 'white' }}>Feedback</Link></p> */}
-            <p><Link href="/contact-us" style={{ color: 'white' }}>Contact Us</Link></p>
-          </div>
-        </div>
-
-        <div className="col-sm-6 col-md-4 col-lg-3 col-xl-3">
+        <div className="col-md-4">
           <div className="footer_contact_widget">
             <h5 className="title">NEED HELP</h5>
             <div className="footer_phone">+91 9650774320</div>
@@ -74,9 +66,8 @@ const FooterItems = () => {
           </div>
         </div>
         {/* End .col */}
-        {/* End .col */}
 
-        <div className="col-sm-6 col-md-6 col-lg-3 col-xl-3">
+        <div className="col-md-4">
           <div className="footer_contact_widget">
             <h5 className="title">KEEP IN TOUCH</h5>
               <div className="wrapper">
