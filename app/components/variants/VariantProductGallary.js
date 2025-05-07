@@ -258,69 +258,46 @@ export default function VariantProductGallery({ carModelDetails, carVariantsList
           </Col>
 
           <Col xs={12} md={4} className="order-md-3">
-            <div className="product-details px-md-0 d-flex justify-content-between"> {/* Added padding for mobile view */}
+            <div className="product-details px-2 px-md-0 d-flex justify-content-between">
               <h3 style={{ fontSize: '20px' }}>{carVariant?.name}</h3>
-              {/* <a className="fz12 tdu color-blue" href="#">
-                Compare
-              </a> */}
               <OffCanvasExample key={1} placement={'end'} name={'Compare'} />
             </div>
-            {/* <div className="d-flex align-items-center">
-              <span>
-                {[...Array(5)]?.map((_, i) => (
-                  <i
-                    key={i}
-                    className={i < 5 ? "fa fa-star" : "fa fa-star-o"}
-                    aria-hidden="true"
-                  ></i>
-                ))}
-              </span>
-              <Link href="/page-list-v1" className="pl10 fz12">
-                41 reviews{" "}
-              </Link>
-            </div> */}
-            <div className=" mb-3 w-75 mt-0">
+            <div className="mb-3 w-100 mt-0">
               <Select
                 placeholder="Change Variant..."
                 value={selectedGroup}
                 onChange={handleSelectGroup}
                 options={optionGroup}
                 className="select2-selection"
-              // styles={customStyles} 
               />
             </div>
             <div className="d-flex flex-column flex-md-row mt-2">
               <h4 className="mr10">₹ {formatPrice(carVariant?.pricingDetails?.exShowroomPrice)}*</h4>
-              <a onClick={handleRedirectToGetOnroadPage} className="tdu mt-md-0 color-black pointer">Get On Road Price</a>
+              <a onClick={handleRedirectToGetOnroadPage} className="tdu mt-2 mt-md-0 color-black pointer">Get On Road Price</a>
             </div>
             <div><span style={{ fontSize: '12px' }}>*Ex-showroom price in</span> <span data-bs-toggle="modal" data-bs-target="#exShowroomPriceForm" style={{ color: 'blue', textDecoration: 'underline', cursor: 'pointer' }}>{carVariant?.pricingDetails?.city}</span></div>
-            <div className="offer_btns mt-5">
+            <div className="offer_btns mt-4">
               <div className="text-end">
-                <button className="btn btn-thm ofr_btn1 btn-block mt0 mb20" data-bs-toggle="modal" data-bs-target="#contactDealerForm">
+                <button className="btn btn-thm ofr_btn1 btn-block mt0 mb20 w-100" data-bs-toggle="modal" data-bs-target="#contactDealerForm">
                   <span className="flaticon-profit-report mr10 fz18 vam" />
                   Contact Dealer
                 </button>
               </div>
             </div>
 
-            <div className="d-flex align-items-center mt-3 justify-content-center gap-5">
-              <div className="me-3" style={{ cursor: 'pointer' }} >
+            <div className="d-flex align-items-center mt-3 justify-content-center gap-3 gap-md-5">
+              <div className="me-2 me-md-3" style={{ cursor: 'pointer' }} >
                 <OffCanvasExampleCompare key={1} placement={'end'} name={'Compare'} carVariant={carVariant} compareCars={compareCars} router={router} setSuggestedCompareData={setSuggestedCompareData}/>
               </div>
-              <div className="me-3" style={{ cursor: 'pointer' }} data-bs-toggle="modal" data-bs-target="#variantListForm">
+              <div className="me-2 me-md-3" style={{ cursor: 'pointer' }} data-bs-toggle="modal" data-bs-target="#variantListForm">
                 <Image width={30} height={30} src="/images/modeldetails/Variants.svg" alt="Image 2" className="ml10" fluid />
                 <p>Variants</p>
               </div>
-              {/* <div style={{cursor: 'pointer'}} data-bs-toggle="modal" data-bs-target="#shareForm">
-                <Image width={30} height={30}  src="/images/modeldetails/Share.svg" alt="Image 3" fluid />
-                <p>Share</p>
-              </div> */}
               <div style={{ cursor: 'pointer' }} onClick={handleRedirectToDealersPage}>
                 <Image width={30} height={30} className="ml10" src="/images/modeldetails/dealers.svg" alt="Dealers" fluid />
                 <p>Dealers</p>
               </div>
             </div>
-
           </Col>
         </Row>
       </Container>

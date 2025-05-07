@@ -259,180 +259,122 @@ const ModelDetails = () => {
           {/* End .row bradcrumb */}
           {/* End .row */}
 
-
           <div className="row">
-            <div className="col-lg-8 col-xl-12">
-              <VariantProductGallary carModelDetails={carModelDetails} carVariantsList={carVariantsList} compareCars={compareCars} carVariant={carVariant} onDealerClick={handleDealerCLick} onGetOnRoadPriceCLick={handleGetOnRoadPriceCLick} imgCount= {totalImgCount} />
-              {/* End Car Gallery */}
-              <div className="d-flex flex-wrap gap-4">
-                <div className="col-lg-8 col-xl-8">
-                  <div className="listing_single_description">
-                    <VariantsOverview carModelDetails={carModelDetails} carVariantsList={carVariantsList} carVariant={carVariant} />
+            {/* First row: Full-width gallery */}
+            <div className="col-12">
+              <VariantProductGallary carModelDetails={carModelDetails} carVariantsList={carVariantsList} compareCars={compareCars} carVariant={carVariant} onDealerClick={handleDealerCLick} onGetOnRoadPriceCLick={handleGetOnRoadPriceCLick} imgCount={totalImgCount} />
+            </div>
+          </div>
+          {/* Second row: Left = specs/price/desc/tabs, Right = Top Viewed Cars */}
+          <div className="row">
+            <div className="col-12 col-lg-8">
+              <div className="listing_single_description">
+                <VariantsOverview carModelDetails={carModelDetails} carVariantsList={carVariantsList} carVariant={carVariant} />
+              </div>
+              <div className="listing_single_description">
+                <VariantPrice carModelDetails={carModelDetails} carVariantsList={carVariantsList} carVariant={carVariant} />
+              </div>
+              <div className="listing_single_description">
+                <VariantsDescription carModelDetails={carModelDetails} carVariantsList={carVariantsList} name={carVariant?.name} />
+              </div>
+              <div style={{
+                backgroundColor: '#fff',
+                border: "1px solid #eaeaea",
+                borderRadius: "8px",
+                position: "relative",
+                paddingLeft: "20px",
+                paddingTop: "20px"
+              }}>
+                <div className="popular_listing_sliders single_page6_tabs row pr15">
+                  {/* Nav tabs */}
+                  <div className="nav nav-tabs col-12" role="tablist">
+                    <button
+                      className="nav-link active"
+                      id="nav-overview-tab"
+                      data-bs-toggle="tab"
+                      data-bs-target="#nav-overview"
+                      role="tab"
+                      aria-controls="nav-overview"
+                      aria-selected="false"
+                    >
+                      Overview
+                    </button>
+                    <button
+                      className="nav-link"
+                      id="nav-features-tab"
+                      data-bs-toggle="tab"
+                      data-bs-target="#nav-features"
+                      role="tab"
+                      aria-controls="nav-features"
+                      aria-selected="false"
+                    >
+                      Features
+                    </button>
+                    <button
+                      className="nav-link"
+                      id="nav-variants-tab"
+                      data-bs-toggle="tab"
+                      data-bs-target="#nav-variants"
+                      role="tab"
+                      aria-controls="nav-variants"
+                      aria-selected="false"
+                    >
+                      Variants
+                    </button>
                   </div>
-                  <div className="listing_single_description">
-                    <VariantPrice carModelDetails={carModelDetails} carVariantsList={carVariantsList} carVariant={carVariant} />
-                  </div>
-                  <div className="listing_single_description">
-                    <VariantsDescription carModelDetails={carModelDetails} carVariantsList={carVariantsList} name={carVariant?.name} />
-                  </div>
-                  <div style={{
-                    backgroundColor: '#fff',
-                    border: "1px solid #eaeaea",
-                    borderRadius: "8px",
-                    position: "relative",
-                    paddingLeft: "20px",
-                    paddingTop: "20px"
-                  }}>
-                    <div className="row">
-                      {/* Key Specs of Hyundia Creta  */}
-
-                      <div className="popular_listing_sliders single_page6_tabs row">
-                        {/* Nav tabs */}
-                        <div className="nav nav-tabs col-lg-12" role="tablist">
-                          <button
-                            className="nav-link"
-                            id="nav-description-tab"
-                            data-bs-toggle="tab"
-                            data-bs-target="#nav-description"
-                            role="tab"
-                            aria-controls="nav-description"
-                            aria-selected="true"
-                          >
-                            Description
-                          </button>
-                          <button
-                            className="nav-link active"
-                            id="nav-overview-tab"
-                            data-bs-toggle="tab"
-                            data-bs-target="#nav-overview"
-                            role="tab"
-                            aria-controls="nav-overview"
-                            aria-selected="false"
-                          >
-                            Overview
-                          </button>
-                          <button
-                            className="nav-link"
-                            id="nav-features-tab"
-                            data-bs-toggle="tab"
-                            data-bs-target="#nav-features"
-                            role="tab"
-                            aria-controls="nav-features"
-                            aria-selected="false"
-                          >
-                            Features
-                          </button>
-                          <button
-                            className="nav-link"
-                            id="nav-variants-tab"
-                            data-bs-toggle="tab"
-                            data-bs-target="#nav-variants"
-                            role="tab"
-                            aria-controls="nav-variants"
-                            aria-selected="false"
-                          >
-                            Variants
-                          </button>
-                        </div>
-                        {/* Tab panes */}
-                        <div className="tab-content col-lg-12" id="nav-tabContent">
-                          <div
-                            className="tab-pane fade"
-                            id="nav-description"
-                            role="tabpanel"
-                            aria-labelledby="nav-description-tab"
-                          >
-                            <div className="listing_single_description bdr_none pl0 pr0">
-                              <h4 className="mb30">
-                                Description{" "}
-                              </h4>
-                              <Descriptions carModelDetails={carModelDetails} />
-                            </div>
-                            {/* End car descriptions */}
-                          </div>
-                          {/* End description tabcontent */}
-
-                          <div
-                            className="tab-pane fade show active"
-                            id="nav-overview"
-                            role="tabpanel"
-                            aria-labelledby="nav-overview-tab"
-                          >
-                            <div className="opening_hour_widgets p30 bdr_none pl0 pr0">
-                              <div className="wrapper">
-                                <h4 className="title">Overview</h4>
-                                <Overview carModelDetails={carModelDetails} />
-                              </div>
-                            </div>
-                            {/* End opening_hour_widgets */}
-                          </div>
-                          {/* End overview tabcontent */}
-
-                          <div
-                            className="tab-pane fade show active"
-                            id="nav-features"
-                            role="tabpanel"
-                            aria-labelledby="nav-features-tab"
-                          >
-                            <div className="opening_hour_widgets p30 bdr_none pl0 pr0">
-                              <div className="wrapper">
-                                <h4 className="title">{carVariant?.name} {carVariant?.basicInformation?.fuelType} Specifications & Features</h4>
-                                <VerticalTab carModelDetails={carModelDetails} carVariant={carVariant} />
-                              </div>
-                            </div>
-                            {/* End opening_hour_widgets */}
-                          </div>
-
-                          <div
-                            className="tab-pane fade"
-                            id="nav-variants"
-                            role="tabpanel"
-                            aria-labelledby="nav-variants-tab"
-                          >
-                            <div className="user_profile_service bdr_none pl0 pr0">
-                              <VariantsList carModelDetails={carModelDetails} variants={carVariantsList} />
-                              {/* <Features /> */}
-                              <hr />
-                              {/* <div className="row">
-                        <div className="col-lg-12">
-                          <a className="fz12 tdu color-blue" href="#">
-                            View all variants
-                          </a>
-                        </div>
-                      </div> */}
-                            </div>
-                            {/* End user profile service */}
-                          </div>
-                          {/* End user profile service tabcontent */}
-
+                  {/* Tab panes */}
+                  <div className="tab-content col-12" id="nav-tabContent">
+                    <div
+                      className="tab-pane fade show active"
+                      id="nav-overview"
+                      role="tabpanel"
+                      aria-labelledby="nav-overview-tab"
+                    >
+                      <div className="opening_hour_widgets p30 bdr_none pl0 pr0">
+                        <div className="wrapper">
+                          <h4 className="title">Overview</h4>
+                          <Overview carModelDetails={carModelDetails} />
                         </div>
                       </div>
-                      {/* End tabs content */}
-
+                    </div>
+                    <div
+                      className="tab-pane fade"
+                      id="nav-features"
+                      role="tabpanel"
+                      aria-labelledby="nav-features-tab"
+                    >
+                      <div className="opening_hour_widgets p30 bdr_none pl0 pr0">
+                        <div className="wrapper">
+                          <h4 className="title">{carVariant?.name} {carVariant?.basicInformation?.fuelType} Specifications & Features</h4>
+                          <VerticalTab carModelDetails={carModelDetails} carVariant={carVariant} />
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      className="tab-pane fade"
+                      id="nav-variants"
+                      role="tabpanel"
+                      aria-labelledby="nav-variants-tab"
+                    >
+                      <div className="user_profile_service bdr_none pl0 pr0">
+                        <VariantsList carModelDetails={carModelDetails} variants={carVariantsList} />
+                        <hr />
+                      </div>
                     </div>
                   </div>
                 </div>
-
-
-                {/* <div className="listing_single_description d-flex flex-grow-1"> */}
-                <div className="sidebar_recent_viewed_widgets">
-                  <h4 className="title">Top Viewed Cars</h4>
-                  <RecentlyViewed cars={carModelsList} />
-                  <BannerWidget />
-                </div>
-
-                {/* </div> */}
               </div>
-
-
-
-              {/* End car descriptions */}
             </div>
-            {/* End .col-xl-8 */}
-
-
+            <div className="col-12 col-lg-4 mt-4 mt-lg-0">
+              <div className="sidebar_recent_viewed_widgets">
+                <h4 className="title">Top Viewed Cars</h4>
+                <RecentlyViewed cars={carModelsList} />
+                <BannerWidget />
+              </div>
+            </div>
           </div>
-          {/* End .row */}
+
+          {/* End car descriptions */}
         </div>
         {/* End .container */}
       </section>
