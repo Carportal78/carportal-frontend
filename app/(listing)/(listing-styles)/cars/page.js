@@ -8,7 +8,7 @@ import LoginSignupModal from "../../../components/common/login-signup";
 import CarItems from "../../../components/listing/listing-styles/listing-v6/CarItems";
 import SidebarAdvnaceFilter from "../../../components/listing/SidebarAdvanceFilter";
 import ListGridFilter2 from "../../../components/listing/ListGridFilter2"; 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo, useCallback, useRef } from "react";
 import { Spinner } from "react-bootstrap";
 import {filteredCarData} from "../../../components/atoms/categoriesAtoms"
 import { useAtom } from 'jotai';
@@ -18,7 +18,6 @@ const metadata = {
 };
 
 const ListingV3 = () => {
-
   const [isCarModelsLoading, setIsCarModelsLoading] = useState(true);
   const [carBrandsList, setCarBrandsList] = useState([]);
   const [carModelsList, setCarModelsList] = useState([])
@@ -28,203 +27,217 @@ const ListingV3 = () => {
   const [bodyTypeFilter, setBodyTypeFilter] = useState(null);
   const [budgetFilter, setBudgetFilter] = useState(null);
   const [priceFilter, setPriceFilter] = useState(null);
-  // const [priceRange, setPriceRangeFilter] = useState({min: 100000, max: 1000000});
   const [fuelTypeFilter, setFuelTypeFilter] = useState(null);
   const [transmissionTypeFilter, setTransmissionTypeFilter] = useState(null);
   const [seatingCapacityFilter, setSeatingCapacityFilter] = useState(null);
+  const isInitialMount = useRef(true);
 
+  // Create a memoized list that's only filtered by brand
+  const brandFilteredData = useMemo(() => {
+    if (!brandFilter) return carModelsList;
+    return carModelsList.filter(model => 
+      model?.carBrand?.brandName?.toLowerCase() === brandFilter?.toLowerCase()
+    );
+  }, [carModelsList, brandFilter]);
+
+  // Fetch initial data only once
   useEffect(() => {
+    const fetchInitialData = async () => {
+      if (!isInitialMount.current) return;
+      
+      try {
+        setIsCarModelsLoading(true);
+        const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';
+        
+        // Fetch brands and models in parallel
+        const [brandsResponse, modelsResponse] = await Promise.all([
+          fetch('https://api.univolenitsolutions.com/v1/automobile/get/carbrands/for/66cac994eeca9633c29171e2', {
+            headers: {
+              'X-API-Key': apiKey,
+              'Content-Type': 'application/json'
+            }
+          }),
+          fetch('https://api.univolenitsolutions.com/v1/automobile/get/carmodels/for/66cac994eeca9633c29171e2', {
+            headers: {
+              'X-API-Key': apiKey,
+              'Content-Type': 'application/json'
+            }
+          })
+        ]);
+
+        const [brandsData, modelsData] = await Promise.all([
+          brandsResponse.json(),
+          modelsResponse.json()
+        ]);
+
+        if (brandsData?.data?.carBrandsList) {
+          setCarBrandsList(brandsData.data.carBrandsList);
+          localStorage.setItem('carBrandsList', JSON.stringify(brandsData.data.carBrandsList));
+        }
+
+        if (modelsData?.data?.carModelsList) {
+          const models = modelsData.data.carModelsList;
+          setCarModelsList(models);
+          
+          // Apply initial filters if they exist
+          let initialFilteredData = models;
+          if (brandFilter) {
+            initialFilteredData = models.filter(model => 
+              model?.carBrand?.brandName?.toLowerCase() === brandFilter?.toLowerCase()
+            );
+          }
+          if (bodyTypeFilter) {
+            initialFilteredData = initialFilteredData.filter(model => 
+              model?.bodyType?.toLowerCase() === bodyTypeFilter?.toLowerCase()
+            );
+          }
+          if (budgetFilter) {
+            initialFilteredData = initialFilteredData.filter(model => 
+              model?.budget?.toLowerCase() === budgetFilter?.toLowerCase()
+            );
+          }
+          if (fuelTypeFilter) {
+            initialFilteredData = initialFilteredData.filter(model => 
+              model.fuelType.some(item => fuelTypeFilter.includes(item))
+            );
+          }
+          if (transmissionTypeFilter) {
+            initialFilteredData = initialFilteredData.filter(model => 
+              model.transmissionType.some(item => transmissionTypeFilter.includes(item))
+            );
+          }
+          if (seatingCapacityFilter) {
+            initialFilteredData = initialFilteredData.filter(model => 
+              model?.seatingCapacity?.toLowerCase() === seatingCapacityFilter?.toLowerCase()
+            );
+          }
+          
+          setFilteredData(initialFilteredData);
+          setSelectCarModelData(initialFilteredData.length);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setCarModelsList([]);
+        setFilteredData([]);
+      } finally {
+        setIsCarModelsLoading(false);
+        isInitialMount.current = false;
+      }
+    };
+
+    fetchInitialData();
+  }, [brandFilter, bodyTypeFilter, budgetFilter, fuelTypeFilter, transmissionTypeFilter, seatingCapacityFilter]);
+
+  // Handle URL parameters
+  useEffect(() => {
+    if (!isInitialMount.current) return; // Only run on initial mount
+
     const queryParams = new URLSearchParams(window.location.search);
-    const bodyType = queryParams.get("bodyType");
-    if (bodyType) {
-      setBodyTypeFilter(bodyType);
-    }
+    const params = {
+      bodyType: queryParams.get("bodyType"),
+      brandType: queryParams.get('brand'),
+      budget: queryParams.get('budget'),
+      fuelType: queryParams.get('fuelType'),
+      transmissionType: queryParams.get('transmissionType'),
+      seatingCapacity: queryParams.get('seatingCapacity')
+    };
 
-    const brandType = queryParams.get('brand');
-    if(brandType) {
-      setBrandFilter(brandType);
-    }
+    // Update all filters at once to prevent multiple re-renders
+    if (params.bodyType) setBodyTypeFilter(params.bodyType);
+    if (params.brandType) setBrandFilter(params.brandType);
+    if (params.budget) setBudgetFilter(params.budget);
+    if (params.fuelType) setFuelTypeFilter(params.fuelType);
+    if (params.transmissionType) setTransmissionTypeFilter(params.transmissionType);
+    if (params.seatingCapacity) setSeatingCapacityFilter(params.seatingCapacity);
+  }, []); // Empty dependency array ensures this runs only once
 
-    const budget = queryParams.get('budget');
-    if(budget) {
-      setBudgetFilter(budget);
-    }
-
-    const fuelType = queryParams.get('fuelType');
-    if(fuelType) {
-      setFuelTypeFilter(fuelType);
-    }
-
-    const transmissionType = queryParams.get('transmissionType');
-    if(transmissionType) {
-      setTransmissionTypeFilter(transmissionType);
-    }
-
-    const seatingCapacity = queryParams.get('seatingCapacity');
-    if(seatingCapacity) {
-      setSeatingCapacityFilter(seatingCapacity);
-    }
-
-  }, []);
-
-  useEffect(() => {
-    // setIsBrandsLoading(true);
-    const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carbrands/for/66cac994eeca9633c29171e2';
-    const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
-
-    fetch(apiUrl, {
-      method: 'GET',
-      headers: {
-        'X-API-Key': apiKey,
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data && data.data && data.data.carBrandsList) {
-        setCarBrandsList(data.data.carBrandsList);
-        localStorage.setItem('carBrandsList', JSON.stringify(data.data.carBrandsList));
-      }
-    })
-    .catch(error => {
-      console.error('Error fetching data: ', error);
-    })
-    // .finally(() => setIsBrandsLoading(false));
-  }, []);
-
-  useEffect(() => {
-    const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carmodels/for/66cac994eeca9633c29171e2';
-    const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
-    setIsCarModelsLoading(true);
-    fetch(apiUrl, {
-      method: 'GET',
-      headers: {
-        'X-API-Key': apiKey,
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data && data.data && data.data.carModelsList) {
-        setCarModelsList(data.data.carModelsList);
-        setFilteredData(data.data.carModelsList)
-        setSelectCarModelData(data.data.carModelsList?.length)
-      }
-      setIsCarModelsLoading(false);
-    })
-    .catch(error => {
-      setCarModelsList([]);
-      setIsCarModelsLoading(false);
-    });
-  }, []);
-
-  useEffect(() => {
-    const apiUrl = 'https://api.univolenitsolutions.com/v1/automobile/get/carmodels/for/66cac994eeca9633c29171e2';
-    const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
-    setIsCarModelsLoading(true);
-    fetch(apiUrl, {
-      method: 'GET',
-      headers: {
-        'X-API-Key': apiKey,
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data && data.data && data.data.carModelsList) {
-        setCarModelsList(data.data.carModelsList);
-        setFilteredData(data.data.carModelsList)
-        setSelectCarModelData(data.data.carModelsList?.length)
-      }
-      setIsCarModelsLoading(false);
-    })
-    .catch(error => {
-      setCarModelsList([]);
-      setIsCarModelsLoading(false);
-    });
-  }, []);
-
-
-  const handleSearchHandler = (newFilterValue) => {
+  const handleSearchHandler = useCallback((newFilterValue) => {
     setBrandFilter(newFilterValue.brand);
     setBodyTypeFilter(newFilterValue.bodyType);
     setFuelTypeFilter(newFilterValue.fuelType);
     setTransmissionTypeFilter(newFilterValue.transmissionType);
     setBudgetFilter(newFilterValue.budget);
     setSeatingCapacityFilter(newFilterValue.seatingCapacity);
-    setPriceFilter(newFilterValue.price)
-  }
+    setPriceFilter(newFilterValue.price);
+  }, []);
 
-  useEffect(() => {
-    if(carModelsList.length > 0) {
-      const getFilteredCarModels = () => {
-        if (!brandFilter && !bodyTypeFilter && !fuelTypeFilter && !budgetFilter && !seatingCapacityFilter) {
-          return carModelsList; // Return all models if no filters are applied
-        }
-
-        let filteredResults = [...carModelsList];
-      
-        if (brandFilter) {
-          filteredResults = filteredResults.filter(model => model?.carBrand?.brandName?.toLowerCase() === brandFilter?.toLowerCase());
-        }
-  
-        if (priceFilter) {
-          filteredResults = filteredResults.filter(model => {
-            if(priceFilter.includes('31')) {
-              return priceFilter.every(item => model?.priceRange?.minPrice >= parseInt(item, 10)) && (model?.priceRange.maxPriceType === 'Lakhs' || model?.priceRange.maxPriceType === 'Crores')
-            }
-            else return priceFilter.every(item => model?.priceRange?.minPrice <= parseInt(item, 10)) && model?.priceRange.maxPriceType === 'Lakhs'
-          })
-        }
-  
-        if (budgetFilter) {
-          filteredResults = filteredResults.filter(model => model?.budget?.toLowerCase() === budgetFilter?.toLowerCase());
-        }
-  
-        if (bodyTypeFilter) {
-          filteredResults = filteredResults.filter(model => model?.bodyType?.toLowerCase() === bodyTypeFilter?.toLowerCase());
-        }
-  
-        if (fuelTypeFilter?.length) {
-          let fuelData = []
-          filteredResults.filter(model => {
-            if (model.fuelType.some(item => fuelTypeFilter.includes(item))) {
-              fuelData.push(model);
-            }
-          });
-  
-          filteredResults = fuelData;
-        }
-  
-        if (transmissionTypeFilter?.length) {
-          let transmissionData = []
-          filteredResults.filter(model => {
-            if (model.transmissionType.some(item => transmissionTypeFilter.includes(item))) {
-              transmissionData.push(model);
-            }
-          });
-          filteredResults = transmissionData;
-        }
-  
-        if (seatingCapacityFilter) {
-          filteredResults = filteredResults.filter(model => model?.seatingCapacity?.toLowerCase() === seatingCapacityFilter?.toLowerCase());
-        }
-  
-        setFilteredData(filteredResults);
-        setSelectCarModelData(filteredResults?.length)
-      };
-  
-      getFilteredCarModels();
+  // Memoize the filtering logic
+  const getFilteredCarModels = useCallback(() => {
+    if (!brandFilter && !bodyTypeFilter && !fuelTypeFilter && !budgetFilter && !seatingCapacityFilter) {
+      return carModelsList;
     }
+
+    let filteredResults = [...carModelsList];
+  
+    if (brandFilter) {
+      filteredResults = filteredResults.filter(model => 
+        model?.carBrand?.brandName?.toLowerCase() === brandFilter?.toLowerCase()
+      );
+    }
+
+    if (priceFilter) {
+      filteredResults = filteredResults.filter(model => {
+        if(priceFilter.includes('31')) {
+          return priceFilter.every(item => model?.priceRange?.minPrice >= parseInt(item, 10)) && 
+            (model?.priceRange.maxPriceType === 'Lakhs' || model?.priceRange.maxPriceType === 'Crores');
+        }
+        return priceFilter.every(item => model?.priceRange?.minPrice <= parseInt(item, 10)) && 
+          model?.priceRange.maxPriceType === 'Lakhs';
+      });
+    }
+
+    if (budgetFilter) {
+      filteredResults = filteredResults.filter(model => 
+        model?.budget?.toLowerCase() === budgetFilter?.toLowerCase()
+      );
+    }
+
+    if (bodyTypeFilter) {
+      filteredResults = filteredResults.filter(model => 
+        model?.bodyType?.toLowerCase() === bodyTypeFilter?.toLowerCase()
+      );
+    }
+
+    if (fuelTypeFilter?.length) {
+      filteredResults = filteredResults.filter(model => 
+        model.fuelType.some(item => fuelTypeFilter.includes(item))
+      );
+    }
+
+    if (transmissionTypeFilter?.length) {
+      filteredResults = filteredResults.filter(model => 
+        model.transmissionType.some(item => transmissionTypeFilter.includes(item))
+      );
+    }
+
+    if (seatingCapacityFilter) {
+      filteredResults = filteredResults.filter(model => 
+        model?.seatingCapacity?.toLowerCase() === seatingCapacityFilter?.toLowerCase()
+      );
+    }
+
+    return filteredResults;
   }, [
+    carModelsList,
     brandFilter,
     bodyTypeFilter,
     budgetFilter,
     fuelTypeFilter,
     transmissionTypeFilter,
     seatingCapacityFilter,
-    priceFilter,
-    carModelsList
+    priceFilter
+  ]);
+
+  // Update filtered data when filters change
+  useEffect(() => {
+    if (carModelsList.length > 0) {
+      const filtered = getFilteredCarModels();
+      setFilteredData(filtered);
+      setSelectCarModelData(filtered.length);
+    }
+  }, [
+    carModelsList,
+    getFilteredCarModels
   ]);
 
   return (
@@ -237,21 +250,11 @@ const ListingV3 = () => {
       >
         <HeaderSidebar />
       </div>
-      {/* Sidebar Panel End */}
 
-      {/* header top */}
       <HeaderTop />
-      {/* End header top */}
-
-      {/* Main Header Nav */}
       <DefaultHeader />
-      {/* End Main Header Nav */}
-
-      {/* Main Header Nav For Mobile */}
       <MobileMenu />
-      {/* End Main Header Nav For Mobile */}
 
-      {/* Inner Page Breadcrumb */}
       <section className="inner_page_breadcrumb">
         <div className="container">
           <div className="row">
@@ -272,32 +275,32 @@ const ListingV3 = () => {
           </div>
         </div>
       </section>
-      {/* End Inner Page Breadcrumb */}
 
-      {/* Listing Grid View */}
       <section className="our-listing bgc-white pb30-991 inner_page_section_spacing">
         <div className="container">
           <div className="row">
             <div className="col-lg-4 col-xl-3 dn-md">
-              <SidebarAdvnaceFilter carModelsList={filteredData} carBrandsList={carBrandsList} onSearchClick={handleSearchHandler} />
+              <SidebarAdvnaceFilter 
+                carModelsList={brandFilteredData} 
+                carBrandsList={carBrandsList} 
+                onSearchClick={handleSearchHandler} 
+              />
             </div>
-            {/* End .col-lg-4 */} 
 
             <div className="col-lg-8 col-xl-9"> 
-              <ListGridFilter2 carModelsList={carModelsList}  />
-              {isCarModelsLoading ? (<Spinner className="d-flex" style={{marginLeft: 'auto', marginRight: 'auto'}} animation="border" role="status">
-                     <span className="visually-hidden">Loading...</span>
-                     </Spinner>) : (<div className="row">
-                    <CarItems carModelsList={filteredData} /> 
-                  </div>)}
-              
-              {/* End .row */}
+              <ListGridFilter2 carModelsList={carModelsList} />
+              {isCarModelsLoading ? (
+                <Spinner className="d-flex" style={{marginLeft: 'auto', marginRight: 'auto'}} animation="border" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </Spinner>
+              ) : (
+                <div className="row">
+                  <CarItems carModelsList={filteredData} />
+                </div>
+              )}
             </div>
-            {/* End .col-lg-8 */}
           </div>
-          {/* End .row */}
         </div>
-        {/* End .container */}
 
         <div
           className="offcanvas offcanvas-start"
@@ -312,16 +315,16 @@ const ListingV3 = () => {
           >
             <i className="fa-light fa-circle-xmark"></i>
           </div>
-          <SidebarAdvnaceFilter carModelsList={filteredData} carBrandsList={carBrandsList} onSearchClick={handleSearchHandler} />
+          <SidebarAdvnaceFilter 
+            carModelsList={brandFilteredData} 
+            carBrandsList={carBrandsList} 
+            onSearchClick={handleSearchHandler} 
+          />
         </div>
       </section>
-      {/* Listing Grid View */}
 
-      {/* Our Footer */}
       <Footer />
-      {/* End Our Footer */}
 
-      {/* Modal */}
       <div
         className="sign_up_modal modal fade"
         id="logInModal"
@@ -332,9 +335,7 @@ const ListingV3 = () => {
       >
         <LoginSignupModal />
       </div>
-      {/* End Modal */}
     </div>
-    // End wrapper
   );
 };
 
