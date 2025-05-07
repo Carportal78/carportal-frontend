@@ -4,6 +4,7 @@ import classnames from "classnames";
 import './VerticalTab.css';
 
 function SuspensionAndSteeringAndBrakes({ carVariant }) {
+    console.log(carVariant);
 
     return (
         <>
@@ -37,7 +38,7 @@ function SuspensionAndSteeringAndBrakes({ carVariant }) {
                             </tr>
                             <tr>
                                 <td>Rear Brake Type</td>
-                                <td>{carVariant?.suspensionAndSteeringAndBrakes?.frearBrakeType}</td>
+                                <td>{carVariant?.suspensionAndSteeringAndBrakes?.rearBrakeType}</td>
                             </tr>
                             <tr>
                                 <td>Emission Norm Compliance</td>
