@@ -41,7 +41,6 @@ const FeaturedFilterListing = ({ collection }) => {
                                   width={35}
                                   height={35}
                                   objectFit="cover"
-                                  unoptimized
                                   src={'/images/carportallogo.png'}
                                   alt={'carportsallogo'}
                                   style={{ position: 'absolute', zIndex: 1, top: '15px', left: '15px'  }}

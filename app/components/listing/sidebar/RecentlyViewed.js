@@ -32,7 +32,6 @@ const RecentlyViewed = ({ cars }) => {
               className="align-self-start mr-3"
               src={car?.media?.[0]?.url}
               alt={car?.modelName}
-              unoptimized={true}
             />
           </div>
           <div className="flex-grow-1 ms-3">

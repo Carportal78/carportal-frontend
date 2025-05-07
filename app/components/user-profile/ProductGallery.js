@@ -98,7 +98,6 @@ export default function ProductGallery() {
                     width={721}
                     height={467}
                     style={{ objectFit: "cover" }}
-                    unoptimized
                     className="w-100 h-100"
                     src={slide.imageSrc}
                     alt="large car"

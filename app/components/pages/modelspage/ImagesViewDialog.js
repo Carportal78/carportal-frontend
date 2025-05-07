@@ -96,7 +96,6 @@ const ImagesViewDialog = ({ carModelDetails, carVariantsList, activeGalleryTab }
                       alt={slide?.image?.altText || slide?.altText}
                       fill
                       style={{ objectFit: 'cover' }}
-                      unoptimized={true}
                       // priority
                     />
                   <div className="overlay-text" style={{ fontSize: '16px',fontWeight: '600', margin: '10px', color: 'white'}}>{slide?.featureType}</div>
@@ -144,7 +143,6 @@ const ImagesViewDialog = ({ carModelDetails, carVariantsList, activeGalleryTab }
                       alt={slide?.image?.altText || slide?.altText}
                       fill
                       style={{ objectFit: 'cover' }}
-                      unoptimized={true}
                       // priority
                     />
                   </div>

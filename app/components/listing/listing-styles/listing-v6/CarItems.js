@@ -53,7 +53,6 @@ const CarItems = ({ carModelsList }) => {
                   width={35}
                   height={35}
                   objectFit="cover"
-                  unoptimized
                   src={'/images/carportallogo.png'}
                   alt={'carportsallogo'}
                   style={{ position: 'absolute', zIndex: 1, top: '15px', left: '15px'  }}
@@ -63,7 +62,6 @@ const CarItems = ({ carModelsList }) => {
                 <Image
                   layout="fill"
                   objectFit="cover"
-                  unoptimized
                   src={listing?.media?.[0]?.url ?? '/placeholder-image.png'}
                   alt={listing?.modelName}
                 />

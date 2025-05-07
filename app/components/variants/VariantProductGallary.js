@@ -221,8 +221,7 @@ export default function VariantProductGallery({ carModelDetails, carVariantsList
                     objectFit="cover"
                     src={slide?.url}
                     alt={slide?.altText}
-                    style={{ borderRadius: '8px' }}
-                    unoptimized
+                    style={{ borderRadius: '8px' }}                    
                   />
                 </SwiperSlide>
               ))}
@@ -245,7 +244,6 @@ export default function VariantProductGallery({ carModelDetails, carVariantsList
                     height={400}
                     layout="responsive"
                     objectFit="cover"
-                    unoptimized
                     src={slide?.url}
                     alt={slide?.altText}
                     style={{ borderRadius: '16px' }}
