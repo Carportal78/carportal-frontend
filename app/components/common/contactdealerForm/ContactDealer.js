@@ -88,7 +88,9 @@ const ContactDealer = ({ carModelDetails, carVariantsList, onCLickHideHeader }) 
 
   const handleSelectState = (selectedOption) => {
     setSelectedState(selectedOption);
-    const cityOptions = statesCitiesList[selectedOption.value]?.map(city => ({ value: city.id, label: city.city }));
+    const cityOptions = statesCitiesList[selectedOption.value]
+      ?.map(city => ({ value: city.id, label: city.city }))
+      .sort((a, b) => a.label.localeCompare(b.label));
     setCities(cityOptions);
     setIsCityDisabled(false);
     formik.setFieldValue('state', selectedOption.value);
