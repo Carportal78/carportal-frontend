@@ -50,12 +50,12 @@ const CarItems = ({ carModelsList }) => {
                 ) : undefined} */}
                 <>
                 <Image
-                  width={35}
-                  height={35}
-                  objectFit="cover"
+                  width={50}
+                  height={50}
+                  objectFit="contain"
                   src={'/images/carportallogo.png'}
                   alt={'carportsallogo'}
-                  style={{ position: 'absolute', zIndex: 1, top: '15px', left: '15px'  }}
+                  style={{ position: 'absolute', zIndex: 1, top: '15px', left: '15px', backgroundColor: 'rgba(255, 255, 255, 0.8)', padding: '5px', borderRadius: '5px' }}
                 />
                 </>
 
