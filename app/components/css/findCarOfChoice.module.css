@@ -9,63 +9,75 @@
   border-radius: 16px;
 }
 
-/* findCarOfChoice.module.css */
+/* Brand and body type items styling */
 .brandBox {
-  border: 1px solid #ddd; /* Light grey border */
-  border-radius: 8px; /* Rounded corners for the box */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
-  transition: transform 0.2s; /* Smooth transition for hover effect */
-  overflow: hidden; /* Ensures the image does not overflow the rounded corners */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  overflow: hidden;
 }
 
 .brandBox:hover {
-  transform: translateY(-5px); /* Slightly raise the box on hover */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Darker shadow on hover for a "lifting" effect */
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .bodyTypeImage {
-  object-fit: contain; /* Ensures the image fits nicely within the box */
+  object-fit: contain !important;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .bodyTypeTitle {
-  display: block; /* Ensures the title is on its own line */
-  margin-top: 8px; /* Adds space between the image and the title */
-  color: #333; /* Dark text color for the title */
-  font-weight: bold; /* Make the brand name bold */
+  font-weight: 600;
+  font-size: 12px;
+  color: #333;
+  text-align: center;
+  line-height: 1.2;
+  margin-top: 8px;
 }
 
-
 .bodyTypeItem {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-right: 20px;
-  margin-bottom: 20px;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: all 0.3s ease;
+  width: 100%;
 }
 
 .bodyTypeItem:hover {
-  transform: translateY(-5px);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15) !important;
 }
 
 .bodyTypeCheckImage {
-  width: 100px;
-  height: auto;
-  margin-bottom: 10px;
-  object-fit: cover;
+  object-fit: contain !important;
+  width: 100% !important;
+  height: 100% !important;
 }
 
-.bodyTypeTitle {
-  font-weight: bold;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .bodyTypeTitle {
+    font-size: 11px;
+  }
 }
 
-/* findCarOfChoice.module.css */
+@media (max-width: 480px) {
+  .bodyTypeTitle {
+    font-size: 10px;
+  }
+}
+
+/* Tab styling */
 .tabsContainer {
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch; /* for smooth scrolling on iOS */
+  -webkit-overflow-scrolling: touch;
 }
 
 .nav-tabs {
@@ -75,7 +87,7 @@
 
 .nav-item {
   display: inline-block;
-  margin-right: 10px; /* Adjust the margin as needed */
+  margin-right: 10px;
 }
 
 /* Hide scrollbar */
@@ -84,8 +96,8 @@
 }
 
 .tabsContainer {
-  -ms-overflow-style: none; /* for Internet Explorer, Edge */
-  scrollbar-width: none; /* for Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 

@@ -6,19 +6,19 @@ const Hero = ({ banner }) => {
     <section className="home-one bg-home1" style={{ backgroundImage: `url(${banner?.media?.url})` }}>
       <div className="container">
         <div className="row posr">
-          <div className="col-lg-10 m-auto">
+          <div className="m-auto">
             <div className="home_content home1_style">
-              <div className="home-text text-center mb30">
+              {/* <div className="home-text text-center mb30">
                 <h2 className="title">
                   {banner?.bannerName}
                 </h2>
                 <p className="para">{banner?.description}</p>
-              </div>
-              <div className="advance_search_panel">
-                <div className="row">
+              </div> */}
+              {/* <div className="advance_search_panel"> */}
+                {/* <div className="row"> */}
                   <HeroFilter />
-                </div>
-              </div>
+                {/* </div>
+              </div> */}
             </div>
           </div>
         </div>

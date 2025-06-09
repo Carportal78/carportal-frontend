@@ -190,17 +190,41 @@ function FindCarChoice() {
           {fuelTypeData?.map((bodyType) => (
             <Col xs={3} sm={3} md={2} lg={2} xl={1} key={bodyType.title} className="mb-2">
               <Link href={`cars?fuelType=${bodyType.route}`}>
-                <div className={`bodyTypeItem ${styles.bodyTypeItem} d-flex flex-column align-items-center text-center`}>
-                  <Image
-                    width={150}
-                    height={58}
-                    style={{ objectFit: "cover" }}
-                    src={bodyType.imgSrc}
-                    alt={bodyType.title}
-                    className={styles.bodyTypeImage}
-                    layout='responsive'
-                  />
-                  <span className={styles.bodyTypeTitle}>{bodyType.title}</span>
+                <div className={`bodyTypeItem ${styles.bodyTypeItem} d-flex flex-column align-items-center text-center`} style={{
+                  minHeight: "120px",
+                  padding: "15px",
+                  backgroundColor: "#fff",
+                  borderRadius: "12px",
+                  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+                  transition: "all 0.3s ease"
+                }}>
+                  <div style={{
+                    width: "70px",
+                    height: "50px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginBottom: "10px"
+                  }}>
+                    <Image
+                      width={160}
+                      height={80}
+                      style={{ 
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'contain'
+                      }}
+                      src={bodyType.imgSrc}
+                      alt={bodyType.title}
+                    />
+                  </div>
+                  <span style={{
+                    fontWeight: "600",
+                    fontSize: "12px",
+                    color: "#333",
+                    textAlign: "center",
+                    lineHeight: "1.2"
+                  }}>{bodyType.title}</span>
                 </div>
               </Link>
             </Col>
@@ -217,17 +241,45 @@ function FindCarChoice() {
           {transmissionTypeData?.map((bodyType) => (
             <Col xs={3} sm={3} md={2} lg={1} xl={1} className="mb-2 text-center" key={bodyType.title}>
               <Link href={`cars?transmissionType=${bodyType.route}`}>
-                <div className="d-inline-block text-center"> {/* Ensure link is block-level for spacing, centered content */}
-                  <Image
-                    width={150}
-                    height={58}
-                    src={bodyType.imgSrc}
-                    alt={bodyType.title}
-                    style={{ objectFit: "cover" }}
-                    className={styles.bodyTypeImage}
-                    layout='responsive'
-                  />
-                  <div className={styles.bodyTypeTitle}>{bodyType.title}</div>
+                <div className="d-inline-block text-center" style={{
+                  minHeight: "120px",
+                  padding: "15px",
+                  backgroundColor: "#fff",
+                  borderRadius: "12px",
+                  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+                  transition: "all 0.3s ease",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center"
+                }}>
+                  <div style={{
+                    width: "70px",
+                    height: "50px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginBottom: "10px"
+                  }}>
+                    <Image
+                      width={160}
+                      height={80}
+                      style={{ 
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'contain'
+                      }}
+                      src={bodyType.imgSrc}
+                      alt={bodyType.title}
+                    />
+                  </div>
+                  <div style={{
+                    fontWeight: "600",
+                    fontSize: "12px",
+                    color: "#333",
+                    textAlign: "center",
+                    lineHeight: "1.2"
+                  }}>{bodyType.title}</div>
                 </div>
               </Link>
             </Col>
@@ -244,20 +296,47 @@ function FindCarChoice() {
           {bodyTypeData?.map((bodyType) => (
             <Col xs={4} sm={3} md={2} lg={2} xl={1} key={bodyType.title} className="mb-2 text-center">
               <Link href={`cars?bodyType=${bodyType.route}`}>
-                <div className="d-inline-block text-center">
-                  <div className="position-relative" style={{ width: '100%', height: 58 }}>
+                <div className="d-inline-block text-center" style={{
+                  minHeight: "120px",
+                  padding: "15px",
+                  backgroundColor: "#fff",
+                  borderRadius: "12px",
+                  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+                  transition: "all 0.3s ease",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center"
+                }}>
+                  <div style={{
+                    width: "70px",
+                    height: "50px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginBottom: "10px"
+                  }}>
                     <Image
                       src={bodyType.imgSrc}
                       alt={bodyType.title}
                       // layout="fill" 
                       // objectFit="contain"
-                      width={150}
-                      height={58}
-                      className={styles.bodyTypeCheckImage}
-                      layout='responsive'
+                      width={160}
+                      height={80}
+                      style={{ 
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'contain'
+                      }}
                     />
                   </div>
-                  <div className={styles.bodyTypeTitle}>{bodyType.title}</div>
+                  <div style={{
+                    fontWeight: "600",
+                    fontSize: "12px",
+                    color: "#333",
+                    textAlign: "center",
+                    lineHeight: "1.2"
+                  }}>{bodyType.title}</div>
                 </div>
               </Link>
             </Col>

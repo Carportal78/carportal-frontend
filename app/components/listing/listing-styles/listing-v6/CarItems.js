@@ -37,7 +37,7 @@ const CarItems = ({ carModelsList }) => {
       {carModelsList?.slice(0, visibleItems)?.map((listing) => (
         <div className="col-sm-6 col-xl-4 pointer" key={listing._id} onClick={() => handleCarDetailsRoute(listing)}>
             <div className="car-listing">
-              <div className="thumb" style={{ position: 'relative', width: '100%', height: '200px', overflow: 'hidden' }}>
+              <div className="thumb" style={{ position: 'relative', width: '100%', height: '220px', overflow: 'hidden', borderRadius: '8px' }}>
                 {/* {listing.featured ? (
                   <>
                     <div className="tag">FEATURED</div>
@@ -52,16 +52,24 @@ const CarItems = ({ carModelsList }) => {
                 <Image
                   width={50}
                   height={50}
-                  objectFit="contain"
                   src={'/images/carportallogo.png'}
                   alt={'carportsallogo'}
-                  style={{ position: 'absolute', zIndex: 1, top: '15px', left: '15px', backgroundColor: 'rgba(255, 255, 255, 0.8)', padding: '5px', borderRadius: '5px' }}
+                  style={{ 
+                    objectFit: 'contain',
+                    position: 'absolute', 
+                    zIndex: 1, 
+                    top: '15px', 
+                    left: '15px', 
+                    backgroundColor: 'rgba(255, 255, 255, 0.8)', 
+                    padding: '5px', 
+                    borderRadius: '5px' 
+                  }}
                 />
                 </>
 
                 <Image
-                  layout="fill"
-                  objectFit="cover"
+                  fill
+                  style={{ objectFit: 'cover' }}
                   src={listing?.media?.[0]?.url ?? '/placeholder-image.png'}
                   alt={listing?.modelName}
                 />

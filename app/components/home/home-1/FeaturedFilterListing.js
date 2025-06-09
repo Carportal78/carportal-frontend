@@ -38,20 +38,25 @@ const FeaturedFilterListing = ({ collection }) => {
               <div className="thumb">
                 <>
                                 <Image
-                                  width={35}
-                                  height={35}
-                                  objectFit="cover"
+                                  width={40}
+                                  height={40}
                                   src={'/images/carportallogo.png'}
                                   alt={'carportsallogo'}
-                                  style={{ position: 'absolute', zIndex: 1, top: '15px', left: '15px'  }}
+                                  style={{ 
+                                    objectFit: "contain",
+                                    position: 'absolute', 
+                                    zIndex: 1, 
+                                    top: '15px', 
+                                    left: '15px'
+                                  }}
                                 />
                                 </>
-                <div style={{ position: 'relative', width: '100%', height: '200px', overflow: 'hidden' }}>
+                <div style={{ position: 'relative', width: '100%', height: '220px', overflow: 'hidden', borderRadius: '8px' }}>
                   <Image
-                  layout="fill" // Use fill layout to ensure the image covers the container
-                  objectFit="cover" // Cover ensures the image will fill the height and width of its container, clipping it if necessary
+                  fill
+                  style={{ objectFit: 'cover' }}
                   priority
-                  src={listing?.media?.[0]?.url ?? '/placeholder-image.png'} // Fallback image
+                  src={listing?.media?.[0]?.url ?? '/placeholder-image.png'}
                   alt={listing?.modelName}
                 />
                 </div>

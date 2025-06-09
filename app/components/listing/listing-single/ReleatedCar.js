@@ -64,20 +64,25 @@ const ReleatedCar = ({ relatedCars }) => {
           <SwiperSlide key={listing._id}>
             <div className="item" onClick={() => handleCarDetailsRoute(listing)}>
               <div className="car-listing">
-                <div className="thumb" style={{ position: 'relative', width: '100%', height: '200px', overflow: 'hidden' }}>
+                <div className="thumb" style={{ position: 'relative', width: '100%', height: '220px', overflow: 'hidden', borderRadius: '8px' }}>
                   <>
                                   <Image
-                                    width={35}
-                                    height={35}
-                                    objectFit="cover"
+                                    width={40}
+                                    height={40}
                                     src={'/images/carportallogo.png'}
                                     alt={'carportsallogo'}
-                                    style={{ position: 'absolute', zIndex: 1, top: '15px', left: '15px'  }}
+                                    style={{ 
+                                      objectFit: "contain",
+                                      position: 'absolute', 
+                                      zIndex: 1, 
+                                      top: '15px', 
+                                      left: '15px'
+                                    }}
                                   />
                                   </>
                   <Image
-                    layout="fill"
-                    objectFit="cover"
+                    fill
+                    style={{ objectFit: 'cover' }}
                     priority
                     src={listing?.media?.[0]?.url ?? '/placeholder-image.png'}
                     alt={listing?.modelName}
