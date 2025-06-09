@@ -37,7 +37,7 @@ function AllBrandsList({ carBrands }) {
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                minHeight: "140px"
+                minHeight: "160px"
               }}>
                 <Card.Body style={{ 
                   display: "flex", 
@@ -49,8 +49,8 @@ function AllBrandsList({ carBrands }) {
                   width: "100%"
                 }}>
                   <div style={{
-                    width: "100px",
-                    height: "60px",
+                    width: "130px",
+                    height: "80px",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
