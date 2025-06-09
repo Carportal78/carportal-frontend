@@ -13,6 +13,12 @@ const nextConfig = {
           hostname: 'carportal-images.s3.ap-south-1.amazonaws.com',
           port: '',
           pathname: '/**',
+        },
+        {
+          protocol: 'https',
+          hostname: 'carportal-images-s3.s3.ap-south-1.amazonaws.com',
+          port: '',
+          pathname: '/**',
         }
       ],
     },

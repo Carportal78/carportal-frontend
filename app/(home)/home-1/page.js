@@ -19,7 +19,7 @@ export default async function Home() {
       banner={banner?.carBanner} 
       carBrands= {carBrands?.carBrandsList}
       testimonials={testimonials?.testimonialsList} 
-      collections={collections?.carCollectionsList} 
+      collections={collections?.carCollectionsList}
     />
   );
 }

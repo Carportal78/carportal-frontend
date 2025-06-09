@@ -41,8 +41,7 @@ function AllBrandsList({ carBrands }) {
                     src={brand?.media?.url || '/default-image.png'}
                     alt={brand.brandName}
                     className="d-flex"
-                    style={{ marginLeft: 'auto', marginRight: 'auto' }}
-                    layout='responsive'
+                    style={{ marginLeft: 'auto', marginRight: 'auto', width: '100%', height: 'auto' }}
                   />
                   <span className="d-flex justify-content-center font-600">{brand.brandName}</span>
                 </Card.Body>
@@ -85,7 +84,7 @@ function AllBrandsList({ carBrands }) {
                     src={brand?.media?.url || '/default-image.png'} // Fallback image if URL is missing
                     alt={brand.brandName}
                     className={styles.bodyTypeImage}
-                    layout='responsive'
+                    style={{ width: '100%', height: 'auto' }}
                   />
                   <span className={styles.bodyTypeTitle}>{brand.brandName}</span>
                 </div>
