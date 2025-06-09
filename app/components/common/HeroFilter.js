@@ -171,7 +171,7 @@ const HeroFilter = () => {
               fontSize: '12px',
               fontWeight: '600',
               color: searchBy === 'budget' ? '#ffffff' : '#64748b',
-              backgroundColor: searchBy === 'budget' ? '#3b82f6' : 'transparent',
+              backgroundColor: searchBy === 'budget' ? '#0a2357' : 'transparent',
               borderRadius: '9px',
               padding: '8px 14px',
               transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -199,7 +199,7 @@ const HeroFilter = () => {
               fontSize: '12px',
               fontWeight: '600',
               color: searchBy === 'brand' ? '#ffffff' : '#64748b',
-              backgroundColor: searchBy === 'brand' ? '#3b82f6' : 'transparent',
+              backgroundColor: searchBy === 'brand' ? '#0a2357' : 'transparent',
               borderRadius: '9px',
               padding: '8px 14px',
               transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -259,8 +259,8 @@ const HeroFilter = () => {
                   backgroundSize: '16px'
                 }}
                 onFocus={(e) => {
-                  e.target.style.borderColor = '#3b82f6';
-                  e.target.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.1)';
+                  e.target.style.borderColor = '#0a2357';
+                  e.target.style.boxShadow = '0 0 0 3px rgba(10, 35, 87, 0.1)';
                 }}
                 onBlur={(e) => {
                   e.target.style.borderColor = '#e5e7eb';
@@ -312,8 +312,8 @@ const HeroFilter = () => {
                     backgroundSize: '16px'
                   }}
                   onFocus={(e) => {
-                    e.target.style.borderColor = '#3b82f6';
-                    e.target.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.1)';
+                    e.target.style.borderColor = '#0a2357';
+                    e.target.style.boxShadow = '0 0 0 3px rgba(10, 35, 87, 0.1)';
                   }}
                   onBlur={(e) => {
                     e.target.style.borderColor = '#e5e7eb';
@@ -369,8 +369,8 @@ const HeroFilter = () => {
                   }}
                   onFocus={(e) => {
                     if (!e.target.disabled) {
-                      e.target.style.borderColor = '#3b82f6';
-                      e.target.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.1)';
+                      e.target.style.borderColor = '#0a2357';
+                      e.target.style.boxShadow = '0 0 0 3px rgba(10, 35, 87, 0.1)';
                     }
                   }}
                   onBlur={(e) => {
@@ -400,7 +400,7 @@ const HeroFilter = () => {
           style={{
             width: '100%',
             padding: '14px 24px',
-            backgroundColor: ((searchBy === 'brand' && !selectedModelId) || (searchBy === 'budget' && !selectedBudget)) ? '#e5e7eb' : '#3b82f6',
+            backgroundColor: ((searchBy === 'brand' && !selectedModelId) || (searchBy === 'budget' && !selectedBudget)) ? '#e5e7eb' : '#0a2357',
             color: ((searchBy === 'brand' && !selectedModelId) || (searchBy === 'budget' && !selectedBudget)) ? '#9ca3af' : '#ffffff',
             border: 'none',
             borderRadius: '12px',
@@ -411,20 +411,20 @@ const HeroFilter = () => {
             marginBottom: '16px',
             letterSpacing: '0.5px',
             textTransform: 'uppercase',
-            boxShadow: ((searchBy === 'brand' && !selectedModelId) || (searchBy === 'budget' && !selectedBudget)) ? 'none' : '0 4px 12px rgba(59, 130, 246, 0.2)'
+            boxShadow: ((searchBy === 'brand' && !selectedModelId) || (searchBy === 'budget' && !selectedBudget)) ? 'none' : '0 4px 12px rgba(10, 35, 87, 0.2)'
           }}
           onMouseEnter={(e) => {
             if (!((searchBy === 'brand' && !selectedModelId) || (searchBy === 'budget' && !selectedBudget))) {
-              e.target.style.backgroundColor = '#2563eb';
+              e.target.style.backgroundColor = '#081c47';
               e.target.style.transform = 'translateY(-1px)';
-              e.target.style.boxShadow = '0 8px 20px rgba(59, 130, 246, 0.3)';
+              e.target.style.boxShadow = '0 8px 20px rgba(10, 35, 87, 0.3)';
             }
           }}
           onMouseLeave={(e) => {
             if (!((searchBy === 'brand' && !selectedModelId) || (searchBy === 'budget' && !selectedBudget))) {
-              e.target.style.backgroundColor = '#3b82f6';
+              e.target.style.backgroundColor = '#0a2357';
               e.target.style.transform = 'translateY(0)';
-              e.target.style.boxShadow = '0 4px 12px rgba(59, 130, 246, 0.2)';
+              e.target.style.boxShadow = '0 4px 12px rgba(10, 35, 87, 0.2)';
             }
           }}
         >
