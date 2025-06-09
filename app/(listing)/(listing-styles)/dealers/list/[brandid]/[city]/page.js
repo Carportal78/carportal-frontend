@@ -196,7 +196,7 @@ const Dealers = () => {
             {isLoading ? <Spinner className="d-flex" style={{ marginLeft: 'auto', marginRight: 'auto' }} animation="border" role="status">
               <span className="visually-hidden">Loading...</span>
             </Spinner> : carDealers?.length > 0 ? carDealers?.map(dealer => (
-              <Col xs={12} md={4} lg={4} className="d-flex align-items-stretch" key={dealer?._id}>
+              <Col xs={12} md={4} lg={4} className="d-flex" key={dealer?._id}>
                 <div style={{
                   width: '100%',
                   backgroundColor: "#fff",
@@ -204,36 +204,61 @@ const Dealers = () => {
                   borderRadius: "8px",
                   marginBottom: "30px",
                   padding: "30px",
-                  boxShadow: "0px 2px 12px rgba(36,40,44,.08)"
+                  boxShadow: "0px 2px 12px rgba(36,40,44,.08)",
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between'
                 }}>
-                  <Card.Body>
-                    <Card.Title style={{ marginBottom: "12px" }}>{dealer?.dealerName}</Card.Title>
+                  <div>
+                    <Card.Title style={{ 
+                      marginBottom: "12px",
+                      fontSize: "16px",
+                      fontWeight: "600",
+                      minHeight: "48px",
+                      display: 'flex',
+                      alignItems: 'center'
+                    }}>
+                      {dealer?.dealerName}
+                    </Card.Title>
                     <Card.Text style={{
                       fontWeight: "400",
-                      lineHeight: "18px",
+                      lineHeight: "20px",
                       fontSize: "12px",
-                      marginBottom: "12px",
+                      marginBottom: "20px",
                       color: "rgba(36, 39, 44, .7)",
-                      textTransform: "capitalize"
+                      textTransform: "capitalize",
+                      minHeight: "60px",
+                      display: 'flex',
+                      alignItems: 'flex-start'
                     }}>
                       <span style={{ color: 'black' }}>Address:</span> {dealer?.address} {dealer?.city} {dealer?.state}
                     </Card.Text>
-                    <OverlayTrigger
-                      trigger="click"
-                      key={`tooltip-${dealer?._id}`}
-                      placement="top"
-                      overlay={
-                        <Tooltip id={`tooltip-${dealer?._id}`}>
-                          {dealer?.phoneNumber}
-                        </Tooltip>
-                      }
+                  </div>
+                  <OverlayTrigger
+                    trigger="click"
+                    key={`tooltip-${dealer?._id}`}
+                    placement="top"
+                    overlay={
+                      <Tooltip id={`tooltip-${dealer?._id}`}>
+                        {dealer?.phoneNumber}
+                      </Tooltip>
+                    }
+                  >
+                    <button 
+                      className="btn btn-thm ofr_btn1 mt-auto"
+                      style={{
+                        width: '100%',
+                        height: '45px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        marginTop: 'auto'
+                      }}
                     >
-                      <button className="btn btn-thm ofr_btn1 btn-block mt0 mb20">
-                        <span className="flaticon-profit-report mr10 fz18 vam" />
-                        Click for Number
-                      </button>
-                    </OverlayTrigger>
-                  </Card.Body>
+                      <span className="flaticon-profit-report mr10 fz18 vam" />
+                      Click for Number
+                    </button>
+                  </OverlayTrigger>
                 </div>
               </Col>
             )) : <p>No Records Found</p>}
