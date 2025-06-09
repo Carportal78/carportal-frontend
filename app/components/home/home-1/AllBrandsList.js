@@ -31,19 +31,50 @@ function AllBrandsList({ carBrands }) {
                 border: "1px solid #eaeaea",
                 borderRadius: "8px",
                 marginBottom: "30px",
-                padding: "30px",
-                boxShadow: "0px 2px 12px rgba(36,40,44,.08)"
+                padding: "20px",
+                boxShadow: "0px 2px 12px rgba(36,40,44,.08)",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                minHeight: "140px"
               }}>
-                <Card.Body>
-                  <Image
-                    width={120}
-                    height={58}
-                    src={brand?.media?.url || '/default-image.png'}
-                    alt={brand.brandName}
-                    className="d-flex"
-                    style={{ marginLeft: 'auto', marginRight: 'auto', width: '100%', height: 'auto' }}
-                  />
-                  <span className="d-flex justify-content-center font-600">{brand.brandName}</span>
+                <Card.Body style={{ 
+                  display: "flex", 
+                  flexDirection: "column", 
+                  alignItems: "center", 
+                  justifyContent: "center",
+                  padding: "0",
+                  height: "100%",
+                  width: "100%"
+                }}>
+                  <div style={{
+                    width: "100px",
+                    height: "60px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginBottom: "15px"
+                  }}>
+                    <Image
+                      width={160}
+                      height={80}
+                      src={brand?.media?.url || '/default-image.png'}
+                      alt={brand.brandName}
+                      style={{ 
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'contain'
+                      }}
+                    />
+                  </div>
+                  <span style={{
+                    fontWeight: "600",
+                    fontSize: "14px",
+                    color: "#333",
+                    textAlign: "center",
+                    lineHeight: "1.2"
+                  }}>{brand.brandName}</span>
                 </Card.Body>
               </div>
             </Col>
@@ -77,16 +108,37 @@ function AllBrandsList({ carBrands }) {
             <Col xs={4} sm={4} md={3} lg={2} xl={1} className="d-flex align-items-center justify-content-center" key={brand._id}>
               {/* Use Link for navigation, wrapping the entire card */}
               <Link href={`cars?brand=${brand.brandName}`} passHref className='d-block text-decoration-none'>
-                <div className="p-3 p-md-0 d-flex flex-column align-items-center text-center"> {/* Add padding */}
-                  <Image
-                    width={150} // You may need to adjust this depending on your layout
-                    height={58} // You may need to adjust this depending on your layout
-                    src={brand?.media?.url || '/default-image.png'} // Fallback image if URL is missing
-                    alt={brand.brandName}
-                    className={styles.bodyTypeImage}
-                    style={{ width: '100%', height: 'auto' }}
-                  />
-                  <span className={styles.bodyTypeTitle}>{brand.brandName}</span>
+                <div className="p-2 d-flex flex-column align-items-center text-center" style={{
+                  minHeight: "120px",
+                  justifyContent: "center"
+                }}>
+                  <div style={{
+                    width: "80px",
+                    height: "50px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginBottom: "10px"
+                  }}>
+                    <Image
+                      width={160}
+                      height={80}
+                      src={brand?.media?.url || '/default-image.png'}
+                      alt={brand.brandName}
+                      style={{ 
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'contain'
+                      }}
+                    />
+                  </div>
+                  <span style={{
+                    fontWeight: "600",
+                    fontSize: "12px",
+                    color: "#333",
+                    textAlign: "center",
+                    lineHeight: "1.2"
+                  }}>{brand.brandName}</span>
                 </div>
               </Link>
             </Col>
