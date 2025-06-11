@@ -119,153 +119,349 @@ const HeroFilter = () => {
   ];
 
   return (
-    <div className="col-lg-4 d-flex">
-      <div style={{
-        backgroundColor: '#ffffff',
-        borderRadius: '20px',
-        padding: '20px',
-        boxShadow: '0 20px 60px rgba(0, 0, 0, 0.08), 0 8px 25px rgba(0, 0, 0, 0.06)',
-        width: '100%',
-        maxWidth: '380px',
-        border: '1px solid #f0f1f3',
-        background: 'linear-gradient(145deg, #ffffff 0%, #fafbfc 100%)'
-      }}>
+    <div className="col-lg-4 d-flex justify-content-center justify-content-lg-start">
+      <style jsx>{`
+        .hero-filter-container {
+          background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+          backdrop-filter: blur(10px);
+          border-radius: 20px;
+          padding-left: 24px;
+           padding-right: 24px;
+           padding-top: 20px;
+           padding-bottom: 20px;
+          box-shadow: 
+            0 20px 60px rgba(10, 35, 87, 0.08),
+            0 8px 30px rgba(10, 35, 87, 0.04),
+            0 0 0 1px rgba(255, 255, 255, 0.5);
+          width: 100%;
+          max-width: 360px;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          position: relative;
+          overflow: hidden;
+        }
+
+        .hero-filter-container::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 1px;
+          background: linear-gradient(90deg, transparent 0%, rgba(10, 35, 87, 0.1) 50%, transparent 100%);
+        }
+
+        .hero-header {
+          margin-bottom: 20px;
+          text-align: center;
+        }
+
+        .hero-title {
+          font-size: 22px;
+          font-weight: 800;
+          background: linear-gradient(135deg, #0a2357 0%, #1e3a8a 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          margin-bottom: 4px;
+          letter-spacing: -0.5px;
+          line-height: 1.2;
+        }
+
+        .hero-subtitle {
+          font-size: 13px;
+          color: #64748b;
+          font-weight: 500;
+          margin: 0;
+        }
+
+        .search-tabs {
+          margin-bottom: 20px;
+        }
+
+        .tabs-container {
+          display: flex;
+          gap: 4px;
+          background: rgba(248, 250, 252, 0.8);
+          border-radius: 14px;
+          padding: 4px;
+          border: 1px solid rgba(226, 232, 240, 0.5);
+          backdrop-filter: blur(5px);
+        }
+
+        .tab-option {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          font-size: 12px;
+          font-weight: 600;
+          border-radius: 10px;
+          padding: 10px 16px;
+          transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+          flex: 1;
+          border: none;
+          text-align: center;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .tab-option.active {
+          background: linear-gradient(135deg, #0a2357 0%, #1e3a8a 100%);
+          color: white;
+          box-shadow: 
+            0 4px 15px rgba(10, 35, 87, 0.3),
+            0 2px 8px rgba(10, 35, 87, 0.2);
+          transform: translateY(-1px);
+        }
+
+        .tab-option.inactive {
+          color: #64748b;
+          background: transparent;
+        }
+
+        .tab-option:hover:not(.active) {
+          background: rgba(10, 35, 87, 0.05);
+          color: #0a2357;
+        }
+
+        .form-section {
+          margin-bottom: 24px;
+        }
+
+        .form-group {
+          margin-bottom: 16px;
+        }
+
+        .form-label {
+          display: block;
+          font-size: 11px;
+          font-weight: 700;
+          color: #374151;
+          margin-bottom: 6px;
+          letter-spacing: 0.8px;
+          text-transform: uppercase;
+        }
+
+        .form-select {
+          width: 100%;
+          padding: 12px 40px 12px 16px;
+          border: 2px solid #e5e7eb;
+          border-radius: 12px;
+          font-size: 14px;
+          background: rgba(255, 255, 255, 0.9);
+          outline: none;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          font-weight: 500;
+          color: #374151;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+          cursor: pointer;
+          appearance: none;
+          background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+          background-position: right 12px center;
+          background-repeat: no-repeat;
+          background-size: 16px;
+        }
+
+        .form-select:focus {
+          border-color: #0a2357;
+          box-shadow: 
+            0 0 0 3px rgba(10, 35, 87, 0.1),
+            0 4px 12px rgba(10, 35, 87, 0.08);
+          transform: translateY(-1px);
+        }
+
+        .form-select:disabled {
+          background: #f9fafb !important;
+          border-color: #f3f4f6 !important;
+          color: #9ca3af !important;
+          cursor: not-allowed !important;
+          background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239ca3af' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e") !important;
+          background-position: right 12px center !important;
+          background-repeat: no-repeat !important;
+          background-size: 16px !important;
+          box-shadow: none !important;
+          transform: none !important;
+        }
+
+        .form-select:disabled:focus {
+          border-color: #f3f4f6 !important;
+          box-shadow: none !important;
+          transform: none !important;
+        }
+
+        .search-button {
+          width: 100%;
+          padding: 14px 24px;
+          border: none;
+          border-radius: 14px;
+          font-size: 14px;
+          font-weight: 700;
+          letter-spacing: 0.5px;
+          text-transform: uppercase;
+          transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+          position: relative;
+          overflow: hidden;
+          margin-bottom: 16px;
+        }
+
+        .search-button.enabled {
+          background: linear-gradient(135deg, #0a2357 0%, #1e3a8a 100%);
+          color: white;
+          box-shadow: 
+            0 8px 25px rgba(10, 35, 87, 0.25),
+            0 4px 15px rgba(10, 35, 87, 0.15);
+          cursor: pointer;
+        }
+
+        .search-button.enabled:hover {
+          transform: translateY(-2px);
+          box-shadow: 
+            0 12px 35px rgba(10, 35, 87, 0.3),
+            0 6px 20px rgba(adva10, 35, 87, 0.2);
+        }
+
+        .search-button.enabled:active {
+          transform: translateY(0);
+        }
+
+        .search-button.disabled {
+          background: #e5e7eb;
+          color: #9ca3af;
+          cursor: not-allowed;
+          box-shadow: none;
+        }
+
+        .advanced-link {
+          text-align: center;
+          margin-top: 12px;
+        }
+
+        .advanced-button {
+          background: none;
+          border: none;
+          color: #6366f1;
+          font-size: 12px;
+          font-weight: 600;
+          cursor: pointer;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          letter-spacing: 0.5px;
+          text-transform: uppercase;
+          padding: 4px 8px;
+          border-radius: 6px;
+        }
+
+        .advanced-button:hover {
+          color: #4f46e5;
+          background: rgba(99, 102, 241, 0.05);
+          transform: translateY(-1px);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+          .hero-filter-container {
+            max-width: 300px;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 
+              0 15px 45px rgba(10, 35, 87, 0.06),
+              0 6px 20px rgba(10, 35, 87, 0.03);
+          }
+
+          .hero-title {
+            font-size: 18px;
+          }
+
+          .hero-subtitle {
+            font-size: 11px;
+          }
+
+          .tab-option {
+            font-size: 11px;
+            padding: 8px 12px;
+          }
+
+          .form-select {
+            padding: 10px 35px 10px 14px;
+            font-size: 13px;
+            border-radius: 10px;
+          }
+
+          .search-button {
+            padding: 12px 20px;
+            font-size: 13px;
+            border-radius: 12px;
+          }
+
+          .form-group {
+            margin-bottom: 14px;
+          }
+
+          .form-section {
+            margin-bottom: 20px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .hero-filter-container {
+            max-width: 280px;
+            padding: 16px;
+          }
+
+          .hero-title {
+            font-size: 16px;
+          }
+
+          .hero-subtitle {
+            font-size: 10px;
+          }
+        }
+      `}</style>
+
+      <div className="hero-filter-container">
         {/* Header */}
-        <div style={{ marginBottom: '18px' }}>
-          <h3 style={{
-            fontSize: '22px',
-            fontWeight: '700',
-            color: '#1a202c',
-            marginBottom: '2px',
-            textAlign: 'left',
-            letterSpacing: '-0.5px',
-            lineHeight: '1.3'
-          }}>
-            Find your right car
-          </h3>
-          <p style={{
-            fontSize: '13px',
-            color: '#64748b',
-            margin: '0',
-            fontWeight: '400'
-          }}>
-            Discover your perfect vehicle today
-          </p>
+        <div className="hero-header">
+          <h3 className="hero-title">Find Your Perfect Car</h3>
+          {/* <p className="hero-subtitle">Discover your ideal vehicle today</p> */}
         </div>
 
-        {/* Search Type Radio Buttons */}
-        <div style={{ marginBottom: '18px' }}>
-          <div style={{ 
-            display: 'flex', 
-            gap: '4px',
-            backgroundColor: '#f8fafc',
-            borderRadius: '12px',
-            padding: '4px',
-            border: '1px solid #e2e8f0'
-          }}>
-            <label style={{ 
-              display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'center',
-              cursor: 'pointer',
-              fontSize: '12px',
-              fontWeight: '600',
-              color: searchBy === 'budget' ? '#ffffff' : '#64748b',
-              backgroundColor: searchBy === 'budget' ? '#0a2357' : 'transparent',
-              borderRadius: '9px',
-              padding: '8px 14px',
-              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-              flex: '1',
-              border: 'none',
-              textAlign: 'center'
-            }}>
+        {/* Search Type Tabs */}
+        <div className="search-tabs">
+          <div className="tabs-container">
+            <label className={`tab-option ${searchBy === 'budget' ? 'active' : 'inactive'}`}>
               <input
                 type="radio"
                 name="searchBy"
                 value="budget"
                 checked={searchBy === 'budget'}
                 onChange={(e) => setSearchBy(e.target.value)}
-                style={{
-                  display: 'none'
-                }}
+                style={{ display: 'none' }}
               />
               By Budget
             </label>
-            <label style={{ 
-              display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'center',
-              cursor: 'pointer',
-              fontSize: '12px',
-              fontWeight: '600',
-              color: searchBy === 'brand' ? '#ffffff' : '#64748b',
-              backgroundColor: searchBy === 'brand' ? '#0a2357' : 'transparent',
-              borderRadius: '9px',
-              padding: '8px 14px',
-              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-              flex: '1',
-              border: 'none',
-              textAlign: 'center'
-            }}>
+            <label className={`tab-option ${searchBy === 'brand' ? 'active' : 'inactive'}`}>
               <input
                 type="radio"
                 name="searchBy"
                 value="brand"
                 checked={searchBy === 'brand'}
                 onChange={(e) => setSearchBy(e.target.value)}
-                style={{
-                  display: 'none'
-                }}
+                style={{ display: 'none' }}
               />
               By Brand
             </label>
           </div>
         </div>
 
-        {/* Search Fields */}
-        <div style={{ marginBottom: '20px' }}>
+        {/* Form Fields */}
+        <div className="form-section">
           {searchBy === 'budget' ? (
-            <div style={{ marginBottom: '12px' }}>
-              <label style={{
-                display: 'block',
-                fontSize: '11px',
-                fontWeight: '600',
-                color: '#374151',
-                marginBottom: '6px',
-                letterSpacing: '0.5px'
-              }}>
-                BUDGET RANGE
-              </label>
+            <div className="form-group">
+              <label className="form-label">Budget Range</label>
               <select 
                 value={selectedBudget}
                 onChange={handleBudgetChange}
-                style={{
-                  width: '100%',
-                  padding: '12px 40px 12px 16px',
-                  border: '2px solid #e5e7eb',
-                  borderRadius: '12px',
-                  fontSize: '14px',
-                  backgroundColor: '#ffffff',
-                  outline: 'none',
-                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                  fontWeight: '500',
-                  color: '#374151',
-                  boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)',
-                  cursor: 'pointer',
-                  appearance: 'none',
-                  backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e")`,
-                  backgroundPosition: 'right 12px center',
-                  backgroundRepeat: 'no-repeat',
-                  backgroundSize: '16px'
-                }}
-                onFocus={(e) => {
-                  e.target.style.borderColor = '#0a2357';
-                  e.target.style.boxShadow = '0 0 0 3px rgba(10, 35, 87, 0.1)';
-                }}
-                onBlur={(e) => {
-                  e.target.style.borderColor = '#e5e7eb';
-                  e.target.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.05)';
-                }}
+                className="form-select"
               >
                 <option value="">Select Budget Range</option>
                 {budgetRanges.map(budget => (
@@ -277,48 +473,12 @@ const HeroFilter = () => {
             </div>
           ) : (
             <>
-              {/* Brand Selection */}
-              <div style={{ marginBottom: '16px' }}>
-                <label style={{
-                  display: 'block',
-                  fontSize: '11px',
-                  fontWeight: '600',
-                  color: '#374151',
-                  marginBottom: '6px',
-                  letterSpacing: '0.5px'
-                }}>
-                  BRAND
-                </label>
+              <div className="form-group">
+                <label className="form-label">Brand</label>
                 <select 
                   onChange={handleBrandChange} 
                   value={selectedBrandId}
-                  style={{
-                    width: '100%',
-                    padding: '12px 40px 12px 16px',
-                    border: '2px solid #e5e7eb',
-                    borderRadius: '12px',
-                    fontSize: '14px',
-                    backgroundColor: '#ffffff',
-                    outline: 'none',
-                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                    fontWeight: '500',
-                    color: '#374151',
-                    boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)',
-                    cursor: 'pointer',
-                    appearance: 'none',
-                    backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e")`,
-                    backgroundPosition: 'right 12px center',
-                    backgroundRepeat: 'no-repeat',
-                    backgroundSize: '16px'
-                  }}
-                  onFocus={(e) => {
-                    e.target.style.borderColor = '#0a2357';
-                    e.target.style.boxShadow = '0 0 0 3px rgba(10, 35, 87, 0.1)';
-                  }}
-                  onBlur={(e) => {
-                    e.target.style.borderColor = '#e5e7eb';
-                    e.target.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.05)';
-                  }}
+                  className="form-select"
                 >
                   <option value="">{isBrandsLoading ? "Loading..." : "Select Brand"}</option>
                   {carBrands
@@ -330,54 +490,20 @@ const HeroFilter = () => {
                 </select>
               </div>
 
-              {/* Model Selection */}
-              <div style={{ marginBottom: '12px' }}>
-                <label style={{
-                  display: 'block',
-                  fontSize: '11px',
-                  fontWeight: '600',
-                  color: (!selectedBrandId || isModelsLoading) ? '#9ca3af' : '#374151',
-                  marginBottom: '6px',
-                  letterSpacing: '0.5px'
-                }}>
-                  MODEL
-                </label>
+              <div className="form-group">
+                <label className="form-label" style={{ 
+                  color: (!selectedBrandId || isModelsLoading) ? '#9ca3af' : '#374151' 
+                }}>Model</label>
                 <select 
                   onChange={handleModelChange} 
                   disabled={!selectedBrandId || isModelsLoading}
                   value={selectedModelId}
+                  className="form-select"
                   style={{
-                    width: '100%',
-                    padding: '12px 40px 12px 16px',
-                    border: `2px solid ${(!selectedBrandId || isModelsLoading) ? '#f3f4f6' : '#e5e7eb'}`,
-                    borderRadius: '12px',
-                    fontSize: '14px',
-                    backgroundColor: (!selectedBrandId || isModelsLoading) ? '#f9fafb' : '#ffffff',
-                    outline: 'none',
-                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                    fontWeight: '500',
+                    background: (!selectedBrandId || isModelsLoading) ? '#f9fafb' : 'rgba(255, 255, 255, 0.9)',
+                    borderColor: (!selectedBrandId || isModelsLoading) ? '#f3f4f6' : '#e5e7eb',
                     color: (!selectedBrandId || isModelsLoading) ? '#9ca3af' : '#374151',
-                    cursor: (!selectedBrandId || isModelsLoading) ? 'not-allowed' : 'pointer',
-                    boxShadow: (!selectedBrandId || isModelsLoading) ? 'none' : '0 1px 3px rgba(0, 0, 0, 0.05)',
-                    appearance: 'none',
-                    backgroundImage: (!selectedBrandId || isModelsLoading) 
-                      ? `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239ca3af' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e")`
-                      : `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e")`,
-                    backgroundPosition: 'right 12px center',
-                    backgroundRepeat: 'no-repeat',
-                    backgroundSize: '16px'
-                  }}
-                  onFocus={(e) => {
-                    if (!e.target.disabled) {
-                      e.target.style.borderColor = '#0a2357';
-                      e.target.style.boxShadow = '0 0 0 3px rgba(10, 35, 87, 0.1)';
-                    }
-                  }}
-                  onBlur={(e) => {
-                    if (!e.target.disabled) {
-                      e.target.style.borderColor = '#e5e7eb';
-                      e.target.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.05)';
-                    }
+                    cursor: (!selectedBrandId || isModelsLoading) ? 'not-allowed' : 'pointer'
                   }}
                 >
                   <option value="">{isModelsLoading ? "Loading..." : "Select Model"}</option>
@@ -397,68 +523,10 @@ const HeroFilter = () => {
         <button
           onClick={handleCarDetailsRoute}
           disabled={(searchBy === 'brand' && !selectedModelId) || (searchBy === 'budget' && !selectedBudget)}
-          style={{
-            width: '100%',
-            padding: '14px 24px',
-            backgroundColor: ((searchBy === 'brand' && !selectedModelId) || (searchBy === 'budget' && !selectedBudget)) ? '#e5e7eb' : '#0a2357',
-            color: ((searchBy === 'brand' && !selectedModelId) || (searchBy === 'budget' && !selectedBudget)) ? '#9ca3af' : '#ffffff',
-            border: 'none',
-            borderRadius: '12px',
-            fontSize: '14px',
-            fontWeight: '600',
-            cursor: ((searchBy === 'brand' && !selectedModelId) || (searchBy === 'budget' && !selectedBudget)) ? 'not-allowed' : 'pointer',
-            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-            marginBottom: '16px',
-            letterSpacing: '0.5px',
-            textTransform: 'uppercase',
-            boxShadow: ((searchBy === 'brand' && !selectedModelId) || (searchBy === 'budget' && !selectedBudget)) ? 'none' : '0 4px 12px rgba(10, 35, 87, 0.2)'
-          }}
-          onMouseEnter={(e) => {
-            if (!((searchBy === 'brand' && !selectedModelId) || (searchBy === 'budget' && !selectedBudget))) {
-              e.target.style.backgroundColor = '#081c47';
-              e.target.style.transform = 'translateY(-1px)';
-              e.target.style.boxShadow = '0 8px 20px rgba(10, 35, 87, 0.3)';
-            }
-          }}
-          onMouseLeave={(e) => {
-            if (!((searchBy === 'brand' && !selectedModelId) || (searchBy === 'budget' && !selectedBudget))) {
-              e.target.style.backgroundColor = '#0a2357';
-              e.target.style.transform = 'translateY(0)';
-              e.target.style.boxShadow = '0 4px 12px rgba(10, 35, 87, 0.2)';
-            }
-          }}
+          className={`search-button ${((searchBy === 'brand' && !selectedModelId) || (searchBy === 'budget' && !selectedBudget)) ? 'disabled' : 'enabled'}`}
         >
-          Search
+          Search Cars
         </button>
-
-        {/* Advanced Search Link */}
-        <div style={{ textAlign: 'center' }}>
-          <button
-            onClick={() => router.push('/cars')}
-            style={{
-              background: 'none',
-              border: 'none',
-              color: '#6366f1',
-              fontSize: '12px',
-              fontWeight: '600',
-              cursor: 'pointer',
-              textDecoration: 'none',
-              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-              letterSpacing: '0.5px',
-              textTransform: 'uppercase'
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.color = '#4f46e5';
-              e.target.style.transform = 'translateY(-1px)';
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.color = '#6366f1';
-              e.target.style.transform = 'translateY(0)';
-            }}
-          >
-            Advanced Search →
-          </button>
-        </div>
       </div>
     </div>
   );

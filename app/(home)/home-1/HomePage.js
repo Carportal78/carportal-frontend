@@ -123,7 +123,7 @@ const HomePage = ({ collections, carBrands, testimonials, banner }) => {
         {/* End Hero */}
 
         {/* All brands List */}
-        <section className="featured-product all-brands-mobile-view">
+        <section className="featured-product all-brands-mobile-view pt-4">
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-lg-8">

@@ -2,10 +2,6 @@ import { useCallback, useMemo } from 'react';
 import debounce from 'lodash/debounce';
 
 const SelectFilter = ({ carBrandsList, onFilterChange, selectedFilters }) => {
-
-  console.log("selectedFiltersselectedFiltersselectedFilters ", selectedFilters);
-  console.log("carBrandsListcarBrandsListcarBrandsList ", carBrandsList);
-
   // Memoize the select options to prevent unnecessary recalculations
   const selectOptions = useMemo(() => [
     {
