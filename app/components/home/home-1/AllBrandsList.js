@@ -31,13 +31,13 @@ function AllBrandsList({ carBrands }) {
                 border: "1px solid #eaeaea",
                 borderRadius: "8px",
                 marginBottom: "30px",
-                padding: "20px",
+                padding: "15px",
                 boxShadow: "0px 2px 12px rgba(36,40,44,.08)",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                minHeight: "160px"
+                minHeight: "140px"
               }}>
                 <Card.Body style={{ 
                   display: "flex", 
@@ -49,8 +49,8 @@ function AllBrandsList({ carBrands }) {
                   width: "100%"
                 }}>
                   <div style={{
-                    width: "130px",
-                    height: "80px",
+                    width: "110px",
+                    height: "65px",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
