@@ -5,12 +5,12 @@ const SelectFilter = ({ carBrandsList, onFilterChange, selectedFilters }) => {
   // Memoize the select options to prevent unnecessary recalculations
   const selectOptions = useMemo(() => [
     {
-      label: carBrandsList?.length > 0 ? "Select Makes" : "Loading...",
-      options: carBrandsList?.map(brand => brand?.brandName),
-    },
-    {
       label: "Select Body Type",
       options: ["Convertible", "Coupe", "Hatchback", "Sedan", "SUV", "Compact-Suv", "Compact-Sedan", "Station-Wegon", "MuV", "Luxury", "Minivan", "Truck"],
+    },
+    {
+      label: carBrandsList?.length > 0 ? "Select Makes" : "Loading...",
+      options: carBrandsList?.map(brand => brand?.brandName),
     },
     // {
     //   label: "Year",
@@ -45,8 +45,8 @@ const SelectFilter = ({ carBrandsList, onFilterChange, selectedFilters }) => {
               <div className="dropdown bootstrap-select w100 show-tick">
                 <select 
                   className="form-select dropdown-toggle w100 show-tick"
-                  onChange={(e) => handleSelection(index === 0 ? 'brand' : 'bodyType', e)}
-                  value={index === 0 ? selectedFilters.brand : selectedFilters.bodyType}
+                  onChange={(e) => handleSelection(index === 0 ? 'bodyType' : 'brand', e)}
+                  value={index === 0 ? selectedFilters.bodyType : selectedFilters.brand}
                 >
                   <option value="">{option.label}</option>
                   {option?.options?.map((value, idx) => (
