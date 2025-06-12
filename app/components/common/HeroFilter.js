@@ -109,13 +109,13 @@ const HeroFilter = () => {
   }
 
   const budgetRanges = [
-    { value: 'under_5', label: 'Under ₹5 Lakh' },
-    { value: 'under_10', label: 'Under ₹10 Lakh' },
-    { value: 'under_15', label: 'Under ₹15 Lakh' },
-    { value: 'under_20', label: 'Under ₹20 Lakh' },
-    { value: 'under_25', label: 'Under ₹25 Lakh' },
-    { value: 'under_30', label: 'Under ₹30 Lakh' },
-    { value: 'above_30', label: 'Above ₹30 Lakh' }
+    { value: 'under_5', label: '1 - 5 Lakh' },
+    { value: 'under_10', label: '5 - 10 Lakh' },
+    { value: 'under_15', label: '10 - 15 Lakh' },
+    { value: 'under_20', label: '15 - 20 Lakh' },
+    { value: 'under_25', label: '20 - 25 Lakh' },
+    { value: 'under_30', label: '25 - 30 Lakh' },
+    { value: 'above_30', label: 'Above 30 Lakh' }
   ];
 
   return (
