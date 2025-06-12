@@ -224,14 +224,14 @@ const Dealers = () => {
                       fontWeight: "400",
                       lineHeight: "20px",
                       fontSize: "12px",
-                      marginBottom: "20px",
+                      // marginBottom: "20px",
                       color: "rgba(36, 39, 44, .7)",
                       textTransform: "capitalize",
                       minHeight: "60px",
                       display: 'flex',
                       alignItems: 'flex-start'
                     }}>
-                      <span style={{ color: 'black' }}>Address:</span> {dealer?.address} {dealer?.city} {dealer?.state}
+                      <span style={{ color: 'black' }}>Address:</span> {dealer?.address}
                     </Card.Text>
                   </div>
                   <OverlayTrigger
