@@ -6,7 +6,7 @@ import styles from './HomeBanner.module.css';
 
 const HeroBanner = () => {
   return (
-    <section className="home-one bg-home1">
+    <section className={`${styles.bannerSection} home-one bg-home1`}>
        <video
         className={styles.videoBackground}
         autoPlay
