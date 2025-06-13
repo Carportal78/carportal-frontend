@@ -14,7 +14,7 @@
   object-fit: fill;    /* 👈 Stretches both width & height to fit, even if aspect ratio changes */
   z-index: -1;
   border-radius: 25px;
-  padding: 15px;
+  padding: 10px;
 }
 
 /* Hide video and show image on small screens */
