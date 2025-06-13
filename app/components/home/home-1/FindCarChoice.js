@@ -10,31 +10,31 @@ import { Container, Col } from 'react-bootstrap';
 
 const budgetButtons = [
   {
-    title: "Under 5 Lakh",
+    title: "1 - 5 Lakh",
     route: "under_5",
   },
   {
-    title: "Under 10 Lakh",
+    title: "5 - 10 Lakh",
     route: "under_10",
   },
   {
-    title: "Under 15 Lakh",
+    title: "10 - 15 Lakh",
     route: "under_15",
   },
   {
-    title: "Under 20 Lakh",
+    title: "15 - 20 Lakh",
     route: "under_20",
   },
   {
-    title: "Under 25 Lakh",
+    title: "20 - 25 Lakh",
     route: "under_25",
   },
   {
-    title: "Under 30 Lakh",
+    title: "25 - 30 Lakh",
     route: "under_30",
   },
   {
-    title: "Luxury Cars",
+    title: "Above 30 Lakh",
     route: "above_15",
   },
 ];

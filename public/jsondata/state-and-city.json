@@ -825,6 +825,10 @@
     ],
     "Delhi": [
         {
+            "id": "1",
+            "city": "Central Delhi"
+        },
+        {
             "id": "1217",
             "city": "East Delhi"
         },
