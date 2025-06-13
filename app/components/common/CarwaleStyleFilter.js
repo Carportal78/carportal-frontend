@@ -172,7 +172,7 @@ const CarwaleStyleFilter = () => {
             0 15px 50px rgba(10, 35, 87, 0.08),
             0 5px 20px rgba(10, 35, 87, 0.05),
             0 0 0 1px rgba(255, 255, 255, 0.8);
-          max-width: 750px;
+          max-width: 650px;
           margin: 0 auto;
           position: relative;
           overflow: hidden;
@@ -273,7 +273,7 @@ const CarwaleStyleFilter = () => {
 
         .dropdown-container {
           flex: 1;
-          min-width: 180px;
+          min-width: 160px;
         }
 
         .form-select {
