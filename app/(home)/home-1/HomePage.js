@@ -107,7 +107,7 @@ const HomePage = ({ collections, carBrands, testimonials, banner }) => {
         {/* Sidebar Panel End */}
 
         {/* header top */}
-        <HeaderTop />
+        {/* <HeaderTop /> */}
         {/* End header top */}
 
         {/* Main Header Nav */}
@@ -118,66 +118,20 @@ const HomePage = ({ collections, carBrands, testimonials, banner }) => {
         <MobileMenu />
         {/* End Main Header Nav For Mobile */}
 
-        {/* Hero */}
-        <Hero banner={banner} />
-        {/* End Hero */}
+        {/* Add spacing for fixed header */}
+        <div style={{ paddingTop: '80px' }}>
+          {/* Hero */}
+          <Hero banner={banner} />
+          {/* End Hero */}
 
-        {/* All brands List */}
-        <section className="featured-product pt-4">
-          <div className="container">
-            <div className="row justify-content-center">
-              <div className="col-lg-8">
-                <div className="text-center mb-md-3">
-                  <h2 className="d-none d-md-block">All Brands</h2>
-                  <h3 className="d-md-none d-sm-block">All Brands</h3>
-                </div>
-              </div>
-            </div>
-            {/* End .row */}
-
-            <div className="row">
-              <div className="col-lg-12">
-                <AllBrandsList carBrands={carBrands} />
-              </div>
-            </div>
-            {/* End .row */}
-          </div>
-          {/* End .container */}
-        </section>
-
-        {/* Find the car pf choice */}
-        <section className="featured-product">
-          <div className="container">
-            <div className="row justify-content-center">
-              <div className="col-lg-8">
-                <div className="main-title text-center">
-                  <h2 className="d-none d-md-block">Find the car of your choice</h2>
-                  <h3 className="d-md-none d-sm-block">Find the car of your choice</h3>
-                </div>
-              </div>
-            </div>
-            {/* End .row */}
-
-            <div className="row">
-              <div className="col-lg-12">
-                <FindCarChoice />
-              </div>
-            </div>
-            {/* End .row */}
-          </div>
-          {/* End .container */}
-        </section>
-
-        {/* Featured Product  */}
-        {console.log("collections ", collections)}
-        {collections?.map(collection => (
-          <section className="featured-product" key={collection?._id}>
+          {/* All brands List */}
+          <section className="featured-product pt-4">
             <div className="container">
               <div className="row justify-content-center">
                 <div className="col-lg-8">
-                  <div className="main-title text-center">
-                    <h2 className="d-none d-md-block">{collection?.name}</h2>
-                    <h3 className="d-md-none d-sm-block">{collection?.name}</h3>
+                  <div className="text-center mb-md-3">
+                    <h2 className="d-none d-md-block">All Brands</h2>
+                    <h3 className="d-md-none d-sm-block">All Brands</h3>
                   </div>
                 </div>
               </div>
@@ -185,52 +139,101 @@ const HomePage = ({ collections, carBrands, testimonials, banner }) => {
 
               <div className="row">
                 <div className="col-lg-12">
-                  <PopularListings collection={collection} />
-                  {/* <FeaturedFilterListing collection={collection} /> */}
-                </div>
-              </div>
-              {/* End .row */}
-
-              <div className="row mt20">
-                <div className="col-lg-12">
-                  <div className="text-center">
-                    <Link href="/cars" className="more_listing">
-                      Show All Cars{" "}
-                      <span className="icon">
-                        <span className="fas fa-plus" />
-                      </span>
-                    </Link>
-                  </div>
+                  <AllBrandsList carBrands={carBrands} />
                 </div>
               </div>
               {/* End .row */}
             </div>
             {/* End .container */}
           </section>
-        ))}
 
-        <section className="featured-product">
-          <div className="container">
-            <div className="row justify-content-center">
-              <div className="col-lg-8">
-                <div className="main-title text-center">
-                  <h2>Testimonials</h2>
+          {/* Find the car pf choice */}
+          <section className="featured-product">
+            <div className="container">
+              <div className="row justify-content-center">
+                <div className="col-lg-8">
+                  <div className="main-title text-center">
+                    <h2 className="d-none d-md-block">Find the car of your choice</h2>
+                    <h3 className="d-md-none d-sm-block">Find the car of your choice</h3>
+                  </div>
+                </div>
+              </div>
+              {/* End .row */}
+
+              <div className="row">
+                <div className="col-lg-12">
+                  <FindCarChoice />
+                </div>
+              </div>
+              {/* End .row */}
+            </div>
+            {/* End .container */}
+          </section>
+
+          {/* Featured Product  */}
+          {console.log("collections ", collections)}
+          {collections?.map(collection => (
+            <section className="featured-product" key={collection?._id}>
+              <div className="container">
+                <div className="row justify-content-center">
+                  <div className="col-lg-8">
+                    <div className="main-title text-center">
+                      <h2 className="d-none d-md-block">{collection?.name}</h2>
+                      <h3 className="d-md-none d-sm-block">{collection?.name}</h3>
+                    </div>
+                  </div>
+                </div>
+                {/* End .row */}
+
+                <div className="row">
+                  <div className="col-lg-12">
+                    <PopularListings collection={collection} />
+                    {/* <FeaturedFilterListing collection={collection} /> */}
+                  </div>
+                </div>
+                {/* End .row */}
+
+                <div className="row mt20">
+                  <div className="col-lg-12">
+                    <div className="text-center">
+                      <Link href="/cars" className="more_listing">
+                        Show All Cars{" "}
+                        <span className="icon">
+                          <span className="fas fa-plus" />
+                        </span>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+                {/* End .row */}
+              </div>
+              {/* End .container */}
+            </section>
+          ))}
+
+          <section className="featured-product">
+            <div className="container">
+              <div className="row justify-content-center">
+                <div className="col-lg-8">
+                  <div className="main-title text-center">
+                    <h2>Testimonials</h2>
+                  </div>
+                </div>
+              </div>
+              {/* End .row */}
+
+              <div className="row">
+                <div className="col-lg-12">
+                  <Testimonial testimonials={testimonials} />
+                  {/* <FeaturedFilterListing collection={collection} /> */}
                 </div>
               </div>
             </div>
-            {/* End .row */}
+            {/* End .container */}
+          </section>
 
-            <div className="row">
-              <div className="col-lg-12">
-                <Testimonial testimonials={testimonials} />
-                {/* <FeaturedFilterListing collection={collection} /> */}
-              </div>
-            </div>
-          </div>
-          {/* End .container */}
-        </section>
-
-        {/* End Featured Product  */}
+          {/* End Featured Product  */}
+        </div>
 
         {/* Our Footer */}
         <Footer />

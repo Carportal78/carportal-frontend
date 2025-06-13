@@ -20,7 +20,7 @@ const MainMenu = () => {
                         }
                         href={menuItem?.path ?? '#'}
                     >
-                        <span className="title">{menuItem.label}</span>
+                        <span className="title" style={{ color: '#374151', fontWeight: 600 }}>{menuItem.label}</span>
                         {!menuItem.subMenu?.length ? '' : <span className="arrow" ></span>}
                     </a>
                     <ul className="sub-menu">

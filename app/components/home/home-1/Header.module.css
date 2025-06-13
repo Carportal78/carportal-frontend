@@ -28,4 +28,198 @@
   .search_dropdown ul li a:hover {
     background-color: #f2f2f2;
   }
-  
+
+  .whiteHeader {
+    background-color: white !important;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1050 !important;
+    width: 100% !important;
+  }
+
+  .whiteHeader nav {
+    background-color: white !important;
+  }
+
+  /* Main navigation menu styling */
+  .whiteHeader .ace-responsive-menu > li > a {
+    color: #000 !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease;
+  }
+
+  .whiteHeader .ace-responsive-menu > li > a:hover {
+    color: #007bff !important;
+  }
+
+  .whiteHeader .ace-responsive-menu > li.current > a,
+  .whiteHeader .ace-responsive-menu > li.active > a {
+    color: #007bff !important;
+  }
+
+  /* Sidebar hamburger menu styling - make it visible with higher specificity */
+  .whiteHeader .ace-responsive-menu li.sidebar_panel {
+    display: list-item !important;
+    visibility: visible !important;
+  }
+
+  .whiteHeader .ace-responsive-menu li.sidebar_panel a.sidebar_switch {
+    display: inline-block !important;
+    visibility: visible !important;
+    cursor: pointer !important;
+    position: relative !important;
+    width: 30px !important;
+    height: 25px !important;
+    padding: 5px 0 !important;
+    background: transparent !important;
+    border: none !important;
+    text-decoration: none !important;
+  }
+
+  .whiteHeader .ace-responsive-menu li.sidebar_panel a.sidebar_switch span {
+    display: block !important;
+    visibility: visible !important;
+    position: relative !important;
+    background-color: #000 !important;
+    height: 3px !important;
+    width: 100% !important;
+    border-radius: 1px !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .whiteHeader .ace-responsive-menu li.sidebar_panel a.sidebar_switch span:before,
+  .whiteHeader .ace-responsive-menu li.sidebar_panel a.sidebar_switch span:after {
+    content: '' !important;
+    position: absolute !important;
+    left: 0 !important;
+    background-color: #000 !important;
+    height: 3px !important;
+    width: 100% !important;
+    border-radius: 1px !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .whiteHeader .ace-responsive-menu li.sidebar_panel a.sidebar_switch span:before {
+    top: -8px !important;
+  }
+
+  .whiteHeader .ace-responsive-menu li.sidebar_panel a.sidebar_switch span:after {
+    top: 8px !important;
+  }
+
+  .whiteHeader .ace-responsive-menu li.sidebar_panel a.sidebar_switch:hover span,
+  .whiteHeader .ace-responsive-menu li.sidebar_panel a.sidebar_switch:hover span:before,
+  .whiteHeader .ace-responsive-menu li.sidebar_panel a.sidebar_switch:hover span:after {
+    background-color: #007bff !important;
+  }
+
+  /* Alternative styling in case the above doesn't work */
+  .whiteHeader li.sidebar_panel {
+    display: list-item !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background: rgba(0, 123, 255, 0.1) !important; /* Light blue background to see the area */
+    border-radius: 5px !important;
+    padding: 5px !important;
+  }
+
+  .whiteHeader a.sidebar_switch {
+    display: inline-block !important;
+    visibility: visible !important;
+    width: 30px !important;
+    height: 25px !important;
+    position: relative !important;
+    cursor: pointer !important;
+    padding: 5px !important;
+    opacity: 1 !important;
+    background: rgba(255, 0, 0, 0.2) !important; /* Light red background to see the button */
+    border-radius: 3px !important;
+  }
+
+  .whiteHeader a.sidebar_switch span {
+    display: block !important;
+    visibility: visible !important;
+    background-color: #000 !important;
+    height: 4px !important; /* Made thicker */
+    width: 100% !important;
+    position: relative !important;
+    opacity: 1 !important;
+    border-radius: 2px !important;
+  }
+
+  .whiteHeader a.sidebar_switch span:before,
+  .whiteHeader a.sidebar_switch span:after {
+    content: '' !important;
+    position: absolute !important;
+    background-color: #000 !important;
+    height: 4px !important; /* Made thicker */
+    width: 100% !important;
+    left: 0 !important;
+    opacity: 1 !important;
+    border-radius: 2px !important;
+  }
+
+  .whiteHeader a.sidebar_switch span:before {
+    top: -10px !important; /* More spacing */
+  }
+
+  .whiteHeader a.sidebar_switch span:after {
+    top: 10px !important; /* More spacing */
+  }
+
+  .whiteHeader a.sidebar_switch:hover span,
+  .whiteHeader a.sidebar_switch:hover span:before,
+  .whiteHeader a.sidebar_switch:hover span:after {
+    background-color: #007bff !important;
+  }
+
+  /* Ensure all navigation links are visible */
+  .whiteHeader ul li a {
+    color: #000 !important;
+  }
+
+  .whiteHeader .ace-responsive-menu li a {
+    color: #000 !important;
+  }
+
+  .whiteHeader .ace-responsive-menu ul li a {
+    color: #000 !important;
+  }
+
+  /* Dropdown menu styling */
+  .whiteHeader .ace-responsive-menu ul.sub-menu {
+    background-color: white !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .whiteHeader .ace-responsive-menu ul.sub-menu li a {
+    color: #000 !important;
+    padding: 10px 20px;
+  }
+
+  .whiteHeader .ace-responsive-menu ul.sub-menu li a:hover {
+    color: #007bff !important;
+    background-color: #f8f9fa !important;
+  }
+
+  /* Ensure the offcanvas sidebar appears properly */
+  .offcanvas.offcanvas-end {
+    z-index: 10000 !important;
+    background-color: white !important;
+  }
+
+  .offcanvas-body {
+    background-color: white !important;
+  }
+
+  /* Style the sidebar close button */
+  .sidebar_close_btn {
+    background: none !important;
+    border: none !important;
+    font-size: 24px !important;
+    color: #000 !important;
+    cursor: pointer !important;
+  } 

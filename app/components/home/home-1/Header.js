@@ -1,10 +1,11 @@
 import Link from "next/link";
 import MainMenu from "../../common/MainMenu";
 import Image from "next/image";
+import styles from "./Header.module.css";
 
 const Header = ({ carModelList }) => {
   return (
-    <header className="header-nav menu_style_home_one transparent main-menu">
+    <header className={`header-nav menu_style_home_one main-menu ${styles.whiteHeader}`}>
       <nav>
         <div className="container posr">
           <div className="menu-toggle">
@@ -19,7 +20,7 @@ const Header = ({ carModelList }) => {
               <Image
                 width={160}
                 height={35}
-                src="/images/carportal-logo-white.png"
+                src="/images/carportal-logo-blue.png"
                 alt="Carportal-Logo"
               />
             </div>
@@ -30,7 +31,7 @@ const Header = ({ carModelList }) => {
             data-menu-style="horizontal"
           >
             <MainMenu />
-            <li
+            {/* <li
               className="sidebar_panel"
               data-bs-toggle="offcanvas"
               data-bs-target="#offcanvasRight"
@@ -39,7 +40,7 @@ const Header = ({ carModelList }) => {
               <a className="sidebar_switch pt0" role="button">
                 <span></span>
               </a>
-            </li>
+            </li> */}
           </ul>
         </div>
       </nav>
