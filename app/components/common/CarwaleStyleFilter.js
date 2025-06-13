@@ -166,7 +166,10 @@ const CarwaleStyleFilter = () => {
         .carwale-style-filter {
           background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
           border-radius: 20px;
-          padding: 24px;
+          padding-left: 24px;
+          padding-right: 24px;
+          padding-top: 24px;
+          padding-bottom: 10px;
           box-shadow: 
             0 35px 100px rgba(10, 35, 87, 0.15),
             0 15px 50px rgba(10, 35, 87, 0.08),
