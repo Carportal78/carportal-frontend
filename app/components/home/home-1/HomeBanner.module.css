@@ -35,7 +35,7 @@
 
   .bannerSection {
     position: relative;
-    height: 480px; /* Fixed height */
+    height: 470px; /* Fixed height */
     width: 100%;
     overflow: visible;
     margin-bottom: 200px; /* Reduced margin for mobile */
