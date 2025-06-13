@@ -537,19 +537,6 @@ const CarwaleStyleFilter = () => {
       {/* Header */}
       <div className="header-section">
         <h2 className="main-title">Find Your Perfect Car</h2>
-        <div className="city-selector">
-          <span>Select Options</span>
-          {/* <select 
-            value={selectedCity} 
-            onChange={(e) => setSelectedCity(e.target.value)}
-            className="city-dropdown"
-          >
-            {cities.map(city => (
-              <option key={city} value={city}>{city}</option>
-            ))}
-          </select> */}
-          <span>📍</span>
-        </div>
       </div>
 
       {/* Search Section */}
