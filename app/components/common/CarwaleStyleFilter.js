@@ -165,14 +165,14 @@ const CarwaleStyleFilter = () => {
       <style jsx>{`
         .carwale-style-filter {
           background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-          border-radius: 24px;
-          padding: 32px;
+          border-radius: 20px;
+          padding: 24px;
           box-shadow: 
             0 35px 100px rgba(10, 35, 87, 0.15),
             0 15px 50px rgba(10, 35, 87, 0.08),
             0 5px 20px rgba(10, 35, 87, 0.05),
             0 0 0 1px rgba(255, 255, 255, 0.8);
-          max-width: 900px;
+          max-width: 750px;
           margin: 0 auto;
           position: relative;
           overflow: hidden;
@@ -193,11 +193,11 @@ const CarwaleStyleFilter = () => {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          margin-bottom: 28px;
+          margin-bottom: 20px;
         }
 
         .main-title {
-          font-size: 28px;
+          font-size: 24px;
           font-weight: 800;
           color: #0a2357;
           background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
@@ -205,15 +205,15 @@ const CarwaleStyleFilter = () => {
           -webkit-text-fill-color: transparent;
           background-clip: text;
           margin: 0;
-          letter-spacing: -0.8px;
+          letter-spacing: -0.6px;
         }
 
         .city-selector {
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: 6px;
           color: #6b7280;
-          font-size: 14px;
+          font-size: 13px;
         }
 
         .city-dropdown {
@@ -221,7 +221,7 @@ const CarwaleStyleFilter = () => {
           border: none;
           color: #374151;
           font-weight: 600;
-          font-size: 14px;
+          font-size: 13px;
           cursor: pointer;
           display: flex;
           align-items: center;
@@ -229,21 +229,21 @@ const CarwaleStyleFilter = () => {
         }
 
         .search-section {
-          margin-bottom: 32px;
+          margin-bottom: 24px;
         }
 
         .search-tabs {
           display: flex;
-          gap: 8px;
-          margin-bottom: 20px;
+          gap: 6px;
+          margin-bottom: 16px;
         }
 
         .search-tab {
-          padding: 12px 24px;
+          padding: 10px 20px;
           border: 2px solid #e5e7eb;
           background: white;
-          border-radius: 50px;
-          font-size: 14px;
+          border-radius: 25px;
+          font-size: 13px;
           font-weight: 600;
           cursor: pointer;
           transition: all 0.3s ease;
@@ -266,22 +266,22 @@ const CarwaleStyleFilter = () => {
 
         .search-controls {
           display: flex;
-          gap: 12px;
+          gap: 10px;
           align-items: center;
           flex-wrap: wrap;
         }
 
         .dropdown-container {
           flex: 1;
-          min-width: 200px;
+          min-width: 180px;
         }
 
         .form-select {
           width: 100%;
-          padding: 14px 40px 14px 16px;
+          padding: 12px 36px 12px 14px;
           border: 2px solid #e5e7eb;
-          border-radius: 12px;
-          font-size: 14px;
+          border-radius: 10px;
+          font-size: 13px;
           background: white;
           outline: none;
           transition: all 0.3s ease;
@@ -290,9 +290,9 @@ const CarwaleStyleFilter = () => {
           cursor: pointer;
           appearance: none;
           background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
-          background-position: right 12px center;
+          background-position: right 10px center;
           background-repeat: no-repeat;
-          background-size: 16px;
+          background-size: 14px;
         }
 
         .form-select:focus {
@@ -308,18 +308,18 @@ const CarwaleStyleFilter = () => {
         }
 
         .search-button {
-          padding: 14px 28px;
+          padding: 12px 24px;
           background: linear-gradient(135deg, #10b981 0%, #059669 100%);
           color: white;
           border: none;
-          border-radius: 12px;
-          font-size: 14px;
+          border-radius: 10px;
+          font-size: 13px;
           font-weight: 700;
           cursor: pointer;
           transition: all 0.3s ease;
-          min-width: 120px;
+          min-width: 110px;
           text-transform: uppercase;
-          letter-spacing: 0.5px;
+          letter-spacing: 0.4px;
         }
 
         .search-button:hover:not(:disabled) {
@@ -336,19 +336,19 @@ const CarwaleStyleFilter = () => {
         }
 
         .popular-cars-section {
-          margin-bottom: 32px;
+          margin-bottom: 24px;
         }
 
         .popular-cars-scroll {
           display: flex;
-          gap: 16px;
+          gap: 12px;
           overflow-x: auto;
-          padding: 4px 0 12px 0;
+          padding: 4px 0 10px 0;
           scroll-behavior: smooth;
         }
 
         .popular-cars-scroll::-webkit-scrollbar {
-          height: 6px;
+          height: 5px;
         }
 
         .popular-cars-scroll::-webkit-scrollbar-track {
@@ -366,11 +366,11 @@ const CarwaleStyleFilter = () => {
         }
 
         .car-card {
-          min-width: 140px;
+          min-width: 120px;
           text-align: center;
-          padding: 16px;
+          padding: 12px;
           background: white;
-          border-radius: 16px;
+          border-radius: 12px;
           box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
           cursor: pointer;
           transition: all 0.3s ease;
@@ -384,20 +384,20 @@ const CarwaleStyleFilter = () => {
         }
 
         .car-image {
-          width: 80px;
-          height: 60px;
+          width: 70px;
+          height: 50px;
           background: #f8fafc;
-          border-radius: 8px;
-          margin: 0 auto 12px;
+          border-radius: 6px;
+          margin: 0 auto 10px;
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 24px;
+          font-size: 20px;
           color: #6b7280;
         }
 
         .car-name {
-          font-size: 12px;
+          font-size: 11px;
           font-weight: 600;
           color: #374151;
           margin: 0;
@@ -408,28 +408,29 @@ const CarwaleStyleFilter = () => {
         }
 
         .section-title {
-          font-size: 20px;
+          font-size: 18px;
           font-weight: 700;
           color: #374151;
-          margin-bottom: 16px;
+          margin-bottom: 12px;
         }
 
         .budget-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-          gap: 12px;
+          grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+          gap: 10px;
         }
 
         .budget-item {
-          padding: 16px;
+          padding: 12px;
           background: white;
           border: 2px solid #f1f5f9;
-          border-radius: 12px;
+          border-radius: 10px;
           text-align: center;
           cursor: pointer;
           transition: all 0.3s ease;
           font-weight: 600;
           color: #374151;
+          font-size: 13px;
         }
 
         .budget-item:hover {
