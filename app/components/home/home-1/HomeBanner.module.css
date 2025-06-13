@@ -38,7 +38,7 @@
     height: 470px; /* Fixed height */
     width: 100%;
     overflow: visible;
-    margin-bottom: 200px; /* Reduced margin for mobile */
+    margin-bottom: 260px; /* Reduced margin for mobile */
   }
 
   .videoBackground {
@@ -55,7 +55,7 @@
   }
 
   .floatingFilter {
-    bottom: -200px; /* Adjust position for mobile */
+    bottom: -270px; /* Adjust position for mobile */
     padding: 0 15px;
   }
 
