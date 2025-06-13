@@ -1,6 +1,6 @@
 .bannerSection {
   position: relative;
-  height: 560px; /* Fixed height */
+  height: 500px; /* Fixed height */
   width: 100%;
   overflow: visible; /* Changed from hidden to visible to allow filter to extend outside */
   margin-bottom: 150px; /* Add margin to prevent overlap with next section */
@@ -21,7 +21,7 @@
 
 .floatingFilter {
   position: absolute;
-  bottom: -150px; /* Position it to extend below the video section */
+  bottom: -160px; /* Position it to extend below the video section */
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
@@ -38,7 +38,7 @@
     height: 480px; /* Fixed height */
     width: 100%;
     overflow: visible;
-    margin-bottom: 120px; /* Reduced margin for mobile */
+    margin-bottom: 200px; /* Reduced margin for mobile */
   }
 
   .videoBackground {
@@ -55,7 +55,7 @@
   }
 
   .floatingFilter {
-    bottom: -120px; /* Adjust position for mobile */
+    bottom: -200px; /* Adjust position for mobile */
     padding: 0 15px;
   }
 

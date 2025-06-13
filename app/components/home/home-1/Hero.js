@@ -7,8 +7,14 @@ import CarwaleStyleFilter from '../../common/CarwaleStyleFilter';
 
 const HeroBanner = () => {
   const handleVideoClick = () => {
-    // Redirect to WhatsApp with the specified number
-    window.open('https://wa.me/918929271880', '_blank');
+    // Professional WhatsApp message with website link
+    const message = `Hi! I am interested in buying an Audi and would love your assistance in finding the perfect car for me. I came across your services through CarPortal (https://www.carportal.co.in) and would appreciate your expert guidance on available models, pricing, and financing options. Please help me out with the best deals available. Thank you!`;
+    
+    // Encode the message for URL
+    const encodedMessage = encodeURIComponent(message);
+    
+    // Redirect to WhatsApp with the specified number and message
+    window.open(`https://wa.me/918929271880?text=${encodedMessage}`, '_blank');
   };
 
   const handleFilterClick = (e) => {
@@ -46,7 +52,7 @@ const HeroBanner = () => {
       
       {/* Positioned filter that extends outside video section */}
       <div 
-        className={`${styles.floatingFilter} b-3`}
+        className={`${styles.floatingFilter} mb-3`}
         onClick={handleFilterClick}
       >
         <CarwaleStyleFilter />

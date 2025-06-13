@@ -440,56 +440,95 @@ const CarwaleStyleFilter = () => {
 
         @media (max-width: 768px) {
           .carwale-style-filter {
-            padding: 24px;
-            border-radius: 20px;
+            padding: 16px;
+            border-radius: 16px;
+            margin: 0 8px;
           }
 
           .header-section {
             flex-direction: column;
             align-items: flex-start;
-            gap: 12px;
-            margin-bottom: 24px;
+            gap: 8px;
+            margin-bottom: 16px;
           }
 
           .main-title {
-            font-size: 24px;
+            font-size: 20px;
+            letter-spacing: -0.4px;
+          }
+
+          .city-selector {
+            font-size: 12px;
+          }
+
+          .search-section {
+            margin-bottom: 20px;
           }
 
           .search-tabs {
             flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 12px;
           }
 
           .search-tab {
-            padding: 10px 20px;
-            font-size: 13px;
+            padding: 8px 16px;
+            font-size: 12px;
+            border-radius: 20px;
           }
 
           .search-controls {
             flex-direction: column;
             align-items: stretch;
+            gap: 8px;
           }
 
           .dropdown-container {
             min-width: auto;
           }
 
+          .form-select {
+            padding: 10px 32px 10px 12px;
+            font-size: 13px;
+            border-radius: 8px;
+          }
+
           .search-button {
             width: 100%;
-            margin-top: 8px;
+            margin-top: 4px;
+            padding: 10px 20px;
+            font-size: 12px;
+            border-radius: 8px;
+            letter-spacing: 0.3px;
           }
 
           .car-card {
-            min-width: 120px;
-            padding: 12px;
+            min-width: 100px;
+            padding: 8px;
           }
 
           .car-image {
-            width: 70px;
-            height: 50px;
+            width: 60px;
+            height: 40px;
+          }
+
+          .car-name {
+            font-size: 10px;
           }
 
           .budget-grid {
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 8px;
+          }
+
+          .budget-item {
+            padding: 10px;
+            font-size: 12px;
+          }
+
+          .section-title {
+            font-size: 16px;
+            margin-bottom: 10px;
           }
         }
       `}</style>
