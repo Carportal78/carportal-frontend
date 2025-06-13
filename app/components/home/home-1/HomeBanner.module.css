@@ -13,6 +13,8 @@
   height: 100%;        /* Force exact height (560px from parent) */
   object-fit: fill;    /* 👈 Stretches both width & height to fit, even if aspect ratio changes */
   z-index: -1;
+  border-radius: 25px;
+  padding: 15px;
 }
 
 /* Hide video and show image on small screens */
@@ -33,6 +35,8 @@
     height: 100%;        /* Force exact height (560px from parent) */
     object-fit: fill;    /* 👈 Stretches both width & height to fit, even if aspect ratio changes */
     z-index: -1;
+    border-radius: 15px;
+  padding: 5px;
   }
 
 
