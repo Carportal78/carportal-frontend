@@ -108,7 +108,7 @@ const CarNewsPage = ({ blogData }) => {
         <HeaderSidebar />
       </div>
 
-      <HeaderTop />
+      {/* <HeaderTop /> */}
       <DefaultHeader />
       <MobileMenu />
 

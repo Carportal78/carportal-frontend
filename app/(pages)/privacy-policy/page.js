@@ -26,7 +26,7 @@ const PrivacyPolicy = () => {
       {/* Sidebar Panel End */}
 
       {/* header top */}
-      <HeaderTop />
+      {/* <HeaderTop /> */}
       {/* End header top */}
 
       {/* Main Header Nav */}

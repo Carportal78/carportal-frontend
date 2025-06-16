@@ -251,7 +251,7 @@ const ListingV3 = () => {
         <HeaderSidebar />
       </div>
 
-      <HeaderTop />
+      {/* <HeaderTop /> */}
       <DefaultHeader />
       <MobileMenu />
 
