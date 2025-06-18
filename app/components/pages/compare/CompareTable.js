@@ -10,7 +10,7 @@ import { selectSugestedCompareData } from "../../atoms/categoriesAtoms";
 
 const CompareTable = () => {
   const [suggestedCompareData] = useAtom(selectSugestedCompareData);
-  const [showAll, setShowAll] = useState(false);
+  const [showAll, setShowAll] = useState({});
   const [carDetails, setCarDetails] = useState([]);
   const defaultState = { id:'', make: '', model: '', variant: '', price: '', image: '', isEnabled: true, allFieldsSelected: false }
   const [compareData, setCompareData] = useState([])
@@ -211,13 +211,16 @@ const CompareTable = () => {
   const renderCarDetails = (index) => {
     return (
       <div key={`car-details-${index}`}>
-        <img src={cards[index]?.image} style={{ position: 'relative' }} />
-        <div style={{ display:'flex' , flexDirection:'column', alignItems: 'flex-start', padding: '15px', fontWeight: '500'}}>
-          <div> {`${cards[index]?.variant}`}
-            <i class="fa fa-pen-to-square" style={{ fontSize:'10px', paddingLeft: '10px', cursor: 'pointer'}} onClick={() => handleCardEdit(true, index)}></i>
+        <div className="car-image-container">
+          <img src={cards[index]?.image} />
+        </div>
+        <div className="car-details-section">
+          <div className="car-variant-name"> 
+            {`${cards[index]?.variant}`}
+            <i className="fa fa-pen-to-square" onClick={() => handleCardEdit(true, index)}></i>
           </div>
-          <div style={{ fontSize: '18px', fontWeight: '600', marginTop: '5px'}}>₹ {Number(cards[index]?.price).toLocaleString('en-IN')}*</div>
-          <p style={{ fontSize: '10px', color: 'gray'}}>*Ex-showroom price</p>
+          <div className="car-price">₹ {Number(cards[index]?.price).toLocaleString('en-IN')}*</div>
+          <p className="car-price-note">*Ex-showroom price</p>
         </div>
       </div>
     )
@@ -225,15 +228,12 @@ const CompareTable = () => {
 
   const renderDefaultCard = (index) => {
     return (
-        <>
-        <div>
+      <div className="default-car-card">
+        <div className="circle" onClick={() => handleAddCard(index)}>
+          <i className="fas fa-plus"></i>
         </div>
-
-          <div key={`default-card-${index}`} className="circle" onClick={() => handleAddCard(index)}>
-            <i className="fas fa-plus"></i>
+        <p className="add-car-text">Add Car</p>
           </div>
-          <p key={index}>Add Car</p>
-        </>
     )
   }
 
@@ -287,130 +287,196 @@ const CompareTable = () => {
     }
   }
 
+  // Helper function to format cell data with icons for boolean values
+  const formatCellData = (cellData) => {
+    // Check if the data is a boolean or boolean-like string
+    if (typeof cellData === 'boolean') {
+      return cellData ? (
+        <span className="boolean-indicator">
+          <i className="fas fa-check tick-icon"></i>
+        </span>
+      ) : (
+        <span className="boolean-indicator">
+          <i className="fas fa-times cross-icon"></i>
+        </span>
+      );
+    }
+    
+    // Check for string representations of boolean values
+    if (typeof cellData === 'string') {
+      const lowerData = cellData.toLowerCase().trim();
+      if (lowerData === 'true' || lowerData === 'yes' || lowerData === 'y') {
+        return (
+          <span className="boolean-indicator">
+            <i className="fas fa-check tick-icon"></i>
+          </span>
+        );
+      }
+      if (lowerData === 'false' || lowerData === 'no' || lowerData === 'n') {
+        return (
+          <span className="boolean-indicator">
+            <i className="fas fa-times cross-icon"></i>
+          </span>
+        );
+      }
+    }
+    
+    // Return original data if not boolean
+    return cellData || '-';
+  };
+
   function comparisonCardDataMapper(label){
     if(label) {
       const key = formatComparisonLabel(label).toLowerCase();
+      const displayLimit = 5; // Number of items to show initially
+      
+      // Get full data for each section
       const compareCarBasicInfo = compareData[0]?.basicInformation;
-      const compareCarEngineAndTransmission = showAll ? compareData[0]?.engineAndTransmission : sliceObjectByIndex(compareData[0]?.engineAndTransmission, 0, 4) ;
-      const compareCarFuelAndPerformance = showAll ? compareData[0]?.fuelAndPerformance : sliceObjectByIndex(compareData[0]?.fuelAndPerformance, 0, 4) ;
-      const compareCarSuspensionAndSteeringAndBrakes = showAll ? compareData[0]?.suspensionAndSteeringAndBrakes : sliceObjectByIndex(compareData[0]?.suspensionAndSteeringAndBrakes, 0, 4) ;
-      const compareCarDimensionAndCapacity = showAll ? compareData[0]?.dimensionAndCapacity : sliceObjectByIndex(compareData[0]?.dimensionAndCapacity, 0, 4) ;
-      const compareCarInterior = showAll ? compareData[0]?.interior : sliceObjectByIndex(compareData[0]?.interior, 0, 4) ;
-      const compareCarExterior = showAll ? compareData[0]?.exterior : sliceObjectByIndex(compareData[0]?.exterior, 0, 4) ;
-      const compareCarSafety = showAll ? compareData[0]?.safety : sliceObjectByIndex(compareData[0]?.safety, 0, 4) ;
-      const compareCarComfortAndConvinience = showAll ? compareData[0]?.comfortAndConvinience : sliceObjectByIndex(compareData[0]?.comfortAndConvinience, 0, 4) ;
-      const compareCarEntertainmentAndCommunication = showAll ? compareData[0]?.entertainmentAndCommunication : sliceObjectByIndex(compareData[0]?.entertainmentAndCommunication, 0, 4) ;
+      const compareCarEngineAndTransmission = compareData[0]?.engineAndTransmission;
+      const compareCarFuelAndPerformance = compareData[0]?.fuelAndPerformance;
+      const compareCarSuspensionAndSteeringAndBrakes = compareData[0]?.suspensionAndSteeringAndBrakes;
+      const compareCarDimensionAndCapacity = compareData[0]?.dimensionAndCapacity;
+      const compareCarInterior = compareData[0]?.interior;
+      const compareCarExterior = compareData[0]?.exterior;
+      const compareCarSafety = compareData[0]?.safety;
+      const compareCarComfortAndConvinience = compareData[0]?.comfortAndConvinience;
+      const compareCarEntertainmentAndCommunication = compareData[0]?.entertainmentAndCommunication;
+
+      // Determine which data to use based on key and showAll state
+      let currentData = null;
+      let hasMoreData = false;
+
+      switch(key) {
+        case 'basicinformation':
+          currentData = compareCarBasicInfo;
+          hasMoreData = currentData && Object.keys(currentData).length > displayLimit;
+          currentData = showAll[key] ? currentData : sliceObjectByIndex(currentData, 0, displayLimit - 1);
+          break;
+        case 'engineandtransmission':
+          currentData = compareCarEngineAndTransmission;
+          hasMoreData = currentData && Object.keys(currentData).length > displayLimit;
+          currentData = showAll[key] ? currentData : sliceObjectByIndex(currentData, 0, displayLimit - 1);
+          break;
+        case 'fuelandperformance':
+          currentData = compareCarFuelAndPerformance;
+          hasMoreData = currentData && Object.keys(currentData).length > displayLimit;
+          currentData = showAll[key] ? currentData : sliceObjectByIndex(currentData, 0, displayLimit - 1);
+          break;
+        case 'suspensionandsteeringandbrakes':
+          currentData = compareCarSuspensionAndSteeringAndBrakes;
+          hasMoreData = currentData && Object.keys(currentData).length > displayLimit;
+          currentData = showAll[key] ? currentData : sliceObjectByIndex(currentData, 0, displayLimit - 1);
+          break;
+        case 'dimensionandcapacity':
+          currentData = compareCarDimensionAndCapacity;
+          hasMoreData = currentData && Object.keys(currentData).length > displayLimit;
+          currentData = showAll[key] ? currentData : sliceObjectByIndex(currentData, 0, displayLimit - 1);
+          break;
+        case 'interior':
+          currentData = compareCarInterior;
+          hasMoreData = currentData && Object.keys(currentData).length > displayLimit;
+          currentData = showAll[key] ? currentData : sliceObjectByIndex(currentData, 0, displayLimit - 1);
+          break;
+        case 'exterior':
+          currentData = compareCarExterior;
+          hasMoreData = currentData && Object.keys(currentData).length > displayLimit;
+          currentData = showAll[key] ? currentData : sliceObjectByIndex(currentData, 0, displayLimit - 1);
+          break;
+        case 'safety':
+          currentData = compareCarSafety;
+          hasMoreData = currentData && Object.keys(currentData).length > displayLimit;
+          currentData = showAll[key] ? currentData : sliceObjectByIndex(currentData, 0, displayLimit - 1);
+          break;
+        case 'comfortandconvinience':
+          currentData = compareCarComfortAndConvinience;
+          hasMoreData = currentData && Object.keys(currentData).length > displayLimit;
+          currentData = showAll[key] ? currentData : sliceObjectByIndex(currentData, 0, displayLimit - 1);
+          break;
+        case 'entertainmentandcommunication':
+          currentData = compareCarEntertainmentAndCommunication;
+          hasMoreData = currentData && Object.keys(currentData).length > displayLimit;
+          currentData = showAll[key] ? currentData : sliceObjectByIndex(currentData, 0, displayLimit - 1);
+          break;
+      }
 
       return (
+        <>
+          <div className="table-container" style={{'--car-count': compareData.length}}>
+            <div className="compare-table-wrapper">
         <Table striped hover className="compare-table" key={label}>
           <thead>
               <tr>
-                <th className="compare-th th-font th-style">
+                      <th className="compare-th th-style">
                   {renderTableHeaderIcon(label)}
                   {label}
                 </th>
                 {compareData?.map((data, index) => {
                   return (
-                    <th className="compare-th th-font" key={`compare-data-${index}`}>{data.name}</th>
+                          <th className="compare-th" key={`compare-data-${index}`}>{data.name}</th>
                   )
                 })}
               </tr>
           </thead>
           <tbody>
-              {key === 'basicinformation' && compareCarBasicInfo && Object.keys(compareCarBasicInfo)?.map((infoKey, index) => (
+                    {currentData && Object.keys(currentData)?.map((infoKey, index) => (
                 <tr key={`infoKey-${index}`}>
-                  <td className="compare-td td-font td-border">{infoKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</td>
-                  {compareData?.map((car, index) => (
-                    <td className="compare-td td-font" key={`${car._id}-${infoKey}-${index}`}>{ car.basicInformation[infoKey] ? car.basicInformation[infoKey] : '-'}</td>
-                  ))}
-                </tr>
-              ))}
-  
-              {key === 'engineandtransmission' && compareCarEngineAndTransmission && Object.keys(compareCarEngineAndTransmission)?.map((infoKey, index) => (
-                <tr key={`infoKey-${index}`}>
-                  <td className="compare-td td-font td-border">{infoKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</td>
-                  {compareData?.map((car, index) => (
-                    <td className="compare-td td-font" key={`${car._id}-${infoKey}-${index}`}>{car.engineAndTransmission[infoKey] ? car.engineAndTransmission[infoKey]: '-'}</td>
-                  ))}
-                </tr>
-              ))}
-  
-              {key === 'fuelandperformance' && compareCarFuelAndPerformance && Object.keys(compareCarFuelAndPerformance)?.map((infoKey, index) => (
-                <tr key={`infoKey-${index}`}>
-                  <td className="compare-td td-font td-border">{infoKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</td>
-                  {compareData?.map((car, index) => (
-                    <td className="compare-td td-font" key={`${car._id}-${infoKey}-${index}`}>{car.fuelAndPerformance[infoKey] ? car.fuelAndPerformance[infoKey] : '-'}</td>
-                  ))}
-                </tr>
-              ))}
-  
-              {key === 'suspensionandsteeringandbrakes' && compareCarSuspensionAndSteeringAndBrakes && Object.keys(compareCarSuspensionAndSteeringAndBrakes)?.map((infoKey, index) => (
-                <tr key={`infoKey-${index}`}>
-                  <td className="compare-td td-font td-border">{infoKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</td>
-                  {compareData?.map((car, index) => (
-                    <td className="compare-td td-font" key={`${car._id}-${infoKey}-${index}`}>{car.suspensionAndSteeringAndBrakes[infoKey] ? car.suspensionAndSteeringAndBrakes[infoKey]: '-'}</td>
-                  ))}
-                </tr>
-              ))}
-  
-              {key === 'dimensionandcapacity' && compareCarDimensionAndCapacity && Object.keys(compareCarDimensionAndCapacity)?.map((infoKey, index) => (
-                <tr key={`infoKey-${index}`}>
-                  <td className="compare-td td-font td-border">{infoKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</td>
-                  {compareData?.map((car, index) => (
-                    <td className="compare-td td-font" key={`${car._id}-${infoKey}-${index}`}>{car.dimensionAndCapacity[infoKey] ? car.dimensionAndCapacity[infoKey] : '-'}</td>
-                  ))}
-                </tr>
-              ))}
-  
-              {key === 'interior' && compareCarInterior && Object?.keys(compareCarInterior)?.map((infoKey, index) => (
-                <tr key={`infoKey-${index}`}>
-                  <td className="compare-td td-font td-border">{infoKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</td>
-                  {compareData?.map((car, index) => (
-                    <td className="compare-td td-font" key={`${car._id}-${infoKey}-${index}`}>{car.interior[infoKey] ? car.interior[infoKey] : '-'}</td>
-                  ))}
-                </tr>
-              ))}
-  
-              {key === 'exterior' && compareCarExterior && Object?.keys(compareCarExterior)?.map((infoKey, index) => (
-                <tr key={`infoKey-${index}`}>
-                  <td className="compare-td td-font td-border">{infoKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</td>
-                  {compareData?.map((car, index) => (
-                    <td className="compare-td td-font" key={`${car._id}-${infoKey}-${index}`}>{car.exterior[infoKey] ? car.exterior[infoKey] : '-'}</td>
-                  ))}
-                </tr>
-              ))}
-
-              {key === 'comfortandconvinience' && compareCarComfortAndConvinience && Object?.keys(compareCarComfortAndConvinience)?.map((infoKey, index) => (
-                <tr key={`infoKey-${index}`}>
-                  <td className="compare-td td-font td-border">{infoKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</td>
-                  {compareData?.map((car, index) => (
-                    <td className="compare-td td-font" key={`${car._id}-${infoKey}-${index}`}>{car.comfortAndConvinience[infoKey] ? car.comfortAndConvinience[infoKey] : '-'}</td>
-                  ))}
-                </tr>
-              ))}
-
-              {key === 'safety' && compareCarSafety && Object?.keys(compareCarSafety)?.map((infoKey, index) => (
-                  <tr key={`infoKey-${index}`}>
-                    <td className="compare-td td-font td-border">{infoKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</td>
-                    {compareData?.map((car, index) => (
-                      <td className="compare-td td-font" key={`${car._id}-${infoKey}-${index}`}>{car.safety[infoKey]}</td>
-                    ))}
-                  </tr>
-              ))}
-
-              {key === 'entertainmentandcommunication' && compareCarEntertainmentAndCommunication && Object?.keys(compareCarEntertainmentAndCommunication)?.map((infoKey, index) => (
-                <tr key={`infoKey-${index}`}>
-                  <td className="compare-td td-font td-border">{infoKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</td>
-                  {compareData?.map((car, index) => (
-                    <td className="compare-td td-font" key={`${car._id}-${infoKey}-${index}`}>{car.entertainmentAndCommunication[infoKey]}</td>
-                  ))}
+                        <td className="compare-td td-border">{infoKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</td>
+                        {compareData?.map((car, carIndex) => {
+                          let cellData = '';
+                          switch(key) {
+                            case 'basicinformation':
+                              cellData = car.basicInformation?.[infoKey];
+                              break;
+                            case 'engineandtransmission':
+                              cellData = car.engineAndTransmission?.[infoKey];
+                              break;
+                            case 'fuelandperformance':
+                              cellData = car.fuelAndPerformance?.[infoKey];
+                              break;
+                            case 'suspensionandsteeringandbrakes':
+                              cellData = car.suspensionAndSteeringAndBrakes?.[infoKey];
+                              break;
+                            case 'dimensionandcapacity':
+                              cellData = car.dimensionAndCapacity?.[infoKey];
+                              break;
+                            case 'interior':
+                              cellData = car.interior?.[infoKey];
+                              break;
+                            case 'exterior':
+                              cellData = car.exterior?.[infoKey];
+                              break;
+                            case 'safety':
+                              cellData = car.safety?.[infoKey];
+                              break;
+                            case 'comfortandconvinience':
+                              cellData = car.comfortAndConvinience?.[infoKey];
+                              break;
+                            case 'entertainmentandcommunication':
+                              cellData = car.entertainmentAndCommunication?.[infoKey];
+                              break;
+                            default:
+                              cellData = '';
+                          }
+                          return (
+                            <td className="compare-td" key={`${car._id}-${infoKey}-${carIndex}`}>
+                              {formatCellData(cellData)}
+                            </td>
+                          )
+                        })}
                 </tr>
               ))}
           </tbody>
-          <Button id={label} variant="link" onClick={() => setShowAll(!showAll)} value={ showAll.length ? 'Read Less': 'Read More'} className="compare-table-button">
-                {showAll ? "Read Less" : "Read More"}
-          </Button>
-        </Table>
+              </Table>
+            </div>
+          </div>
+          {hasMoreData && (
+            <div className="read-more-container">
+              <Button id={label} variant="link" onClick={() => setShowAll({...showAll, [key]: !showAll[key]})} className="compare-table-button">
+                {showAll[key] ? "Read Less" : "Read More"}
+              </Button>
+            </div>
+          )}
+        </>
       )
     }
 
@@ -421,9 +487,10 @@ const CompareTable = () => {
     for (const car of compareData) {
       comparisonItemsPresent = checkItemsInObject(car);
     }
+    
     return (
         compareData.length > 0 && comparisonItemsPresent?.map((val, index) => (
-          <div className="compare-card" style={{ width: '100%', height: 'auto', margin: '50px 0px'}} key={`compare-data-card-${index}`}>
+          <div className="compare-card" key={`compare-data-card-${index}`}>
           {comparisonCardDataMapper(val)}
         </div> 
       ))
@@ -433,40 +500,57 @@ const CompareTable = () => {
   const renderCard = (card, index) => {
     return (
       <>
-        <div key={`card-body-${index}`} className="card-body" style={{ width: '100%', padding: '0px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+        <div key={`card-body-${index}`} className="card-body">
           {!card.allFieldsSelected && renderDefaultCard(index)}
           {(isEditCard || index === cards.length-1) && 
-            <div style={{ display:"flex", justifyContent: 'flex-end', padding: '5px 8px', fontSize: '16px', cursor: 'pointer', color: '#0d638f', background: 'white', borderRadius: '50%', position: 'absolute', right: '0', top: '0', zIndex: '1', margin: '3px'}} 
-              onClick={() => handleEditCloseClick(index)}>
-              <i class="fa fa-xmark"></i>
+            <div className="close-button" onClick={() => handleEditCloseClick(index)}>
+              <i className="fa fa-xmark"></i>
             </div>
           }
-          {!card.allFieldsSelected && <div className="mb-3" style={{ padding: '10px 20px 0 20px', width: '100%'}}>
-            <select id={`make-${index}`} className="form-select" value={card.make} onChange={(e) => handleMakeChange(index, e.target.value)} disabled={!card.isEnabled}>
-              <option value="">Select Make</option>
-              {carDetails?.map((make) => (
-                <option key={make.id} value={make.brandName}>{make.brandName}</option>
-              ))}
-            </select>
-          </div>}
-          {card.make && !card.allFieldsSelected && (
-            <div className="mb-3" style={{ padding: '0 20px', width: '100%'}}>
-              <select id={`model-${index}`} className="form-select" value={card.model} onChange={(e) => handleModelChange(index, e.target.value)} disabled={!card.isEnabled}>
-                <option value="">Select Model</option>
-                {carDetails.find((make) => make.brandName === card.make)?.models?.map((model) => (
-                  <option key={model.modelId} value={model.modelName}>{model.modelName}</option>
+          {!card.allFieldsSelected && (
+            <div className="form-container">
+              <select 
+                id={`make-${index}`} 
+                className="form-select" 
+                value={card.make} 
+                onChange={(e) => handleMakeChange(index, e.target.value)} 
+                disabled={!card.isEnabled}
+              >
+                <option value="">Select Make</option>
+                {carDetails?.map((make) => (
+                  <option key={make.id} value={make.brandName}>{make.brandName}</option>
                 ))}
               </select>
-            </div>
-          )}
-          {card.model && !card.allFieldsSelected && (
-            <div className="mb-3" style={{ padding: '10px 20px 0', width: '100%'}}>
-              <select id={`variant-${index}`} className="form-select" value={card.variant} onChange={(e) => handleVariantChange(index, e.target.value, e.target.options[e.target.selectedIndex].id)} disabled={!card.isEnabled}>
-                <option value="">Select Variant</option>
-                {carDetails.find((make) => make.brandName === card.make)?.models.find((model) => model.modelName === card.model)?.variants?.map((variant) => (
-                  <option key={variant.id} value={variant.name} id={variant.id}>{variant.name}</option>
-                ))}
-              </select>
+              
+              {card.make && (
+                <select 
+                  id={`model-${index}`} 
+                  className="form-select" 
+                  value={card.model} 
+                  onChange={(e) => handleModelChange(index, e.target.value)} 
+                  disabled={!card.isEnabled}
+                >
+                  <option value="">Select Model</option>
+                  {carDetails.find((make) => make.brandName === card.make)?.models?.map((model) => (
+                    <option key={model.modelId} value={model.modelName}>{model.modelName}</option>
+                  ))}
+                </select>
+              )}
+              
+              {card.model && (
+                <select 
+                  id={`variant-${index}`} 
+                  className="form-select" 
+                  value={card.variant} 
+                  onChange={(e) => handleVariantChange(index, e.target.value, e.target.options[e.target.selectedIndex].id)} 
+                  disabled={!card.isEnabled}
+                >
+                  <option value="">Select Variant</option>
+                  {carDetails.find((make) => make.brandName === card.make)?.models.find((model) => model.modelName === card.model)?.variants?.map((variant) => (
+                    <option key={variant.id} value={variant.name} id={variant.id}>{variant.name}</option>
+                  ))}
+                </select>
+              )}
             </div>
           )}
           {card.allFieldsSelected && renderCarDetails(index)}
@@ -477,7 +561,7 @@ const CompareTable = () => {
 
   const renderCardPage = (card, index) => {
     return (
-      <div key={`card-page-${index}`} className="card" style={{ width: '30%', minHeight: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div key={`card-page-${index}`} className="card">
         { cards[index]?.isEnabled ?  renderCard(card, index) : renderDefaultCard(index)}
       </div>
     );
@@ -494,18 +578,20 @@ const CompareTable = () => {
   return (
     isLoading ?  renderLoading()
     :
-    <>
-      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
+    <div style={{ width: "100%" }}>
+      <div className="car-selection-container">
+        <div className="car-cards-wrapper">
           {cards?.map((card, index) => renderCardPage(card, index))}
+        </div>
       </div>
-      <div style={{ width: "100%", display: "flex", alignItems: 'center', justifyContent: 'center'}}>
-        <button className="btn btn-thm ofr_btn1 btn-block mt40 mb20" style={{width: "200px"}} data-bs-toggle="modal" data-bs-target="#compareForm" onClick={handleOnCompareClick} disabled={idsArray.length <2}>
+      <div className="compare-button-container">
+        <button className="btn btn-thm ofr_btn1 btn-block" data-bs-toggle="modal" data-bs-target="#compareForm" onClick={handleOnCompareClick} disabled={idsArray.length <2}>
           <span className="flaticon-profit-report mr10 fz18 vam" />
           Compare Cars
         </button>
       </div>
       {isCompareLoading ? renderLoading() : renderComparison()}
-    </>
+    </div>
   );
 
 };

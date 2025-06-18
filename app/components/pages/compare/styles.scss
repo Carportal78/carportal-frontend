@@ -1,86 +1,877 @@
-.card {
-    width: 200px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
+/* Table Container with Horizontal Scroll */
+.table-container {
+    overflow-x: auto;
+    overflow-y: visible;
+    width: 100%;
+    border-radius: 20px 20px 0 0; /* Only round top corners */
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    background: #fff;
+    position: relative;
+    /* Hide scrollbar for all browsers */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
 }
 
-.circle {
-    width: 60px;
-    height: 60px;
-    border: 2px dotted #333;
-    border-radius: 50%;
-    margin: 0 auto 20px;
-    display: flex;
-    justify-content: center;
+.table-container::-webkit-scrollbar {
+    display: none; /* Webkit browsers */
+}
+
+/* Button container outside scroll area */
+.compare-button-container {
+    background: #fff;
+    border-radius: 0 0 20px 20px; /* Only round bottom corners */
+    margin-top: -5px; /* Merge with table container */
+}
+
+.read-more-container {
+    background: #fff;
+    border-radius: 0 0 20px 20px; /* Only round bottom corners */
+    margin-top: -5px; /* Merge with table container */
+}
+
+/* Boolean indicator styles */
+.boolean-indicator {
+    display: inline-flex;
     align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    font-size: 12px;
 }
 
-.circle i {
-    font-size: 24px;
-    color: #333;
+.tick-icon {
+    color: #28a745 !important; /* Green color for true/yes */
+    background-color: #d4edda;
+    border-radius: 50%;
+    padding: 4px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-table {
+.cross-icon {
+    color: #dc3545 !important; /* Red color for false/no */
+    background-color: #f8d7da;
+    border-radius: 50%;
+    padding: 4px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Responsive table wrapper */
+.compare-table-wrapper {
+    min-width: 100%;
+    position: relative;
+}
+
+/* Table Base Styles */
+table.compare-table {
     margin-bottom: 0rem !important;
-    --bs-table-striped-bg: #F7F7F7 !important
+    --bs-table-striped-bg: #F7F7F7 !important;
+    width: 100%;
+    min-width: 100%;
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0;
 }
 
+/* Sticky first column - improved */
+.compare-table .compare-th:first-child,
+.compare-table .compare-td:first-child {
+    position: sticky;
+    left: 0;
+    background: #fff;
+    z-index: 10;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.15);
+    border-right: 2px solid #dee2e6 !important;
+}
+
+.compare-table .compare-th:first-child {
+    z-index: 11;
+    background: #f8f9fa;
+}
+
+/* Header styles */
 .compare-th {
-    padding: 17px !important;
-    border-bottom: none !important;
+    padding: 17px 12px !important;
+    border-bottom: 2px solid #dee2e6 !important;
     text-align: center;
-}
-
-.compare-td {
-    padding: 17px !important;
-    border-bottom: none !important;
-    text-align: center;
-}
-
-.th-font {
+    vertical-align: middle;
     font-size: 13px !important;
     font-weight: 600 !important;
+    background: #f8f9fa;
+    border-right: 1px solid #dee2e6;
 }
 
-.td-font {
+/* First header column specific styling - improved visibility */
+.compare-th.th-style {
+    width: 220px; /* Increased from 200px */
+    text-align: left;
+    min-width: 220px;
+    max-width: 220px;
+    padding: 17px 15px !important; /* Better padding */
+    white-space: normal; /* Allow wrapping */
+    overflow: visible;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+/* Data cell styles */
+.compare-td {
+    padding: 17px 12px !important;
+    border-bottom: 1px solid #dee2e6 !important;
+    text-align: center;
+    vertical-align: middle;
     font-size: 12px !important;
-    font-family: "Nunito", Arial, sans-serif ;
+    font-family: "Nunito", Arial, sans-serif;
+    border-right: 1px solid #dee2e6;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
-.td-border {
+/* First data column specific styling - improved visibility */
+.compare-td.td-border {
     border-right: 2px solid rgb(206 206 206 / 50%) !important;
-    color:rgba(36,39,44,.5) !important;
+    color: rgba(36,39,44,.8) !important; /* Darker text */
     text-align: left;
-}
-
-.compare-card {
+    font-weight: 500;
+    padding: 17px 15px !important; /* Better padding */
     background: #fff;
-    border-radius: 20px; 
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    width: 220px; /* Increased from 200px */
+    min-width: 220px;
+    max-width: 220px;
+    white-space: normal; /* Allow wrapping */
+    overflow: visible;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+/* Equal width columns for car data */
+.compare-table .compare-th:not(.th-style),
+.compare-table .compare-td:not(.td-border) {
+    width: calc((100% - 220px) / var(--car-count, 3)); /* Adjusted for new width */
+    min-width: 150px;
+}
+
+/* Striped rows */
+.compare-table tbody tr:nth-child(even) {
+    background-color: #F7F7F7;
+}
+
+.compare-table tbody tr:nth-child(even) .compare-td:first-child {
+    background-color: #f0f0f0;
+}
+
+/* Compare card container */
+.compare-card {
+    background: transparent; /* Let individual containers handle background */
+    border-radius: 0;
+    box-shadow: none;
     padding: 0;
+    margin: 20px 0;
+    overflow: visible;
 }
 
-.th-style {
-    width: 200px;
-    text-align: left;
-}
-
+/* Button styles */
 .compare-table-button {
-    margin: 10px;
+    margin: 15px 20px;
     text-decoration: none;
     color: #0a2357;
     font-size: 14px;
+    font-weight: 500;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
 }
 
 .compare-table-button:hover {
-    margin: 10px;
-    text-decoration: none;
-    color: #0a2357;
-    font-size: 14px;
+    color: #0d638f;
+    text-decoration: underline;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .table-container {
+        border-radius: 0;
+        overflow-x: auto;
+        /* Hide scrollbar on mobile too */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    
+    .table-container::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .compare-button-container {
+        margin: 0 -15px;
+        border-radius: 0;
+        margin-top: -5px;
+    }
+
+    .read-more-container {
+        margin: 0 -15px;
+        border-radius: 0;
+        margin-top: -5px;/* Merge with table container */
+    }
+    
+    .compare-card {
+        margin: 20px 0; /* Reset margin on mobile */
+    }
+    
+    .compare-table {
+        min-width: 750px; /* Increased for better mobile experience */
+    }
+    
+    /* First column on mobile - ensure full visibility */
+    .compare-th.th-style {
+        width: 200px; /* Adequate width for mobile */
+        min-width: 200px;
+        max-width: 200px;
+        font-size: 11px !important;
+        padding: 12px 10px !important;
+        line-height: 1.3;
+    }
+    
+    .compare-td.td-border {
+        width: 200px;
+        min-width: 200px;
+        max-width: 200px;
+        padding: 12px 10px !important;
+        font-size: 11px !important;
+        line-height: 1.3;
+    }
+    
+    .compare-th,
+    .compare-td {
+        padding: 12px 8px !important;
+        font-size: 11px !important;
+    }
+    
+    .compare-table .compare-th:not(.th-style),
+    .compare-table .compare-td:not(.td-border) {
+        min-width: 130px;
+        width: 130px;
+    }
+    
+    /* Boolean indicators responsive on tablet */
+    .boolean-indicator {
+        width: 20px;
+        height: 20px;
+        font-size: 10px;
+    }
+    
+    .tick-icon,
+    .cross-icon {
+        width: 16px;
+        height: 16px;
+        padding: 2px;
+        font-size: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .compare-table {
+        min-width: 650px; /* Ensure adequate space */
+    }
+    
+    /* Maintain readable first column on small screens */
+    .compare-th.th-style {
+        width: 180px;
+        min-width: 150px;
+        max-width: 160px;
+        font-size: 10px !important;
+        padding: 10px 8px !important;
+        line-height: 1.2;
+    }
+    
+    .compare-td.td-border {
+        width: 180px;
+        min-width: 180px;
+        max-width: 180px;
+        padding: 10px 8px !important;
+        font-size: 10px !important;
+        line-height: 1.2;
+    }
+    
+    .compare-th,
+    .compare-td {
+        padding: 10px 6px !important;
+        font-size: 10px !important;
+    }
+    
+    .compare-table .compare-th:not(.th-style),
+    .compare-table .compare-td:not(.td-border) {
+        min-width: 110px;
+        width: 110px;
+    }
+    
+    /* Boolean indicators responsive on mobile */
+    .boolean-indicator {
+        width: 18px;
+        height: 18px;
+        font-size: 9px;
+    }
+    
+    .tick-icon,
+    .cross-icon {
+        width: 14px;
+        height: 14px;
+        padding: 2px;
+        font-size: 7px;
+    }
+}
+
+/* Desktop styles */
+@media (min-width: 769px) {
+    .table-container {
+        overflow-x: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    
+    .table-container::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 .new {
-    flex: none !important
+    flex: none !important;
 }
+
+/* Car Selection Container Styling - Horizontal Scroll */
+.car-selection-container {
+    padding: 20px 0;
+    width: 100%;
+    overflow-x: auto; /* Enable horizontal scroll */
+    overflow-y: visible;
+    /* Hide scrollbar but keep functionality */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.car-selection-container::-webkit-scrollbar {
+    display: none; /* Webkit browsers - hide scrollbar */
+}
+
+.car-cards-wrapper {
+    display: flex;
+    gap: 25px; /* Increased spacing between cards */
+    padding: 0 20px;
+    width: 100%; /* Full width on desktop */
+    min-width: 100%;
+    overflow: visible;
+}
+
+/* Enhanced Card Styling - REDUCED HEIGHTS */
+.card {
+    background: #fff;
+    border: 2px solid #f1f5f9;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-height: 240px !important; /* SIGNIFICANTLY REDUCED from 320px */
+    flex: 1; /* Equal width distribution */
+    min-width: 280px; /* Minimum width to prevent too small cards */
+    max-width: 400px; /* Maximum width to prevent too large cards */
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border-color: #10b981;
+}
+
+.card-body {
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    position: relative;
+}
+
+/* Car Image Styling */
+.car-image-container {
+    width: 100%;
+    height: 120px; /* Reduced image height */
+    overflow: hidden;
+    border-radius: 12px 12px 0 0;
+    position: relative;
+}
+
+.card img {
+    width: 100%;
+    height: 120px; /* Reduced from 180px */
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
+    transition: transform 0.3s ease;
+}
+
+.card:hover img {
+    transform: scale(1.05);
+}
+
+/* Car Details Section */
+.car-details-section {
+    padding: 12px; /* Reduced padding */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    background: #fff;
+    border-radius: 0 0 14px 14px;
+}
+
+.car-variant-name {
+    font-size: 15px; /* Reduced font size */
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 6px; /* Reduced margin */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.car-variant-name i {
+    font-size: 11px; /* Reduced icon size */
+    color: #10b981;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.car-variant-name i:hover {
+    color: #059669;
+}
+
+.car-price {
+    font-size: 18px; /* Reduced font size */
+    font-weight: 700;
+    color: #059669;
+    margin-bottom: 3px; /* Reduced margin */
+}
+
+.car-price-note {
+    font-size: 10px; /* Reduced font size */
+    color: #6b7280;
+    margin: 0;
+}
+
+/* Default Add Car Styling */
+.default-car-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.default-car-card:hover {
+    border-color: #10b981;
+    background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+}
+
+.circle {
+    width: 70px; /* Reduced size */
+    height: 70px;
+    border: 3px dashed #94a3b8;
+    border-radius: 50%;
+    margin: 0 auto 15px; /* Reduced margin */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.default-car-card:hover .circle {
+    border-color: #10b981;
+    background: rgba(16, 185, 129, 0.1);
+}
+
+.circle i {
+    font-size: 28px; /* Reduced icon size */
+    color: #6b7280;
+    transition: color 0.3s ease;
+}
+
+.default-car-card:hover .circle i {
+    color: #10b981;
+}
+
+.add-car-text {
+    font-size: 13px; /* Reduced font size */
+    font-weight: 600;
+    color: #6b7280;
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+.default-car-card:hover .add-car-text {
+    color: #10b981;
+}
+
+/* Form Elements Styling */
+.form-container {
+    padding: 12px; /* Reduced padding */
+    width: 100%;
+}
+
+.form-select {
+    width: 100%;
+    padding: 8px 12px; /* Reduced padding */
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    font-size: 13px; /* Reduced font size */
+    background: #fff;
+    color: #374151;
+    transition: all 0.3s ease;
+    margin-bottom: 8px; /* Reduced margin */
+}
+
+.form-select:focus {
+    outline: none;
+    border-color: #10b981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.form-select:disabled {
+    background: #f9fafb;
+    border-color: #e5e7eb;
+    color: #9ca3af;
+    cursor: not-allowed;
+}
+
+/* Close Button Styling */
+.close-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 28px; /* Reduced size */
+    height: 28px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid #e5e7eb;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.close-button:hover {
+    background: #fee2e2;
+    border-color: #fca5a5;
+    color: #dc2626;
+}
+
+/* Compare Button Container */
+.compare-button-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+    margin-top: 20px;
+}
+
+.read-more-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* Enhanced Compare Button Styling */
+.btn.btn-thm.ofr_btn1 {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 16px !important;
+    padding: 16px 32px !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    width: auto !important; /* Auto width to wrap content */
+    min-width: auto !important; /* Remove min-width constraint */
+    transition: all 0.3s ease !important;
+    display: inline-flex !important; /* Changed from flex to inline-flex */
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important; /* Reduced gap for better spacing */
+    box-shadow: 0 6px 24px rgba(37, 99, 235, 0.3) !important;
+    text-transform: none !important;
+    letter-spacing: 0.5px !important;
+    margin: 0 !important; /* Remove auto margin */
+    white-space: nowrap !important; /* Prevent text wrapping */
+}
+
+.btn.btn-thm.ofr_btn1:hover:not(:disabled) {
+    background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%) !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 10px 35px rgba(37, 99, 235, 0.4) !important;
+}
+
+.btn.btn-thm.ofr_btn1:disabled {
+    background: #e5e7eb !important;
+    color: #9ca3af !important;
+    cursor: not-allowed !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.btn.btn-thm.ofr_btn1 .flaticon-profit-report {
+    font-size: 18px !important; /* Reduced icon size */
+    display: inline-block !important;
+    vertical-align: middle !important;
+}
+
+/* Responsive Breakpoints for Car Cards - REDUCED HEIGHTS */
+@media (max-width: 768px) {
+    .car-selection-container {
+        padding: 15px 0;
+    }
+    
+    .car-cards-wrapper {
+        gap: 20px;
+        padding: 0 15px;
+    }
+    
+    .card {
+        min-height: 220px !important; /* Reduced from 260px */
+        width: 250px;
+        min-width: 250px;
+        border-radius: 12px;
+    }
+    
+    .car-image-container {
+        height: 100px; /* Reduced */
+    }
+    
+    .card img {
+        height: 100px; /* Reduced */
+    }
+    
+    .car-details-section {
+        padding: 10px; /* Reduced */
+    }
+    
+    .car-variant-name {
+        font-size: 14px;
+    }
+    
+    .car-price {
+        font-size: 17px;
+    }
+    
+    .circle {
+        width: 55px;
+        height: 55px;
+        margin-bottom: 12px;
+    }
+    
+    .circle i {
+        font-size: 22px;
+    }
+    
+    .add-car-text {
+        font-size: 12px;
+    }
+    
+    .form-container {
+        padding: 10px;
+    }
+    
+    .form-select {
+        padding: 8px 12px;
+        font-size: 13px;
+        margin-bottom: 8px;
+    }
+    
+    .close-button {
+        width: 26px;
+        height: 26px;
+        top: 8px;
+        right: 8px;
+    }
+    
+    .btn.btn-thm.ofr_btn1 {
+        padding: 14px 28px !important;
+        font-size: 15px !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .card {
+        min-height: 200px !important; /* Reduced from 240px */
+        width: 230px;
+        min-width: 230px;
+    }
+    
+    .car-image-container {
+        height: 90px; /* Reduced */
+    }
+    
+    .card img {
+        height: 90px; /* Reduced */
+    }
+    
+    .car-details-section {
+        padding: 8px; /* Reduced */
+    }
+    
+    .car-variant-name {
+        font-size: 13px;
+    }
+    
+    .car-price {
+        font-size: 16px;
+    }
+    
+    .circle {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 10px;
+    }
+    
+    .circle i {
+        font-size: 20px;
+    }
+    
+    .add-car-text {
+        font-size: 11px;
+    }
+    
+    .form-container {
+        padding: 8px;
+    }
+    
+    .form-select {
+        padding: 6px 10px;
+        font-size: 12px;
+        margin-bottom: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        min-height: 180px !important; /* Reduced from 220px */
+        width: 210px;
+        min-width: 210px;
+    }
+    
+    .car-image-container {
+        height: 80px; /* Reduced */
+    }
+    
+    .card img {
+        height: 80px; /* Reduced */
+    }
+    
+    .car-details-section {
+        padding: 6px; /* Reduced */
+    }
+    
+    .car-variant-name {
+        font-size: 12px;
+    }
+    
+    .car-price {
+        font-size: 15px;
+    }
+    
+    .circle {
+        width: 45px;
+        height: 45px;
+        margin-bottom: 8px;
+    }
+    
+    .circle i {
+        font-size: 18px;
+    }
+    
+    .add-car-text {
+        font-size: 10px;
+    }
+}
+
+@media (min-width: 769px) {
+    .car-selection-container {
+        padding: 25px 0; /* Reduced */
+    }
+    
+    .car-cards-wrapper {
+        gap: 30px;
+        padding: 0 30px;
+        justify-content: center;
+    }
+    
+    .card {
+        flex: 1;
+        min-width: 300px;
+        max-width: 380px;
+        min-height: 280px !important; /* Reduced from 320px */
+    }
+    
+    .car-image-container {
+        height: 140px; /* Reduced */
+    }
+    
+    .card img {
+        height: 140px; /* Reduced */
+    }
+    
+    .car-details-section {
+        padding: 15px; /* Reduced */
+    }
+    
+    .car-variant-name {
+        font-size: 16px;
+    }
+    
+    .car-price {
+        font-size: 20px;
+    }
+    
+    .circle {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 18px;
+    }
+    
+    .circle i {
+        font-size: 32px;
+    }
+    
+    .add-car-text {
+        font-size: 15px;
+    }
+    
+    .form-container {
+        padding: 15px;
+    }
+    
+    .form-select {
+        padding: 12px 16px;
+        font-size: 14px;
+        margin-bottom: 12px;
+    }
+    
+    .close-button {
+        width: 32px;
+        height: 32px;
+        top: 10px;
+        right: 10px;
+    }
+} 
