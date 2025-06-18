@@ -766,7 +766,7 @@ table.compare-table {
 
 @media (max-width: 480px) {
     .card {
-        min-height: 180px !important; /* Reduced from 220px */
+        min-height: 230px !important; /* Reduced from 220px */
         width: 210px;
         min-width: 210px;
     }
@@ -821,7 +821,7 @@ table.compare-table {
         flex: 1;
         min-width: 300px;
         max-width: 380px;
-        min-height: 280px !important; /* Reduced from 320px */
+        min-height: 320px !important; /* Reduced from 320px */
     }
     
     .car-image-container {
@@ -874,4 +874,4 @@ table.compare-table {
         top: 10px;
         right: 10px;
     }
-} 
+}

@@ -189,9 +189,12 @@ const CompareTable = () => {
       const prevCards = [...cards];
       setPrevCards(prevCards)
       const updatedCards = [...cards];
-      updatedCards[index] = defaultState;
+      updatedCards[index] = {
+        ...cards[index],
+        allFieldsSelected: false,
+        isEnabled: true
+      };
       setCards(updatedCards)
-      return renderCard(updatedCards, 0)
     }
   }
 
