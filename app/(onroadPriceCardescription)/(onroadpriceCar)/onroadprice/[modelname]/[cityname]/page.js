@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 import { useAtom } from "jotai";
 import { selectBrandAtom, selectCityAtom, selectOnRoadPriceModelAtom } from "../../../../../components/atoms/categoriesAtoms";
 import OnRoadPriceForm from "../../../../../components/common/contactdealerForm/OnRoadPriceForm";
+import statesCitiesList from '../../../../../../public/jsondata/state-and-city.json';
 
 const metadata = {
   title: "OnRoad Price || Carportal - Automotive & Car Dealer",
@@ -33,6 +34,26 @@ const OnRoadPrice = () => {
   const [onRoadPriceModelId, setOnRoadPriceModelAtom] = useAtom(selectOnRoadPriceModelAtom);
   const router = useRouter();
 
+  // Load cityCode from localStorage on component mount
+  useEffect(() => {
+    const savedCityCode = localStorage.getItem('selectedCityCode');
+    if (savedCityCode && !cityData) {
+      console.log('Loading saved cityCode from localStorage:', savedCityCode);
+      setCityData(parseInt(savedCityCode));
+    }
+  }, []);
+
+  // Helper function to get state from cityCode
+  const getStateFromCityCode = (cityCode) => {
+    for (const state in statesCitiesList) {
+      const city = statesCitiesList[state].find(city => city.id.toString() === cityCode.toString());
+      if (city) {
+        return state;
+      }
+    }
+    return null;
+  };
+
   useEffect(() => {
     if(!onRoadPriceModelId || !cityData) {
     const data = JSON?.parse(localStorage?.getItem('onroadPriceFor'));
@@ -47,7 +68,10 @@ const OnRoadPrice = () => {
   useEffect(() => {
     try {
       if (onRoadPriceModelId && cityData) {
-        const apiUrl = `https://api.univolenitsolutions.com/v1/automobile/get/carmodel/${onRoadPriceModelId}/citycode/${cityData}/for/66cac994eeca9633c29171e2`;
+        console.log('onRoadPriceModelId ', onRoadPriceModelId);
+        console.log('cityData ', cityData);
+        const state = getStateFromCityCode(cityData);
+        const apiUrl = `https://api.univolenitsolutions.com/v1/automobile/get/carmodel/${onRoadPriceModelId}/for/66cac994eeca9633c29171e2${state ? `?state=${encodeURIComponent(state)}` : ''}`;
         const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
 
         fetch(apiUrl, {
@@ -59,6 +83,7 @@ const OnRoadPrice = () => {
         })
           .then(response => response.json())
           .then(data => {
+            console.log('data ', data);
             if (data && data.data && data.data) {
               setCarModelDetails(data.data.carModel);
               setCarVariantsList(data.data.carVariantList);
@@ -97,6 +122,8 @@ const OnRoadPrice = () => {
   const handleCityCodeChange = (cityCode) => {
     console.log("cityCode ", cityCode);
     setCityData(cityCode?.value);
+    // Save to localStorage for persistence
+    localStorage.setItem('selectedCityCode', cityCode?.value?.toString());
     localStorage.setItem('onroadPriceFor', JSON.stringify({ brand: brandData, model: onRoadPriceModelId , city: cityCode?.value }));
     router.push(`/onroadprice/${carModelDetails?.modelName?.split(' ').join('-')}/${cityCode?.label}`);
   }

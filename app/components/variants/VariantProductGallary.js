@@ -144,7 +144,7 @@ function OffCanvasExampleCompare({ name, router, carVariant, compareCars,setSugg
   );
 }
 
-export default function VariantProductGallery({ carModelDetails, carVariantsList, carVariant, compareCars, onDealerClick, onGetOnRoadPriceCLick, imgCount }) {
+export default function VariantProductGallery({ carModelDetails, carVariantsList, carVariant, compareCars, onDealerClick, onGetOnRoadPriceCLick, imgCount, cityCode, cityOptions }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [isOpen, setOpen] = useState(false);
   const [videoId, setVideoId] = useState("");
@@ -155,6 +155,15 @@ export default function VariantProductGallery({ carModelDetails, carVariantsList
   const openModal = (id) => {
     setVideoId(id);
     setOpen(true);
+  };
+
+  // Get city name from cityCode
+  const getCityName = () => {
+    if (cityCode && cityOptions) {
+      const selectedCity = cityOptions.find(option => option.value === cityCode.toString());
+      return selectedCity ? selectedCity.label : 'Selected City';
+    }
+    return carVariant?.pricingDetails?.state || 'Selected City';
   };
 
   // Assuming each variant object in carVariantsList has an 'id' and 'name' property
@@ -273,7 +282,7 @@ export default function VariantProductGallery({ carModelDetails, carVariantsList
               <h4 className="mr10">₹ {formatPrice(carVariant?.pricingDetails?.exShowroomPrice)}*</h4>
               <a onClick={handleRedirectToGetOnroadPage} className="tdu mt-2 mt-md-0 color-black pointer">Get On Road Price</a>
             </div>
-            <div><span style={{ fontSize: '12px' }}>*Ex-showroom price in</span> <span data-bs-toggle="modal" data-bs-target="#exShowroomPriceForm" style={{ color: 'blue', textDecoration: 'underline', cursor: 'pointer' }}>{carVariant?.pricingDetails?.city}</span></div>
+            <div><span style={{ fontSize: '12px' }}>*Ex-showroom price in</span> <span data-bs-toggle="modal" data-bs-target="#exShowroomPriceForm" style={{ color: 'blue', textDecoration: 'underline', cursor: 'pointer' }}>{getCityName()}</span></div>
             <div className="offer_btns mt-4">
               <div className="text-end">
                 <button className="btn btn-thm ofr_btn1 btn-block mt0 mb20 w-100" data-bs-toggle="modal" data-bs-target="#contactDealerForm">

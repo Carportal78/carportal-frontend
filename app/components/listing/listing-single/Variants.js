@@ -4,9 +4,20 @@ import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-const VariantsList = ({ carModelDetails, variants }) => {
+const VariantsList = ({ carModelDetails, variants, cityCode, cityOptions }) => {
 
   const router = useRouter();
+
+  // Get city name from cityCode
+  const getCityName = () => {
+    if (cityCode && cityOptions) {
+      const selectedCity = cityOptions.find(option => option.value === cityCode.toString());
+      return selectedCity ? selectedCity.label : 'Selected City';
+    }
+    // Fallback to state from the first variant that has pricing details
+    const firstVariantWithPricing = variants?.find(v => v?.pricingDetails?.state);
+    return firstVariantWithPricing?.pricingDetails?.state || 'Selected City';
+  };
 
   const featureCategories = [
     {
@@ -113,7 +124,7 @@ const VariantsList = ({ carModelDetails, variants }) => {
         <ListGroup.Item></ListGroup.Item>
       </ListGroup> */}
         <div className='d-flex justify-content-between mt-3'>
-          <div style={{ color: '#24272c', fontSize: '15px', fontWeight: '800' }}  >On-Road Price in {variant?.pricingDetails?.city}</div>
+          <div style={{ color: '#24272c', fontSize: '15px', fontWeight: '800' }}  >On-Road Price in {getCityName()}</div>
           <div style={{ color: '#24272c', fontSize: '15px', fontWeight: '500' }}>₹ {calculateTotalPrice(variant).toLocaleString('en-IN')}</div>
         </div>
         {/* <divider></divider>

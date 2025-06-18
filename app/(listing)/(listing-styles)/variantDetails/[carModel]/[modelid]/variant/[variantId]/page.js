@@ -57,6 +57,30 @@ const ModelDetails = () => {
   const [cityOptions, setCityOptions] = useState([]);
   const [compareCars, setCompareCars] = useState([]);
 
+  // Load cityCode from localStorage on component mount
+  useEffect(() => {
+    const savedCityCode = localStorage.getItem('selectedCityCode');
+    if (savedCityCode) {
+      console.log('Loading saved cityCode from localStorage:', savedCityCode);
+      setCityCode(parseInt(savedCityCode));
+      setCityData(parseInt(savedCityCode));
+    }
+  }, []);
+
+  // Helper function to get state from cityCode
+  const getStateFromCityCode = (cityCode) => {
+    console.log('Looking for cityCode:', cityCode);
+    for (const state in statesCitiesList) {
+      const city = statesCitiesList[state].find(city => city.id.toString() === cityCode.toString());
+      if (city) {
+        console.log('Found state:', state, 'for city:', city.city);
+        return state;
+      }
+    }
+    console.log('No state found for cityCode:', cityCode);
+    return null;
+  };
+
   const getImgCount = (data) => {
     const {
       exterior = [],
@@ -71,8 +95,12 @@ const ModelDetails = () => {
   }
 
   const handleCityCodeChange = (data) => {
+    console.log('City change triggered with:', data);
     setCityCode(data.value);
     setCityData(data.value);
+    // Save to localStorage for persistence
+    localStorage.setItem('selectedCityCode', data.value.toString());
+    console.log('Updated cityCode to:', data.value, 'and saved to localStorage');
   }
 
   useEffect(() => {
@@ -111,7 +139,16 @@ const ModelDetails = () => {
   }, [carModelDetails]);
 
   useEffect(() => {
-    const apiUrl = `https://api.univolenitsolutions.com/v1/automobile/get/carmodel/${modelid}/citycode/${cityCode}/for/66cac994eeca9633c29171e2`;
+    if (!modelid) {
+      console.log('No modelid, skipping API call');
+      return;
+    }
+    
+    console.log('useEffect triggered with:', { cityCode, modelid, variantId });
+    const state = getStateFromCityCode(cityCode);
+    console.log('State resolved to:', state);
+    const apiUrl = `https://api.univolenitsolutions.com/v1/automobile/get/carmodel/${modelid}/for/66cac994eeca9633c29171e2${state ? `?state=${encodeURIComponent(state)}` : ''}`;
+    console.log('API URL:', apiUrl);
     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
 
     fetch(apiUrl, {
@@ -123,6 +160,7 @@ const ModelDetails = () => {
     })
       .then(response => response.json())
       .then(data => {
+        console.log('API Response:', data);
         if (data && data.data && data.data) {
           setCarModelDetails(data.data.carModel);
           getImgCount(data?.data?.carModel)
@@ -138,7 +176,7 @@ const ModelDetails = () => {
       .catch(error => {
         console.error('Error fetching data: ', error);
       });
-  }, [cityCode])
+  }, [cityCode, modelid, variantId])
 
   useEffect(() => {
     const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj';
@@ -262,7 +300,7 @@ const ModelDetails = () => {
           <div className="row">
             {/* First row: Full-width gallery */}
             <div className="col-12">
-              <VariantProductGallary carModelDetails={carModelDetails} carVariantsList={carVariantsList} compareCars={compareCars} carVariant={carVariant} onDealerClick={handleDealerCLick} onGetOnRoadPriceCLick={handleGetOnRoadPriceCLick} imgCount={totalImgCount} />
+              <VariantProductGallary carModelDetails={carModelDetails} carVariantsList={carVariantsList} compareCars={compareCars} carVariant={carVariant} onDealerClick={handleDealerCLick} onGetOnRoadPriceCLick={handleGetOnRoadPriceCLick} imgCount={totalImgCount} cityCode={cityCode} cityOptions={cityOptions} />
             </div>
           </div>
           {/* Second row: Left = specs/price/desc/tabs, Right = Top Viewed Cars */}
@@ -272,7 +310,7 @@ const ModelDetails = () => {
                 <VariantsOverview carModelDetails={carModelDetails} carVariantsList={carVariantsList} carVariant={carVariant} />
               </div>
               <div className="listing_single_description">
-                <VariantPrice carModelDetails={carModelDetails} carVariantsList={carVariantsList} carVariant={carVariant} />
+                <VariantPrice carModelDetails={carModelDetails} carVariantsList={carVariantsList} carVariant={carVariant} cityCode={cityCode} cityOptions={cityOptions} />
               </div>
               <div className="listing_single_description">
                 <VariantsDescription carModelDetails={carModelDetails} carVariantsList={carVariantsList} name={carVariant?.name} />
@@ -357,7 +395,7 @@ const ModelDetails = () => {
                       aria-labelledby="nav-variants-tab"
                     >
                       <div className="user_profile_service bdr_none pl0 pr0">
-                        <VariantsList carModelDetails={carModelDetails} variants={carVariantsList} />
+                        <VariantsList carModelDetails={carModelDetails} variants={carVariantsList} cityCode={cityCode} cityOptions={cityOptions} />
                         <hr />
                       </div>
                     </div>

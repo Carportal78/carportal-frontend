@@ -8,7 +8,7 @@ import ContactDealerForm from '../common/contactdealerForm/ContactDealerForm';
 import Link from 'next/link';
 import styles from "../../components/css/findCarOfChoice.module.css";
 
-const VariantPrice = ({ carModelDetails, carVariantsList, carVariant }) => {
+const VariantPrice = ({ carModelDetails, carVariantsList, carVariant, cityCode, cityOptions }) => {
 
   const calculateTotalPrice = (variant) => {
     const exShowroomPrice = Number(variant?.pricingDetails?.exShowroomPrice) || 0;
@@ -20,6 +20,15 @@ const VariantPrice = ({ carModelDetails, carVariantsList, carVariant }) => {
     }, 0) || 0;
   
     return exShowroomPrice + rtoPrice + insurance + othersTotal;
+  };
+
+  // Get city name from cityCode
+  const getCityName = () => {
+    if (cityCode && cityOptions) {
+      const selectedCity = cityOptions.find(option => option.value === cityCode.toString());
+      return selectedCity ? selectedCity.label : 'Selected City';
+    }
+    return carVariant?.pricingDetails?.state || 'Selected City';
   };
 
   return (
@@ -77,7 +86,7 @@ const VariantPrice = ({ carModelDetails, carVariantsList, carVariant }) => {
             <ListGroup.Item></ListGroup.Item>
           </ListGroup>
           <div className='d-flex justify-content-between mt-3'>
-            <div style={{ color: '#24272c', fontSize: '15px', fontWeight: '500' }}  >On-Road Price in {carVariant?.pricingDetails?.city}</div>
+            <div style={{ color: '#24272c', fontSize: '15px', fontWeight: '500' }}  >On-Road Price in {getCityName()}</div>
             <div style={{ color: '#24272c', fontSize: '15px', fontWeight: '500' }}>₹ {calculateTotalPrice(carVariant).toLocaleString('en-IN')}</div>
           </div>
         </Col>

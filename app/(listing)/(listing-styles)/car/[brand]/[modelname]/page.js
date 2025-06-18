@@ -55,6 +55,34 @@ const ModelDetails = () => {
   const router = useRouter();
   const [cityOptions, setCityOptions] = useState([]);
 
+  // Load cityCode from localStorage on component mount
+  useEffect(() => {
+    const savedCityCode = localStorage.getItem('selectedCityCode');
+    if (savedCityCode) {
+      console.log('Loading saved cityCode from localStorage:', savedCityCode);
+      setCityCode(parseInt(savedCityCode));
+    }
+  }, []);
+
+  // Save cityCode to localStorage whenever it changes
+  useEffect(() => {
+    if (cityCode !== 1) { // Only save if it's not the default value
+      localStorage.setItem('selectedCityCode', cityCode.toString());
+      console.log('Saved cityCode to localStorage:', cityCode);
+    }
+  }, [cityCode]);
+
+  // Helper function to get state from cityCode
+  const getStateFromCityCode = (cityCode) => {
+    for (const state in statesCitiesList) {
+      const city = statesCitiesList[state].find(city => city.id.toString() === cityCode.toString());
+      if (city) {
+        return state;
+      }
+    }
+    return null;
+  };
+
   useEffect(() => {
     const modelDetails = JSON.parse(localStorage.getItem('model-details'));
     if (modelDetails) {
@@ -100,7 +128,8 @@ const ModelDetails = () => {
 
   useEffect(() => {
     if (modelid) {
-      const apiUrl = `https://api.univolenitsolutions.com/v1/automobile/get/carmodel/${modelid}/citycode/${cityCode}/for/66cac994eeca9633c29171e2`;
+      const state = getStateFromCityCode(cityCode);
+      const apiUrl = `https://api.univolenitsolutions.com/v1/automobile/get/carmodel/${modelid}/for/66cac994eeca9633c29171e2${state ? `?state=${encodeURIComponent(state)}` : ''}`;
       const apiKey = 'GCMUDiuY5a7WvyUNt9n3QztToSHzK7Uj'; // Replace with your actual API key
 
     fetch(apiUrl, {
@@ -124,7 +153,7 @@ const ModelDetails = () => {
       console.error('Error fetching data: ', error);
     });
   }
-  },[modelid])
+  },[modelid, cityCode])
 
   // Populate city options
   useEffect(() => {
@@ -302,7 +331,7 @@ const ModelDetails = () => {
                       aria-labelledby="nav-variants-tab"
                     >
                       <div className="user_profile_service bdr_none pl0 pr0">
-                        <VariantsList carModelDetails={carModelDetails} variants={carVariantsList} />
+                        <VariantsList carModelDetails={carModelDetails} variants={carVariantsList} cityCode={cityCode} cityOptions={cityOptions} />
                         <hr />
                       </div>
                     </div>
