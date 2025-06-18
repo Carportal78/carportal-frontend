@@ -47,7 +47,7 @@ const HeroBanner = () => {
     >
       {isMobile ? (
         <img
-          src="/images/HomeBanner.jpeg"
+          src="/images/HomeBanner1.jpeg"
           alt="Audi Car Banner"
           className={styles.videoBackground}
         />
@@ -76,4 +76,5 @@ const HeroBanner = () => {
 };
 
 export default HeroBanner;
+
 
