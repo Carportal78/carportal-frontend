@@ -36,21 +36,14 @@ const Compare = () => {
       {/* End Main Header Nav For Mobile */}
 
       {/* Inner Page Breadcrumb */}
-      <section className="inner_page_breadcrumb style2">
+      <section className="inner_page_breadcrumb_compare style2">
         <div className="container">
           <div className="row">
             <div className="col-xl-12">
-              <div className="breadcrumb_content style2">
-                <h2 className="breadcrumb_title">Compare</h2>
+              <div className="breadcrumb_content_compare style2">
+                <h2 className="breadcrumb_title_compare">Compare</h2>
                 <p className="subtitle">Compare</p>
-                <ol className="breadcrumb fn-520">
-                  <li className="breadcrumb-item">
-                    <a href="#">Home</a>
-                  </li>
-                  <li className="breadcrumb-item active" aria-current="page">
-                    Compare
-                  </li>
-                </ol>
+               
               </div>
             </div>
           </div>
@@ -63,7 +56,7 @@ const Compare = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
-              <div className="compare_table table-responsive pt60">
+              <div className="compare_table table-responsive">
                 <CompareTable />
               </div>
             </div>
