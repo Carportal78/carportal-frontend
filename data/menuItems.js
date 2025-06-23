@@ -20,7 +20,7 @@ module.exports = [
     subMenu: [],
   },
   {
-    label: "Blog",
+    label: "News and Reviews",
       path: "/blog-grid",
     subMenu: [],
   },

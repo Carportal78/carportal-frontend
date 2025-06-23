@@ -48,13 +48,13 @@ const Blog = ({ blogs }) => {
           <div className="row">
             <div className="col-xl-12">
               <div className="breadcrumb_content">
-                <h2 className="breadcrumb_title">Blog</h2>
+                <h2 className="breadcrumb_title">News and Reviews</h2>
                 <ol className="breadcrumb fn-sm">
                   <li className="breadcrumb-item">
                     <a href="#">Home</a>
                   </li>
                   <li className="breadcrumb-item active" aria-current="page">
-                    <a href="#">Blog</a>
+                    <a href="#">News and Reviews</a>
                   </li>
                 </ol>
               </div>
