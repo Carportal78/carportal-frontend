@@ -116,11 +116,12 @@ const Dealers = () => {
       });
   }, [brandData, cityData])
 
-  function handleSearchDealer(brandName, cityName) {
-    setBrandData(cityData);
-    setCityData(brandData);
-    console.log('cityData', cityData, brandData);
-    localStorage.setItem('dealer-type', JSON.stringify({ brand: brandData, city: cityData }))
+  function handleSearchDealer(brandName, cityName, selectedBrandId) {
+    // Fix: Don't swap the values, use the correct brand ID
+    setBrandData(selectedBrandId);
+    setCityData(cityData);
+    console.log('cityData', cityData, selectedBrandId);
+    localStorage.setItem('dealer-type', JSON.stringify({ brand: selectedBrandId, city: cityData }))
     router.push(`/dealers/list/${brandName}/${cityName}`);
 }
 
@@ -271,7 +272,7 @@ const Dealers = () => {
             {isLoading ? <Spinner className="d-flex" style={{ marginLeft: 'auto', marginRight: 'auto' }} animation="border" role="status">
               <span className="visually-hidden">Loading...</span>
             </Spinner> : carBrandsList?.map(brand => (
-              <Col xs={6} md={4} lg={2} className="d-flex align-items-stretch pointer" key={brand?._id} onClick={() => handleSearchDealer(brand?.brandName, cityLabel)}>
+              <Col xs={6} md={4} lg={2} className="d-flex align-items-stretch pointer" key={brand?._id} onClick={() => handleSearchDealer(brand?.brandName, getCityName(cityData), brand?._id)}>
                 <div style={{
                   backgroundColor: "#fff",
                   border: "1px solid #eaeaea",

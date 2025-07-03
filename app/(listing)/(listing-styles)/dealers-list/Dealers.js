@@ -115,10 +115,10 @@ const Dealers = ({ carBrandsList, carModelsList}) => {
   //   router.push(`/dealer/${brand?._id}`) 
   // }
 
-  function handleSearchDealer(brandName, cityName) {
-    setBrandData(cityData);
-    setCityData(brandData);
-    localStorage.setItem('dealer-type', JSON.stringify({ brand: brandData, city: cityData }))
+  function handleSearchDealer(brandName, cityName, selectedBrandId) {
+    console.log(brandName, cityName, selectedBrandId);
+    // Store the selected brand ID, not the current brandData
+    localStorage.setItem('dealer-type', JSON.stringify({ brand: selectedBrandId, city: cityData }))
     router.push(`/dealers/list/${brandName}/${cityName}`);
 }
 
@@ -222,7 +222,7 @@ const Dealers = ({ carBrandsList, carModelsList}) => {
             {isBrandLoading ? <Spinner className="d-flex" style={{ marginLeft: 'auto', marginRight: 'auto' }} animation="border" role="status">
               <span className="visually-hidden">Loading...</span>
             </Spinner> : (carBrandsList?.map(brand => (
-              <Col xs={6} md={4} lg={2} className="d-flex align-items-stretch pointer" key={brand?._id} onClick={() => handleSearchDealer}>
+              <Col xs={6} md={4} lg={2} className="d-flex align-items-stretch pointer" key={brand?._id} onClick={() => handleSearchDealer(brand?.brandName, cityData, brand?._id)}>
                 
                 <div style={{
                   width: '100%',
