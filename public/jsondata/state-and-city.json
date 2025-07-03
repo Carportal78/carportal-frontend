@@ -4757,6 +4757,10 @@
     ],
     "West Bengal": [
         {
+            "id": "1221",
+            "city": "Howrah"
+        },
+        {
             "id": "6",
             "city": "Kolkata"
         },
