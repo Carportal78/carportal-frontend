@@ -171,11 +171,11 @@ const ListingV3 = () => {
   
     if (brandFilter) {
       filteredResults = filteredResults.filter(model => 
-        model?.carBrand?.brandName?.toLowerCase() === brandFilter?.toLowerCase()
+        model?.carBrand?.brandName?.toLowerCase().trim() === brandFilter?.toLowerCase().trim()
       );
     }
 
-    if (priceFilter) {
+    if (priceFilter?.length > 0) {
       filteredResults = filteredResults.filter(model => {
         if(priceFilter.includes('31')) {
           return priceFilter.every(item => model?.priceRange?.minPrice >= parseInt(item, 10)) && 
@@ -281,7 +281,8 @@ const ListingV3 = () => {
           <div className="row">
             <div className="col-lg-4 col-xl-3 dn-md">
               <SidebarAdvnaceFilter 
-                carModelsList={brandFilteredData} 
+                carModelsList={carModelsList}
+                filteredCarModelsList={filteredData}
                 carBrandsList={carBrandsList} 
                 onSearchClick={handleSearchHandler} 
               />
@@ -316,7 +317,8 @@ const ListingV3 = () => {
             <i className="fa-light fa-circle-xmark"></i>
           </div>
           <SidebarAdvnaceFilter 
-            carModelsList={brandFilteredData} 
+            carModelsList={carModelsList}
+            filteredCarModelsList={filteredData}
             carBrandsList={carBrandsList} 
             onSearchClick={handleSearchHandler} 
           />

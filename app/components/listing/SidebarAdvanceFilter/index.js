@@ -2,15 +2,17 @@
 import { useEffect, useState, useCallback, useMemo } from "react";
 import SelectFilter from "./SelectFilter";
 import { useAtom } from "jotai";
-import { carFilters } from "../../../components/atoms/categoriesAtoms"
+import { carFilters, filteredCarData } from "../../../components/atoms/categoriesAtoms"
 
-const SidebarAdvnaceFilter = ({ carModelsList, carBrandsList, onSearchClick }) => {
+const SidebarAdvnaceFilter = ({ carModelsList, filteredCarModelsList, carBrandsList, onSearchClick }) => {
     const [selectedFilters, setSelectedFilters] = useAtom(carFilters);
     const [isFilterChanged, setIsFilterChanges] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
-    // Calculate static counts using useMemo
-    const filterCounts = useMemo(() => {
+    const [filterCount] = useAtom(filteredCarData); 
+
+    // Calculate dynamic counts based on what would be available after applying all filters except the one being counted
+    const filterCounts = useMemo(() => { 
       if (!carModelsList) return {
         fuelType: {},
         transmissionType: {},
@@ -23,11 +25,77 @@ const SidebarAdvnaceFilter = ({ carModelsList, carBrandsList, onSearchClick }) =
         price: {}
       };
 
+      // Helper function to check if a model passes all filters except the specified one
+      const passesFiltersExcept = (model, excludeFilterType, excludeValue) => {
+        // Brand filter
+        if (selectedFilters?.brand && model?.carBrand?.brandName?.toLowerCase().trim() !== selectedFilters.brand?.toLowerCase().trim()) {
+          return false;
+        }
+
+        // Body type filter
+        if (selectedFilters?.bodyType && model?.bodyType?.toLowerCase() !== selectedFilters.bodyType?.toLowerCase()) {
+          return false;
+        }
+
+        // Budget filter
+        if (selectedFilters?.budget && model?.budget?.toLowerCase() !== selectedFilters.budget?.toLowerCase()) {
+          return false;
+        }
+
+        // Price filter (excluding the specific price being counted)
+        if (selectedFilters?.price?.length > 0) {
+          const priceToCheck = selectedFilters.price.filter(p => p !== excludeValue);
+          if (priceToCheck.length > 0) {
+            const passesPrice = priceToCheck.every(item => {
+              if (item === '31') {
+                return model?.priceRange?.minPrice >= parseInt(item, 10) && 
+                  (model?.priceRange.maxPriceType === 'Lakhs' || model?.priceRange.maxPriceType === 'Crores');
+              }
+              return model?.priceRange?.minPrice <= parseInt(item, 10) && 
+                model?.priceRange.maxPriceType === 'Lakhs';
+            });
+            if (!passesPrice) return false;
+          }
+        }
+
+        // Fuel type filter (excluding the specific fuel type being counted)
+        if (excludeFilterType === 'fuelType') {
+          const fuelTypesToCheck = selectedFilters?.fuelType?.filter(f => f !== excludeValue) || [];
+          if (fuelTypesToCheck.length > 0) {
+            if (!model.fuelType?.some(item => fuelTypesToCheck.includes(item))) {
+              return false;
+            }
+          }
+        } else if (selectedFilters?.fuelType?.length > 0) {
+          if (!model.fuelType?.some(item => selectedFilters.fuelType.includes(item))) {
+            return false;
+          }
+        }
+
+        // Transmission type filter (excluding the specific transmission type being counted)
+        if (excludeFilterType === 'transmissionType') {
+          const transmissionTypesToCheck = selectedFilters?.transmissionType?.filter(t => t !== excludeValue) || [];
+          if (transmissionTypesToCheck.length > 0) {
+            if (!model.transmissionType?.some(item => transmissionTypesToCheck.includes(item))) {
+              return false;
+            }
+          }
+        } else if (selectedFilters?.transmissionType?.length > 0) {
+          if (!model.transmissionType?.some(item => selectedFilters.transmissionType.includes(item))) {
+            return false;
+          }
+        }
+
+        return true;
+      };
+
       // Calculate fuel type counts
       carModelsList.forEach(model => {
         if (model?.fuelType) {
           model.fuelType.forEach(type => {
-            counts.fuelType[type] = (counts.fuelType[type] || 0) + 1;
+            if (passesFiltersExcept(model, 'fuelType', type)) {
+              counts.fuelType[type] = (counts.fuelType[type] || 0) + 1;
+            }
           });
         }
       });
@@ -36,7 +104,9 @@ const SidebarAdvnaceFilter = ({ carModelsList, carBrandsList, onSearchClick }) =
       carModelsList.forEach(model => {
         if (model?.transmissionType) {
           model.transmissionType.forEach(type => {
-            counts.transmissionType[type] = (counts.transmissionType[type] || 0) + 1;
+            if (passesFiltersExcept(model, 'transmissionType', type)) {
+              counts.transmissionType[type] = (counts.transmissionType[type] || 0) + 1;
+            }
           });
         }
       });
@@ -47,32 +117,32 @@ const SidebarAdvnaceFilter = ({ carModelsList, carBrandsList, onSearchClick }) =
           const minPrice = model.priceRange.minPrice;
           const maxPriceType = model.priceRange.maxPriceType;
 
-          if (minPrice <= 5 && maxPriceType === 'Lakhs') {
+          if (minPrice <= 5 && maxPriceType === 'Lakhs' && passesFiltersExcept(model, 'price', '5')) {
             counts.price['5'] = (counts.price['5'] || 0) + 1;
           }
-          if (minPrice <= 10 && maxPriceType === 'Lakhs') {
+          if (minPrice <= 10 && maxPriceType === 'Lakhs' && passesFiltersExcept(model, 'price', '10')) {
             counts.price['10'] = (counts.price['10'] || 0) + 1;
           }
-          if (minPrice <= 15 && maxPriceType === 'Lakhs') {
+          if (minPrice <= 15 && maxPriceType === 'Lakhs' && passesFiltersExcept(model, 'price', '15')) {
             counts.price['15'] = (counts.price['15'] || 0) + 1;
           }
-          if (minPrice <= 20 && maxPriceType === 'Lakhs') {
+          if (minPrice <= 20 && maxPriceType === 'Lakhs' && passesFiltersExcept(model, 'price', '20')) {
             counts.price['20'] = (counts.price['20'] || 0) + 1;
           }
-          if (minPrice <= 25 && maxPriceType === 'Lakhs') {
+          if (minPrice <= 25 && maxPriceType === 'Lakhs' && passesFiltersExcept(model, 'price', '25')) {
             counts.price['25'] = (counts.price['25'] || 0) + 1;
           }
-          if (minPrice <= 30 && maxPriceType === 'Lakhs') {
+          if (minPrice <= 30 && maxPriceType === 'Lakhs' && passesFiltersExcept(model, 'price', '30')) {
             counts.price['30'] = (counts.price['30'] || 0) + 1;
           }
-          if (minPrice > 30 && (maxPriceType === 'Lakhs' || maxPriceType === 'Crores')) {
+          if (minPrice > 30 && (maxPriceType === 'Lakhs' || maxPriceType === 'Crores') && passesFiltersExcept(model, 'price', '31')) {
             counts.price['31'] = (counts.price['31'] || 0) + 1;
           }
         }
       });
 
       return counts;
-    }, [carModelsList]);
+    }, [carModelsList, selectedFilters]);
 
     useEffect(() => {
       const queryParams = new URLSearchParams(window.location.search);
