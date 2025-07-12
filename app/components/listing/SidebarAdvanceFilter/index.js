@@ -350,7 +350,7 @@ const SidebarAdvnaceFilter = ({ carModelsList, filteredCarModelsList, carBrandsL
                       disabled={isLoading}
                     />
                     <label className="form-check-label" htmlFor="flexCheckUnder5Lakh">
-                      Under 5 Lakh ({filterCounts.price['5'] || 0})
+                      Under 5 Lakh
                     </label>
                   </div>
                   <div className="form-check mb20">
@@ -363,7 +363,7 @@ const SidebarAdvnaceFilter = ({ carModelsList, filteredCarModelsList, carBrandsL
                       disabled={isLoading}
                     />
                     <label className="form-check-label" htmlFor="flexCheckUnder10Lakh">
-                      Under 10 Lakh ({filterCounts.price['10'] || 0})
+                      Under 10 Lakh
                     </label>
                   </div>
                   <div className="form-check mb20">
@@ -376,7 +376,7 @@ const SidebarAdvnaceFilter = ({ carModelsList, filteredCarModelsList, carBrandsL
                       disabled={isLoading}
                     />
                     <label className="form-check-label" htmlFor="flexCheckUnder15Lakh">
-                      Under 15 Lakh ({filterCounts.price['15'] || 0})
+                      Under 15 Lakh
                     </label>
                   </div>
                   <div className="form-check mb20">
@@ -389,7 +389,7 @@ const SidebarAdvnaceFilter = ({ carModelsList, filteredCarModelsList, carBrandsL
                       disabled={isLoading}
                     />
                     <label className="form-check-label" htmlFor="flexCheckUnder20Lakh">
-                      Under 20 Lakh ({filterCounts.price['20'] || 0})
+                      Under 20 Lakh
                     </label>
                   </div>
                   <div className="form-check mb20">
@@ -402,7 +402,7 @@ const SidebarAdvnaceFilter = ({ carModelsList, filteredCarModelsList, carBrandsL
                       disabled={isLoading}
                     />
                     <label className="form-check-label" htmlFor="flexCheckUnder25Lakh">
-                      Under 25 Lakh ({filterCounts.price['25'] || 0})
+                      Under 25 Lakh
                     </label>
                   </div>
                   <div className="form-check mb20">
@@ -415,7 +415,7 @@ const SidebarAdvnaceFilter = ({ carModelsList, filteredCarModelsList, carBrandsL
                       disabled={isLoading}
                     />
                     <label className="form-check-label" htmlFor="flexCheckUnder30Lakh">
-                      Under 30 Lakh ({filterCounts.price['30'] || 0})
+                      Under 30 Lakh
                     </label>
                   </div>
                   <div className="form-check mb30">
@@ -428,7 +428,7 @@ const SidebarAdvnaceFilter = ({ carModelsList, filteredCarModelsList, carBrandsL
                       disabled={isLoading}
                     />
                     <label className="form-check-label" htmlFor="flexCheckAbove30Lakh">
-                      Above 30 Lakh ({filterCounts.price['31'] || 0})
+                      Above 30 Lakh
                     </label>
                   </div>
                 </div>
